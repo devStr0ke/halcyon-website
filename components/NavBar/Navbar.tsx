@@ -21,9 +21,9 @@ export const Navbar = () => {
 
   const navBarClass = () => {
     if (Math.floor(scrollPosition) < 44) {
-      return "z-[999] sticky top-0 bg-white h-16 mx-0 flex justify-center lg:bg-white lg:mt-11 lg:h-16 lg:transition-navBar lg:duration-[1500ms] lg:animate-slidein lg:mx-16 lg:mx-24 xl:mx-36";
+      return "z-50 sticky top-0 bg-white h-16 mx-0 flex justify-center lg:bg-white lg:mt-11 lg:h-16 lg:transition-navBar lg:duration-[1500ms] lg:animate-slidein lg:mx-16 lg:mx-24 xl:mx-36";
     } else {
-      return "z-[999] sticky top-0 bg-white h-16 mx-0 flex justify-center lg:bg-white lg:mt-11 lg:h-16 lg:transition-navBar lg:duration-[1500ms] lg:animate-slidein xl:mx-44 lg:sticky lg:top-0 lg:bg-black lg:mx-0 lg:mx-0 xl:mx-0";
+      return "z-50 sticky top-0 bg-white h-16 mx-0 flex justify-center lg:bg-white lg:mt-11 lg:h-16 lg:transition-navBar lg:duration-[1500ms] lg:animate-slidein xl:mx-44 lg:sticky lg:top-0 lg:bg-black lg:mx-0 lg:mx-0 xl:mx-0";
     }
   };
 
