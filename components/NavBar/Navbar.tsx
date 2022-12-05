@@ -35,6 +35,23 @@ export const Navbar = () => {
     }
   };
 
+  const leftNavBarItemsController = () => {
+    if (Math.floor(scrollPosition) > 44) {
+      return 'hidden font-bold text-white absolute top-5 left-6 h-[45px] lg:flex gap-8 lg:ml-10 xl:ml-24';
+    } else {
+      return 'hidden font-bold text-black absolute top-5 left-6 h-[45px] lg:flex gap-8 lg:ml-10 xl:ml-24';
+    }
+  };
+
+  const rightNavBarItemsController = () => {
+    if (Math.floor(scrollPosition) > 44) {
+      return 'hidden font-bold text-white absolute top-5 right-6 h-[45px] lg:flex gap-8 lg:mr-10 xl:mr-24';
+    } else {
+      return 'hidden font-bold text-black absolute top-5 right-6 h-[45px] lg:flex gap-8 lg:mr-10 xl:mr-24';
+    }
+  };
+
+
   const logoColor = () => {
     if (Math.floor(scrollPosition) < 44) {
       return '/static/svg/halcyonLogoBlack.svg';
@@ -47,21 +64,38 @@ export const Navbar = () => {
       <div>
         <header className={navBarHeightController()}>
           <div className={navBarController()}>
+            <div className='absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500'></div>
             <div className="overflow-hidden">
-              <Image
-                className="hidden lg:flex"
-                src={logoColor()}
-                alt="logolgAndUp"
-                width="45"
-                height="100"
-              />
-              <Image
-                className="lg:hidden"
-                src="/static/svg/halcyonLogoBlack.svg"
-                alt="logoDownlg"
-                width="40"
-                height="55"
-              />
+              <a className='overflow-clip' href="#">
+                <Image
+                  className="hidden lg:flex"
+                  src={logoColor()}
+                  alt="logolgAndUp"
+                  width="40"
+                  height="100"
+                />
+              </a>
+              <a href='#'>
+                <Image
+                  className="lg:hidden"
+                  src="/static/svg/halcyonLogoBlack.svg"
+                  alt="logoDownlg"
+                  width="40"
+                  height="55"
+                />
+              </a>
+              <div className={leftNavBarItemsController()}>
+                <a href="#">About</a>
+                <a href="#">Reviews</a>
+                <a href="#">Guides</a>
+                <a href="#">Info</a>
+              </div>
+              <div className={rightNavBarItemsController()}>
+                <a href="#">Collab</a>
+                <a href="#">Roadmap</a>
+                <a href="#">Team</a>
+                <a href="#">Contact</a>
+              </div>
               <div onClick={toggleClass} className="absolute space-y-1.5 top-7 left-6 lg:hidden">
                 <span
                   className={
@@ -86,7 +120,7 @@ export const Navbar = () => {
       <div
         className={
           hamburgerController
-            ? 'lg:hidden top-[65px] h-full bg-white w-full border-t-2 border-cyan-400 fixed z-[799] transform transition-transform duration-500 translate-y-0'
+            ? 'lg:hidden top-[65px] h-full bg-white w-full border-t-[0.01px] border-gray-300 border-opacity-40 fixed z-[799] transform transition-transform duration-500 translate-y-0'
             : 'lg:hidden top-[65px] h-full bg-white w-full fixed z-[799] transform transition-transform duration-500 -translate-y-full'
         }
       >
