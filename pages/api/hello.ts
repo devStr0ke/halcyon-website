@@ -11,3 +11,6 @@ export default function handler(
 ) {
   res.status(200).json({ name: 'John Doe' })
 }
+
+
+export let APP_VERSION = "v1.0.0"
