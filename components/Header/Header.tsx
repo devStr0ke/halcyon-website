@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/image";
 export const Header = () => {
   return (
     <section className="relative bg-transparent bg-cover bg-center bg-no-repeat">
@@ -7,11 +7,13 @@ export const Header = () => {
           priority
           className="-z-50"
           src="/static/images/heroImage.png"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
           alt="hero image example"
-        />
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: "cover",
+            objectPosition: "center"
+          }} />
       </div>
 
       <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 sm:flex sm:justify-center lg:h-screen lg:items-center xl:items-end lg:px-8">
