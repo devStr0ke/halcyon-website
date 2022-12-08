@@ -1,5 +1,5 @@
 {
-  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "next"],
   "globals": {
     "React": "readonly"
   },
@@ -11,5 +11,8 @@
     "browser": true,
     "es2021": true,
     "jest": true
+  },
+  "parserOptions": {
+      "sourceType": "module"
   }
 }
