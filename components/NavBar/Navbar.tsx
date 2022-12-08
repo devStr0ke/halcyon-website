@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 export const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const handleScroll = () => {
