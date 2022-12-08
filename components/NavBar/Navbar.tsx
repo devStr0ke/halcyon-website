@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import Image from "next/image";
 export const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(0); 
   const handleScroll = () => {
@@ -51,7 +51,6 @@ export const Navbar = () => {
       return 'hidden font-bold text-black absolute top-5 lg:right-2 xl:right-24 h-[45px] animate-hideNavBarContent lg:flex gap-8 lg:mr-10 xl:mr-0';
     }
   };
-
 
   const logoColor = () => {
     if (Math.floor(scrollPosition) < 44) {
@@ -115,29 +114,27 @@ export const Navbar = () => {
               </div>
             </div>
           </div>
-        </header>
+      </header>
+    </div>
+    {/*Mobile Menu*/}
+    <div
+      className={
+        hamburgerController
+          ? 'lg:hidden top-[65px] h-full bg-white w-full border-t-[0.01px] border-gray-300 border-opacity-40 fixed z-[799] transform transition-transform duration-500 translate-y-0'
+          : 'lg:hidden top-[65px] h-full bg-white w-full fixed z-[799] transform transition-transform duration-500 -translate-y-full'
+      }>
+      <div className="text-lg font-bold uppercase text-black flex justify-center mt-12 hover:text-cyan-400">
+        <div>Reviews</div>
       </div>
-      {/*Mobile Menu*/}
-      <div
-        className={
-          hamburgerController
-            ? 'lg:hidden top-[65px] h-full bg-white w-full border-t-[0.01px] border-gray-300 border-opacity-40 fixed z-[799] transform transition-transform duration-500 translate-y-0'
-            : 'lg:hidden top-[65px] h-full bg-white w-full fixed z-[799] transform transition-transform duration-500 -translate-y-full'
-        }
-      >
-        <div className="text-lg font-bold uppercase text-black flex justify-center mt-12 hover:text-cyan-400">
-          <div>Reviews</div>
-        </div>
-        <div className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
-          <div>Guides</div>
-        </div>
-        <div className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
-          <div>About</div>
-        </div>
-        <div className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
-          <div>Services</div>
-        </div>
+      <div className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
+        <div>Guides</div>
       </div>
-    </>
-  );
+      <div className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
+        <div>About</div>
+      </div>
+      <div className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
+        <div>Services</div>
+      </div>
+    </div>
+  </>);
 };
