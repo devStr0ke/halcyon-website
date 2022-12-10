@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       transitionProperty: {
         'navBar' : 'margin-left, margin-right, border-radius, height',
-        'width' : 'width',
+        'blueBorderLeft' : 'left, right',
       },
       keyframes: {
         slidein : {
@@ -18,6 +18,11 @@ module.exports = {
           '85%': { height: '0.2rem' },
         },
         hideImage: {
+          '0%': { opacity: '0' },
+          '50%': { opacity: '0' },
+          '95%': { opacity: '1' },
+        },
+        hideBlueBorder: {
           '0%': { opacity: '0' },
           '50%': { opacity: '0' },
           '95%': { opacity: '1' },
@@ -32,6 +37,7 @@ module.exports = {
         slidein: 'slidein 1.2s',
         hideImage: 'hideImage 1.9s',
         hideNavBarContent: 'hideNavBarContent 1.2s',
+        hideBlueBorder: 'hideBlueBorder 0.6s',
       }
     },
   },
