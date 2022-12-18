@@ -80,13 +80,19 @@ export const Navbar = () => {
   };
 
   const blueBottomBorderControllerLeft = () => {
-    if(navBarItemRight == 1 || navBarItemRight == 2 || navBarItemRight == 3 || navBarItemRight == 4  ){
-      return ''
+    if (
+      navBarItemRight == 1 ||
+      navBarItemRight == 2 ||
+      navBarItemRight == 3 ||
+      navBarItemRight == 4
+    ) {
+      return '';
     } else {
       if (navBarItemLeft == 5) {
         if (Math.floor(scrollPosition) < 44) {
           return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:left-[48.5%] transition-blueBorder duration-[400ms] ease-in-out';
-        } else return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:left-[48.8%] transition-blueBorder duration-[400ms] ease-in-out';
+        } else
+          return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:left-[48.8%] transition-blueBorder duration-[400ms] ease-in-out';
       } else if (navBarItemLeft == 1) {
         return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder lg:left-[55px] xl:left-[100px] duration-[700ms] ease-in-out';
       } else if (navBarItemLeft == 2) {
@@ -98,19 +104,21 @@ export const Navbar = () => {
       } else if (navBarItemLeft == 6) {
         if (Math.floor(scrollPosition) < 44) {
           return 'animate-hideBlueBorder absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:left-[48.5%] transition-blueBorder duration-[400ms] ease-in-out';
-        } else return 'animate-hideBlueBorder absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:left-[48.8%] transition-blueBorder duration-[400ms] ease-in-out';
+        } else
+          return 'animate-hideBlueBorder absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:left-[48.8%] transition-blueBorder duration-[400ms] ease-in-out';
       }
     }
   };
 
   const blueBottomBorderControllerRight = () => {
-    if(navBarItemLeft == 1 || navBarItemLeft == 2 || navBarItemLeft == 3 || navBarItemLeft == 4 ){
-      return ''
+    if (navBarItemLeft == 1 || navBarItemLeft == 2 || navBarItemLeft == 3 || navBarItemLeft == 4) {
+      return '';
     } else {
       if (navBarItemRight == 5) {
         if (Math.floor(scrollPosition) < 44) {
           return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:right-[48.5%] transition-blueBorder duration-[400ms] ease-in-out';
-        } else return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:right-[48.8%] transition-blueBorder duration-[400ms] ease-in-out';
+        } else
+          return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:right-[48.8%] transition-blueBorder duration-[400ms] ease-in-out';
       } else if (navBarItemRight == 1) {
         return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder lg:right-[317px] xl:right-[365px] duration-[700ms] ease-in-out';
       } else if (navBarItemRight == 2) {
@@ -122,7 +130,8 @@ export const Navbar = () => {
       } else if (navBarItemRight == 6) {
         if (Math.floor(scrollPosition) < 44) {
           return 'animate-hideBlueBorder absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 right-[48.5%] transition-blueBorder duration-[400ms] ease-in-out';
-        } else return 'animate-hideBlueBorder absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 right-[48.8%] transition-blueBorder duration-[400ms] ease-in-out';
+        } else
+          return 'animate-hideBlueBorder absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 right-[48.8%] transition-blueBorder duration-[400ms] ease-in-out';
       }
     }
   };
@@ -130,7 +139,7 @@ export const Navbar = () => {
   return (
     <>
       {/*NavBar*/}
-      <div>
+      <div className="Navbar">
         <header className={navBarHeightController()}>
           <div className={navBarController()}>
             <div className={blueBottomBorderControllerLeft()}></div>
@@ -154,69 +163,57 @@ export const Navbar = () => {
                   height="55"
                 />
               </a>
-              <div 
-                className={leftNavBarItemsController()}
-                onMouseLeave={handleNavBarItemLeaveLeft}
-              >
+              <div className={leftNavBarItemsController()} onMouseLeave={handleNavBarItemLeaveLeft}>
                 <a
-                  className='hover:transition hover:duration-[600ms] hover:text-cyan-500'
+                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterLeft(1)}
-                  href="#"
-                >
+                  href="#">
                   About
                 </a>
                 <a
-                  className='hover:transition hover:duration-[600ms] hover:text-cyan-500'
+                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterLeft(2)}
-                  href="#"
-                >
+                  href="#">
                   Reviews
                 </a>
                 <a
-                  className='hover:transition hover:duration-[600ms] hover:text-cyan-500'
+                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterLeft(3)}
-                  href="#"
-                >
+                  href="#">
                   Guides
                 </a>
                 <a
-                  className='hover:transition hover:duration-[600ms] hover:text-cyan-500'
+                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterLeft(4)}
-                  href="#"
-                >
+                  href="#">
                   Info
                 </a>
               </div>
               <div
                 className={rightNavBarItemsController()}
-                onMouseLeave={handleNavBarItemLeaveRight}
-              >
+                onMouseLeave={handleNavBarItemLeaveRight}>
                 <a
-                  className='hover:transition hover:duration-[600ms] hover:text-cyan-500'
-                  onMouseEnter={() => handleNavBarItemEnterRight(1)} 
-                  href="#"
-                >
+                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
+                  onMouseEnter={() => handleNavBarItemEnterRight(1)}
+                  href="#">
                   Collab
                 </a>
                 <a
-                  className='hover:transition hover:duration-[600ms] hover:text-cyan-500'
+                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterRight(2)}
-                  href="#"
-                >
+                  href="#">
                   Roadmap
                 </a>
                 <a
-                  className='hover:transition hover:duration-[600ms] hover:text-cyan-500'
+                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterRight(3)}
-                  href="#"
-                >
+                  href="#">
                   Team
                 </a>
                 <a
-                  className='hover:transition hover:duration-[600ms] hover:text-cyan-500' 
+                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterRight(4)}
-                  href="#"
-                >
+                  href="#">
                   Contact
                 </a>
               </div>
@@ -226,15 +223,13 @@ export const Navbar = () => {
                     hamburgerController
                       ? 'block w-5 h-0.5 bg-black transition-transform duration-300 rotate-45 translate-y-1'
                       : 'block w-5 h-0.5 bg-black transition-transform duration-300'
-                  }
-                ></span>
+                  }></span>
                 <span
                   className={
                     hamburgerController
                       ? 'block w-5 h-0.5 bg-black transition-transform duration-300 -rotate-45 -translate-y-1'
                       : 'block w-5 h-0.5 bg-black transition-transform duration-300'
-                  }
-                ></span>
+                  }></span>
               </div>
             </div>
           </div>
@@ -246,8 +241,7 @@ export const Navbar = () => {
           hamburgerController
             ? 'lg:hidden top-[65px] h-full bg-white w-full border-t-[0.01px] border-gray-300 border-opacity-40 fixed z-[799] transform transition-transform duration-500 translate-y-0'
             : 'lg:hidden top-[65px] h-full bg-white w-full fixed z-[799] transform transition-transform duration-500 -translate-y-full'
-        }
-      >
+        }>
         <div className="text-lg font-bold uppercase text-black flex justify-center mt-12 hover:text-cyan-400">
           <div>Reviews</div>
         </div>

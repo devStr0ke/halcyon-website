@@ -1,7 +1,6 @@
-import '../styles/globals.css'
-import { Navbar } from '../components/NavBar/Navbar'
-import type { AppProps } from 'next/app'
-
+import '../styles/globals.css';
+import { Navbar } from '../components/NavBar/Navbar';
+import type { AppProps } from 'next/app';
 import { Roadmap } from '../components/Core/Roadmap/Roadmap';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -9,7 +8,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Navbar />
       <Component {...pageProps} />
-      <Roadmap />
+      <div className="core">
+        <Roadmap />
+      </div>
     </>
-  ) 
+  );
 }
