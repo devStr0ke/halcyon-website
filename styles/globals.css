@@ -46,35 +46,4 @@ a {
   }
 }
 
-@font-face {
-  font-family: 'Codpro';
-  src: url('../public/static/fonts/Copdro.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
 
-@font-face {
-  font-family: 'DelaGothicOne';
-  src: url('../public/static/fonts/DelaGothicOne-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Saira';
-  src: url('../public/static/fonts/Saira-VariableFont_wdth,wght.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-.copdro {
-  font-family: Codpro;
-}
-
-.delaGothicOne {
-  font-family: DelaGothicOne;
-}
-
-.saira {
-  font-family: Saira;
-}
