@@ -19,10 +19,6 @@ body {
   src: url(../public/static/fonts/DelaGothicOne-Regular.ttf);
 }
 
-.Navbar {
-  font-family: saira;
-}
-
 .core {
   font-family: delaGothic;
 }
@@ -42,7 +38,7 @@ a {
   }
   body {
     color: white;
-    background: rgba(0, 0, 0, 0.69);
+    background: linear-gradient(to bottom, black 0 93%, #06b6d4 93% 100%);
   }
 }
 
