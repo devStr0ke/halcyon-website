@@ -7,6 +7,8 @@ export default function Home() {
     <>
       <Header />
       <div className='mt-96 mb-96 text-center text-black'>hello</div>
+      <div className='mt-96 mb-96 text-center text-black'>hello</div>
+      <div className='mt-96 mb-96 text-center text-black'>hello</div>
       <Footer />
     </>
   );

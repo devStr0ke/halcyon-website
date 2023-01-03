@@ -3,7 +3,7 @@ export const Footer = () => {
   return (
     <footer
       aria-label="Site Footer"
-      className="bg-gray-100 lg:ml-[50px] lg:mr-[50px] lg:rounded-t-lg lg:shadow-xl"
+      className="footerFont bg-gray-100 lg:ml-[50px] lg:mr-[50px] lg:rounded-t-lg lg:shadow-xl"
     >
       <div className="grid grid-cols-3">
         <div className="py-8 px-4 lg:px-8">

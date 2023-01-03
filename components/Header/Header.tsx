@@ -1,50 +1,37 @@
 import Image from "next/image";
+import React, { useEffect, useState } from 'react';
 export const Header = () => {
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
+  };
+
+  const headerClassController = () => {
+    if (Math.floor(scrollPosition) > 1000) {
+      return 'h-screen bg-scroll bg-center bg-cover bg-no-repeat flex justify-center';
+    } else {
+      return 'h-screen bg-fixed bg-center bg-cover bg-no-repeat flex justify-center';
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); //appeller la fonction pour definir la position du scroll si user recharge la page
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <section className="relative bg-transparent bg-cover bg-center bg-no-repeat">
-      <div className="absolute inset-0 bg-transparent sm:bg-transparent sm:bg-gradient-to-b sm:from-transparent sm:to-transparent">
-        <Image
-          priority
-          className="-z-50"
-          src="/static/images/heroImage.png"
-          alt="hero image example"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: "cover",
-            objectPosition: "center"
-          }} />
-      </div>
-
-      <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 sm:flex sm:justify-center lg:h-screen lg:items-center xl:items-end lg:px-8">
-        <div className="max-w-xl text-center sm:text-center">
-          <h1 className="text-3xl font-extrabold sm:text-5xl">
-            Here Your Adventure
-            <strong className="block font-extrabold text-cyan-500">Will Begin.</strong>
-          </h1>
-
-          <p className="mt-4 max-w-lg sm:text-xl sm:leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo tenetur fuga
-            ducimus numquam ea!
-          </p>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-4 text-center">
-            <a
-              href="#"
-              className="block w-full rounded bg-cyan-700 px-12 py-3 text-sm font-medium text-white shadow hover:bg-cyan-900 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
-            >
-              Get Started
-            </a>
-
-            <a
-              href="#"
-              className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-cyan-600 shadow hover:text-cyan-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
-            >
-              Learn More
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <header
+      style={{
+        backgroundImage: "url(/static/images/heroImage.png)"
+      }}
+      className={headerClassController()} 
+    >
+      <h1 className="flex items-center">Hello</h1>
+    </header>
   );
 };
