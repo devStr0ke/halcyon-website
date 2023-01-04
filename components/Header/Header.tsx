@@ -1,52 +1,50 @@
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 export const Header = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const handleScroll = () => {
-    const position = window.pageYOffset;
-    setScrollPosition(position);
-  };
-
-  const headerClassController = () => {
-    if (Math.floor(scrollPosition) > 1000) {
-      return 'h-screen bg-fixed bg-center bg-cover bg-no-repeat flex justify-center';
-    } else {
-      return 'h-screen bg-fixed bg-center bg-cover bg-no-repeat flex justify-center';
-    }
-  };
-
+  const opacityBlurRef = useRef(null);
+  const opacityArrow = useRef(null);
+  const blurBackground = useRef(null);
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); //appeller la fonction pour definir la position du scroll si user recharge la page
-
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      // @ts-ignore
+      opacityBlurRef.current.style.opacity = +scrollTop / 1000;
+      // @ts-ignore
+      opacityArrow.current.style.opacity = 1 - scrollTop/330
+      // @ts-ignore
+      blurBackground.current.style.filter = `blur(${scrollTop / 200}px)`;
+    }
+    window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
   return (
     <>
-      <div className=''>
-        <header
-          style={{
-            backgroundImage: 'url(/static/images/heroImage.png)'
-          }}
-          className="h-screen bg-fixed bg-center bg-cover bg-no-repeat flex justify-center"
+      <div className="absolute top-0 h-screen w-full z-30 flex justify-center">
+        <div
+          ref={opacityArrow}
+          className="flex items-end py-5"
         >
-          <div className="flex items-end">
-            <h1 className="">Arrow Logo</h1>
-          </div>
-        </header>
-        <header
+          <Image src="/static/svg/ARROW.svg" alt="logolgAndUp" width="40" height="100" />
+        </div>
+      </div>
+      <div className="relative h-[200vh] w-full">
+        <div
+          ref={opacityBlurRef}
+          className="z-20 absolute top-0 w-full h-[200vh] opacity-0"
           style={{
-            backgroundImage: 'url(/static/images/heroImage.png)'
+            backgroundColor: "hsla(0, 0%, 100%, 0.1)"
           }}
-          className="h-screen bg-fixed bg-center bg-cover bg-no-repeat flex justify-center"
-        >
-          <div className="">
-            <h1 className="mt-96 mb-96">Introduction</h1>
-          </div>
-        </header>
+          ></div>
+        <div
+          ref={blurBackground}
+          className="z-10 h-[100vh] w-full sticky top-0 bg-[url('/static/images/heroImage.png')]"
+        ></div>
+        <div className='heroHeader text-3xl font-bold sticky top-0 z-10 w-full h-[100vh] flex flex-col justify-center items-center'>
+          <div className="w-[900px] h-16 text-center">Web3 Experiments Studios</div>
+          <div className="w-[900px] h-16 text-center">Halcyon is a multi-chain creation studio for Web3-based innovative products.</div>
+        </div>
       </div>
     </>
   );
