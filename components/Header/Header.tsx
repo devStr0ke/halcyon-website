@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 export const Header = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -9,11 +9,11 @@ export const Header = () => {
 
   const headerClassController = () => {
     if (Math.floor(scrollPosition) > 1000) {
-      return 'h-screen bg-scroll bg-center bg-cover bg-no-repeat flex justify-center';
+      return 'h-screen bg-fixed bg-center bg-cover bg-no-repeat flex justify-center';
     } else {
       return 'h-screen bg-fixed bg-center bg-cover bg-no-repeat flex justify-center';
     }
-  }
+  };
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -25,13 +25,29 @@ export const Header = () => {
   }, []);
 
   return (
-    <header
-      style={{
-        backgroundImage: "url(/static/images/heroImage.png)"
-      }}
-      className={headerClassController()} 
-    >
-      <h1 className="flex items-center">Hello</h1>
-    </header>
+    <>
+      <div className=''>
+        <header
+          style={{
+            backgroundImage: 'url(/static/images/heroImage.png)'
+          }}
+          className="h-screen bg-fixed bg-center bg-cover bg-no-repeat flex justify-center"
+        >
+          <div className="flex items-end">
+            <h1 className="">Arrow Logo</h1>
+          </div>
+        </header>
+        <header
+          style={{
+            backgroundImage: 'url(/static/images/heroImage.png)'
+          }}
+          className="h-screen bg-fixed bg-center bg-cover bg-no-repeat flex justify-center"
+        >
+          <div className="">
+            <h1 className="mt-96 mb-96">Introduction</h1>
+          </div>
+        </header>
+      </div>
+    </>
   );
 };
