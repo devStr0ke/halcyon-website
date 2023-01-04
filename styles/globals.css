@@ -19,6 +19,11 @@ body {
   src: url(../public/static/fonts/DelaGothicOne-Regular.ttf);
 }
 
+@font-face {
+  font-family: copdro;
+  src: url(../public/static/fonts/Copdro.otf);
+}
+
 .core {
   font-family: delaGothic;
 }
@@ -31,8 +36,12 @@ body {
   font-family: saira;
 }
 
-.heroHeader {
+.saira {
   font-family: saira;
+}
+
+.copdro {
+  font-family: copdro;
 }
 
 

@@ -59,17 +59,17 @@ export const Navbar = () => {
 
   const leftNavBarItemsController = () => {
     if (Math.floor(scrollPosition) > 44) {
-      return 'hidden font-bold text-white absolute top-5 lg:left-2 xl:left-24 h-[45px] lg:flex gap-8 lg:ml-10 xl:ml-0';
+      return 'hidden font-bold text-white absolute top-6 lg:left-2 xl:left-24 h-[45px] lg:flex gap-8 lg:ml-10 xl:ml-0';
     } else {
-      return 'hidden font-bold text-black absolute top-5 lg:left-2 xl:left-24 h-[45px] lg:animate-hideNavBarContent lg:flex gap-8 lg:ml-10 xl:ml-0';
+      return 'hidden font-bold text-black absolute top-6 lg:left-2 xl:left-24 h-[45px] lg:animate-hideNavBarContent lg:flex gap-8 lg:ml-10 xl:ml-0';
     }
   };
 
   const rightNavBarItemsController = () => {
     if (Math.floor(scrollPosition) > 44) {
-      return 'hidden font-bold text-white absolute top-5 lg:right-2 xl:right-24 h-[45px] lg:flex gap-8 lg:mr-10 xl:mr-0';
+      return 'hidden font-bold text-white absolute top-6 lg:right-2 xl:right-24 h-[45px] lg:flex gap-8 lg:mr-10 xl:mr-0';
     } else {
-      return 'hidden font-bold text-black absolute top-5 lg:right-2 xl:right-24 h-[45px] lg:animate-hideNavBarContent lg:flex gap-8 lg:mr-10 xl:mr-0';
+      return 'hidden font-bold text-black absolute top-6 lg:right-2 xl:right-24 h-[45px] lg:animate-hideNavBarContent lg:flex gap-8 lg:mr-10 xl:mr-0';
     }
   };
 
@@ -165,25 +165,25 @@ export const Navbar = () => {
               </a>
               <div className={leftNavBarItemsController()} onMouseLeave={handleNavBarItemLeaveLeft}>
                 <a
-                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
+                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterLeft(1)}
                   href="#">
                   About
                 </a>
                 <a
-                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
+                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterLeft(2)}
                   href="#">
                   Reviews
                 </a>
                 <a
-                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
+                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterLeft(3)}
                   href="#">
                   Guides
                 </a>
                 <a
-                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
+                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterLeft(4)}
                   href="#">
                   Info
@@ -193,25 +193,25 @@ export const Navbar = () => {
                 className={rightNavBarItemsController()}
                 onMouseLeave={handleNavBarItemLeaveRight}>
                 <a
-                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
+                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterRight(1)}
                   href="#">
                   Collab
                 </a>
                 <a
-                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
+                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterRight(2)}
                   href="#">
                   Roadmap
                 </a>
                 <a
-                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
+                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterRight(3)}
                   href="#">
                   Team
                 </a>
                 <a
-                  className="hover:transition hover:duration-[600ms] hover:text-cyan-500"
+                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterRight(4)}
                   href="#">
                   Contact

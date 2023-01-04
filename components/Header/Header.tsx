@@ -10,10 +10,10 @@ export const Header = () => {
       // @ts-ignore
       opacityBlurRef.current.style.opacity = +scrollTop / 1000;
       // @ts-ignore
-      opacityArrow.current.style.opacity = 1 - scrollTop/330
+      opacityArrow.current.style.opacity = 1 - scrollTop / 330;
       // @ts-ignore
-      blurBackground.current.style.filter = `blur(${scrollTop / 200}px)`;
-    }
+      blurBackground.current.style.filter = `blur(${scrollTop / 70}px)`;
+    };
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -22,10 +22,7 @@ export const Header = () => {
   return (
     <>
       <div className="absolute top-0 h-screen w-full z-30 flex justify-center">
-        <div
-          ref={opacityArrow}
-          className="flex items-end py-5"
-        >
+        <div ref={opacityArrow} className="flex items-end py-5">
           <Image src="/static/svg/ARROW.svg" alt="logolgAndUp" width="40" height="100" />
         </div>
       </div>
@@ -34,16 +31,28 @@ export const Header = () => {
           ref={opacityBlurRef}
           className="z-20 absolute top-0 w-full h-[200vh] opacity-0"
           style={{
-            backgroundColor: "hsla(0, 0%, 100%, 0.1)"
+            backgroundColor: 'hsla(0, 0%, 100%, 0.175)'
           }}
-          ></div>
+        ></div>
         <div
           ref={blurBackground}
           className="z-10 h-[100vh] w-full sticky top-0 bg-[url('/static/images/heroImage.png')]"
         ></div>
-        <div className='heroHeader text-3xl font-bold sticky top-0 z-10 w-full h-[100vh] flex flex-col justify-center items-center'>
-          <div className="w-[900px] h-16 text-center">Web3 Experiments Studios</div>
-          <div className="w-[900px] h-16 text-center">Halcyon is a multi-chain creation studio for Web3-based innovative products.</div>
+        <div className="heroHeader sticky top-0 z-20 w-full h-[100vh] flex justify-center items-center">
+          <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+            <div className="mx-auto max-w-3xl text-center">
+              <h1 className="saira text-lg font-bold sm:text-2xl">
+                  Pushing The Boundaries Of Innovation
+                <strong className="text-4xl sm:text-5xl font-extrabold mt-4 block text-cyan-500">
+                  Web3 Experiments Studios
+                </strong>
+              </h1>
+
+              <p className="saira mt-4 sm:text-lg sm:leading-relaxed">
+                Halcyon is a multi-chain creation studio that specializes in building innovative Web3-based products.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </>
