@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import useDeviceSize from '../../hooks/windowHook';
 export const Navbar = () => {
+  const [windoWidth, windowHeight] = useDeviceSize();
   const [scrollPosition, setScrollPosition] = useState(0);
   const [navBarItemLeft, setNavBarItemLeft] = useState(5);
   const [navBarItemRight, setNavBarItemRight] = useState(5);
@@ -42,23 +44,23 @@ export const Navbar = () => {
   }, []);
 
   const navBarHeightController = () => {
-    if (Math.floor(scrollPosition) > 44) {
-      return 'top-[0px] bg-transparent w-full flex justify-center fixed z-[800]';
+    if (Math.floor(scrollPosition) > windowHeight + 80) {
+      return 'top-[0px] bg-transparent w-full flex justify-center fixed z-[800] duration-500';
     } else {
-      return 'top-[0px] bg-transparent w-full flex justify-center fixed lg:absolute z-[800] duration-100 lg:top-11';
+      return 'top-[0px] bg-transparent w-full flex justify-center fixed lg:fixed z-[800] duration-500 lg:top-11';
     }
   };
 
   const navBarController = () => {
-    if (Math.floor(scrollPosition) > 44) {
-      return 'h-[65px] flex items-center overflow-hidden justify-center z-[800] bg-white relative w-full lg:bg-black lg:mx-44 lg:animate-slidein lg:transition-navBar lg:duration-[900ms] lg:mx-0';
+    if (Math.floor(scrollPosition) > windowHeight + 80) {
+      return 'h-[65px] flex items-center overflow-hidden justify-center z-[800] bg-white relative w-full lg:bg-black lg:mx-44 lg:animate-slidein lg:transition-navBar lg:delay-500 lg:duration-[900ms] lg:mx-0';
     } else {
       return 'h-[65px] flex items-center justify-center overflow-hidden z-[800] bg-white relative w-full lg:mx-24 xl:mx-36 lg:rounded-md lg:animate-slidein lg:transition-navBar lg:duration-[1200ms]';
     }
   };
 
   const leftNavBarItemsController = () => {
-    if (Math.floor(scrollPosition) > 44) {
+    if (Math.floor(scrollPosition) > windowHeight + 80) {
       return 'hidden font-bold text-white absolute top-6 lg:left-2 xl:left-24 h-[45px] lg:flex gap-8 lg:ml-10 xl:ml-0';
     } else {
       return 'hidden font-bold text-black absolute top-6 lg:left-2 xl:left-24 h-[45px] lg:animate-hideNavBarContent lg:flex gap-8 lg:ml-10 xl:ml-0';
@@ -66,7 +68,7 @@ export const Navbar = () => {
   };
 
   const rightNavBarItemsController = () => {
-    if (Math.floor(scrollPosition) > 44) {
+    if (Math.floor(scrollPosition) > windowHeight + 80) {
       return 'hidden font-bold text-white absolute top-6 lg:right-2 xl:right-24 h-[45px] lg:flex gap-8 lg:mr-10 xl:mr-0';
     } else {
       return 'hidden font-bold text-black absolute top-6 lg:right-2 xl:right-24 h-[45px] lg:animate-hideNavBarContent lg:flex gap-8 lg:mr-10 xl:mr-0';
@@ -74,7 +76,7 @@ export const Navbar = () => {
   };
 
   const logoColor = () => {
-    if (Math.floor(scrollPosition) <= 44) {
+    if (Math.floor(scrollPosition) <= windowHeight + 80) {
       return '/static/svg/halcyonLogoBlack.svg';
     } else return '/static/svg/halcyonLogoWhite.svg';
   };
@@ -89,7 +91,7 @@ export const Navbar = () => {
       return '';
     } else {
       if (navBarItemLeft == 5) {
-        if (Math.floor(scrollPosition) < 44) {
+        if (Math.floor(scrollPosition) < windowHeight + 80) {
           return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:left-[48.5%] transition-blueBorder duration-[400ms] ease-in-out';
         } else
           return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:left-[48.8%] transition-blueBorder duration-[400ms] ease-in-out';
@@ -115,7 +117,7 @@ export const Navbar = () => {
       return '';
     } else {
       if (navBarItemRight == 5) {
-        if (Math.floor(scrollPosition) < 44) {
+        if (Math.floor(scrollPosition) < windowHeight + 80) {
           return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:right-[48.5%] transition-blueBorder duration-[400ms] ease-in-out';
         } else
           return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:right-[48.8%] transition-blueBorder duration-[400ms] ease-in-out';
