@@ -37,7 +37,8 @@ export const Header = () => {
         <div
           ref={blurBackground}
           className="z-10 h-[100vh] w-full sticky top-0 bg-[url('/static/images/heroImage.png')]"
-        ></div>
+        >
+        </div>
         <div className="heroHeader sticky top-0 z-20 w-full h-[100vh] flex justify-center items-center">
           <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
             <div className="mx-auto max-w-3xl text-center">
