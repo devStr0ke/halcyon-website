@@ -1,9 +1,21 @@
 import Image from 'next/image';
+import useDeviceSize from '../../hooks/windowHook';
 import React, { useEffect, useState, useRef } from 'react';
 export const Header = () => {
+
+  const [windowWidth, windowHeight] = useDeviceSize();
   const opacityBlurRef = useRef(null);
   const opacityArrow = useRef(null);
   const blurBackground = useRef(null);
+
+  const scrollToHeroSectionText = () => {
+    window.scrollTo({
+      top: windowHeight,
+      behavior: 'smooth',
+    });
+  }
+
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -19,11 +31,14 @@ export const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
   return (
     <>
-      <div className="absolute top-0 h-screen w-full z-30 flex justify-center">
-        <div ref={opacityArrow} className="flex items-end py-5">
-          <Image src="/static/svg/ARROW.svg" alt="logolgAndUp" width="40" height="100" />
+      <div onClick={scrollToHeroSectionText}>
+        <div className="absolute top-0 h-screen w-full z-30 flex justify-center">
+          <div ref={opacityArrow} className="flex items-end py-5">
+            <Image src="/static/svg/double-arrow.svg" className='animate-pulse' alt="doubleArrow" width="60" height="100" />
+          </div>
         </div>
       </div>
       <div className="relative h-[200vh] w-full">
@@ -36,7 +51,7 @@ export const Header = () => {
         ></div>
         <div
           ref={blurBackground}
-          className="z-10 h-[100vh] w-full sticky top-0 bg-[url('/static/images/heroImage.png')]"
+          className="z-10 h-[100vh] w-full sticky top-0 bg-no-repeat bg-cover bg-[url('/static/images/heroImage.png')]"
         >
         </div>
         <div className="heroHeader sticky top-0 z-20 w-full h-[100vh] flex justify-center items-center">

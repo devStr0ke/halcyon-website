@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import useDeviceSize from '../../hooks/windowHook';
 export const Navbar = () => {
-  const [windoWidth, windowHeight] = useDeviceSize();
   const [scrollPosition, setScrollPosition] = useState(0);
   const [navBarItemLeft, setNavBarItemLeft] = useState(5);
   const [navBarItemRight, setNavBarItemRight] = useState(5);
