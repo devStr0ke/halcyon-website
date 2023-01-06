@@ -12,11 +12,7 @@ export const Separator = ({ subtitle, title, ...props }: Props) => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          console.log('isIntersecting');
-          // @ts-ignore
-          element.current.classList.add('opacity-100', 'scale-100');
           setIsAnimated(true);
-          observer.unobserve(entry.target);
         }
       });
     });
@@ -70,7 +66,7 @@ export const Separator = ({ subtitle, title, ...props }: Props) => {
           }}
         ></div>
         <div className="z-10 h-[50vh] w-full absolute top-0 separatorGradient"></div>
-        <div ref={element} className="heroHeader absolute top-0 z-20 w-full h-[50vh] flex justify-center items-center transition opacity-1 transform scale-1">
+        <div ref={element} className="heroHeader absolute top-0 z-20 w-full h-[50vh] flex justify-center items-center transition opacity-1 transform scale-1 animate-textTransition">
           <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="saira text-md font-light text-gray-500 sm:text-lg">

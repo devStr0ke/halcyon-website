@@ -37,7 +37,7 @@ export const Header = () => {
       <div onClick={scrollToHeroSectionText}>
         <div className="absolute top-0 h-screen w-full z-30 flex justify-center">
           <div ref={opacityArrow} className="flex items-end py-5">
-            <Image src="/static/svg/double-arrow.svg" className='animate-bounce hover:w-[65px]' alt="doubleArrow" width="60" height="100" />
+            <Image src="/static/svg/double-arrow.svg" className='animate-bounce hover:w-[45px]' alt="doubleArrow" width="40" height="100" />
           </div>
         </div>
       </div>

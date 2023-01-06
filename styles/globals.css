@@ -56,6 +56,10 @@ body {
   background: linear-gradient(to top, black 0 98%, black 99% 100%);
 }
 
+.spaceShipGradient {
+  background: linear-gradient(to bottom, transparent 0 50%, red 99% 100%);
+}
+
 
 a {
   color: inherit;
@@ -72,7 +76,7 @@ a {
   }
   body {
     color: white;
-    background: linear-gradient(to bottom, black 0 93%, #06b6d4 93% 100%);
+    background: linear-gradient(to bottom, black 0 99.5%, #06b6d4 99.5% 100%);
   }
 }
 
