@@ -38,8 +38,12 @@ module.exports = {
         },
         imageTransition: {
           '0%': { transform: 'scale(0.5)' },
-          '100%': { transform: 'translateY(1)' },
+          '100%': { transform: 'scale(1)' },
         },
+        starBackground: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.5)' },
+        }
         
       },
       animation: {
@@ -49,6 +53,7 @@ module.exports = {
         hideBlueBorder: 'hideBlueBorder 0.6s',
         textTransition: 'textTransition 1.2s',
         imageTransition: 'imageTransition 2.2s',
+        starBackground: 'starBackground 10s alternate infinite'
       }
     },
   },
