@@ -1,13 +1,14 @@
 import { Header } from '../components/Header/Header';
-import { Roadmap } from '../components/Core/Roadmap/Roadmap';
+import { Separator } from '../components/Separator/Separator';
+import { First } from '../components/Content/First';
 import { Footer } from '../components/Footer/Footer';
 
 export default function Home() {
   return (
     <>
       <Header />
-      <div className='mt-96 mb-96 text-center text-black'>hello</div>
-      <div className='mt-96 mb-96 text-center text-black'>hello</div>
+      <Separator subtitle="Lorem Ipsum Dolores Jeremy Favelas" title='Overview' />
+      <First />
       <Footer />
     </>
   );

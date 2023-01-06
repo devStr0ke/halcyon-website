@@ -48,6 +48,14 @@ body {
   color: #C0C0C0;
 }
 
+.headerGradient {
+  background: linear-gradient(to bottom, transparent 0 75%, #06b6d4 99% 100%);
+}
+
+.separatorGradient {
+  background: linear-gradient(to top, black 0 98%, black 99% 100%);
+}
+
 
 a {
   color: inherit;
