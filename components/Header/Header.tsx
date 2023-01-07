@@ -41,7 +41,7 @@ export const Header = () => {
           </div>
         </div>
       </div>
-      <div className="relative h-[200vh] w-full headerGradient">
+      <div className="relative h-[200vh] w-full">
         <div
           ref={opacityBlurRef}
           className="z-20 absolute top-0 w-full h-[200vh] opacity-0"
@@ -51,7 +51,7 @@ export const Header = () => {
         ></div>
         <div
           ref={blurBackground}
-          className="z-10 h-[100vh] w-full sticky top-0 bg-no-repeat bg-cover bg-[url('/static/images/heroImage.png')]"
+          className="z-0 h-[100vh] w-full sticky top-0 bg-no-repeat bg-cover bg-[url('/static/images/heroImage.png')]"
         >
         </div>
         <div className="heroHeader sticky top-0 z-20 w-full h-[100vh] flex justify-center items-center">

@@ -44,7 +44,7 @@ export const Separator = ({ subtitle, title, ...props }: Props) => {
               <div className="mx-auto max-w-3xl text-center">
                 <h1 className="saira text-md font-light text-gray-500 sm:text-lg">
                   {subtitle}
-                  <strong className="text-5xl sm:text-6xl font-extrabold block text-cyan-500">
+                  <strong className="text-5xl sm:text-6xl font-extrabold block text-white">
                     {title}
                   </strong>
                 </h1>
@@ -71,7 +71,7 @@ export const Separator = ({ subtitle, title, ...props }: Props) => {
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="saira text-md font-light text-gray-500 sm:text-lg">
                 {subtitle}
-                <strong className="text-5xl sm:text-6xl font-extrabold block text-cyan-500">
+                <strong className="text-5xl sm:text-6xl font-extrabold block text-white">
                   {title}
                 </strong>
               </h1>
