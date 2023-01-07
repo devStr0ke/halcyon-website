@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import useDeviceSize from '../../hooks/windowHook';
 import Image from 'next/image';
 export const Navbar = () => {
+  const [windowWidth, windowHeight] = useDeviceSize();
   const [scrollPosition, setScrollPosition] = useState(0);
   const [navBarItemLeft, setNavBarItemLeft] = useState(5);
   const [navBarItemRight, setNavBarItemRight] = useState(5);
@@ -8,6 +10,13 @@ export const Navbar = () => {
     const position = window.pageYOffset;
     setScrollPosition(position);
   };
+
+  const scrollToOverview = () => {
+    window.scrollTo({
+      top: windowHeight*2,
+      behavior: 'smooth',
+    });
+  }
 
   const handleNavBarItemEnterLeft = (newValue: React.SetStateAction<number>) => {
     setNavBarItemLeft(newValue);
@@ -94,13 +103,11 @@ export const Navbar = () => {
         } else
           return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:left-[48.8%] transition-blueBorder duration-[400ms] ease-in-out';
       } else if (navBarItemLeft == 1) {
-        return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder lg:left-[55px] xl:left-[100px] duration-[700ms] ease-in-out';
+        return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder lg:left-[65px] xl:left-[115px] duration-[700ms] ease-in-out';
       } else if (navBarItemLeft == 2) {
-        return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder duration-300 md:left-[140.5px] xl:left-[185.5px] ease-in-out';
+        return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder duration-300 md:left-[172.5px] xl:left-[218.5px] ease-in-out';
       } else if (navBarItemLeft == 3) {
-        return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder duration-300 md:left-[228px] xl:left-[273px] ease-in-out';
-      } else if (navBarItemLeft == 4) {
-        return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder duration-300 md:left-[302px] xl:left-[347px] ease-in-out';
+        return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder duration-300 md:left-[276px] xl:left-[322px] ease-in-out';
       } else if (navBarItemLeft == 6) {
         if (Math.floor(scrollPosition) < 44) {
           return 'animate-hideBlueBorder absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:left-[48.5%] transition-blueBorder duration-[400ms] ease-in-out';
@@ -120,13 +127,11 @@ export const Navbar = () => {
         } else
           return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:right-[48.8%] transition-blueBorder duration-[400ms] ease-in-out';
       } else if (navBarItemRight == 1) {
-        return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder lg:right-[317px] xl:right-[365px] duration-[700ms] ease-in-out';
+        return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder lg:right-[240px] xl:right-[285px] duration-[700ms] ease-in-out';
       } else if (navBarItemRight == 2) {
-        return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder duration-300 lg:right-[228px] xl:right-[273px] ease-in-out';
+        return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder duration-300 lg:right-[158px] xl:right-[205px] ease-in-out';
       } else if (navBarItemRight == 3) {
-        return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder duration-300 lg:right-[140.5px] xl:right-[185.5px] ease-in-out';
-      } else if (navBarItemRight == 4) {
-        return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder duration-300 lg:right-[60px] xl:right-[105px] ease-in-out';
+        return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder duration-300 lg:right-[67.5px] xl:right-[120px] ease-in-out';
       } else if (navBarItemRight == 6) {
         if (Math.floor(scrollPosition) < 44) {
           return 'animate-hideBlueBorder absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 right-[48.5%] transition-blueBorder duration-[400ms] ease-in-out';
@@ -165,28 +170,23 @@ export const Navbar = () => {
               </a>
               <div className={leftNavBarItemsController()} onMouseLeave={handleNavBarItemLeaveLeft}>
                 <a
-                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
+                  onClick={scrollToOverview}
+                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterLeft(1)}
-                  href="#">
-                  About
+                >
+                  Overview
                 </a>
                 <a
                   className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterLeft(2)}
                   href="#">
-                  Reviews
+                  Products
                 </a>
                 <a
                   className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterLeft(3)}
                   href="#">
-                  Guides
-                </a>
-                <a
-                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
-                  onMouseEnter={() => handleNavBarItemEnterLeft(4)}
-                  href="#">
-                  Info
+                  Roadmap
                 </a>
               </div>
               <div
@@ -196,25 +196,19 @@ export const Navbar = () => {
                   className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterRight(1)}
                   href="#">
-                  Collab
+                  Our Team
                 </a>
                 <a
                   className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterRight(2)}
                   href="#">
-                  Roadmap
+                  Faq
                 </a>
                 <a
                   className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterRight(3)}
                   href="#">
-                  Team
-                </a>
-                <a
-                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
-                  onMouseEnter={() => handleNavBarItemEnterRight(4)}
-                  href="#">
-                  Contact
+                  Contact Us
                 </a>
               </div>
               <div onClick={toggleClass} className="absolute space-y-1.5 top-7 left-6 lg:hidden">

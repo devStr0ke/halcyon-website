@@ -4,7 +4,6 @@ import { Navbar } from '../components/NavBar/Navbar';
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Navbar />
       <Component {...pageProps} />
     </>
   );
