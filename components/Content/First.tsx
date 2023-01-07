@@ -52,7 +52,7 @@ export const First = () => {
           </div>
           <div className="z-20 relative h-[15vh] w-full flex justify-start lg:pl-16 lg:pr-[15vw]">
             <div className="w-full textBoxShadow text-8xl font-semibold py-3 saira flex justify-end uppercase transform scale-[0.5] opacity-0 translate-x-0">
-              The Mission
+              Building the future of Web3
             </div>
           </div>
           <div className="z-20 relative h-[15vh] w-full flex justify-start lg:pl-16 lg:pr-[15vw]">
@@ -84,18 +84,19 @@ export const First = () => {
         ></div>
         <div
           ref={element}
-          className="z-20 absolute h-[100vh] w-full flex justify-start lg:pl-36 lg:pr-[35vw] animate-imageTransition"
+          className="z-20 absolute h-[100vh] w-full flex justify-start lg:pl-36 lg:pr-[35vw] sm:pl-14 sm:pr-[20vw] animate-imageTransition"
         >
-          <div className="bg-no-repeat bg-left bg-cover bg-[url('/static/images/HeroLab.png')] lg:rounded-lg w-full"></div>
-        </div>
-        <div className="z-20 relative h-[15vh] w-full flex justify-start lg:pl-16 lg:pr-[30vw]">
-          <div className="w-full textBoxShadow text-8xl font-semibold py-3 saira flex justify-end uppercase animate-imageTransition translate-x-0">
-            The Mission
+          <div className="bg-no-repeat bg-left bg-cover bg-[url('/static/images/HeroLab.png')] lg:rounded-lg w-full">
           </div>
         </div>
-        <div className="z-20 relative h-[15vh] w-full flex justify-start lg:pl-16 lg:pr-[15vw]">
-          <div className="w-full textBoxShadow text-8xl font-semibold py-3 saira flex justify-start uppercase animate-imageTransition">
-            The Vision
+        <div className="z-20 relative sm:h-[15vh] w-full flex justify-start xl:pr-[30vw] lg:pr-[20vw] sm:pr-[15vw]">
+          <div className="w-full textBoxShadow px-6 lg:text-8xl sm:text-7xl text-6xl font-semibold sm:py-3 saira flex justify-start sm:justify-end uppercase animate-imageTransition translate-x-0">
+            Building the
+          </div>
+        </div>
+        <div className="z-20 relative sm:h-[15vh] w-full flex justify-start xl:pl-16 lg:pl-14 sm:pl-4">
+          <div className="w-full textBoxShadow px-6 sm:px-0 lg:text-8xl sm:text-7xl text-6xl font-semibold sm:py-3 saira flex justify-start sm:justify-start uppercase animate-imageTransition">
+            future of Web3
           </div>
         </div>
       </div>
