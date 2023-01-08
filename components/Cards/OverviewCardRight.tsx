@@ -66,7 +66,7 @@ export const OverviewCardRight = ({
     <>
       <div ref={element} className="h-[100vh]">
         <div className="z-20 absolute h-[100vh] w-full flex justify-end lg:pr-36 lg:pl-[35vw] sm:pr-14 sm:pl-[20vw] animate-imageTransition">
-          <div className="bg-no-repeat bg-center sm:bg-right bg-cover bg-[url('/static/images/HeroHologram.png')] lg:rounded-lg w-full">
+          <div className="bg-no-repeat bg-center bg-cover bg-[url('/static/images/HeroHologram.png')] lg:rounded-lg w-full">
             <div className='h-[100vh] w-full flex justify-end text-right'>
               <div className="h-[100vh] absolute flex items-center pr-6 sm:pr-24">
                 <div className="text-4xl font-medium flex justify-items-end text-gray-400">The</div>

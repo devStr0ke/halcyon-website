@@ -219,7 +219,7 @@ export const Navbar = () => {
                   Contact Us
                 </a>
               </div>
-              <div onClick={toggleClass} className="absolute space-y-1.5 top-7 left-6 lg:hidden">
+              <div onClick={toggleClass} className="absolute space-y-1.5 top-7 left-6 lg:hidden cursor-pointer">
                 <span
                   className={
                     hamburgerController

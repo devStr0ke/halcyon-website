@@ -49,7 +49,7 @@ export const OverviewCardLeft = ({
           <div
             className="z-20 absolute h-[100vh] w-full flex justify-start lg:pl-36 lg:pr-[35vw] sm:pl-14 sm:pr-[20vw] transform scale-[0.5]"
           >
-            <div className="bg-no-repeat bg-left bg-cover bg-[url('/static/images/HeroLab.png')] lg:rounded-lg w-full"></div>
+            <div className="bg-no-repeat bg-left bg-cover bg-[url('/static/images/HeroLab.png')] sm:rounded-lg w-full"></div>
           </div>
           <div className="z-20 relative h-[15vh] w-full flex justify-start lg:pl-16 lg:pr-[15vw]">
             <div className="w-full textBoxShadow text-8xl font-semibold py-3 saira flex justify-end uppercase transform scale-[0] translate-x-0">
