@@ -30,7 +30,7 @@ export const Second = () => {
   if (!isAnimated) {
     return (
       <>
-        <div ref={element} className="z-20 relative w-full h-[60vh] opacity-0 scale-[0.5]">
+        <div ref={element} className="z-20 relative w-full h-[65vh] opacity-0 scale-[0.5]">
           <div className="absolute w-full h-[60vh] flex justify-center gap-6">
             <ProductsCard
               backGroundImageClass="bg-no-repeat bg-center bg-cover bg-[url('/static/images/products/logoThirsty.png')] rounded-lg w-full h-[60vh]"
