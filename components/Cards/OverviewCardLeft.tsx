@@ -24,10 +24,8 @@ export const OverviewCardLeft = ({
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          console.log('in');
           setIsAnimated(true);
         } else {
-          console.log('out');
           setIsAnimated(false);
         }
       });

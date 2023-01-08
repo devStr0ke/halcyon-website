@@ -10,7 +10,6 @@ interface Props {
 }
 export const ProductsCard = ({title, text, imageClass, buttonText, buttonHref, backGroundImageClass, ...props }: Props) => {
   const element = useRef(null);
-  const [isAnimated, setIsAnimated] = useState(false);
   const [isHover, setIsHover] = useState(false); //use state for hamburger state controller (x or =)
   const toggleClassTrue = () => {
     setIsHover(true);
@@ -48,31 +47,7 @@ export const ProductsCard = ({title, text, imageClass, buttonText, buttonHref, b
         return 'absolute bg-transparent flex justify-center bottom-5 w-[20vw] h-[10vh] animate-textTransition2'
     } else return 'hidden'
   }
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          console.log('in');
-          setIsAnimated(true);
-        } else {
-          console.log('out');
-          setIsAnimated(false);
-        }
-      });
-    });
-
-    if (element.current) {
-      observer.observe(element.current);
-    }
-
-    return () => {
-      if (element.current) {
-        observer.unobserve(element.current);
-      }
-    };
-  }, []);
-
+  
   return (
     <>
       <div
@@ -85,7 +60,7 @@ export const ProductsCard = ({title, text, imageClass, buttonText, buttonHref, b
         <div className={backGroundImageClass}></div>
         <div className={hoverClassBlueDiv()}></div>
         <div className={hoverClassTitle()}>
-            <div className='font-bold text-xl textBoxShadow'>{title}</div>
+            <div className='font-bold text-2xl textBoxShadow'>{title}</div>
         </div>
         <div className={hoverClassText()}>
             <div className='font-semibold text-lg text-center px-4'>{text}</div>
