@@ -9,7 +9,7 @@ module.exports = {
       transitionProperty: {
         'navBar' : 'margin-left, margin-right, border-radius, height',
         'blueBorderLeft' : 'left, right',
-        'productCard' : 'width, height',
+        'productCard' : 'width, height, transform',
       },
       keyframes: {
         slidein : {
@@ -49,7 +49,7 @@ module.exports = {
         starBackground: {
           '0%': { transform: 'scale(1)' },
           '100%': { transform: 'scale(1.5)' },
-        }
+        },
         
       },
       animation: {
@@ -60,7 +60,7 @@ module.exports = {
         textTransition: 'textTransition 1.2s',
         textTransition2: 'textTransition2 0.8s',
         imageTransition: 'imageTransition 2.6s',
-        starBackground: 'starBackground 10s alternate infinite'
+        starBackground: 'starBackground 10s alternate infinite',
       }
     },
   },

@@ -30,7 +30,7 @@ export const Second = () => {
   if (!isAnimated) {
     return (
       <>
-        <div ref={element} className="z-20 relative w-full h-[65vh] opacity-0 scale-[0.5]">
+        <div ref={element} className="hidden sm:flex sm:z-20 sm:relative sm:w-full sm:h-[60vh] sm:scale[0.5] sm:opacity-0">
           <div className="absolute w-full h-[60vh] flex justify-center gap-6">
             <ProductsCard
               backGroundImageClass="bg-no-repeat bg-center bg-cover bg-[url('/static/images/products/logoThirsty.png')] rounded-lg w-full h-[60vh]"
@@ -59,7 +59,7 @@ export const Second = () => {
 
   return (
     <>
-      <div ref={element} className="z-20 relative w-full h-[60vh] animate-imageTransition">
+      <div ref={element} className="hidden sm:flex sm:z-20 sm:relative sm:w-full sm:h-[60vh] sm:animate-imageTransition">
         <div className="absolute w-full h-[60vh] flex justify-center gap-6">
           <ProductsCard
             backGroundImageClass="bg-no-repeat bg-center bg-cover bg-[url('/static/images/products/logoThirsty.png')] rounded-lg w-full h-[60vh]"
