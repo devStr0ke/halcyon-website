@@ -54,7 +54,7 @@ export const Second = () => {
             />
           </div>
         </div>
-        <div className='z-20 relative w-full h-[300px]'>
+        <div className='z-20 relative w-full h-[300px] md:hidden'>
           <div className='absolute top-0 w-full h-[300px] flex flex-col justify-start gap-6 px-4'>
             <ProductsCardMobile />
             <ProductsCardMobile />
@@ -90,7 +90,7 @@ export const Second = () => {
           />
         </div>
       </div>
-      <div className='z-20 relative w-full h-[300px] sm:hidden'>
+      <div className='z-20 relative w-full h-[300px] md:hidden'>
           <div className='absolute top-0 w-full h-[300px] flex flex-col justify-start gap-6 px-4'>
             <ProductsCardMobile />
             <ProductsCardMobile />
