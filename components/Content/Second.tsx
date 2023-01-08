@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React, { useEffect, useState, useRef } from 'react';
 import { ProductsCard } from '../Cards/ProductsCard';
+import { ProductsCardMobile } from '../Cards/ProductsCardMobile';
 export const Second = () => {
   const element = useRef(null);
   const [isAnimated, setIsAnimated] = useState(false);
@@ -53,6 +54,13 @@ export const Second = () => {
             />
           </div>
         </div>
+        <div className='z-20 relative w-full h-[300px]'>
+          <div className='absolute top-0 w-full h-[300px] flex flex-col justify-start gap-6 px-4'>
+            <ProductsCardMobile />
+            <ProductsCardMobile />
+            <ProductsCardMobile />
+          </div>
+        </div>
       </>
     );
   }
@@ -81,6 +89,13 @@ export const Second = () => {
             buttonText="SOON"
           />
         </div>
+      </div>
+      <div className='z-20 relative w-full h-[300px] sm:hidden'>
+          <div className='absolute top-0 w-full h-[300px] flex flex-col justify-start gap-6 px-4'>
+            <ProductsCardMobile />
+            <ProductsCardMobile />
+            <ProductsCardMobile />
+          </div>
       </div>
     </>
   );
