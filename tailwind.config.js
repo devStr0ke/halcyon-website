@@ -52,7 +52,7 @@ module.exports = {
         hideNavBarContent: 'hideNavBarContent 1.2s',
         hideBlueBorder: 'hideBlueBorder 0.6s',
         textTransition: 'textTransition 1.2s',
-        imageTransition: 'imageTransition 2.2s',
+        imageTransition: 'imageTransition 2.6s',
         starBackground: 'starBackground 10s alternate infinite'
       }
     },
