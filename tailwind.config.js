@@ -34,7 +34,12 @@ module.exports = {
           '95%': { opacity: '1' },
         },
         textTransition: {
-          '0%': { transform: 'translateY(50%)' },
+          '0%': { transform: 'translateY(50%)', opacity: '0' },
+          '100%': { transform: 'translateY(0%)' },
+        },
+        textTransition2: {
+          '0%': { transform: 'translateY(30%)', opacity: '0' },
+          '50%': { transform: 'translateY(30%)', opacity: '0' },
           '100%': { transform: 'translateY(0%)' },
         },
         imageTransition: {
@@ -53,6 +58,7 @@ module.exports = {
         hideNavBarContent: 'hideNavBarContent 1.2s',
         hideBlueBorder: 'hideBlueBorder 0.6s',
         textTransition: 'textTransition 1.2s',
+        textTransition2: 'textTransition2 0.8s',
         imageTransition: 'imageTransition 2.6s',
         starBackground: 'starBackground 10s alternate infinite'
       }
