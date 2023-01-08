@@ -29,41 +29,41 @@ export const ProductsCard = ({
 
   const hoverClassMainDiv = () => {
     if (isHover) {
-      return 'hidden lg:flex lg:h-[60vh] xl:w-[20vw] lg:w-[30vw] lg:rounded-lg lg:transition-productCard lg:duration-500 lg:saira';
+      return 'hidden md:flex md:h-[60vh] lg:h-[60vh] xl:w-[20vw] lg:w-[30vw] md:w-[33vw] md:rounded-lg md:transition-productCard md:duration-500 md:saira';
     } else
-      return 'hidden lg:flex lg:h-[60vh] xl:w-[15vw] lg:w-[25vw] lg:rounded-lg lg:transition-productCard lg:duration-500 lg:saira';
+      return 'hidden md:flex md:h-[60vh] lg:h-[60vh] xl:w-[15vw] lg:w-[25vw] md:w-[27vw] md:rounded-lg md:transition-productCard md:duration-500 md:saira';
   };
 
   const hoverClassBlueDiv = () => {
     if (isHover) {
-      return 'absolute bottom-0 bg-cyan-900 opacity-70 xl:w-[20vw] lg:w-[30vw] h-[60vh] rounded-lg transition-productCard duration-500';
+      return 'absolute bottom-0 bg-cyan-900 opacity-70 xl:w-[20vw] lg:w-[30vw] md:w-[33vw] h-[60vh] rounded-lg transition-productCard duration-500';
     } else
-      return 'absolute rounded-lg bottom-0 bg-cyan-900 opacity-70  xl:w-[15vw] lg:w-[25vw] h-[0vh] transition-productCard duration-500';
+      return 'absolute rounded-lg bottom-0 bg-cyan-900 opacity-70  xl:w-[15vw] lg:w-[25vw] md:w-[27vw] h-[0vh] transition-productCard duration-500';
   };
 
   const hoverClassTitle = () => {
     if (isHover) {
-      return 'absolute rounded-b-lg flex justify-center bottom-0 xl:w-[20vw] lg:w-[30vw] h-[57vh] transition-productCard duration-500';
+      return 'absolute rounded-b-lg flex justify-center bottom-0 xl:w-[20vw] lg:w-[30vw] md:w-[33vw] h-[57vh] transition-productCard duration-500';
     } else
-      return 'absolute rounded-b-lg flex justify-center bottom-0  xl:w-[15vw] lg:w-[25vw] h-[10vh] transition-productCard duration-500';
+      return 'absolute rounded-b-lg flex justify-center bottom-0  xl:w-[15vw] lg:w-[25vw] md:w-[27vw] h-[10vh] transition-productCard duration-500';
   };
 
   const hoverClassArrow = () => {
     if (isHover) {
-      return 'absolute rounded-b-lg flex justify-center bottom-0  xl:w-[20vw] lg:w-[30vw] h-[5vh] transition-productCard duration-500 rotate-180';
+      return 'absolute rounded-b-lg flex justify-center bottom-0  xl:w-[20vw] lg:w-[30vw] md:w-[33vw] h-[5vh] transition-productCard duration-500 rotate-180';
     } else
-      return 'absolute rounded-b-lg flex justify-center bottom-0  xl:w-[15vw] lg:w-[25vw] h-[5vh] transition-productCard duration-500';
+      return 'absolute rounded-b-lg flex justify-center bottom-0  xl:w-[15vw] lg:w-[25vw] md:w-[27vw] h-[5vh] transition-productCard duration-500';
   };
 
   const hoverClassText = () => {
     if (isHover) {
-      return 'absolute rounded-b-lg flex justify-center items-center bottom-0 xl:w-[20vw] lg:w-[30vw] h-[60vh] transition-productCard duration-500 animate-textTransition2';
+      return 'absolute rounded-b-lg flex justify-center items-center bottom-0 xl:w-[20vw] lg:w-[30vw] md:w-[33vw] h-[60vh] transition-productCard duration-500 animate-textTransition2';
     } else return 'hidden';
   };
 
   const hoverClassButton = () => {
     if (isHover) {
-      return 'absolute bg-transparent flex justify-center bottom-5 xl:w-[20vw] lg:w-[30vw] h-[10vh] animate-textTransition2';
+      return 'absolute bg-transparent flex justify-center bottom-5 xl:w-[20vw] lg:w-[30vw] md:w-[33vw] h-[10vh] animate-textTransition2';
     } else return 'hidden';
   };
 
