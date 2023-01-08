@@ -60,12 +60,12 @@ export const Separator = ({ subtitle, title, ...props }: Props) => {
     <>
       <div className="relative h-[50vh] w-full">
         <div
-          className="z-20 absolute top-0 w-full h-[50vh] opacity-0"
+          className="z-0 absolute top-0 w-full h-[50vh] opacity-0"
           style={{
             backgroundColor: 'hsla(0, 0%, 100%, 0.175)'
           }}
         ></div>
-        <div className="z-10 h-[50vh] w-full absolute top-0 separatorGradient"></div>
+        <div className="z-0 h-[50vh] w-full absolute top-0 separatorGradient"></div>
         <div ref={element} className="heroHeader absolute top-0 z-20 w-full h-[50vh] flex justify-center items-center transition opacity-1 transform scale-1 animate-textTransition">
           <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
             <div className="mx-auto max-w-3xl text-center">

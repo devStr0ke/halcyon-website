@@ -9,6 +9,7 @@ module.exports = {
       transitionProperty: {
         'navBar' : 'margin-left, margin-right, border-radius, height',
         'blueBorderLeft' : 'left, right',
+        'productCard' : 'width, height',
       },
       keyframes: {
         slidein : {

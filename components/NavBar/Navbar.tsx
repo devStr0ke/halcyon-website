@@ -18,6 +18,13 @@ export const Navbar = () => {
     });
   }
 
+  const scrollToProducts = () => {
+    window.scrollTo({
+      top: windowHeight*6+60,
+      behavior: 'smooth',
+    });
+  }
+
   const handleNavBarItemEnterLeft = (newValue: React.SetStateAction<number>) => {
     setNavBarItemLeft(newValue);
   };
@@ -177,9 +184,10 @@ export const Navbar = () => {
                   Overview
                 </a>
                 <a
-                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
+                  onClick={scrollToProducts}
+                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterLeft(2)}
-                  href="#">
+                >
                   Products
                 </a>
                 <a
