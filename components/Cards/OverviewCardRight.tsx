@@ -68,18 +68,20 @@ export const OverviewCardRight = ({
     <>
       <div ref={element} className="h-[100vh]">
         <div className="z-20 absolute h-[100vh] w-full flex justify-end lg:pr-36 lg:pl-[35vw] sm:pr-14 sm:pl-[20vw] animate-imageTransition">
-          <div className="bg-no-repeat bg-right bg-cover bg-[url('/static/images/HeroHologram.png')] lg:rounded-lg w-full">
-            <div className="h-[100vh] absolute flex items-center pl-6 sm:pl-24">
-              <div className="text-4xl font-medium flex justify-items-end text-gray-400">Our</div>
-            </div>
-            <div className="h-[100vh] absolute flex justify-start items-center pl-6 sm:pl-24 top-12">
-              <div className="textBoxShadow text-5xl font-bold">Identity</div>
-            </div>
-            <div className="h-[100vh] w-[300px] sm:w-96 absolute flex justify-start items-center pl-6 sm:pl-24 top-44">
-              <div className="text-md font-regular">
-                Web3 is a young but fast growing field, and the ecosystems related to different L1s
-                and L2s are still in their infancy. The expansion of the Web3 sphere will require
-                safeguards for investors and effective tools for builders.
+          <div className="bg-no-repeat bg-center sm:bg-right bg-cover bg-[url('/static/images/HeroHologram.png')] lg:rounded-lg w-full">
+            <div className='h-[100vh] w-full flex justify-end text-right'>
+              <div className="h-[100vh] absolute flex items-center pr-6 sm:pr-24">
+                <div className="text-4xl font-medium flex justify-items-end text-gray-400">The</div>
+              </div>
+              <div className="h-[100vh] absolute flex justify-start items-center pr-6 sm:pr-24 top-12">
+                <div className="textBoxShadow text-5xl font-bold">Halcyon Edge</div>
+              </div>
+              <div className="h-[100vh] w-[300px] sm:w-96 absolute flex justify-start items-center pr-6 sm:pr-24 top-44">
+                <div className="text-md font-regular">
+                  Web3 is a young but fast growing field, and the ecosystems related to different
+                  L1s and L2s are still in their infancy. The expansion of the Web3 sphere will
+                  require safeguards for investors and effective tools for builders.
+                </div>
               </div>
             </div>
           </div>

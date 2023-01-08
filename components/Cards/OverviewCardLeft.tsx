@@ -5,6 +5,7 @@ interface Props {
   thinTitle?: ReactNode;
   boldTitle?: ReactNode;
   text?: ReactNode;
+  backImageClass?: ReactNode;
   // any props that come into the component
 }
 export const OverviewCardLeft = ({
@@ -13,6 +14,7 @@ export const OverviewCardLeft = ({
   thinTitle,
   boldTitle,
   text,
+  backImageClass,
   ...props
 }: Props) => {
   const element = useRef(null);
@@ -53,12 +55,12 @@ export const OverviewCardLeft = ({
           </div>
           <div className="z-20 relative h-[15vh] w-full flex justify-start lg:pl-16 lg:pr-[15vw]">
             <div className="w-full textBoxShadow text-8xl font-semibold py-3 saira flex justify-end uppercase transform scale-[0] translate-x-0">
-              Building the future of Web3
+              {sloganRight}
             </div>
           </div>
           <div className="z-20 relative h-[15vh] w-full flex justify-start lg:pl-16 lg:pr-[15vw]">
             <div className="w-full textBoxShadow text-8xl font-semibold py-3 saira flex justify-start uppercase transform scale-[0]">
-              The Vision
+              {sloganLeft}
             </div>
           </div>
         </div>
@@ -70,30 +72,29 @@ export const OverviewCardLeft = ({
     <>
       <div ref={element} className='h-[100vh]'>
         <div className="z-20 absolute h-[100vh] w-full flex justify-start lg:pl-36 lg:pr-[35vw] sm:pl-14 sm:pr-[20vw] animate-imageTransition">
-          <div className="bg-no-repeat bg-left bg-cover bg-[url('/static/images/HeroLab.png')] lg:rounded-lg w-full">
+          {/* @ts-ignore */}
+          <div className={backImageClass}>
             <div className="h-[100vh] absolute flex justify-start items-center pl-6 sm:pl-24">
-              <div className="text-4xl font-medium text-gray-400">Our</div>
+              <div className="text-4xl font-medium text-gray-400">{thinTitle}</div>
             </div>
             <div className="h-[100vh] absolute flex justify-start items-center pl-6 sm:pl-24 top-12">
-              <div className="textBoxShadow text-5xl font-bold">Mission</div>
+              <div className="textBoxShadow text-5xl font-bold">{boldTitle}</div>
             </div>
             <div className="h-[100vh] w-[300px] sm:w-96 absolute flex justify-start items-center pl-6 sm:pl-24 top-44">
               <div className="text-md font-regular">
-                Web3 has immense potential and can disrupt our societies in the long run, but for
-                now it is mostly dangerous. We believe that reliable and trustworthy infrastructures
-                are essential to create a healthy foundation for this new decentralized internet.
+                {text}
               </div>
             </div>
           </div>
         </div>
         <div className="z-20 relative sm:h-[15vh] w-full flex justify-start xl:pr-[30vw] lg:pr-[20vw] sm:pr-[15vw]">
           <div className="w-full textBoxShadow px-6 lg:text-8xl sm:text-7xl text-6xl font-bold sm:py-3 saira flex justify-start sm:justify-end uppercase animate-imageTransition translate-x-0">
-            Building the
+            {sloganRight}
           </div>
         </div>
         <div className="z-20 relative sm:h-[15vh] w-full flex justify-start xl:pl-16 lg:pl-14 sm:pl-4">
           <div className="w-full textBoxShadow px-6 sm:px-0 lg:text-8xl sm:text-7xl text-6xl font-bold sm:py-3 saira flex justify-start sm:justify-start uppercase animate-imageTransition">
-            future of Web3
+            {sloganLeft}
           </div>
         </div>
       </div>
