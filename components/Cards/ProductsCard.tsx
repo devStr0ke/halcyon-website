@@ -6,7 +6,7 @@ interface Props {
   text?: ReactNode;
   imageClass?: ReactNode;
   buttonText?: ReactNode;
-  buttonHref?: ReactNode;
+  buttonHref?: string | undefined;
   backGroundImageClass?: ReactNode;
 }
 export const ProductsCard = ({
@@ -28,9 +28,9 @@ export const ProductsCard = ({
 
   const hoverClassMainDiv = () => {
     if (isHover) {
-      return 'hidden md:flex md:h-[60vh] lg:h-[60vh] xl:w-[20vw] lg:w-[30vw] md:w-[33vw] md:rounded-lg md:transition-productCard md:duration-500 md:saira';
+      return 'hidden bg-transparent md:flex md:h-[60vh] lg:h-[60vh] xl:w-[20vw] lg:w-[30vw] md:w-[33vw] md:rounded-lg md:transition-productCard md:duration-500 md:saira';
     } else
-      return 'hidden md:flex md:h-[60vh] lg:h-[60vh] xl:w-[15vw] lg:w-[25vw] md:w-[27vw] md:rounded-lg md:transition-productCard md:duration-500 md:saira';
+      return 'hidden bg-transparent md:flex md:h-[60vh] lg:h-[60vh] xl:w-[15vw] lg:w-[25vw] md:w-[27vw] md:rounded-lg md:transition-productCard md:duration-500 md:saira';
   };
 
   const hoverClassBlueDiv = () => {
@@ -77,7 +77,7 @@ export const ProductsCard = ({
         <div className={backGroundImageClass}></div>
         <div className={hoverClassBlueDiv()}></div>
         <div className={hoverClassTitle()}>
-          <div className="font-bold text-xl textBoxShadow">{title}</div>
+          <div className="font-bold text-xl textBoxShadow text-white">{title}</div>
         </div>
         <div className={hoverClassArrow()}>
           <Image
@@ -88,11 +88,10 @@ export const ProductsCard = ({
           />
         </div>
         <div className={hoverClassText()}>
-          <div className="font-semibold text-md text-center px-4">{text}</div>
+          <div className="font-semibold text-md text-center px-4 text-white">{text}</div>
         </div>
         <div className={hoverClassButton()}>
           <div className="xl:w-[10vw] lg:w-[20vw] h-[5vh] bg-white rounded-lg flex justify-center items-center cursor-pointer hover:border-2 hover:border-cyan-500">
-            {/* @ts-ignore */}
             <a target="_blank" href={buttonHref} className="absolute w-[10vw] h-[5vh]"></a>
             <div className="font-semibold text-cyan-500 text-lg text-center px-4">{buttonText}</div>
           </div>

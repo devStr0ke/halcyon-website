@@ -7,7 +7,7 @@ export const First = () => {
 
   return (
     <>
-      <div className="relative h-[360vh] w-full">
+      <div className="relative h-[360vh] w-full bg-transparent">
         <div className="relative">
           <OverviewCardLeft
             sloganRight="Building The"

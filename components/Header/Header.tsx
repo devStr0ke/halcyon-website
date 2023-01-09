@@ -57,14 +57,14 @@ export const Header = () => {
         <div className="heroHeader sticky top-0 z-20 w-full h-[100vh] flex justify-center items-center">
           <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
             <div className="mx-auto max-w-3xl text-center">
-              <h1 className="saira text-lg font-bold sm:text-2xl">
+              <h1 className="saira text-white text-lg font-bold sm:text-2xl">
                   Pushing The Boundaries Of Innovation
                 <strong className="text-4xl sm:text-5xl font-extrabold mt-4 block text-cyan-500">
                   Web3 Experiments Studios
                 </strong>
               </h1>
 
-              <p className="saira mt-4 sm:text-lg sm:leading-relaxed">
+              <p className="saira mt-4 sm:text-lg sm:leading-relaxed text-white">
                 Halcyon is a multi-chain creation studio that specializes in building innovative Web3-based products.
               </p>
             </div>

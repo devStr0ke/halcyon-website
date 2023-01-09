@@ -49,8 +49,8 @@ export const ProductsCardMobile = ({
 
   const hoverClassMainDiv = () => {
     if (isClick) {
-      return 'h-[60vh] relative w-[80vw] rounded-lg transition-productCard duration-500 saira';
-    } else return 'h-[60vh] relative w-[65vw] rounded-lg transition-productCard duration-500 saira';
+      return 'h-[60vh] bg-transparent relative w-[80vw] rounded-lg transition-productCard duration-500 saira';
+    } else return 'h-[60vh] bg-transparent relative w-[65vw] rounded-lg transition-productCard duration-500 saira';
   };
 
   const hoverClassBlueDiv = () => {
@@ -95,13 +95,13 @@ export const ProductsCardMobile = ({
             <div className={backGroundImageClass}></div>
             <div className={hoverClassBlueDiv()}></div>
             <div className={hoverClassTitle()}>
-              <div className="font-bold text-xl textBoxShadow">{title}</div>
+              <div className="font-bold text-xl textBoxShadow text-white">{title}</div>
             </div>
             <div className={hoverClassArrow()}>
               <Image src="/static/svg/chevron-down.svg" alt="logoDownlg" width="20" height="20" />
             </div>
             <div className={hoverClassText()}>
-              <div className="font-semibold text-md text-center px-4">{text}</div>
+              <div className="font-semibold text-md text-center px-4 text-white">{text}</div>
             </div>
             <div className={hoverClassButton()}>
               <div className="w-[45vw] h-[5vh] bg-white rounded-lg flex justify-center items-center cursor-pointer hover:border-2 hover:border-cyan-500">

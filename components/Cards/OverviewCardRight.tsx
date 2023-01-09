@@ -44,16 +44,16 @@ export const OverviewCardRight = ({
     return (
       <>
         <div ref={element} className="h-[100vh]">
-          <div className="z-20 absolute h-[100vh] w-full flex justify-end lg:pl-[35vw] lg:pr-16 sm:pr-14 sm:pl-[20vw] transform scale-[0.5]">
+          <div className="z-20 absolute h-[100vh] bg-transparent w-full flex justify-end lg:pl-[35vw] lg:pr-16 sm:pr-14 sm:pl-[20vw] transform scale-[0.5]">
             <div className="bg-no-repeat bg-left bg-cover bg-[url('/static/images/HeroLab.png')] lg:rounded-lg w-full"></div>
           </div>
           <div className="z-20 relative h-[15vh] w-full flex justify-start lg:pl-16 lg:pr-[15vw]">
-            <div className="w-full textBoxShadow text-8xl font-semibold py-3 saira flex justify-end uppercase transform scale-[0] translate-x-0">
+            <div className="w-full textBoxShadow text-white text-8xl font-semibold py-3 saira flex justify-end uppercase transform scale-[0] translate-x-0">
               Building the future of Web3
             </div>
           </div>
           <div className="z-20 relative h-[15vh] w-full flex justify-start lg:pl-16 lg:pr-[15vw]">
-            <div className="w-full textBoxShadow text-8xl font-semibold py-3 saira flex justify-start uppercase transform scale-[0]">
+            <div className="w-full textBoxShadow text-white text-8xl font-semibold py-3 saira flex justify-start uppercase transform scale-[0]">
               The Vision
             </div>
           </div>
@@ -65,17 +65,17 @@ export const OverviewCardRight = ({
   return (
     <>
       <div ref={element} className="h-[100vh]">
-        <div className="z-20 absolute h-[100vh] w-full flex justify-end lg:pr-36 lg:pl-[35vw] sm:pr-14 sm:pl-[20vw] animate-imageTransition">
+        <div className="z-20 absolute h-[100vh] bg-transparent w-full flex justify-end lg:pr-36 lg:pl-[35vw] sm:pr-14 sm:pl-[20vw] animate-imageTransition">
           <div className="bg-no-repeat bg-center bg-cover bg-[url('/static/images/HeroHologram.png')] lg:rounded-lg w-full">
             <div className='h-[100vh] w-full flex justify-end text-right'>
               <div className="h-[100vh] absolute flex items-center pr-6 sm:pr-24">
                 <div className="text-4xl font-medium flex justify-items-end text-gray-400">The</div>
               </div>
               <div className="h-[100vh] absolute flex justify-start items-center pr-6 sm:pr-24 top-12">
-                <div className="textBoxShadow text-5xl font-bold">Halcyon Edge</div>
+                <div className="textBoxShadow text-5xl font-bold text-white">Halcyon Edge</div>
               </div>
               <div className="h-[100vh] w-[300px] sm:w-96 absolute flex justify-start items-center pr-6 sm:pr-24 top-44">
-                <div className="text-md font-regular">
+                <div className="text-md font-regular text-white">
                   Web3 is a young but fast growing field, and the ecosystems related to different
                   L1s and L2s are still in their infancy. The expansion of the Web3 sphere will
                   require safeguards for investors and effective tools for builders.
