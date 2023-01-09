@@ -61,7 +61,7 @@ export const Navbar = () => {
     if (Math.floor(scrollPosition) > 44) {
       return 'top-[0px] bg-transparent w-full flex justify-center fixed z-[800]';
     } else {
-      return 'top-[0px] bg-transparent w-full flex justify-center fixed lg:absolute z-[800] duration-100 lg:top-11';
+      return 'top-0 bg-transparent w-full flex justify-center fixed lg:absolute z-[800] duration-100 lg:top-11';
     }
   };
 

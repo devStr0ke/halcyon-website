@@ -2,6 +2,7 @@ import { Header } from '../components/Header/Header';
 import { Separator } from '../components/Separator/Separator';
 import { First } from '../components/Content/First';
 import { Second } from '../components/Content/Second';
+import { Fifth } from '../components/Content/Fifth';
 import { Footer } from '../components/Footer/Footer';
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
         <Second />
         <Separator subtitle="Charting the course for our future" title="Roadmap" />
         <Separator subtitle="Unraveling the mysteries of Halcyon" title="FAQ" />
+        <Fifth />
         <Footer />
       </div>
     </>
