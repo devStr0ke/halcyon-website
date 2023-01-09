@@ -2,6 +2,7 @@ import { Header } from '../components/Header/Header';
 import { Separator } from '../components/Separator/Separator';
 import { First } from '../components/Content/First';
 import { Second } from '../components/Content/Second';
+import { Third } from '../components/Content/Thirds';
 import { Fourth } from '../components/Content/Fourth';
 import { Fifth } from '../components/Content/Fifth';
 import { Footer } from '../components/Footer/Footer';
@@ -30,6 +31,7 @@ export default function Home() {
         <Separator subtitle="Innovative solutions for a decentralized world" title="Products" />
         <Second />
         <Separator subtitle="Charting the course for our future" title="Roadmap" />
+        <Third />
         <Separator subtitle="Charting the course for our future" title="Our Team" />
         <Fourth />
         <Separator subtitle="Unraveling the mysteries of Halcyon" title="FAQ" />

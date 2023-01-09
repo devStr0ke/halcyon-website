@@ -61,7 +61,12 @@ module.exports = {
         textTransition2: 'textTransition2 0.8s',
         imageTransition: 'imageTransition 2.6s',
         starBackground: 'starBackground 10s alternate infinite',
-      }
+      },
+      backgroundImage: {
+        'roadmap-tunnel': 'url(/static/images/Roadmap/roadmap_tunnel_futuriste.svg)',
+        'roadmap-man-silouette': 'url(/static/images/Roadmap/roadmap_man_silouette.svg)',
+        'roadmap-hexagone-nft': 'url(/static/images/Roadmap/roadmap_hexagone_nft.svg)'
+      },
     },
   },
   plugins: [],

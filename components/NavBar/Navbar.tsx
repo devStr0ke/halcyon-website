@@ -11,6 +11,13 @@ export const Navbar = () => {
     setScrollPosition(position);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+
   const scrollToOverview = () => {
     window.scrollTo({
       top: windowHeight*2,
@@ -21,6 +28,34 @@ export const Navbar = () => {
   const scrollToProducts = () => {
     window.scrollTo({
       top: windowHeight*6,
+      behavior: 'smooth',
+    });
+  }
+
+  const scrollToRoadmap = () => {
+    window.scrollTo({
+      top: windowHeight*7+70,
+      behavior: 'smooth',
+    });
+  }
+
+  const scrollToTeam = () => {
+    window.scrollTo({
+      top: windowHeight*8+90,
+      behavior: 'smooth',
+    });
+  }
+
+  const scrollToFaq = () => {
+    window.scrollTo({
+      top: windowHeight*9+90,
+      behavior: 'smooth',
+    });
+  }
+
+  const scrollToContacts = () => {
+    window.scrollTo({
+      top: windowHeight*10+90,
       behavior: 'smooth',
     });
   }
@@ -157,7 +192,7 @@ export const Navbar = () => {
             <div className={blueBottomBorderControllerLeft()}></div>
             <div className={blueBottomBorderControllerRight()}></div>
             <div className="">
-              <a className="overflow-clip lg:animate-hideImage" href="#">
+              <a onClick={scrollToTop} className="lg:animate-hideImage cursor-pointer">
                 <Image
                   className="hidden lg:flex lg:text-center"
                   src={logoColor()}
@@ -191,9 +226,10 @@ export const Navbar = () => {
                   Products
                 </a>
                 <a
-                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
+                  onClick={scrollToRoadmap}
+                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterLeft(3)}
-                  href="#">
+                >
                   Roadmap
                 </a>
               </div>
@@ -201,21 +237,24 @@ export const Navbar = () => {
                 className={rightNavBarItemsController()}
                 onMouseLeave={handleNavBarItemLeaveRight}>
                 <a
-                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
+                  onClick={scrollToTeam}
+                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterRight(1)}
-                  href="#">
+                >
                   Our Team
                 </a>
                 <a
-                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
+                  onClick={scrollToFaq}
+                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterRight(2)}
-                  href="#">
+                >
                   Faq
                 </a>
                 <a
-                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] hover:text-cyan-500"
+                  onClick={scrollToContacts}
+                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
                   onMouseEnter={() => handleNavBarItemEnterRight(3)}
-                  href="#">
+                >
                   Contact Us
                 </a>
               </div>
