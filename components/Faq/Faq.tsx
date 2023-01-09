@@ -91,7 +91,7 @@ export const Faq = ({
   return (
     <>
       <div>
-      <div ref={element} className="top-0 bg-transparent w-full relative z-10 saira md:px-4 lg:px-24 xl:px-36 animate-textTransition2">
+      <div ref={element} className="top-0 bg-transparent w-full relative z-10 saira md:px-4 lg:px-24 xl:px-36 animate-textTransition">
         <div className={heightClassController()}>
           <div className='w-full h-[65px] bg-white rounded-lg flex justify-start items-center'>
             <div className='pl-8 text-black font-black text-md sm:text-xl lg:text-2xl'>{title}</div>
