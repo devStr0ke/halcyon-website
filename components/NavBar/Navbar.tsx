@@ -20,7 +20,7 @@ export const Navbar = () => {
 
   const scrollToProducts = () => {
     window.scrollTo({
-      top: windowHeight*6+60,
+      top: windowHeight*6,
       behavior: 'smooth',
     });
   }
@@ -106,9 +106,9 @@ export const Navbar = () => {
     } else {
       if (navBarItemLeft == 5) {
         if (Math.floor(scrollPosition) < 44) {
-          return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:left-[48.5%] transition-blueBorder duration-[400ms] ease-in-out';
+          return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:left-[48.5%] lg:transition-blueBorder duration-[400ms] ease-in-out';
         } else
-          return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:left-[48.8%] transition-blueBorder duration-[400ms] ease-in-out';
+          return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:left-[48.8%] lg:transition-blueBorder duration-[400ms] ease-in-out';
       } else if (navBarItemLeft == 1) {
         return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder lg:left-[65px] xl:left-[115px] duration-[700ms] ease-in-out';
       } else if (navBarItemLeft == 2) {
@@ -130,9 +130,9 @@ export const Navbar = () => {
     } else {
       if (navBarItemRight == 5) {
         if (Math.floor(scrollPosition) < 44) {
-          return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:right-[48.5%] transition-blueBorder duration-[400ms] ease-in-out';
+          return 'hidden lg:flex absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:right-[48.5%] transition-blueBorder duration-[400ms] ease-in-out';
         } else
-          return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:right-[48.8%] transition-blueBorder duration-[400ms] ease-in-out';
+          return 'hidden lg:flex absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 lg:right-[48.8%] transition-blueBorder duration-[400ms] ease-in-out';
       } else if (navBarItemRight == 1) {
         return 'absolute h-[65px] border-b-[3px] w-[36px] border-cyan-500 transition-blueBorder lg:right-[240px] xl:right-[285px] duration-[700ms] ease-in-out';
       } else if (navBarItemRight == 2) {

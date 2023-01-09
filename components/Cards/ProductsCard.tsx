@@ -18,7 +18,6 @@ export const ProductsCard = ({
   backGroundImageClass,
   ...props
 }: Props) => {
-  const element = useRef(null);
   const [isHover, setIsHover] = useState(false); //use state for hamburger state controller (x or =)
   const toggleClassTrue = () => {
     setIsHover(true);
@@ -70,7 +69,6 @@ export const ProductsCard = ({
   return (
     <>
       <div
-        ref={element}
         className={hoverClassMainDiv()}
         onMouseEnter={toggleClassTrue}
         onMouseLeave={toggleClassFalse}
