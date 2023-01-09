@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface RoadmapNavigation {
   indexNavigation: number;
@@ -97,6 +97,31 @@ export const Third = () => {
     setCompteur(indexRoadmap + 1);
   };
 
+  const element = useRef(null);
+  const [isAnimated, setIsAnimated] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsAnimated(true);
+        } else {
+          setIsAnimated(false);
+        }
+      });
+    });
+
+    if (element.current) {
+      observer.observe(element.current);
+    }
+
+    return () => {
+      if (element.current) {
+        observer.unobserve(element.current);
+      }
+    };
+  }, []);
+
   const minusIndex = () => {
     setCompteur(indexRoadmap - 1);
   };
@@ -145,76 +170,175 @@ export const Third = () => {
     );
   };
 
-  return (
-    <>
-      <div className="h-[60vh] pt-[30px] saira lg:hidden">
-        <div className="h-[60vh] w-[300px] md:w-[600px] brightness-[0.90] rounded-lg mx-auto relative overflow-hidden z-0">
-          <div
-            className={`h-full w-[500%] absolute tansform ${backgroundSlide()} transition-transform duration-700 ease`}>
-            <div
-              className={`${listOfRoadmapElm[0].backgroundImageDef} h-[325px] w-[300px] 
+  if (!isAnimated) {
+    return (
+      <>
+        <div ref={element} className="opacity-0">
+          <div className="h-[60vh] pt-[30px] saira lg:hidden">
+            <div className="h-[60vh] w-[300px] md:w-[600px] brightness-[0.90] rounded-lg mx-auto relative overflow-hidden z-0">
+              <div
+                className={`h-full w-[500%] absolute tansform ${backgroundSlide()} transition-transform duration-700 ease`}
+              >
+                <div
+                  className={`${listOfRoadmapElm[0].backgroundImageDef} h-[325px] w-[300px] 
               rounded-lg md:w-[600px] bg-cover bg-center bg-no-repeat absolute
-              transform translate-x-[0%]`}></div>
-            <div
-              className={`${listOfRoadmapElm[1].backgroundImageDef} h-[325px] w-[300px] 
+              transform translate-x-[0%]`}
+                ></div>
+                <div
+                  className={`${listOfRoadmapElm[1].backgroundImageDef} h-[325px] w-[300px] 
               rounded-lg md:w-[600px] bg-cover bg-center bg-no-repeat absolute
-              transform translate-x-[100%]`}></div>
-            <div
-              className={`${listOfRoadmapElm[2].backgroundImageDef} h-[325px] w-[300px] 
+              transform translate-x-[100%]`}
+                ></div>
+                <div
+                  className={`${listOfRoadmapElm[2].backgroundImageDef} h-[325px] w-[300px] 
               rounded-lg md:w-[600px] bg-cover bg-center bg-center absolute 
               transition-all duration-500 linear
-              transform translate-x-[200%]`}></div>
-            <div
-              className={`${listOfRoadmapElm[3].backgroundImageDef} h-[325px] w-[300px] 
+              transform translate-x-[200%]`}
+                ></div>
+                <div
+                  className={`${listOfRoadmapElm[3].backgroundImageDef} h-[325px] w-[300px] 
               rounded-lg md:w-[600px] bg-cover bg-center absolute 
               transition-all duration-500 linear
-              transform translate-x-[300%]`}></div>
-            <div
-              className={`${listOfRoadmapElm[4].backgroundImageDef} h-[325px] w-[300px] 
+              transform translate-x-[300%]`}
+                ></div>
+                <div
+                  className={`${listOfRoadmapElm[4].backgroundImageDef} h-[325px] w-[300px] 
               rounded-lg md:w-[600px] bg-cover bg-center absolute 
               transition-all duration-500 linear
-              transform translate-x-[400%]`}></div>
-          </div>
-          <div className="relative bg-[#ececec] h-1 rounded-full">
-            <div
-              className={`h-full w-full bg-gradient-to-r from-[#b8a7fc] via-[#48b1c5] to-[#008eab] 
-              inset-0 absolute rounded-full ${roadmapSlide()} transition-transform duration-700 ease-out`}></div>
-          </div>
-          <div className="">
-            <div className="flex space-x-[235px] mt-[20px] place-content-center">
-              <div className="scale-x-[-1]">
-                <CarreDeNavigation
-                  indexNavigation={indexRoadmap}
-                  direction="left"
-                  addIndex={addIndex}
-                  minusIndex={minusIndex}
-                />
+              transform translate-x-[400%]`}
+                ></div>
               </div>
-              <div className="flex justify-end">
-                <CarreDeNavigation
-                  indexNavigation={indexRoadmap}
-                  direction="right"
-                  addIndex={addIndex}
-                  minusIndex={minusIndex}
-                />
+              <div className="relative bg-[#ececec] h-1 rounded-full">
+                <div
+                  className={`h-full w-full bg-gradient-to-r from-[#b8a7fc] via-[#48b1c5] to-[#008eab] 
+              inset-0 absolute rounded-full ${roadmapSlide()} transition-transform duration-700 ease-out`}
+                ></div>
+              </div>
+              <div className="">
+                <div className="flex space-x-[235px] mt-[20px] place-content-center">
+                  <div className="scale-x-[-1]">
+                    <CarreDeNavigation
+                      indexNavigation={indexRoadmap}
+                      direction="left"
+                      addIndex={addIndex}
+                      minusIndex={minusIndex}
+                    />
+                  </div>
+                  <div className="flex justify-end">
+                    <CarreDeNavigation
+                      indexNavigation={indexRoadmap}
+                      direction="right"
+                      addIndex={addIndex}
+                      minusIndex={minusIndex}
+                    />
+                  </div>
+                </div>
+                <div
+                  className="w-4/5 mx-auto relative"
+                  style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)' }}
+                >
+                  <div className="flex justify-center text-[#0ab0d6] text-[30px] ">
+                    {listOfRoadmapElm[indexRoadmap].title}
+                  </div>
+                  <div className="flex justify-center uppercase text-white text-[23px] mt-[5px] ">
+                    {listOfRoadmapElm[indexRoadmap].subTitle}
+                  </div>
+                  <div className="mt-[15px] text-[16px] text-white text-center">
+                    {displayLiList()}
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+          <div className="xl:h-[100vh] lg:h-[80vh] w-full bg-transparent flex justify-center">
+            <div className="bg-no-repeat xl:h-[100vh] lg:h-[80vh] bg-center bg-contain bg-[url('/static/images/ROADMAP.png')] bg-transparent rounded-lg w-[95%]"></div>
+          </div>
+        </div>
+      </>
+    );
+  }
+  return (
+    <>
+      <div ref={element} className="animate-imageTransition">
+        <div className="h-[60vh] pt-[30px] saira lg:hidden">
+          <div className="h-[60vh] w-[300px] md:w-[600px] brightness-[0.90] rounded-lg mx-auto relative overflow-hidden z-0">
             <div
-              className="w-4/5 mx-auto relative"
-              style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)' }}>
-              <div className="flex justify-center text-[#0ab0d6] text-[30px] ">
-                {listOfRoadmapElm[indexRoadmap].title}
+              className={`h-full w-[500%] absolute tansform ${backgroundSlide()} transition-transform duration-700 ease`}
+            >
+              <div
+                className={`${listOfRoadmapElm[0].backgroundImageDef} h-[325px] w-[300px] 
+              rounded-lg md:w-[600px] bg-cover bg-center bg-no-repeat absolute
+              transform translate-x-[0%]`}
+              ></div>
+              <div
+                className={`${listOfRoadmapElm[1].backgroundImageDef} h-[325px] w-[300px] 
+              rounded-lg md:w-[600px] bg-cover bg-center bg-no-repeat absolute
+              transform translate-x-[100%]`}
+              ></div>
+              <div
+                className={`${listOfRoadmapElm[2].backgroundImageDef} h-[325px] w-[300px] 
+              rounded-lg md:w-[600px] bg-cover bg-center bg-center absolute 
+              transition-all duration-500 linear
+              transform translate-x-[200%]`}
+              ></div>
+              <div
+                className={`${listOfRoadmapElm[3].backgroundImageDef} h-[325px] w-[300px] 
+              rounded-lg md:w-[600px] bg-cover bg-center absolute 
+              transition-all duration-500 linear
+              transform translate-x-[300%]`}
+              ></div>
+              <div
+                className={`${listOfRoadmapElm[4].backgroundImageDef} h-[325px] w-[300px] 
+              rounded-lg md:w-[600px] bg-cover bg-center absolute 
+              transition-all duration-500 linear
+              transform translate-x-[400%]`}
+              ></div>
+            </div>
+            <div className="relative bg-[#ececec] h-1 rounded-full">
+              <div
+                className={`h-full w-full bg-gradient-to-r from-[#b8a7fc] via-[#48b1c5] to-[#008eab] 
+              inset-0 absolute rounded-full ${roadmapSlide()} transition-transform duration-700 ease-out`}
+              ></div>
+            </div>
+            <div className="">
+              <div className="flex space-x-[235px] mt-[20px] place-content-center">
+                <div className="scale-x-[-1]">
+                  <CarreDeNavigation
+                    indexNavigation={indexRoadmap}
+                    direction="left"
+                    addIndex={addIndex}
+                    minusIndex={minusIndex}
+                  />
+                </div>
+                <div className="flex justify-end">
+                  <CarreDeNavigation
+                    indexNavigation={indexRoadmap}
+                    direction="right"
+                    addIndex={addIndex}
+                    minusIndex={minusIndex}
+                  />
+                </div>
               </div>
-              <div className="flex justify-center uppercase text-white text-[23px] mt-[5px] ">
-                {listOfRoadmapElm[indexRoadmap].subTitle}
+              <div
+                className="w-4/5 mx-auto relative"
+                style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)' }}
+              >
+                <div className="flex justify-center text-[#0ab0d6] text-[30px] ">
+                  {listOfRoadmapElm[indexRoadmap].title}
+                </div>
+                <div className="flex justify-center uppercase text-white text-[23px] mt-[5px] ">
+                  {listOfRoadmapElm[indexRoadmap].subTitle}
+                </div>
+                <div className="mt-[15px] text-[16px] text-white text-center">
+                  {displayLiList()}
+                </div>
               </div>
-              <div className="mt-[15px] text-[16px] text-white text-center">{displayLiList()}</div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="xl:h-[100vh] lg:h-[80vh] w-full bg-transparent flex justify-center">
-        <div className="bg-no-repeat xl:h-[100vh] lg:h-[80vh] bg-center bg-contain bg-[url('/static/images/ROADMAP.png')] bg-transparent rounded-lg w-[95%]"></div>
+        <div className="xl:h-[100vh] lg:h-[80vh] w-full bg-transparent flex justify-center">
+          <div className="bg-no-repeat xl:h-[100vh] lg:h-[80vh] bg-center bg-contain bg-[url('/static/images/ROADMAP.png')] bg-transparent rounded-lg w-[95%]"></div>
+        </div>
       </div>
     </>
   );
