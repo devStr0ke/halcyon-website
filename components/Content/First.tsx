@@ -31,7 +31,7 @@ export const First = () => {
             boldTitle="Identity"
             text="Halcyon is a Web3 development studio that will bring together 
             the aspirations of investors and the ambitions of builders while federating a knowledgeable 
-            community. Here are three areas in which we act directly."
+            community."
             backImageClass="bg-no-repeat bg-center bg-cover bg-[url('/static/images/HeroWarp.jpg')] sm:rounded-lg w-full"
           />
         </div>

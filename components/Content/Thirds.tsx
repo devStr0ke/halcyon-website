@@ -152,7 +152,7 @@ export const Third = () => {
 
   return (
     <>
-      <div className="h-[60vh] pt-[30px] delaGothicOne">
+      <div className="h-[60vh] pt-[30px] saira lg:hidden">
         <div className="h-[60vh] w-[300px] md:w-[600px] brightness-[0.90] rounded-lg mx-auto relative overflow-hidden z-0">
           <div
             className={`h-full w-[500%] absolute tansform ${backgroundSlide()} transition-transform duration-700 ease`}>
@@ -163,7 +163,7 @@ export const Third = () => {
               `}></div>
             <div
               className={`${listOfRoadmapElm[1].backgroundImageDef} h-[325px] w-[300px] 
-              rounded-lg md:w-[600px] bg-cover absolute
+              rounded-lg md:w-[600px] bg-contain bg-no-repeat absolute
               transform translate-x-[100%]`}></div>
             <div
               className={`${listOfRoadmapElm[2].backgroundImageDef} h-[325px] w-[300px] 
@@ -218,6 +218,9 @@ export const Third = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className='xl:h-[100vh] lg:h-[80vh] w-full bg-transparent flex justify-center'>
+        <div className="bg-no-repeat xl:h-[100vh] lg:h-[80vh] bg-center bg-contain bg-[url('/static/images/ROADMAP.png')] bg-transparent rounded-lg w-[95%]"></div>
       </div>
     </>
   );

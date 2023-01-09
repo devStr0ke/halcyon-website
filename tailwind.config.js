@@ -63,9 +63,9 @@ module.exports = {
         starBackground: 'starBackground 10s alternate infinite',
       },
       backgroundImage: {
-        'roadmap-tunnel': 'url(/static/images/Roadmap/roadmap_tunnel_futuriste.svg)',
-        'roadmap-man-silouette': 'url(/static/images/Roadmap/roadmap_man_silouette.svg)',
-        'roadmap-hexagone-nft': 'url(/static/images/Roadmap/roadmap_hexagone_nft.svg)'
+        'roadmap-tunnel': 'url(/static/images/roadmap/roadmap_tunnel_futuriste.png)',
+        'roadmap-man-silouette': 'url(/static/images/roadmap/roadmap_man_silouette.png)',
+        'roadmap-hexagone-nft': 'url(/static/images/roadmap/roadmap_hexagone_nft.png)'
       },
     },
   },
