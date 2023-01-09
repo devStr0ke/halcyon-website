@@ -3,6 +3,7 @@
 @tailwind utilities;
 html,
 body {
+  background: linear-gradient(to bottom, black 0 98%, #06b6d4 98% 100%);
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
@@ -86,16 +87,6 @@ a {
 
 * {
   box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: linear-gradient(to bottom, black 0 98.5%, #06b6d4 98.5% 100%);
-  }
 }
 
 

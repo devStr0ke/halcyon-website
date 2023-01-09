@@ -55,7 +55,7 @@ export const Navbar = () => {
 
   const scrollToContacts = () => {
     window.scrollTo({
-      top: windowHeight*10+90,
+      top: windowHeight*15,
       behavior: 'smooth',
     });
   }

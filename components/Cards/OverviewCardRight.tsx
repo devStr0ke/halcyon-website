@@ -85,12 +85,12 @@ export const OverviewCardRight = ({
           </div>
         </div>
         <div className="z-20 relative sm:h-[15vh] w-full flex justify-center xl:pl-[30vw] lg:pl-[25vw] sm:pl-[10vw]">
-          <div className="w-full textBoxShadow px-6 sm:px-0 lg:text-8xl sm:text-7xl text-6xl font-bold sm:py-3 saira flex justify-start sm:justify-start uppercase animate-imageTransition">
+          <div className="w-full text-white textBoxShadow px-6 sm:px-0 lg:text-8xl sm:text-7xl text-6xl font-bold sm:py-3 saira flex justify-start sm:justify-start uppercase animate-imageTransition">
             One block
           </div>
         </div>
         <div className="z-20 relative sm:h-[15vh] w-full flex justify-end xl:pr-[5vw] lg:pr-[5vw] sm:pl-[15vw]">
-          <div className="w-full textBoxShadow px-6 lg:text-8xl sm:text-7xl text-6xl font-bold sm:py-3 saira flex justify-start sm:justify-end uppercase animate-imageTransition translate-x-0">
+          <div className="w-full text-white textBoxShadow px-6 lg:text-8xl sm:text-7xl text-6xl font-bold sm:py-3 saira flex justify-start sm:justify-end uppercase animate-imageTransition translate-x-0">
             at a time
           </div>
         </div>
