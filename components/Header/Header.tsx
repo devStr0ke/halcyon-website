@@ -44,9 +44,9 @@ export const Header = () => {
       <div className="relative h-[200vh] w-full">
         <div
           ref={opacityBlurRef}
-          className="z-20 absolute top-0 w-full h-[200vh] opacity-0"
+          className="z-10 absolute top-0 w-full h-[200vh] opacity-0"
           style={{
-            backgroundColor: 'hsla(0, 0%, 100%, 0.175)'
+            backgroundColor: 'hsla(0, 100%, 0%, 0.25)'
           }}
         ></div>
         <div

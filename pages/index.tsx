@@ -28,6 +28,7 @@ export default function Home() {
         <Separator subtitle="Innovative solutions for a decentralized world" title="Products" />
         <Second />
         <Separator subtitle="Charting the course for our future" title="Roadmap" />
+        <Separator subtitle="Unraveling the mysteries of Halcyon" title="FAQ" />
         <Footer />
       </div>
     </>
