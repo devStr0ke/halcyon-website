@@ -12,6 +12,7 @@ export const Navbar = () => {
   };
 
   const scrollToTop = () => {
+    toggleClass()
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
@@ -19,6 +20,7 @@ export const Navbar = () => {
   }
 
   const scrollToOverview = () => {
+    toggleHambFalse()
     window.scrollTo({
       top: windowHeight*2,
       behavior: 'smooth',
@@ -26,6 +28,7 @@ export const Navbar = () => {
   }
 
   const scrollToProducts = () => {
+    toggleHambFalse()
     window.scrollTo({
       top: windowHeight*6,
       behavior: 'smooth',
@@ -33,6 +36,7 @@ export const Navbar = () => {
   }
 
   const scrollToRoadmap = () => {
+    toggleHambFalse()
     window.scrollTo({
       top: windowHeight*7+70,
       behavior: 'smooth',
@@ -40,22 +44,25 @@ export const Navbar = () => {
   }
 
   const scrollToTeam = () => {
+    toggleHambFalse()
     window.scrollTo({
-      top: windowHeight*8+90,
+      top: windowHeight*8+400,
       behavior: 'smooth',
     });
   }
 
   const scrollToFaq = () => {
+    toggleHambFalse()
     window.scrollTo({
-      top: windowHeight*9+90,
+      top: windowHeight*9+400,
       behavior: 'smooth',
     });
   }
 
   const scrollToContacts = () => {
+    toggleHambFalse()
     window.scrollTo({
-      top: windowHeight*10+90,
+      top: windowHeight*15,
       behavior: 'smooth',
     });
   }
@@ -82,6 +89,9 @@ export const Navbar = () => {
   const toggleClass = () => {
     setActive(!hamburgerController);
   };
+  const toggleHambFalse = () => {
+    setActive(false)
+  }
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -283,17 +293,23 @@ export const Navbar = () => {
             ? 'lg:hidden top-[65px] h-full bg-white w-full border-t-[0.01px] border-gray-300 border-opacity-40 fixed z-[799] transform transition-transform duration-500 translate-y-0'
             : 'lg:hidden top-[65px] h-full bg-white w-full fixed z-[799] transform transition-transform duration-500 -translate-y-full'
         }>
-        <div className="text-lg font-bold uppercase text-black flex justify-center mt-12 hover:text-cyan-400">
-          <div>Reviews</div>
+        <div onClick={scrollToOverview} className="text-lg font-bold uppercase text-black flex justify-center mt-12 hover:text-cyan-400">
+          <div>Overview</div>
         </div>
-        <div className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
-          <div>Guides</div>
+        <div onClick={scrollToProducts} className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
+          <div>Products</div>
         </div>
-        <div className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
-          <div>About</div>
+        <div onClick={scrollToRoadmap} className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
+          <div>Roadmap</div>
         </div>
-        <div className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
-          <div>Services</div>
+        <div onClick={scrollToTeam} className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
+          <div>Our Team</div>
+        </div>
+        <div onClick={scrollToFaq} className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
+          <div>Faq</div>
+        </div>
+        <div onClick={scrollToContacts} className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
+          <div>Contact</div>
         </div>
       </div>
     </>

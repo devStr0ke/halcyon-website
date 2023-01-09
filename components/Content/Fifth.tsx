@@ -28,7 +28,7 @@ export const Fifth = () => {
         <div className='h-[10px] w-full'></div>
         <Faq
           title='What is the Bottle Dispenser?'
-          text=''
+          text='The Bottle Dispenser is a system that allows users to obtain whitelists for a sale on a first-come, first-served basis through a Dapp. Users can mint and receive two types of bottles, filled ones which are eligible for a whitelist and unfilled ones which can be recycled for a new entry. Partner projects may give away filled bottles and there may be opportunities to obtain them through test mints on partner marketplaces where winning NFTs can be redeemed for a whitelist.'
         />
         <div className='h-[10px] w-full'></div>
         <Faq
