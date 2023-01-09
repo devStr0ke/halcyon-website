@@ -106,7 +106,7 @@ export const ProductsCardMobile = ({
             <div className={hoverClassButton()}>
               <div className="w-[45vw] h-[5vh] bg-white rounded-lg flex justify-center items-center cursor-pointer hover:border-2 hover:border-cyan-500">
                 {/* @ts-ignore */}
-                <a target="_blank" href={buttonHref} className="absolute w-[10vw] h-[5vh]"></a>
+                <a target="_blank" href={buttonHref} rel="noreferrer" className="absolute w-[10vw] h-[5vh]"></a>
                 <div className="font-semibold text-cyan-500 text-lg text-center px-4">
                   {buttonText}
                 </div>
@@ -137,7 +137,7 @@ export const ProductsCardMobile = ({
           <div className={hoverClassButton()}>
             <div className="w-[45vw] h-[5vh] bg-white rounded-lg flex justify-center items-center cursor-pointer hover:border-2 hover:border-cyan-500">
               {/* @ts-ignore */}
-              <a target="_blank" href={buttonHref} className="absolute w-[10vw] h-[5vh]"></a>
+              <a target="_blank" href={buttonHref} rel="noreferrer" className="absolute w-[10vw] h-[5vh]"></a>
               <div className="font-semibold text-cyan-500 text-lg text-center px-4">
                 {buttonText}
               </div>
