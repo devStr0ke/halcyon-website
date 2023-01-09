@@ -152,7 +152,7 @@ export const Third = () => {
 
   return (
     <>
-      <div className="h-[60vh] pt-[30px] delaGothicOne">
+      <div className="h-[60vh] pt-[30px] delaGothicOne lg:hidden">
         <div className="h-[60vh] w-[300px] md:w-[600px] brightness-[0.90] rounded-lg mx-auto relative overflow-hidden z-0">
           <div
             className={`h-full w-[500%] absolute tansform ${backgroundSlide()} transition-transform duration-700 ease`}>
@@ -218,6 +218,9 @@ export const Third = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className='h-[100vh] w-full bg-transparent flex justify-center'>
+        <div className="bg-no-repeat h-[100vh] bg-contain bg-[url('/static/images/ROADMAP.png')] bg-transparent rounded-lg w-[100%]"></div>
       </div>
     </>
   );
