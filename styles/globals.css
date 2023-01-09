@@ -60,6 +60,16 @@ body {
   background: linear-gradient(to bottom, transparent 0 50%, red 99% 100%);
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: 20px;  /* Firefox */
+}
+
 .textBoxShadow {
   text-shadow:
    -1px -1px 0 #06b6d4,  
