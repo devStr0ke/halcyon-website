@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import useDeviceSize from '../../hooks/windowHook';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 export const Navbar = () => {
   const [windowWidth, windowHeight] = useDeviceSize();
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -10,59 +12,12 @@ export const Navbar = () => {
     const position = window.pageYOffset;
     setScrollPosition(position);
   };
+  const router = useRouter()
 
   const scrollToTop = () => {
     toggleClass()
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
-    });
-  }
-
-  const scrollToOverview = () => {
-    toggleHambFalse()
-    window.scrollTo({
-      top: windowHeight*2,
-      behavior: 'smooth',
-    });
-  }
-
-  const scrollToProducts = () => {
-    toggleHambFalse()
-    window.scrollTo({
-      top: windowHeight*6,
-      behavior: 'smooth',
-    });
-  }
-
-  const scrollToRoadmap = () => {
-    toggleHambFalse()
-    window.scrollTo({
-      top: windowHeight*7+70,
-      behavior: 'smooth',
-    });
-  }
-
-  const scrollToTeam = () => {
-    toggleHambFalse()
-    window.scrollTo({
-      top: windowHeight*8+400,
-      behavior: 'smooth',
-    });
-  }
-
-  const scrollToFaq = () => {
-    toggleHambFalse()
-    window.scrollTo({
-      top: windowHeight*9+400,
-      behavior: 'smooth',
-    });
-  }
-
-  const scrollToContacts = () => {
-    toggleHambFalse()
-    window.scrollTo({
-      top: windowHeight*15,
       behavior: 'smooth',
     });
   }
@@ -221,52 +176,58 @@ export const Navbar = () => {
                 />
               </a>
               <div className={leftNavBarItemsController()} onMouseLeave={handleNavBarItemLeaveLeft}>
-                <a
-                  onClick={scrollToOverview}
-                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
-                  onMouseEnter={() => handleNavBarItemEnterLeft(1)}
-                >
-                  Overview
-                </a>
-                <a
-                  onClick={scrollToProducts}
-                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
-                  onMouseEnter={() => handleNavBarItemEnterLeft(2)}
-                >
-                  Products
-                </a>
-                <a
-                  onClick={scrollToRoadmap}
-                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
-                  onMouseEnter={() => handleNavBarItemEnterLeft(3)}
-                >
-                  Roadmap
-                </a>
+                <Link href="/#overview" legacyBehavior scroll={false}>
+                  <a
+                    className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
+                    onMouseEnter={() => handleNavBarItemEnterLeft(1)}
+                  >
+                    Overview
+                  </a>
+                </Link>
+                <Link href='/#products' legacyBehavior scroll={false}>
+                  <a
+                    className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
+                    onMouseEnter={() => handleNavBarItemEnterLeft(2)}
+                  >
+                    Products
+                  </a>
+                </Link>
+                <Link href='/#roadmap' legacyBehavior scroll={false}>
+                  <a
+                    className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
+                    onMouseEnter={() => handleNavBarItemEnterLeft(3)}
+                  >
+                    Roadmap
+                  </a>
+                </Link>
               </div>
               <div
                 className={rightNavBarItemsController()}
                 onMouseLeave={handleNavBarItemLeaveRight}>
-                <a
-                  onClick={scrollToTeam}
-                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
-                  onMouseEnter={() => handleNavBarItemEnterRight(1)}
-                >
-                  Our Team
-                </a>
-                <a
-                  onClick={scrollToFaq}
-                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
-                  onMouseEnter={() => handleNavBarItemEnterRight(2)}
-                >
-                  Faq
-                </a>
-                <a
-                  onClick={scrollToContacts}
-                  className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
-                  onMouseEnter={() => handleNavBarItemEnterRight(3)}
-                >
-                  Contact Us
-                </a>
+                <Link href='/#team' legacyBehavior scroll={false}>
+                  <a
+                    className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
+                    onMouseEnter={() => handleNavBarItemEnterRight(1)}
+                  >
+                    Our Team
+                  </a>
+                </Link>
+                <Link href='/#faq' legacyBehavior scroll={false}>
+                  <a
+                    className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
+                    onMouseEnter={() => handleNavBarItemEnterRight(2)}
+                  >
+                    Faq
+                  </a>
+                </Link>
+                <Link href='/#contacts' legacyBehavior scroll={false}>
+                  <a
+                    className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
+                    onMouseEnter={() => handleNavBarItemEnterRight(3)}
+                  >
+                    Contact Us
+                  </a>
+                </Link>
               </div>
               <div onClick={toggleClass} className="absolute space-y-1.5 top-7 left-6 lg:hidden cursor-pointer">
                 <span
@@ -293,24 +254,36 @@ export const Navbar = () => {
             ? 'lg:hidden top-[65px] h-full bg-white w-full border-t-[0.01px] border-gray-300 border-opacity-40 fixed z-[799] transform transition-transform duration-500 translate-y-0'
             : 'lg:hidden top-[65px] h-full bg-white w-full fixed z-[799] transform transition-transform duration-500 -translate-y-full'
         }>
-        <div onClick={scrollToOverview} className="text-lg font-bold uppercase text-black flex justify-center mt-12 hover:text-cyan-400">
-          <div>Overview</div>
-        </div>
-        <div onClick={scrollToProducts} className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
-          <div>Products</div>
-        </div>
-        <div onClick={scrollToRoadmap} className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
-          <div>Roadmap</div>
-        </div>
-        <div onClick={scrollToTeam} className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
-          <div>Our Team</div>
-        </div>
-        <div onClick={scrollToFaq} className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
-          <div>Faq</div>
-        </div>
-        <div onClick={scrollToContacts} className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
-          <div>Contact</div>
-        </div>
+        <Link href='/#overview'>
+          <div onClick={toggleHambFalse} className="text-lg font-bold uppercase text-black flex justify-center mt-12 hover:text-cyan-400">
+            <div>Overview</div>
+          </div>
+        </Link>  
+        <Link href='/#products'>
+          <div onClick={toggleHambFalse} className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
+            <div>Products</div>
+          </div>
+        </Link> 
+        <Link href='/#roadmap'>
+          <div onClick={toggleHambFalse} className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
+            <div>Roadmap</div>
+          </div>
+        </Link> 
+        <Link href='/#team'>
+          <div onClick={toggleHambFalse} className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
+            <div>Our Team</div>
+          </div>
+        </Link> 
+        <Link href='/#faq'>
+          <div onClick={toggleHambFalse} className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
+            <div>FAQ</div>
+          </div>
+        </Link> 
+        <Link href='/#contacts'>
+          <div onClick={toggleHambFalse} className="text-lg font-bold uppercase text-black flex justify-center mt-8 hover:text-cyan-400">
+            <div>Contact</div>
+          </div>
+        </Link> 
       </div>
     </>
   );
