@@ -48,9 +48,6 @@ export default function Home() {
           <Separator subtitle="Unraveling the mysteries of Halcyon" title="FAQ" />
         </div>
         <Fifth />
-        <div id='contacts'>
-          <Footer />
-        </div>
       </div>
     </>
   );
