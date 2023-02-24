@@ -1,13 +1,17 @@
 import React, { useEffect, useState, useRef, ReactNode } from 'react';
 import Image from 'next/image';
+import { Conditional } from '../Conditional/Conditional';
+import Link from 'next/link';
 interface Props {
   // any props that come into the component
   title?: ReactNode;
   text?: ReactNode;
   imageClass?: ReactNode;
   buttonText?: ReactNode;
-  buttonHref?: ReactNode;
+  buttonHref?: string | undefined;
   backGroundImageClass?: ReactNode;
+  external: boolean;
+  insider: boolean;
 }
 export const ProductsCardMobile = ({
   title,
@@ -16,6 +20,8 @@ export const ProductsCardMobile = ({
   buttonText,
   buttonHref,
   backGroundImageClass,
+  external,
+  insider,
   ...props
 }: Props) => {
   const [isClick, setisClick] = useState(false);
@@ -50,7 +56,8 @@ export const ProductsCardMobile = ({
   const hoverClassMainDiv = () => {
     if (isClick) {
       return 'h-[60vh] bg-transparent relative w-[80vw] rounded-lg transition-productCard duration-500 saira';
-    } else return 'h-[60vh] bg-transparent relative w-[65vw] rounded-lg transition-productCard duration-500 saira';
+    } else
+      return 'h-[60vh] bg-transparent relative w-[65vw] rounded-lg transition-productCard duration-500 saira';
   };
 
   const hoverClassBlueDiv = () => {
@@ -105,11 +112,24 @@ export const ProductsCardMobile = ({
             </div>
             <div className={hoverClassButton()}>
               <div className="w-[45vw] h-[5vh] bg-white rounded-lg flex justify-center items-center cursor-pointer hover:border-2 hover:border-cyan-500">
-                {/* @ts-ignore */}
-                <a target="_blank" href={buttonHref} rel="noreferrer" className="absolute w-[10vw] h-[5vh]"></a>
-                <div className="font-semibold text-cyan-500 text-lg text-center px-4">
-                  {buttonText}
-                </div>
+                <Conditional showWhen={external}>
+                  <a
+                    target="_blank"
+                    href={buttonHref}
+                    rel="noreferrer"
+                    className="absolute w-[10vw] h-[5vh]"
+                  ></a>
+                  <div className="font-semibold text-cyan-500 text-lg text-center px-4">
+                    {buttonText}
+                  </div>
+                </Conditional>
+                <Conditional showWhen={insider}>
+                  <Link href={{ pathname: buttonHref }} scroll={true}>
+                    <div className="font-semibold text-cyan-500 text-lg text-center px-4">
+                      {buttonText}
+                    </div>
+                  </Link>
+                </Conditional>
               </div>
             </div>
           </div>
@@ -136,11 +156,24 @@ export const ProductsCardMobile = ({
           </div>
           <div className={hoverClassButton()}>
             <div className="w-[45vw] h-[5vh] bg-white rounded-lg flex justify-center items-center cursor-pointer hover:border-2 hover:border-cyan-500">
-              {/* @ts-ignore */}
-              <a target="_blank" href={buttonHref} rel="noreferrer" className="absolute w-[10vw] h-[5vh]"></a>
-              <div className="font-semibold text-cyan-500 text-lg text-center px-4">
-                {buttonText}
-              </div>
+              <Conditional showWhen={external}>
+                <a
+                  target="_blank"
+                  href={buttonHref}
+                  rel="noreferrer"
+                  className="absolute w-[10vw] h-[5vh]"
+                ></a>
+                <div className="font-semibold text-cyan-500 text-lg text-center px-4">
+                  {buttonText}
+                </div>
+              </Conditional>
+              <Conditional showWhen={insider}>
+                <Link href={{ pathname: buttonHref }} scroll={true}>
+                  <div className="font-semibold text-cyan-500 text-lg text-center px-4">
+                    {buttonText}
+                  </div>
+                </Link>
+              </Conditional>
             </div>
           </div>
         </div>

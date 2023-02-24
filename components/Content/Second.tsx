@@ -70,18 +70,25 @@ export const Second = () => {
               text="Discover the most vibing monkeys from our exclusive NFT Collection."
               buttonHref="https://mobile.twitter.com/suimonkeys"
               buttonText="IM THIRSTY"
+              external
+              insider={false}
             />
             <ProductsCardMobile
               backGroundImageClass="bg-no-repeat bg-center bg-cover bg-[url('/static/images/products/whitelistTool.png')] rounded-lg w-full h-[60vh]"
               title="BOTTLE DISPENSER"
               text="Get your Wetlist via our gamified whitelisting tool on Sui devnet."
+              buttonHref='/testPage'
               buttonText="SOON"
+              external={false}
+              insider
             />
             <ProductsCardMobile
               backGroundImageClass="bg-no-repeat bg-center bg-cover bg-[url('/static/images/products/cantina.png')] rounded-lg w-full h-[60vh]"
               title="DAO CANTINA"
               text="Access your project staking and governance or create your own DAO space."
               buttonText="SOON"
+              external={false}
+              insider
             />
           </div>
         </div>
@@ -131,18 +138,25 @@ export const Second = () => {
             text="Discover the most vibing monkeys from our exclusive NFT Collection."
             buttonHref="https://mobile.twitter.com/suimonkeys"
             buttonText="IM THIRSTY"
+            external
+            insider={false}
           />
           <ProductsCardMobile
             backGroundImageClass="bg-no-repeat bg-center bg-cover bg-[url('/static/images/products/whitelistTool.png')] rounded-lg w-full h-[60vh]"
             title="BOTTLE DISPENSER"
             text="Get your Wetlist via our gamified whitelisting tool on Sui devnet."
+            buttonHref='/testPage'
             buttonText="SOON"
+            external={false}
+            insider
           />
           <ProductsCardMobile
             backGroundImageClass="bg-no-repeat bg-center bg-cover bg-[url('/static/images/products/cantina.png')] rounded-lg w-full h-[60vh]"
             title="DAO CANTINA"
             text="Access your project staking and governance or create your own DAO space."
             buttonText="SOON"
+            external={false}
+            insider
           />
         </div>
       </div>
