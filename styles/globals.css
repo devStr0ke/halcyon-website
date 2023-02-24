@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 html {
---scroll-behavior: smooth!important;
-scroll-behavior: smooth!important;
+scroll-behavior: smooth;
 }
 body {
   background: linear-gradient(to bottom, black 0 98%, #06b6d4 98% 100%);

@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef, ReactNode } from 'react';
 import Image from 'next/image';
+import { Conditional } from '../Conditional/Conditional';
+import Link from 'next/link';
 interface Props {
   // any props that come into the component
   title?: ReactNode;
@@ -8,6 +10,8 @@ interface Props {
   buttonText?: ReactNode;
   buttonHref?: string | undefined;
   backGroundImageClass?: ReactNode;
+  external: boolean;
+  insider: boolean;
 }
 export const ProductsCard = ({
   title,
@@ -16,6 +20,8 @@ export const ProductsCard = ({
   buttonText,
   buttonHref,
   backGroundImageClass,
+  external,
+  insider,
   ...props
 }: Props) => {
   const [isHover, setIsHover] = useState(false); //use state for hamburger state controller (x or =)
@@ -92,8 +98,15 @@ export const ProductsCard = ({
         </div>
         <div className={hoverClassButton()}>
           <div className="xl:w-[10vw] lg:w-[20vw] h-[5vh] bg-white rounded-lg flex justify-center items-center cursor-pointer hover:border-2 hover:border-cyan-500">
-            <a target="_blank" href={buttonHref} rel="noreferrer" className="absolute w-[10vw] h-[5vh]"></a>
-            <div className="font-semibold text-cyan-500 text-lg text-center px-4">{buttonText}</div>
+            <Conditional showWhen={external}>
+              <a target="_blank" href={buttonHref} rel="noreferrer" className="absolute w-[10vw] h-[5vh]"></a>
+              <div className="font-semibold text-cyan-500 text-lg text-center px-4">{buttonText}</div>
+            </Conditional>
+            <Conditional showWhen={insider}>
+              <Link href={ { pathname: buttonHref}} scroll={true}>
+                <div className="font-semibold text-cyan-500 text-lg text-center px-4">{buttonText}</div>
+              </Link>
+            </Conditional>
           </div>
         </div>
       </div>
