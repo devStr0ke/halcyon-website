@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@mysten/sui.js": "^0.28.0",
+    "@mysten/wallet-kit": "^0.3.3",
     "@netlify/plugin-nextjs": "^4.29.2",
     "@originbyte/js-sdk": "^0.20.22",
     "@types/node": "18.11.10",
