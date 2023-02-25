@@ -11,7 +11,9 @@
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
+    "@mysten/sui.js": "^0.28.0",
     "@netlify/plugin-nextjs": "^4.29.2",
+    "@originbyte/js-sdk": "^0.20.22",
     "@types/node": "18.11.10",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
