@@ -1,6 +1,10 @@
 import { useWalletKit } from "@mysten/wallet-kit";
 import { DISPENSER, MINT_CAP, MONKEY, PACKAGE_ID } from "./config";
 
+// hook donnant accès à 6 fonctions permettant d'envoyer les 6 tx au sc
+// const { buyRandomBottle } = useSendTx;
+// onClick={() => buyRandomBottle}
+
 export const useSendTx = () => {
     const { signAndExecuteTransaction } = useWalletKit();
 
