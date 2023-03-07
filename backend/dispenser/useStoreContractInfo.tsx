@@ -5,7 +5,7 @@ import { useDispenserStore, useMonkeyStore } from "../../store/store";
 // parse ces infos puis les store avec Zustand
 // pour y accéder:
 //
-// import { useDispenserStore } from .store/store.ts
+// import { useDispenserStore } from ".store/store.ts"
 // const active = useDispenserStore((state) => state.active);
 
 const useStoreContractInfo = async () => {
