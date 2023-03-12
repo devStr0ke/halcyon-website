@@ -1,16 +1,53 @@
 // import { useDispenserStore, useMonkeyStore } from "../store/store";
-import { createClient } from '@supabase/supabase-js';
+import { useEffect, useState } from 'react';
 import { TEST_ADDRESS } from '../backend/dispenser/config';
 // import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
 import useStoreUserInfo from '../backend/dispenser/useStoreUserInfo';
+import supabase from '../utils/supabase';
 
-export default async function Dispenser() {
-//   useStoreUserInfo(TEST_ADDRESS);
-  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
+// pour forcer dynamiquement le refresh des roles par exemple
+export const dynamic = 'force-dynamic';
 
-  const {data : test} = await supabase.from('halcyon_roles').select();
-  return <>
-    <div className='bg-red-700 text-black'>test</div>
-    <h1>{JSON.stringify(test)}</h1>
-  {/* <h1 className="text-4xl mt-40 text-cyan-500">njr</h1> */}</>;
+export async function getServerSideProps() {
+  const { data } = await supabase.from('halcyon_roles').select();
+
+  return {
+    props: {
+      data
+    }
+  };
 }
+
+export default function Dispenser({ data }: { data: any }) {
+  //   useStoreUserInfo(TEST_ADDRESS);
+
+  return (
+    <>
+      <div className="bg-red-700 text-black">
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+      </div>
+      {/* <h1 className="text-4xl mt-40 text-cyan-500">njr</h1> */}
+    </>
+  );
+}
+
+// /client-side => useEffect
+/*
+const [data, setData] = useState<any>(null);
+
+  useEffect(() => {
+    const getData = async () => {
+      const { data, error } = await supabase.from('halcyon_roles').select();
+      console.log({ data, error });
+      setData(data);
+    };
+
+    getData();
+  }, []);
+
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+*/
+// / server-rendered => getServerSideProps
+// /static-generation => getStaticProps
+// /static-generation => getStaticProps
+// /static-with-revalidation => getStaticProps with revaldiate
