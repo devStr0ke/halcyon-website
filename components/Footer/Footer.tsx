@@ -17,25 +17,25 @@ export const Footer = () => {
       <div className="grid grid-cols-3">
         <div className="py-8 px-4 lg:px-8">
           <div className="text-black text-sm md:text-lg font-bold uppercase">Explore</div>
-          <Link href='/#overview'>
+          <Link href='/#overview' scroll={false}>
             <div
               className="text-black text-xs md:text-sm uppercase mt-3 cursor-pointer hover:text-cyan-500">
               Overview
             </div>
           </Link>
-          <Link href='/#products'>
+          <Link href='/#products' scroll={false}>
             <div
               className="text-black text-xs md:text-sm uppercase mt-1 cursor-pointer hover:text-cyan-500">
               Products
             </div>
           </Link>
-          <Link href='/#roadmap'>
+          <Link href='/#roadmap' scroll={false}>
             <div
               className="text-black text-xs md:text-sm uppercase mt-1 cursor-pointer hover:text-cyan-500">
               Roadmap
             </div>
           </Link>
-          <Link href='/#team'>
+          <Link href='/#team' scroll={false}>
             <div
               className="text-black text-xs md:text-sm uppercase mt-1 cursor-pointer hover:text-cyan-500">
               Team
