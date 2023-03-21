@@ -7,7 +7,7 @@ import { TEST_ADDRESS } from '../backend/dispenser/config';
 // import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
 import useStoreUserInfo from '../backend/dispenser/useStoreUserInfo';
 import { default as DispenserComp } from '../components/Dispenser/Dispenser';
-import { supabase } from '../utils/supabase';
+import supabase from '../utils/supabase';
 import LoadingPage from '../components/Loading/LoadingPage';
 import dynamic from 'next/dynamic';
 
