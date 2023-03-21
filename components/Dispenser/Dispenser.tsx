@@ -1,9 +1,24 @@
 import { useWalletKit } from '@mysten/wallet-kit';
+import { useEffect } from 'react';
+import useStoreContractInfo from '../../backend/dispenser/useStoreContractInfo';
+import useStoreUserInfo from '../../backend/dispenser/useStoreUserInfo';
+import { useUserStore } from '../../store/store';
 import Connect from '../Connect/Connect';
 import DispenserDrawing from './DispenserDrawing';
 
 const Dispenser = () => {
   const { currentAccount } = useWalletKit();
+
+  //useStoreContractInfo();
+  //const { isUserInfoFetching } = useStoreUserInfo(currentAccount);
+
+  /*useEffect(() => {
+    console.log('isUserInfoFetching', isUserInfoFetching);
+  }, [isUserInfoFetching]);*/
+
+  const { coinObjectId, emptyBottleIds } = useUserStore((state) => state);
+  console.log('coinObjectId', coinObjectId);
+  console.log('emptyBottleIds', emptyBottleIds);
 
   return (
     <div className="w-screen h-screen py-40 bg-gray-100 flex flex-col items-center justify-start">
@@ -28,13 +43,13 @@ const Dispenser = () => {
             How does it works?
           </div>
           <div className="flex w-full justify-between px-10">
-            {currentAccount ? (
-              <>
+            {currentAccount === null ? (
+              <div className="mb-10 flex justify-between">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                   Connect Discord
                 </button>
                 <Connect />
-              </>
+              </div>
             ) : (
               <div className="mb-6 w-full">
                 <h2 className="text-center mb-3">Discord Roles</h2>
