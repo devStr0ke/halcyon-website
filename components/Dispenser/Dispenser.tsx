@@ -2,7 +2,7 @@ import { useWalletKit } from '@mysten/wallet-kit';
 import { useEffect } from 'react';
 import useStoreContractInfo from '../../backend/dispenser/useStoreContractInfo';
 import useStoreUserInfo from '../../backend/dispenser/useStoreUserInfo';
-import { useUserStore } from '../../store/store';
+import { useDispenserStore, useUserStore } from '../../store/store';
 import Connect from '../Connect/Connect';
 import DispenserDrawing from './DispenserDrawing';
 
@@ -16,7 +16,11 @@ const Dispenser = () => {
     console.log('isUserInfoFetching', isUserInfoFetching);
   }, [isUserInfoFetching]);*/
 
-  const { coinObjectId, emptyBottleIds } = useUserStore((state) => state);
+  const { coinObjectId, filledBottleIds, emptyBottleIds, wwMonkeyIds } = useUserStore(
+    (state) => state
+  );
+  const { active, price, supply, balance, left } = useDispenserStore((state) => state);
+
   console.log('coinObjectId', coinObjectId);
   console.log('emptyBottleIds', emptyBottleIds);
 
@@ -35,9 +39,9 @@ const Dispenser = () => {
         <div className="w-2/5">
           <div className="flex flex-col justify-between px-10">
             <p>Current/Upcoming Batch: </p>
-            <p className="text-center">X Bottles Availabe</p>
-            <p className="text-center">Y Bottles Minted</p>
-            <p className="text-center">Z Filled Minted</p>
+            <p className="text-center">{`${supply} Bottles Available`}</p>
+            <p className="text-center">{`${supply - left} Bottles Minted`}</p>
+            <p className="text-center">{`Z Filled Minted`}</p>
           </div>
           <div className="text-center py-12 bg-cyan-100 border border-cyan-400 rounded-xl my-4">
             How does it works?
@@ -80,10 +84,15 @@ const Dispenser = () => {
                 </div>
                 <div>
                   <div className="text-center">
-                    You have X filled bottles to burn or give to your friends
+                    {`You have ${filledBottleIds.length} filled bottles to burn or give to your
+                    friends`}
                   </div>
-                  <div className="text-center">You have X Monkeys to swap for a filled bottle</div>
-                  <div className="text-center">You have Z empty bottles to recycle</div>
+                  <div className="text-center">
+                    {`You have ${wwMonkeyIds.length} Monkeys to swap for a filled bottle`}
+                  </div>
+                  <div className="text-center">
+                    {`You have ${emptyBottleIds.length} empty bottles to recycle`}
+                  </div>
                 </div>
               </div>
             )}
