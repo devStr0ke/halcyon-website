@@ -6,12 +6,23 @@ import { useDispenserStore, useUserStore } from '../../store/store';
 import Connect from '../Connect/Connect';
 import DispenserDrawing from './DispenserDrawing';
 
+import supabase from '../../utils/supabase';
+import LoginDiscord from '../LoginDiscord/LoginDiscord';
+import useAuth, { signOut } from '../../hooks/useAuth';
+
+export interface HalcyonProfile {
+  id: string;
+  id_discord: string;
+  sui_adresse: string;
+}
+
 const Dispenser = () => {
   const { currentAccount } = useWalletKit();
+  const { session } = useAuth();
   const [isDiscordConnected, setIsDiscordConnected] = useState(false);
 
-  useStoreContractInfo();
-  const { isUserInfoFetching } = useStoreUserInfo(currentAccount);
+  //useStoreContractInfo();
+  //const { isUserInfoFetching } = useStoreUserInfo(currentAccount);
 
   /*useEffect(() => {
     console.log('isUserInfoFetching', isUserInfoFetching);
@@ -24,6 +35,38 @@ const Dispenser = () => {
 
   console.log('coinObjectId', coinObjectId);
   console.log('emptyBottleIds', emptyBottleIds);
+
+  useEffect(() => {
+    async function createHalcyonProfile(
+      id_discord: string,
+      sui_adresse: string
+    ): Promise<HalcyonProfile | null> {
+      try {
+        const ret = await supabase.auth.getUser();
+        const userId = ret?.data.user?.id;
+        if (userId === undefined) throw 'Impossible to get the userId';
+        const { data, error } = await supabase.from('halcyon_profile').insert<HalcyonProfile>([
+          {
+            id: userId,
+            id_discord: id_discord,
+            sui_adresse: sui_adresse
+          }
+        ]);
+
+        if (error) {
+          throw error;
+        }
+
+        return data ? data[0] : null;
+      } catch (error) {
+        console.error('Error inserting data:', error);
+        return null;
+      }
+    }
+    if (currentAccount && session) {
+      createHalcyonProfile(session.user.id, currentAccount);
+    }
+  }, [currentAccount, session]);
 
   return (
     <div className="w-screen h-screen py-40 bg-gray-100 flex flex-col items-center justify-start">
@@ -52,71 +95,69 @@ const Dispenser = () => {
             <Connect />
           </div>
 
-          <div>
-            {!isDiscordConnected ? (
-              <div className="mb-10 flex justify-center">
-                <button
-                  onClick={() => {
-                    setIsDiscordConnected(!isDiscordConnected);
-                  }}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                  Connect Discord
+          {session ? (
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={() => signOut()}>
+              Disconnect discord
+            </button>
+          ) : (
+            <LoginDiscord />
+          )}
+
+          {session && (
+            <div className="mb-6 w-full">
+              <h2 className="text-center mb-3">Discord Roles</h2>
+              <div className="flex justify-between items-center mb-2">
+                <p>Claim a filled bottle</p>
+                <div className="flex justify-between">
+                  <div className="bg-purple-300 border border-purple-400 rounded-xl mx-4 p-1 px-3">
+                    thirsty
+                  </div>
+                  <div className="bg-purple-100 border border-purple-400 rounded-xl mx-4 p-1 px-3">
+                    wetlist
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center mb-2 justify-between">
+                <p>Claim a random bottle</p>
+                <div className="flex">
+                  <div className="bg-purple-300 border border-purple-400 rounded-xl mx-1 p-1 px-3">
+                    roadmap
+                  </div>
+                  <div className="bg-purple-100 border border-purple-400 rounded-xl mx-1 p-1 px-3">
+                    website
+                  </div>
+                  <div className="bg-purple-100 border border-purple-400 rounded-xl mx-1 p-1 px-3">
+                    dispenser
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {isDiscordConnected && currentAccount !== null && (
+            <>
+              <div className="mb-4">
+                <div className="text-center">
+                  {`You have ${filledBottleIds.length} filled bottles to burn or give to your
+                    friends`}
+                </div>
+                <div className="text-center">
+                  {`You have ${wwMonkeyIds.length} Monkeys to swap for a filled bottle`}
+                </div>
+                <div className="text-center">
+                  {`You have ${emptyBottleIds.length} empty bottles to recycle`}
+                </div>
+              </div>
+
+              <div className="w-full flex justify-center">
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  Burn filled bottle & register wetlist
                 </button>
               </div>
-            ) : (
-              <div className="mb-6 w-full">
-                <h2 className="text-center mb-3">Discord Roles</h2>
-                <div className="flex justify-between items-center mb-2">
-                  <p>Claim a filled bottle</p>
-                  <div className="flex justify-between">
-                    <div className="bg-purple-300 border border-purple-400 rounded-xl mx-4 p-1 px-3">
-                      thirsty
-                    </div>
-                    <div className="bg-purple-100 border border-purple-400 rounded-xl mx-4 p-1 px-3">
-                      wetlist
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center mb-2 justify-between">
-                  <p>Claim a random bottle</p>
-                  <div className="flex">
-                    <div className="bg-purple-300 border border-purple-400 rounded-xl mx-1 p-1 px-3">
-                      roadmap
-                    </div>
-                    <div className="bg-purple-100 border border-purple-400 rounded-xl mx-1 p-1 px-3">
-                      website
-                    </div>
-                    <div className="bg-purple-100 border border-purple-400 rounded-xl mx-1 p-1 px-3">
-                      dispenser
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {isDiscordConnected && currentAccount !== null && (
-              <>
-                <div className="mb-4">
-                  <div className="text-center">
-                    {`You have ${filledBottleIds.length} filled bottles to burn or give to your
-                    friends`}
-                  </div>
-                  <div className="text-center">
-                    {`You have ${wwMonkeyIds.length} Monkeys to swap for a filled bottle`}
-                  </div>
-                  <div className="text-center">
-                    {`You have ${emptyBottleIds.length} empty bottles to recycle`}
-                  </div>
-                </div>
-
-                <div className="w-full flex justify-center">
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Burn filled bottle & register wetlist
-                  </button>
-                </div>
-              </>
-            )}
-          </div>
+            </>
+          )}
         </div>
       </div>
     </div>
