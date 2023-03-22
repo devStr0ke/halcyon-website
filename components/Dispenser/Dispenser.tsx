@@ -1,5 +1,5 @@
 import { useWalletKit } from '@mysten/wallet-kit';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useStoreContractInfo from '../../backend/dispenser/useStoreContractInfo';
 import useStoreUserInfo from '../../backend/dispenser/useStoreUserInfo';
 import { useDispenserStore, useUserStore } from '../../store/store';
@@ -8,9 +8,10 @@ import DispenserDrawing from './DispenserDrawing';
 
 const Dispenser = () => {
   const { currentAccount } = useWalletKit();
+  const [isDiscordConnected, setIsDiscordConnected] = useState(false);
 
-  //useStoreContractInfo();
-  //const { isUserInfoFetching } = useStoreUserInfo(currentAccount);
+  useStoreContractInfo();
+  const { isUserInfoFetching } = useStoreUserInfo(currentAccount);
 
   /*useEffect(() => {
     console.log('isUserInfoFetching', isUserInfoFetching);
@@ -31,7 +32,7 @@ const Dispenser = () => {
         lose your entire wallet! So remember to register your wetlist ASAP.
       </div>
 
-      <div className="w-full flex justify-around">
+      <div className="w-full h-full flex justify-around">
         <div className="w-2/5">
           <DispenserDrawing />
         </div>
@@ -46,13 +47,21 @@ const Dispenser = () => {
           <div className="text-center py-12 bg-cyan-100 border border-cyan-400 rounded-xl my-4">
             How does it works?
           </div>
-          <div className="flex w-full justify-between px-10">
-            {currentAccount === null ? (
-              <div className="mb-10 flex justify-between">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+
+          <div className="flex w-full justify-center mb-4">
+            <Connect />
+          </div>
+
+          <div>
+            {!isDiscordConnected ? (
+              <div className="mb-10 flex justify-center">
+                <button
+                  onClick={() => {
+                    setIsDiscordConnected(!isDiscordConnected);
+                  }}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                   Connect Discord
                 </button>
-                <Connect />
               </div>
             ) : (
               <div className="mb-6 w-full">
@@ -82,7 +91,12 @@ const Dispenser = () => {
                     </div>
                   </div>
                 </div>
-                <div>
+              </div>
+            )}
+
+            {isDiscordConnected && currentAccount !== null && (
+              <>
+                <div className="mb-4">
                   <div className="text-center">
                     {`You have ${filledBottleIds.length} filled bottles to burn or give to your
                     friends`}
@@ -94,13 +108,14 @@ const Dispenser = () => {
                     {`You have ${emptyBottleIds.length} empty bottles to recycle`}
                   </div>
                 </div>
-              </div>
+
+                <div className="w-full flex justify-center">
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Burn filled bottle & register wetlist
+                  </button>
+                </div>
+              </>
             )}
-          </div>
-          <div className="w-full flex justify-center">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Burn filled bottle & register wetlist
-            </button>
           </div>
         </div>
       </div>

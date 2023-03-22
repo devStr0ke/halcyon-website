@@ -13,25 +13,25 @@ const DispenserDrawing = () => {
         <button
           disabled={active === false || left === 0}
           onClick={() => console.log('buy')}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-slate-400">
           Buy
         </button>
         <button
           disabled={emptyBottleIds.length < 5}
           onClick={() => console.log('recycle')}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-slate-400">
           Recycle
         </button>
         <button
           disabled={wwMonkeyIds.length === 0}
           onClick={() => console.log('swap')}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-slate-400">
           Swap
         </button>
         <button
           disabled={false}
           onClick={() => console.log('claim')}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-slate-400">
           Claim
         </button>
       </div>
