@@ -1,30 +1,19 @@
 import { useState, useEffect } from 'react';
 
 export default function useOnScreen(ref) {
-  const [isIntersecting, setIntersecting] = useState(false);
+  const [scale, setScale] = useState(0.5); // Initialize scale at 0.5
 
   useEffect(() => {
-    let prevEntryY = null;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (prevEntryY === null) {
-          prevEntryY = entry.boundingClientRect.y;
-          return;
-        }
-
-        const scrollDirection =
-          entry.boundingClientRect.y > prevEntryY ? 'up' : 'down';
-        prevEntryY = entry.boundingClientRect.y;
-
-        if (entry.isIntersecting && scrollDirection === 'down') {
-          setIntersecting(true);
-        } else if (!entry.isIntersecting && scrollDirection === 'up') {
-          setIntersecting(false);
+        const intersectionRatio = entry.intersectionRatio;
+        if(entry.boundingClientRect.y > 0) { // this is making sure that going past the component will stop the scale from going down.
+          const newScale = 0.6 + intersectionRatio * 0.4;
+          setScale(newScale);
         }
       },
       {
-        threshold: 0,
+        threshold: Array.from({ length: 100 }, (_, index) => index / 100),
       }
     );
 
@@ -39,5 +28,5 @@ export default function useOnScreen(ref) {
     };
   }, [ref]);
 
-  return isIntersecting;
+  return scale;
 }

@@ -18,23 +18,16 @@ export const OverviewCardRight = ({
 }: Props) => {
 
   const ref = useRef(null);
-  const onScreen = useOnScreen(ref);
-  const [animate, setAnimate] = useState(false);
+  const scale = useOnScreen(ref);
 
-  useEffect(() => {
-    if (onScreen) {
-      setAnimate(true);
-    } else {
-      setAnimate(false);
-    }
-  }, [onScreen]);
   
   return (
     <>
-      <div ref={ref} 
-        className={`${
-          animate ? 'animate-imageTransition' : 'opacity-0 scale-50'
-        } h-[100vh] duration-300`}>
+      <div 
+        ref={ref}
+        style={{ transform: `scale(${scale})`, transition: 'transform 0s' }} 
+        className='h-[100vh]'
+      >
         <div className="z-20 absolute h-[100vh] bg-transparent w-full flex justify-end lg:pr-36 lg:pl-[35vw] sm:pr-14 sm:pl-[20vw] animate-imageTransition">
           <div className="bg-no-repeat bg-center bg-cover bg-[url('/static/images/HeroHologram.png')] lg:rounded-lg w-full">
             <div className='h-[100vh] w-full flex justify-end text-right'>

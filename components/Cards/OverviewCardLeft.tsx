@@ -20,24 +20,16 @@ export const OverviewCardLeft = ({
 }: Props) => {
 
   const ref = useRef(null);
-  const onScreen = useOnScreen(ref);
-  const [animate, setAnimate] = useState(false);
+  const scale = useOnScreen(ref);
 
-  useEffect(() => {
-    if (onScreen) {
-      setAnimate(true);
-    } else {
-      setAnimate(false);
-    }
-  }, [onScreen]);
-
+  
   return (
     <>
       <div 
         ref={ref} 
-        className={`${
-          animate ? 'animate-imageTransition' : 'opacity-0 scale-50'
-        } h-[100vh] duration-300`}>
+        style={{ transform: `scale(${scale})`, transition: 'transform 0s' }} 
+        className='h-[100vh]'
+      >
         <div className="z-20 absolute h-[100vh] w-full bg-transparent flex justify-start lg:pl-36 lg:pr-[35vw] sm:pl-14 sm:pr-[20vw] animate-imageTransition">
           {/* @ts-ignore */}
           <div className={backImageClass}>
