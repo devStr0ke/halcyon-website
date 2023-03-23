@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, ReactNode } from 'react';
 import Image from 'next/image';
 import { Conditional } from '../Conditional/Conditional';
+import useOnScrollTranslate from '../../hooks/useOnScrollTranslate';
 import Link from 'next/link';
 interface Props {
   // any props that come into the component
@@ -12,6 +13,7 @@ interface Props {
   backGroundImageClass?: ReactNode;
   external: boolean;
   insider: boolean;
+  translateType: string;
 }
 export const ProductsCard = ({
   title,
@@ -22,8 +24,22 @@ export const ProductsCard = ({
   backGroundImageClass,
   external,
   insider,
+  translateType,
   ...props
 }: Props) => {
+  const ref = useRef(null);
+  const [translateValue, translateAxis] = useOnScrollTranslate(ref, translateType);
+
+  const translationStyle =
+  translateAxis === 'translateX'
+    // @ts-ignore
+    ? { transform: `translateX(${Number(translateValue * 100)}%)`, transition: 'transform 0s' }
+    : translateAxis === 'negTranslateX'
+    // @ts-ignore
+    ? { transform: `translateX(-${Number(translateValue * 100)}%)`, transition: 'transform 0s' }
+    // @ts-ignore
+    : { transform: `translateY(${Number(translateValue * 40)}%)`, transition: 'transform 0s' };
+
   const [isHover, setIsHover] = useState(false); //use state for hamburger state controller (x or =)
   const toggleClassTrue = () => {
     setIsHover(true);
@@ -74,39 +90,45 @@ export const ProductsCard = ({
 
   return (
     <>
+      {/* @ts-ignore */}
       <div
-        className={hoverClassMainDiv()}
-        onMouseEnter={toggleClassTrue}
-        onMouseLeave={toggleClassFalse}
+        ref={ref}
+        style={translationStyle}
       >
-        {/* @ts-ignore */}
-        <div className={backGroundImageClass}></div>
-        <div className={hoverClassBlueDiv()}></div>
-        <div className={hoverClassTitle()}>
-          <div className="font-bold text-xl textBoxShadow text-white">{title}</div>
-        </div>
-        <div className={hoverClassArrow()}>
-          <Image
-            src="/static/svg/chevron-down.svg"
-            alt="logoDownlg"
-            width="20"
-            height="20"
-          />
-        </div>
-        <div className={hoverClassText()}>
-          <div className="font-semibold text-md text-center px-4 text-white">{text}</div>
-        </div>
-        <div className={hoverClassButton()}>
-          <div className="xl:w-[10vw] lg:w-[20vw] h-[5vh] bg-white rounded-lg flex justify-center items-center cursor-pointer hover:border-2 hover:border-cyan-500">
-            <Conditional showWhen={external}>
-              <a target="_blank" href={buttonHref} rel="noreferrer" className="absolute w-[10vw] h-[5vh]"></a>
-              <div className="font-semibold text-cyan-500 text-lg text-center px-4">{buttonText}</div>
-            </Conditional>
-            <Conditional showWhen={insider}>
-              <Link href={ { pathname: buttonHref}} scroll={true}>
+        <div
+          className={hoverClassMainDiv()}
+          onMouseEnter={toggleClassTrue}
+          onMouseLeave={toggleClassFalse}
+        >
+          {/* @ts-ignore */}
+          <div className={backGroundImageClass}></div>
+          <div className={hoverClassBlueDiv()}></div>
+          <div className={hoverClassTitle()}>
+            <div className="font-bold text-xl textBoxShadow text-white">{title}</div>
+          </div>
+          <div className={hoverClassArrow()}>
+            <Image
+              src="/static/svg/chevron-down.svg"
+              alt="logoDownlg"
+              width="20"
+              height="20"
+            />
+          </div>
+          <div className={hoverClassText()}>
+            <div className="font-semibold text-md text-center px-4 text-white">{text}</div>
+          </div>
+          <div className={hoverClassButton()}>
+            <div className="xl:w-[10vw] lg:w-[20vw] h-[5vh] bg-white rounded-lg flex justify-center items-center cursor-pointer hover:border-2 hover:border-cyan-500">
+              <Conditional showWhen={external}>
+                <a target="_blank" href={buttonHref} rel="noreferrer" className="absolute w-[10vw] h-[5vh]"></a>
                 <div className="font-semibold text-cyan-500 text-lg text-center px-4">{buttonText}</div>
-              </Link>
-            </Conditional>
+              </Conditional>
+              <Conditional showWhen={insider}>
+                <Link href={ { pathname: buttonHref}} scroll={true}>
+                  <div className="font-semibold text-cyan-500 text-lg text-center px-4">{buttonText}</div>
+                </Link>
+              </Conditional>
+            </div>
           </div>
         </div>
       </div>

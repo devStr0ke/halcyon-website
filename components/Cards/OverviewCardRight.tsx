@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, ReactNode } from 'react';
-import useOnScreen from '../../hooks/useOnScreen';
+import useOnScroll from '../../hooks/useOnScroll';
 interface Props {
   sloganRight?: ReactNode;
   sloganLeft?: ReactNode;
@@ -18,7 +18,7 @@ export const OverviewCardRight = ({
 }: Props) => {
 
   const ref = useRef(null);
-  const scale = useOnScreen(ref);
+  const scale = useOnScroll(ref);
 
   
   return (
