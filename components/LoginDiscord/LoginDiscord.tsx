@@ -1,7 +1,7 @@
 // components/Login.js
 
 import { useRouter } from 'next/router';
-import supabase from '../../utils/supabase';
+import { supabase } from '../../utils/supabase';
 
 export default function LoginDiscord() {
   const router = useRouter();

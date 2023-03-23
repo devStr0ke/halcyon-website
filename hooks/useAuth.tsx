@@ -1,7 +1,7 @@
 // hooks/useAuth.js
 import { Session } from '@supabase/supabase-js';
 import { useState, useEffect } from 'react';
-import supabase from '../utils/supabase';
+import { supabase } from '../utils/supabase';
 
 export async function signOut() {
   const { error } = await supabase.auth.signOut();

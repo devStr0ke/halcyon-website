@@ -1,25 +1,23 @@
 import { useWalletKit } from '@mysten/wallet-kit';
 import { useEffect, useState } from 'react';
-import useStoreContractInfo from '../../backend/dispenser/useStoreContractInfo';
-import useStoreUserInfo from '../../backend/dispenser/useStoreUserInfo';
 import { useDispenserStore, useUserStore } from '../../store/store';
 import Connect from '../Connect/Connect';
 import DispenserDrawing from './DispenserDrawing';
 
-import supabase from '../../utils/supabase';
 import LoginDiscord from '../LoginDiscord/LoginDiscord';
 import useAuth, { signOut } from '../../hooks/useAuth';
-
-export interface HalcyonProfile {
-  id: string;
-  id_discord: string;
-  sui_adresse: string;
-}
+import {
+  createHalcyonProfile,
+  updateIsWetlisted,
+  doesRowExist,
+  getIsWetlisted
+} from '../../utils/supabase';
 
 const Dispenser = () => {
   const { currentAccount } = useWalletKit();
   const { session } = useAuth();
-  const [isDiscordConnected, setIsDiscordConnected] = useState(false);
+
+  const [isWetlisted, setIsWetlisted] = useState(false);
 
   //useStoreContractInfo();
   //const { isUserInfoFetching } = useStoreUserInfo(currentAccount);
@@ -37,36 +35,28 @@ const Dispenser = () => {
   console.log('emptyBottleIds', emptyBottleIds);
 
   useEffect(() => {
-    async function createHalcyonProfile(
-      id_discord: string,
-      sui_adresse: string
-    ): Promise<HalcyonProfile | null> {
-      try {
-        const ret = await supabase.auth.getUser();
-        const userId = ret?.data.user?.id;
-        if (userId === undefined) throw 'Impossible to get the userId';
-        const { data, error } = await supabase.from('halcyon_profile').insert<HalcyonProfile>([
-          {
-            id: userId,
-            id_discord: id_discord,
-            sui_adresse: sui_adresse
-          }
-        ]);
-
-        if (error) {
-          throw error;
-        }
-
-        return data ? data[0] : null;
-      } catch (error) {
-        console.error('Error inserting data:', error);
-        return null;
+    async function createProfile() {
+      // If user is discord auth and wallet connected
+      // add him to the db
+      if (currentAccount && session) {
+        const userId = session.user.id;
+        const doesExist = await doesRowExist(userId);
+        if (!doesExist) await createHalcyonProfile(userId, currentAccount);
       }
     }
-    if (currentAccount && session) {
-      createHalcyonProfile(session.user.id, currentAccount);
-    }
+    createProfile();
   }, [currentAccount, session]);
+
+  useEffect(() => {
+    async function isWetlisted(userId: string) {
+      const ret = await getIsWetlisted(userId);
+      if (ret === true) setIsWetlisted(true);
+      else setIsWetlisted(false);
+    }
+    if (session) {
+      isWetlisted(session.user.id);
+    }
+  }, [session]);
 
   return (
     <div className="w-screen h-screen py-40 bg-gray-100 flex flex-col items-center justify-start">
@@ -136,7 +126,7 @@ const Dispenser = () => {
             </div>
           )}
 
-          {isDiscordConnected && currentAccount !== null && (
+          {session && currentAccount !== null && (
             <>
               <div className="mb-4">
                 <div className="text-center">
@@ -152,9 +142,22 @@ const Dispenser = () => {
               </div>
 
               <div className="w-full flex justify-center">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                  Burn filled bottle & register wetlist
-                </button>
+                {isWetlisted ? (
+                  <div className="bg-green-300 border border-green-400 rounded-xl mx-4 p-1 px-3">
+                    wetlisted
+                  </div>
+                ) : (
+                  <button
+                    onClick={async () => {
+                      console.log('click');
+                      // TODO: burn
+                      await updateIsWetlisted(session.user.id, true);
+                      setIsWetlisted(true);
+                    }}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Burn filled bottle & register wetlist
+                  </button>
+                )}
               </div>
             </>
           )}
