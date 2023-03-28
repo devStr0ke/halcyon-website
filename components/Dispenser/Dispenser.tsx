@@ -10,7 +10,8 @@ import {
   createHalcyonProfile,
   updateIsWetlisted,
   doesRowExist,
-  getIsWetlisted
+  getIsWetlisted,
+  getRoleUpdatesForUser
 } from '../../utils/supabase';
 
 const Dispenser = () => {
@@ -18,6 +19,7 @@ const Dispenser = () => {
   const { session } = useAuth();
 
   const [isWetlisted, setIsWetlisted] = useState(false);
+  const [roles, setRoles] = useState<{ role: string; claimed: boolean }[]>([]);
 
   //useStoreContractInfo();
   //const { isUserInfoFetching } = useStoreUserInfo(currentAccount);
@@ -55,6 +57,16 @@ const Dispenser = () => {
     }
     if (session) {
       isWetlisted(session.user.id);
+    }
+  }, [session]);
+
+  useEffect(() => {
+    async function fetchRoles(useId: string) {
+      const roles = await getRoleUpdatesForUser(useId);
+      if (roles) setRoles(roles.map((e) => ({ role: e.role, claimed: e.claimed })));
+    }
+    if (session) {
+      fetchRoles(session.user.user_metadata.provider_id);
     }
   }, [session]);
 
@@ -101,12 +113,15 @@ const Dispenser = () => {
               <div className="flex justify-between items-center mb-2">
                 <p>Claim a filled bottle</p>
                 <div className="flex justify-between">
-                  <div className="bg-purple-300 border border-purple-400 rounded-xl mx-4 p-1 px-3">
-                    thirsty
-                  </div>
-                  <div className="bg-purple-100 border border-purple-400 rounded-xl mx-4 p-1 px-3">
-                    wetlist
-                  </div>
+                  {roles.map((r) => (
+                    <div
+                      key={r.role}
+                      className={`bg-purple-${
+                        r.claimed ? '300' : '100'
+                      } border border-purple-400 rounded-xl mx-4 p-1 px-3`}>
+                      {r.role}
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className="flex items-center mb-2 justify-between">

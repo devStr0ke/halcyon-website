@@ -103,3 +103,15 @@ export async function doesRowExist(userId: string): Promise<boolean> {
     return false;
   }
 }
+
+export async function getRoleUpdatesForUser(userId: string) {
+  const { data, error } = await supabase.from('role_updates').select('*').eq('user_id', userId);
+  console.log(data);
+
+  if (error) {
+    console.error('Error fetching role updates:', error);
+    return null;
+  }
+
+  return data;
+}
