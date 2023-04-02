@@ -23,9 +23,10 @@ const WalletKitProvider = dynamic(
 );
 
 export async function getServerSideProps() {
-  let { data: halcyon_roles, error } = await supabase.from('halcyon_roles').select('*');
+  let { data: role_updates, error } = await supabase.from('role_updates').select('*');
+  //console.log(role_updates);
 
-  console.log('data', halcyon_roles);
+  console.log('data', role_updates);
   console.log('error', error);
 
   if (error) {
@@ -39,13 +40,15 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      halcyon_roles
+      role_updates
     }
   };
 }
 
 export default function Dispenser({ data }: { data: any }) {
   //   useStoreUserInfo(TEST_ADDRESS);
+
+  console.log(data);
 
   return (
     <WalletKitProvider>
