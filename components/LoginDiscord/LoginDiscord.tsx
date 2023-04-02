@@ -8,13 +8,18 @@ export default function LoginDiscord() {
 
   async function signInWithDiscord() {
     const currentUrl = window.location.origin + router.asPath;
+    console.log('currentUrl', currentUrl);
 
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'discord',
-      options: {
-        redirectTo: currentUrl
-      }
-    });
+    try {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'discord',
+        options: {
+          redirectTo: currentUrl
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
