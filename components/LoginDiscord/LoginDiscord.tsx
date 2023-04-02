@@ -1,18 +1,12 @@
 // components/Login.js
 
-import { useRouter } from 'next/router';
 import { supabase } from '../../utils/supabase';
 
 export default function LoginDiscord() {
-  const router = useRouter();
-
   async function signInWithDiscord() {
     try {
       const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'discord',
-        options: {
-          redirectTo: process.env.NEXT_PUBLIC_REDIRECT_URL
-        }
+        provider: 'discord'
       });
     } catch (error) {
       console.log(error);
