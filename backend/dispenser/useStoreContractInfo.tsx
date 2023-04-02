@@ -15,7 +15,10 @@ const useStoreContractInfo = async () => {
 
   useEffect(() => {
     const fetchStoreContractInfo = async () => {
-      const batch = await provider.getObjectBatch([DISPENSER, MONKEY]);
+      const batch = await provider.multiGetObjects({
+        ids: [DISPENSER],
+        options: { showContent: true, showType: true, showOwner: true }
+      });
       console.log(batch);
 
       setDispenser((batch[0] as any).details.data?.fields);

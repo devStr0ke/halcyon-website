@@ -56,7 +56,7 @@ const filterMonkeyIds = async (nfts: ArtNft[]): Promise<string[]> => {
 };
 
 const getSuiCoin = async (addr: string): Promise<string> => {
-  const coins = await provider.getCoins(addr);
+  /*const coins = await provider.getCoins(addr);
   let coinId = '';
   for (const coin of coins.data) {
     if (coin.balance > 10000000) {
@@ -64,7 +64,8 @@ const getSuiCoin = async (addr: string): Promise<string> => {
     }
     // TODO: if no coin has good balance, and so coinId = "", send alert go claim faucet
   }
-  return coinId;
+  return coinId;*/
+  return '';
 };
 
 const useStoreUserInfo = (address: string | null) => {

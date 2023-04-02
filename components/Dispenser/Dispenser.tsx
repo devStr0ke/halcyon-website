@@ -43,7 +43,7 @@ const Dispenser = () => {
       if (currentAccount && session) {
         const userId = session.user.id;
         const doesExist = await doesRowExist(userId);
-        if (!doesExist) await createHalcyonProfile(userId, currentAccount);
+        if (!doesExist) await createHalcyonProfile(userId, currentAccount.address);
       }
     }
     createProfile();
