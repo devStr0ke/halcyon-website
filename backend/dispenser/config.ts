@@ -4,19 +4,14 @@ export const provider = new JsonRpcProvider(devnetConnection);
 
 // ---------- Objects IDs ----------
 
-export const PACKAGE_ID = '0x16e6bb0ff7bc0b2c3b4aa58902e1b37a08e6a4ef';
+export const PACKAGE_ID = "0x5c62d45df7f770cb370aec4791f9afe7264362b8ec30f0dd917c1c18e7b693cd";
 
-export const MINT_CAP = '0x1d0c63b915299e2f39dfba90251dbd7abb55a4d0';
+export const ADMIN_CAP = "0x751d07ba64d2212862534ed0746a97203fc939aecf39ab146e386831c2ca4ecf";
 
-export const ADMIN_CAP = '0x561f218f0cf3aa3187477646839058d65eb621bf';
+export const DISPENSER = "0xb86e25af4d4319555e4c1f431b2b7d13faa8d8e9b2d1771ee1c87684c0607a0b";
 
-export const DISPENSER = '0x5819e47c759f775b2d44bab98e826b8771e35560';
+export const COLLECTION = "0xea2804d63938837864506962e3b66ee66c9bacba803cf73a8fd500f4d0ecce5c"
 
-export const MONKEY = '0x4ab290fa5b08d5a3400f08aa7e0127aa4f358eae';
+export const TEST_COIN_TYPE = "0x194baba05589e135f9e35e65e360655deb2502695158e0c31bb5eecd2d53f0e7::test_coin::TEST_COIN"
 
-export const COLLECTION = '0x93221dbb1bb8f7d41a56122da8dd2ccdc590a252';
-
-// id of the package which issued the collection of ww monkeys
-export const WW_MONKEY = '0x93221dbb1bb8f7d41a56122da8dd2ccdc590a252';
-
-export const TEST_ADDRESS = '0x09e26bc2ba60b37e6f06f3961a919da18feb5a2b';
+export const TEST_NFT_COLLECTION = "0xea2804d63938837864506962e3b66ee66c9bacba803cf73a8fd500f4d0ecce5c"

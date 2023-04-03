@@ -15,10 +15,10 @@ export interface NftObject {
 export interface UserObject {
     address: string,
     magicNumber: number,
-    coinObjectId: string,
+    testCoinIds: string[],
     filledBottleIds: string[],
     emptyBottleIds: string[],
-    wwMonkeyIds: string[],
+    ticketIds: string[],
 }
 
 export interface UserStore extends UserObject {

@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 import { ConnectButton, useWalletKit } from '@mysten/wallet-kit';
 import { formatAddress } from '@mysten/sui.js';
 
-import { TEST_ADDRESS } from '../backend/dispenser/config';
 // import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
 import useStoreUserInfo from '../backend/dispenser/useStoreUserInfo';
 import { default as DispenserComp } from '../components/Dispenser/Dispenser';
 import LoadingPage from '../components/Loading/LoadingPage';
 import dynamic from 'next/dynamic';
 import { supabase } from '../utils/supabase';
+import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
 
 // pour forcer dynamiquement le refresh des roles par exemple
 //export const dynamic = 'force-dynamic';
@@ -46,8 +46,9 @@ export async function getServerSideProps() {
 }
 
 export default function Dispenser({ data }: { data: any }) {
-  //   useStoreUserInfo(TEST_ADDRESS);
-
+    // useStoreUserInfo("0x4a3af36df1b20c8d79b31e50c07686c70d63310e4f9fff8d9f8b7f4eb703a2fd");
+  useStoreContractInfo();
+  
   console.log(data);
 
   return (

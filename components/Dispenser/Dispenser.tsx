@@ -28,12 +28,14 @@ const Dispenser = () => {
     console.log('isUserInfoFetching', isUserInfoFetching);
   }, [isUserInfoFetching]);*/
 
-  const { coinObjectId, filledBottleIds, emptyBottleIds, wwMonkeyIds } = useUserStore(
+  const { testCoinIds, filledBottleIds, emptyBottleIds, ticketIds } = useUserStore(
     (state) => state
   );
   const { active, price, supply, balance, left } = useDispenserStore((state) => state);
+  console.log(useDispenserStore());
+  
 
-  console.log('coinObjectId', coinObjectId);
+  console.log('coinObjectId', testCoinIds);
   console.log('emptyBottleIds', emptyBottleIds);
 
   useEffect(() => {
@@ -149,7 +151,7 @@ const Dispenser = () => {
                     friends`}
                 </div>
                 <div className="text-center">
-                  {`You have ${wwMonkeyIds.length} Monkeys to swap for a filled bottle`}
+                  {`You have ${ticketIds.length} Monkeys to swap for a filled bottle`}
                 </div>
                 <div className="text-center">
                   {`You have ${emptyBottleIds.length} empty bottles to recycle`}

@@ -1,34 +1,46 @@
 import { create } from 'zustand'
 import { shallow } from 'zustand/shallow';
-import { DispenserObject, DispenserStore, MonkeyObject, MonkeyStore } from '../types/suiDispenser'
+import { DispenserObject, DispenserStore } from '../types/suiDispenser'
 import { UserObject, UserStore } from '../types/suiUser';
 
 export const useDispenserStore = create<DispenserStore>((set) => ({
+    id: "",
     active: false,
+    startTimestamp: 0,
+    endTimestamp: 0,
     price: 0,
-    supply: 0,
+    priceInCoins: 0,
     balance: 0,
+    supply: 0,
     left: 0,
+    testNft: {
+        packageId: "",
+        moduleName: "",
+        structName: "",
+        generics: "",
+    },
+    testNftName: "",
+    testCoin: {
+        packageId: "",
+        moduleName: "",
+        structName: "",
+        generics: "",
+    },
+    mintCap: "",
     setDispenser: (dispenser: DispenserObject) => set({
+        id: dispenser.id,
         active: dispenser.active,
+        startTimestamp: Number(dispenser.startTimestamp),
+        endTimestamp: Number(dispenser.endTimestamp),
         price: Number(dispenser.price),
-        supply: Number(dispenser.supply),
+        priceInCoins: Number(dispenser.priceInCoins),
         balance: Number(dispenser.balance),
+        supply: Number(dispenser.supply),
         left: Number(dispenser.left),
-    }),
-    shallow
-}))
-
-export const useMonkeyStore = create<MonkeyStore>((set) => ({
-    nft_package: "",
-    nft_module: "",
-    nft_type: "",
-    nft_name: "",
-    setMonkey: (monkey: MonkeyObject) => set({
-        nft_package: monkey.nft_package,
-        nft_module: monkey.nft_module,
-        nft_type: monkey.nft_type,
-        nft_name: monkey.nft_name,
+        testNft: dispenser.testNft,
+        testNftName: dispenser.testNftName,
+        testCoin: dispenser.testCoin,
+        mintCap: dispenser.mintCap,
     }),
     shallow
 }))
@@ -36,17 +48,17 @@ export const useMonkeyStore = create<MonkeyStore>((set) => ({
 export const useUserStore = create<UserStore>((set) => ({
     address: "",
     magicNumber: 0,
-    coinObjectId: "",
+    testCoinIds: [],
     filledBottleIds: [],
     emptyBottleIds: [],
-    wwMonkeyIds: [],
+    ticketIds: [],
     setUser: (user: UserObject) => set({
         address: user.address,
         magicNumber: user.magicNumber,
-        coinObjectId: user.coinObjectId,
+        testCoinIds: user.testCoinIds,
         filledBottleIds: user.filledBottleIds,
         emptyBottleIds: user.emptyBottleIds,
-        wwMonkeyIds: user.wwMonkeyIds,
+        ticketIds: user.ticketIds,
     }),
     shallow
 }))

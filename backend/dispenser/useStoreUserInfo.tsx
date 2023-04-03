@@ -1,4 +1,4 @@
-import { PACKAGE_ID, TEST_ADDRESS, WW_MONKEY, provider } from './config';
+import { PACKAGE_ID, TEST_COIN_TYPE, TEST_NFT_COLLECTION, provider } from './config';
 import { useUserStore } from '../../store/store';
 import { NftClient, ArtNft } from '@originbyte/js-sdk';
 import { BCS, getSuiMoveConfig, BcsWriter } from '@mysten/bcs';
@@ -15,7 +15,7 @@ const computeMagicNumber = (addr: string): number => {
   const bcs = new BCS(getSuiMoveConfig());
   let bcsWriter: BcsWriter = bcs.ser(BCS.ADDRESS, addr);
   let bytes: Uint8Array = bcsWriter.toBytes();
-  return bytes[18] * bytes[19];
+  return bytes[30] * bytes[31];
 };
 
 const getNftsForAddress = async (addr: string): Promise<ArtNft[]> => {
@@ -45,9 +45,9 @@ const filterEmptyIds = async (nfts: ArtNft[]): Promise<string[]> => {
   return mapped;
 };
 
-const filterMonkeyIds = async (nfts: ArtNft[]): Promise<string[]> => {
+const filterTicketIds = async (nfts: ArtNft[]): Promise<string[]> => {
   const filtered = nfts.filter((nft) => {
-    if (nft.collectionPackageObjectId == WW_MONKEY && nft.name == 'Wetlist Monkey') {
+    if (nft.collectionPackageObjectId == TEST_NFT_COLLECTION && nft.name == 'Ticket') {
       return nft;
     }
   });
@@ -55,53 +55,42 @@ const filterMonkeyIds = async (nfts: ArtNft[]): Promise<string[]> => {
   return mapped;
 };
 
-const getSuiCoin = async (addr: string): Promise<string> => {
-  /*const coins = await provider.getCoins(addr);
-  let coinId = '';
-  for (const coin of coins.data) {
-    if (coin.balance > 10000000) {
-      coinId = coin.coinObjectId;
-    }
-    // TODO: if no coin has good balance, and so coinId = "", send alert go claim faucet
-  }
-  return coinId;*/
-  return '';
+const getTestCoins = async (addr: string) => {
+  const testCoins = await provider.getCoins({
+    owner: addr,
+    coinType: TEST_COIN_TYPE,
+  });
+  const testCoinIds = testCoins.data.map((coin) => coin.coinObjectId);
+  return testCoinIds;
 };
 
 const useStoreUserInfo = (address: string | null) => {
   const setUser = useUserStore((state) => state.setUser);
-  const [isUserInfoFetching, setIsUserInfoFetching] = useState(false);
 
   useEffect(() => {
     const fetchStoreUserInfo = async (addr: string) => {
       const magicNumber = computeMagicNumber(addr);
-      const coinObjectId = await getSuiCoin(addr);
+      const testCoinIds = await getTestCoins(addr);
 
-      const nfts = await getNftsForAddress(addr);
-      const filledBottleIds = await filterFilledIds(nfts);
-      const emptyBottleIds = await filterEmptyIds(nfts);
-      const wwMonkeyIds = await filterMonkeyIds(nfts);
+    //   const nfts = await getNftsForAddress(addr);
+    //   const filledBottleIds = await filterFilledIds(nfts);
+    //   const emptyBottleIds = await filterEmptyIds(nfts);
+    //   const wwMonkeyIds = await filterTicketIds(nfts);
 
       setUser({
         address: addr,
         magicNumber,
-        coinObjectId,
-        filledBottleIds,
-        emptyBottleIds,
-        wwMonkeyIds
+        testCoinIds,
+        filledBottleIds: [],
+        emptyBottleIds: [],
+        ticketIds: []
       });
     };
 
     if (address) {
-      console.log('treeeeee');
-      setIsUserInfoFetching(true);
       fetchStoreUserInfo(address);
-      console.log('falssssse');
-      setIsUserInfoFetching(false);
     }
-  }, [address, setUser, isUserInfoFetching]);
-
-  return { isUserInfoFetching };
+  }, [address, setUser]);
 };
 
 export default useStoreUserInfo;

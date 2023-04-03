@@ -1,5 +1,5 @@
-import { provider, DISPENSER, MONKEY } from './config';
-import { useDispenserStore, useMonkeyStore } from '../../store/store';
+import { provider, DISPENSER } from './config';
+import { useDispenserStore } from '../../store/store';
 import { useEffect } from 'react';
 
 // fetch 2 objets Sui contenant des infos sur le smart contract
@@ -11,22 +11,20 @@ import { useEffect } from 'react';
 
 const useStoreContractInfo = async () => {
   const setDispenser = useDispenserStore((state) => state.setDispenser);
-  const setMonkey = useMonkeyStore((state) => state.setMonkey);
 
   useEffect(() => {
     const fetchStoreContractInfo = async () => {
-      const batch = await provider.multiGetObjects({
-        ids: [DISPENSER],
-        options: { showContent: true, showType: true, showOwner: true }
+      const dispenser = await provider.getObject({
+        id: DISPENSER,
+        options: { showContent: true }
       });
-      console.log(batch);
+      console.log("Dispenser obj", (dispenser as any).data?.content.fields);
 
-      setDispenser((batch[0] as any).details.data?.fields);
-      setMonkey((batch[1] as any).details.data?.fields);
+      setDispenser((dispenser as any).data?.content?.fields);
     };
 
     fetchStoreContractInfo();
-  }, [setDispenser, setMonkey]);
+  }, [setDispenser]);
 };
 
 export default useStoreContractInfo;
