@@ -9,7 +9,6 @@ import { TransactionBlock } from '@mysten/sui.js';
 
 export const useSendTx = () => {
   const { signAndExecuteTransactionBlock } = useWalletKit();
-  const tx = new TransactionBlock();
 
   const { testCoinIds, ticketIds, emptyBottleIds, filledBottleIds, magicNumber } = useUserStore((state) => state);
   const { testCoin, testNft } = useDispenserStore((state) => state);
@@ -17,6 +16,7 @@ export const useSendTx = () => {
 
   const buyRandomBottle = async () => {
     try {
+    const tx = new TransactionBlock();
       tx.moveCall({
         target: `${PACKAGE_ID}::bottle::buy_random_bottle`,
         typeArguments: [],
@@ -39,6 +39,7 @@ export const useSendTx = () => {
 
   const buyRandomBottleWithCoins = async () => {
     try {
+    const tx = new TransactionBlock();
       let toMerge = [];
       let i = 0;
       while (i < testCoinIds.length - 1) {
@@ -73,6 +74,7 @@ export const useSendTx = () => {
 
   const swapNft = async () => {
     try {
+    const tx = new TransactionBlock();
       tx.moveCall({
         target: `${PACKAGE_ID}::bottle::swap_nft`,
         typeArguments: [
@@ -97,6 +99,7 @@ export const useSendTx = () => {
 
   const recycle = async () => {
     try {
+    const tx = new TransactionBlock();
       tx.moveCall({
         target: `${PACKAGE_ID}::bottle::recycle`,
         typeArguments: [],
@@ -123,6 +126,7 @@ export const useSendTx = () => {
 
   const register = async () => {
     try {
+    const tx = new TransactionBlock();
       tx.moveCall({
         target: `${PACKAGE_ID}::bottle::register_wetlist`,
         typeArguments: [],
@@ -144,6 +148,7 @@ export const useSendTx = () => {
 
   const claimRandomBottle = async () => {
     try {
+    const tx = new TransactionBlock();
       tx.moveCall({
         target: `${PACKAGE_ID}::bottle::claim_random_bottle`,
         typeArguments: [],
@@ -166,6 +171,7 @@ export const useSendTx = () => {
 
   const claimFilledBottle = async () => {
     try {
+    const tx = new TransactionBlock();
       tx.moveCall({
         target: `${PACKAGE_ID}::bottle::claim_filled_bottle`,
         typeArguments: [],
