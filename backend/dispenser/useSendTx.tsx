@@ -41,13 +41,14 @@ export const useSendTx = () => {
     try {
     const tx = new TransactionBlock();
       let toMerge = [];
-      let i = 0;
-      while (i < testCoinIds.length - 1) {
-        toMerge.push(tx.object(testCoinIds[i]))
+      let i = 1;
+      while (i < testCoinIds.length) {
+        toMerge.push(tx.object(testCoinIds[i]));
+        i++;
       }
-
-      const coins = tx.mergeCoins(
-        tx.object(testCoinIds[testCoinIds.length - 1]),
+      
+      tx.mergeCoins(
+        tx.object(testCoinIds[0]),
         toMerge
       )
       tx.moveCall({
@@ -57,7 +58,8 @@ export const useSendTx = () => {
         ],
         arguments: [
           tx.object(DISPENSER),
-          coins
+          tx.object(testCoinIds[0]),
+          tx.object("0x0000000000000000000000000000000000000000000000000000000000000006"),
         ]
     });
 

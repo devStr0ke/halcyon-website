@@ -1,11 +1,4 @@
-export interface TestNft {
-    packageId: string,
-    moduleName: string,
-    structName: string,
-    generics: string,
-}
-
-export interface TestCoin {
+export interface StructTag {
     packageId: string,
     moduleName: string,
     structName: string,
@@ -13,7 +6,6 @@ export interface TestCoin {
 }
 
 export interface DispenserObject {
-    id: string,
     active: boolean,
     startTimestamp: number,
     endTimestamp: number,
@@ -22,9 +14,9 @@ export interface DispenserObject {
     balance: number,
     supply: number,
     left: number,
-    testNft: TestNft,
+    testNft: StructTag,
     testNftName: string,
-    testCoin: TestCoin,
+    testCoin: StructTag,
     mintCap: string,
 }
 

@@ -10,6 +10,7 @@ import LoadingPage from '../components/Loading/LoadingPage';
 import dynamic from 'next/dynamic';
 import { supabase } from '../utils/supabase';
 import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
+import { useDispenserStore, useUserStore } from '../store/store';
 
 // pour forcer dynamiquement le refresh des roles par exemple
 //export const dynamic = 'force-dynamic';
@@ -46,8 +47,11 @@ export async function getServerSideProps() {
 }
 
 export default function Dispenser({ data }: { data: any }) {
-    // useStoreUserInfo("0x4a3af36df1b20c8d79b31e50c07686c70d63310e4f9fff8d9f8b7f4eb703a2fd");
+  useStoreUserInfo("0x4a3af36df1b20c8d79b31e50c07686c70d63310e4f9fff8d9f8b7f4eb703a2fd");
   useStoreContractInfo();
+  console.log("USER STORE: ", useUserStore());
+  console.log("DISPENSER STORE: ", useDispenserStore());
+  
   
   console.log(data);
 

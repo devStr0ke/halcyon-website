@@ -28,7 +28,6 @@ export const useDispenserStore = create<DispenserStore>((set) => ({
     },
     mintCap: "",
     setDispenser: (dispenser: DispenserObject) => set({
-        id: dispenser.id,
         active: dispenser.active,
         startTimestamp: Number(dispenser.startTimestamp),
         endTimestamp: Number(dispenser.endTimestamp),
