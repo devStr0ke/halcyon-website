@@ -2,7 +2,7 @@ import { PACKAGE_ID, TEST_COIN_TYPE, TEST_NFT_COLLECTION, provider } from './con
 import { useUserStore } from '../../store/store';
 import { NftClient, ArtNft } from '@originbyte/js-sdk';
 import { BCS, getSuiMoveConfig, BcsWriter } from '@mysten/bcs';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 // hook permettant de fetch et store avec Zustand
 // toutes les infos liées à l'utilisateur
@@ -90,7 +90,7 @@ const useStoreUserInfo = (address: string | null) => {
     if (address) {
       fetchStoreUserInfo(address);
     }
-  }, [address, setUser]);
+  }, [address]);
 };
 
 export default useStoreUserInfo;

@@ -29,7 +29,8 @@ export const useSendTx = () => {
 
       await signAndExecuteTransactionBlock({
         transactionBlock: tx,
-        requestType: 'WaitForEffectsCert'
+        requestType: 'WaitForEffectsCert',
+        chain: 'sui:sui'
       });
     } catch (error) {
       console.error(error);
@@ -62,7 +63,8 @@ export const useSendTx = () => {
       tx.setGasBudget(10000);
       await signAndExecuteTransactionBlock({
         transactionBlock: tx,
-        requestType: 'WaitForEffectsCert'
+        requestType: 'WaitForEffectsCert',
+        chain: 'sui:sui'
       });
     } catch (error) {
       console.error(error);
@@ -85,7 +87,8 @@ export const useSendTx = () => {
       tx.setGasBudget(10000);
       await signAndExecuteTransactionBlock({
         transactionBlock: tx,
-        requestType: 'WaitForEffectsCert'
+        requestType: 'WaitForEffectsCert',
+        chain: 'sui:sui'
       });
     } catch (error) {
       console.error(error);
@@ -110,7 +113,8 @@ export const useSendTx = () => {
       tx.setGasBudget(10000);
       await signAndExecuteTransactionBlock({
         transactionBlock: tx,
-        requestType: 'WaitForEffectsCert'
+        requestType: 'WaitForEffectsCert',
+        chain: 'sui:sui'
       });
     } catch (error) {
       console.error(error);
@@ -130,7 +134,8 @@ export const useSendTx = () => {
       tx.setGasBudget(10000);
       await signAndExecuteTransactionBlock({
         transactionBlock: tx,
-        requestType: 'WaitForEffectsCert'
+        requestType: 'WaitForEffectsCert',
+        chain: 'sui:sui'
       });
     } catch (error) {
       console.error(error);
@@ -151,7 +156,8 @@ export const useSendTx = () => {
       tx.setGasBudget(10000);
       await signAndExecuteTransactionBlock({
         transactionBlock: tx,
-        requestType: 'WaitForEffectsCert'
+        requestType: 'WaitForEffectsCert',
+        chain: 'sui:sui'
       });
     } catch (error) {
       console.error(error);
@@ -172,7 +178,8 @@ export const useSendTx = () => {
       tx.setGasBudget(10000);
       await signAndExecuteTransactionBlock({
         transactionBlock: tx,
-        requestType: 'WaitForEffectsCert'
+        requestType: 'WaitForEffectsCert',
+        chain: 'sui:sui'
       });
     } catch (error) {
       console.error(error);
