@@ -49,18 +49,17 @@ export const Header = () => {
         </div>
         <div className="absolute top-0 h-screen w-full z-30 flex justify-center">
           <div ref={opacityTitle} className="flex items-center py-5">
-            <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-end">
-              <div className="mx-auto max-w-3xl text-center">
-                <h1 className="saira text-white text-lg font-bold sm:text-2xl">
+            <div className="mx-auto max-w-screen-xl px-4 py-52 lg:flex lg:h-screen lg:items-end">
+              <div className="mx-auto max-w-4xl text-center">
+                <h1 className="saira text-cyan-500 text-lg font-bold sm:text-3xl">
                   Pushing The Boundaries Of Innovation
                   <strong className="text-4xl sm:text-5xl font-extrabold mt-4 block text-cyan-500">
-                    Web3 Experiments Studio
+                    <p><span className='text-white'>The Web3 Experiment Studios</span></p>
                   </strong>
                 </h1>
 
                 <p className="saira mt-4 sm:text-lg sm:leading-relaxed text-white">
-                  Halcyon is a multi-chain creation studio that specializes in building innovative
-                  Web3-based products.
+                  Web3 Reinvented, Experience Amplified
                 </p>
               </div>
             </div>
@@ -83,16 +82,9 @@ export const Header = () => {
           <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="saira text-white text-lg font-bold sm:text-2xl">
-                Pushing The Boundaries Of Innovation
-                <strong className="text-4xl sm:text-5xl font-extrabold mt-4 block text-cyan-500">
-                  Web3 Experiments Studios
-                </strong>
+                  Halcyon is a multi-chain creation studio that specializes in building innovative
+                  Web3-based products.
               </h1>
-
-              <p className="saira mt-4 sm:text-lg sm:leading-relaxed text-white">
-                Halcyon is a multi-chain creation studio that specializes in building innovative
-                Web3-based products.
-              </p>
             </div>
           </div>
         </div>
