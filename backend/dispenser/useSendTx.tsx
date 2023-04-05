@@ -10,22 +10,23 @@ import { TransactionBlock } from '@mysten/sui.js';
 export const useSendTx = () => {
   const { signAndExecuteTransactionBlock } = useWalletKit();
 
-  const { testCoinIds, ticketIds, emptyBottleIds, filledBottleIds, magicNumber } = useUserStore((state) => state);
+  const { testCoinIds, ticketIds, emptyBottleIds, filledBottleIds, magicNumber } = useUserStore(
+    (state) => state
+  );
   const { testCoin, testNft } = useDispenserStore((state) => state);
-
 
   const buyRandomBottle = async () => {
     try {
-    const tx = new TransactionBlock();
+      const tx = new TransactionBlock();
       tx.moveCall({
         target: `${PACKAGE_ID}::bottle::buy_random_bottle`,
         typeArguments: [],
         arguments: [
-            tx.object(DISPENSER),
-            tx.gas,
-            tx.object("0x0000000000000000000000000000000000000000000000000000000000000006"),
+          tx.object(DISPENSER),
+          tx.gas,
+          tx.object('0x0000000000000000000000000000000000000000000000000000000000000006')
         ]
-    });
+      });
 
       await signAndExecuteTransactionBlock({
         transactionBlock: tx,
@@ -39,27 +40,19 @@ export const useSendTx = () => {
 
   const buyRandomBottleWithCoins = async () => {
     try {
-    const tx = new TransactionBlock();
+      const tx = new TransactionBlock();
       let toMerge = [];
       let i = 0;
       while (i < testCoinIds.length - 1) {
-        toMerge.push(tx.object(testCoinIds[i]))
+        toMerge.push(tx.object(testCoinIds[i]));
       }
 
-      const coins = tx.mergeCoins(
-        tx.object(testCoinIds[testCoinIds.length - 1]),
-        toMerge
-      )
+      const coins = tx.mergeCoins(tx.object(testCoinIds[testCoinIds.length - 1]), toMerge);
       tx.moveCall({
         target: `${PACKAGE_ID}::bottle::buy_random_bottle_with_coins`,
-        typeArguments: [
-            `0x${testCoin.generics}`
-        ],
-        arguments: [
-          tx.object(DISPENSER),
-          coins
-        ]
-    });
+        typeArguments: [`0x${testCoin.generics}`],
+        arguments: [tx.object(DISPENSER), coins]
+      });
 
       tx.setGasBudget(10000);
       await signAndExecuteTransactionBlock({
@@ -74,17 +67,12 @@ export const useSendTx = () => {
 
   const swapNft = async () => {
     try {
-    const tx = new TransactionBlock();
+      const tx = new TransactionBlock();
       tx.moveCall({
         target: `${PACKAGE_ID}::bottle::swap_nft`,
-        typeArguments: [
-            `0x${testNft.generics}`
-        ],
-        arguments: [
-            tx.object(DISPENSER),
-            tx.object(ticketIds[0]),
-        ]
-    });
+        typeArguments: [`0x${testNft.generics}`],
+        arguments: [tx.object(DISPENSER), tx.object(ticketIds[0])]
+      });
 
       tx.setGasBudget(10000);
       await signAndExecuteTransactionBlock({
@@ -99,19 +87,19 @@ export const useSendTx = () => {
 
   const recycle = async () => {
     try {
-    const tx = new TransactionBlock();
+      const tx = new TransactionBlock();
       tx.moveCall({
         target: `${PACKAGE_ID}::bottle::recycle`,
         typeArguments: [],
         arguments: [
-            tx.object(DISPENSER),
-            tx.pure(emptyBottleIds[0]),
-            tx.pure(emptyBottleIds[1]),
-            tx.pure(emptyBottleIds[2]),
-            tx.pure(emptyBottleIds[3]),
-            tx.pure(emptyBottleIds[4]),
+          tx.object(DISPENSER),
+          tx.pure(emptyBottleIds[0]),
+          tx.pure(emptyBottleIds[1]),
+          tx.pure(emptyBottleIds[2]),
+          tx.pure(emptyBottleIds[3]),
+          tx.pure(emptyBottleIds[4])
         ]
-    });
+      });
 
       tx.setGasBudget(10000);
       await signAndExecuteTransactionBlock({
@@ -126,14 +114,12 @@ export const useSendTx = () => {
 
   const register = async () => {
     try {
-    const tx = new TransactionBlock();
+      const tx = new TransactionBlock();
       tx.moveCall({
         target: `${PACKAGE_ID}::bottle::register_wetlist`,
         typeArguments: [],
-        arguments: [
-            tx.object(filledBottleIds[0]),
-        ]
-    });
+        arguments: [tx.object(filledBottleIds[0])]
+      });
 
       tx.setGasBudget(10000);
       await signAndExecuteTransactionBlock({
@@ -148,15 +134,12 @@ export const useSendTx = () => {
 
   const claimRandomBottle = async () => {
     try {
-    const tx = new TransactionBlock();
+      const tx = new TransactionBlock();
       tx.moveCall({
         target: `${PACKAGE_ID}::bottle::claim_random_bottle`,
         typeArguments: [],
-        arguments: [
-            tx.object(DISPENSER),
-            tx.pure(magicNumber),
-        ]
-    });
+        arguments: [tx.object(DISPENSER), tx.pure(magicNumber)]
+      });
 
       tx.setGasBudget(10000);
       await signAndExecuteTransactionBlock({
@@ -171,15 +154,12 @@ export const useSendTx = () => {
 
   const claimFilledBottle = async () => {
     try {
-    const tx = new TransactionBlock();
+      const tx = new TransactionBlock();
       tx.moveCall({
         target: `${PACKAGE_ID}::bottle::claim_filled_bottle`,
         typeArguments: [],
-        arguments: [
-            tx.object(DISPENSER),
-            tx.pure(magicNumber),
-        ]
-    });
+        arguments: [tx.object(DISPENSER), tx.pure(magicNumber)]
+      });
 
       tx.setGasBudget(10000);
       await signAndExecuteTransactionBlock({
@@ -192,5 +172,13 @@ export const useSendTx = () => {
     }
   };
 
-  return { buyRandomBottle, buyRandomBottleWithCoins, swapNft, recycle, register, claimRandomBottle, claimFilledBottle };
+  return {
+    buyRandomBottle,
+    buyRandomBottleWithCoins,
+    swapNft,
+    recycle,
+    register,
+    claimRandomBottle,
+    claimFilledBottle
+  };
 };

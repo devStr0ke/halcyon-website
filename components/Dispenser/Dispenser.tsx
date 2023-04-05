@@ -19,7 +19,7 @@ const Dispenser = () => {
   const { session } = useAuth();
 
   const [isWetlisted, setIsWetlisted] = useState(false);
-  const [roles, setRoles] = useState<{ role: string; claimed: boolean }[]>([]);
+  const [roles, setRoles] = useState<{ role: string; claimed: boolean; enthusiast: boolean }[]>([]);
 
   //useStoreContractInfo();
   //const { isUserInfoFetching } = useStoreUserInfo(currentAccount);
@@ -33,10 +33,11 @@ const Dispenser = () => {
   );
   const { active, price, supply, balance, left } = useDispenserStore((state) => state);
   console.log(useDispenserStore());
-  
 
-  console.log('coinObjectId', testCoinIds);
+  console.log('testCoinIds', testCoinIds);
+  console.log('filledBottleIds', filledBottleIds);
   console.log('emptyBottleIds', emptyBottleIds);
+  console.log('ticketIds', ticketIds);
 
   useEffect(() => {
     async function createProfile() {
@@ -65,7 +66,11 @@ const Dispenser = () => {
   useEffect(() => {
     async function fetchRoles(useId: string) {
       const roles = await getRoleUpdatesForUser(useId);
-      if (roles) setRoles(roles.map((e) => ({ role: e.role, claimed: e.claimed })));
+      console.log(roles);
+      if (roles)
+        setRoles(
+          roles.map((e) => ({ role: e.role, claimed: e.claimed, enthusiast: e.enthusiast }))
+        );
     }
     if (session) {
       fetchRoles(session.user.user_metadata.provider_id);
@@ -81,7 +86,7 @@ const Dispenser = () => {
 
       <div className="w-full h-full flex justify-around">
         <div className="w-2/5">
-          <DispenserDrawing />
+          <DispenserDrawing roles={roles} />
         </div>
 
         <div className="w-2/5">
@@ -89,7 +94,6 @@ const Dispenser = () => {
             <p>Current/Upcoming Batch: </p>
             <p className="text-center">{`${supply} Bottles Available`}</p>
             <p className="text-center">{`${supply - left} Bottles Minted`}</p>
-            <p className="text-center">{`Z Filled Minted`}</p>
           </div>
           <div className="text-center py-12 bg-cyan-100 border border-cyan-400 rounded-xl my-4">
             How does it works?
@@ -115,29 +119,33 @@ const Dispenser = () => {
               <div className="flex justify-between items-center mb-2">
                 <p>Claim a filled bottle</p>
                 <div className="flex justify-between">
-                  {roles.map((r) => (
-                    <div
-                      key={r.role}
-                      className={`bg-purple-${
-                        r.claimed ? '300' : '100'
-                      } border border-purple-400 rounded-xl mx-4 p-1 px-3`}>
-                      {r.role}
-                    </div>
-                  ))}
+                  {roles
+                    .filter((r) => r.enthusiast === false)
+                    .map((r) => (
+                      <div
+                        key={r.role}
+                        className={`bg-purple-${
+                          r.claimed ? '300' : '100'
+                        } border border-purple-400 rounded-xl mx-4 p-1 px-3`}>
+                        {r.role}
+                      </div>
+                    ))}
                 </div>
               </div>
               <div className="flex items-center mb-2 justify-between">
                 <p>Claim a random bottle</p>
                 <div className="flex">
-                  <div className="bg-purple-300 border border-purple-400 rounded-xl mx-1 p-1 px-3">
-                    roadmap
-                  </div>
-                  <div className="bg-purple-100 border border-purple-400 rounded-xl mx-1 p-1 px-3">
-                    website
-                  </div>
-                  <div className="bg-purple-100 border border-purple-400 rounded-xl mx-1 p-1 px-3">
-                    dispenser
-                  </div>
+                  {roles
+                    .filter((r) => r.enthusiast === true)
+                    .map((r) => (
+                      <div
+                        key={r.role}
+                        className={`bg-purple-${
+                          r.claimed ? '300' : '100'
+                        } border border-purple-400 rounded-xl mx-4 p-1 px-3`}>
+                        {r.role}
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
