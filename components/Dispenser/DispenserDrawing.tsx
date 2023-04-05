@@ -18,7 +18,7 @@ const DispenserDrawing = () => {
   } = useSendTx();
 
   return (
-    <div className="bg-no-repeat bg-center bg-cover bg-[url('/static/images/products/distributeur.png')] p-6 rounded-lg w-full h-full flex flex-col justify-end">
+    <div className="bg-no-repeat bg-center bg-contain bg-[url('/static/images/products/distributeur.png')] p-6 rounded-lg w-full h-full flex flex-col justify-end">
       <div className="w-full grid grid-cols-2 gap-4">
         <button
           disabled={active === false || left === 0}

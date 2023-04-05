@@ -1,6 +1,7 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { Navbar } from '../components/NavBar/Navbar';
+import { Footer } from '../components/Footer/Footer';
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider, Session } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
@@ -22,6 +23,7 @@ export default function App({
       initialSession={pageProps.initialSession}>
       <Navbar />
       <Component {...pageProps} />
+      <Footer />
     </SessionContextProvider>
   );
 }

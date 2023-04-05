@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, ReactNode } from 'react';
-import useOnScreen from '../../hooks/useOnScreen';
+import useOnScroll from '../../hooks/useOnScroll';
 interface Props {
   subtitle?: ReactNode;
   title?: ReactNode;
@@ -8,16 +8,7 @@ interface Props {
 export const Separator = ({ subtitle, title, ...props }: Props) => {
 
   const ref = useRef(null);
-  const onScreen = useOnScreen(ref);
-  const [animate, setAnimate] = useState(false);
-
-  useEffect(() => {
-    if (onScreen) {
-      setAnimate(true);
-    } else {
-      setAnimate(false);
-    }
-  }, [onScreen]);
+  const scale = useOnScroll(ref);
 
   return (
     <>
@@ -25,9 +16,8 @@ export const Separator = ({ subtitle, title, ...props }: Props) => {
         <div className="z-0 h-[20vh] lg:h-[40vh] w-full absolute top-0 separatorGradient"></div>
         <div
           ref={ref}
-          className={`${
-            animate ? 'animate-imageTransition' : 'opacity-0 scale-50'
-          } absolute top-0 z-20 w-full h-[20vh] lg:h-[40vh] flex justify-center items-center`}
+          className='absolute top-0 z-20 w-full h-[20vh] lg:h-[40vh] flex justify-center items-center'
+          style={{ transform: `scale(${scale})`, transition: 'transform 0s' }} 
         >
           <div className="mx-auto max-w-screen-xl px-4 lg:flex lg:items-center">
             <div className="mx-auto max-w-3xl text-center">
