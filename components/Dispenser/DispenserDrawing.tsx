@@ -26,7 +26,7 @@ const DispenserDrawing: React.FC<DispenserDrawingProps> = ({ roles }) => {
       <div className="w-full grid grid-cols-2 gap-4">
         <button
           disabled={active === false || left === 0}
-          onClick={async () => await buyRandomBottle()}
+          onClick={async () => buyRandomBottleWithCoins()}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-slate-400">
           Buy
         </button>

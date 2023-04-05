@@ -42,16 +42,21 @@ export const useSendTx = () => {
     try {
       const tx = new TransactionBlock();
       let toMerge = [];
-      let i = 0;
-      while (i < testCoinIds.length - 1) {
+      let i = 1;
+      while (i < testCoinIds.length) {
         toMerge.push(tx.object(testCoinIds[i]));
+        i++;
       }
 
-      const coins = tx.mergeCoins(tx.object(testCoinIds[testCoinIds.length - 1]), toMerge);
+      tx.mergeCoins(tx.object(testCoinIds[0]), toMerge);
       tx.moveCall({
         target: `${PACKAGE_ID}::bottle::buy_random_bottle_with_coins`,
         typeArguments: [`0x${testCoin.generics}`],
-        arguments: [tx.object(DISPENSER), coins]
+        arguments: [
+          tx.object(DISPENSER),
+          tx.object(testCoinIds[0]),
+          tx.object('0x0000000000000000000000000000000000000000000000000000000000000006')
+        ]
       });
 
       tx.setGasBudget(10000);

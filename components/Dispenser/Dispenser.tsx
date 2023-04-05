@@ -32,12 +32,6 @@ const Dispenser = () => {
     (state) => state
   );
   const { active, price, supply, balance, left } = useDispenserStore((state) => state);
-  console.log(useDispenserStore());
-
-  console.log('testCoinIds', testCoinIds);
-  console.log('filledBottleIds', filledBottleIds);
-  console.log('emptyBottleIds', emptyBottleIds);
-  console.log('ticketIds', ticketIds);
 
   useEffect(() => {
     async function createProfile() {
