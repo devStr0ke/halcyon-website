@@ -25,7 +25,7 @@ export const Second = () => {
             backGroundImageClass="bg-no-repeat bg-center bg-cover bg-[url('/static/images/products/whitelistTool.png')] rounded-lg w-full h-[60vh]"
             title="BOTTLE DISPENSER"
             text="Get your Wetlist via our gamified whitelisting tool on Sui devnet."
-            buttonHref='/testPage'
+            buttonHref='/dispenser'
             buttonText="DISPENSER"
             external={false}
             insider

@@ -38,7 +38,7 @@ export const ProductsCard = ({
     // @ts-ignore
     ? { transform: `translateX(-${Number(translateValue * 100)}%)`, transition: 'transform 0s' }
     // @ts-ignore
-    : { transform: `translateY(${Number(translateValue * 40)}%)`, transition: 'transform 0s' };
+    : { transform: `translateY(${Number(translateValue * 30)}%)`, transition: 'transform 0s' };
 
   const [isHover, setIsHover] = useState(false); //use state for hamburger state controller (x or =)
   const toggleClassTrue = () => {
@@ -94,6 +94,7 @@ export const ProductsCard = ({
       <div
         ref={ref}
         style={translationStyle}
+        className='animate-imageTransition'
       >
         <div
           className={hoverClassMainDiv()}
