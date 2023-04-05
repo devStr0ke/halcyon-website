@@ -11,26 +11,51 @@
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "dependencies": {
+    "@mysten/bcs": "^0.7.0",
+    "@mysten/sui.js": "^0.30.0",
+    "@mysten/wallet-kit": "^0.4.0",
     "@netlify/plugin-nextjs": "^4.29.2",
+    "@originbyte/js-sdk": "^0.21.3",
+    "@supabase/auth-helpers-nextjs": "^0.5.6",
+    "@supabase/auth-helpers-react": "^0.3.1",
+    "@supabase/auth-ui-react": "^0.3.5",
+    "@supabase/supabase-js": "^2.10.0",
     "@types/node": "18.11.10",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
+    "dotenv": "^16.0.3",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
+    "fs": "^0.0.1-security",
     "next": "13.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-dragscroll": "^2.0.1",
+    "react-loading": "^2.0.3",
     "react-use-draggable-scroll": "^0.4.7",
     "sharp": "^0.31.2",
-    "typescript": "4.9.3"
+    "typescript": "4.9.3",
+    "zustand": "^4.3.5"
   },
   "devDependencies": {
+    "@netlify/esbuild": "^0.14.39",
     "autoprefixer": "^10.4.13",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "postcss": "^8.4.19",
     "prettier": "^2.8.0",
     "tailwindcss": "^3.2.4"
+  },
+    "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
