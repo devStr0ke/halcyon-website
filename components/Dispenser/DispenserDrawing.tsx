@@ -3,7 +3,7 @@ import { useUserStore, useDispenserStore } from '../../store/store';
 import { useSendTx } from '../../backend/dispenser/useSendTx';
 
 interface DispenserDrawingProps {
-  roles: { role: string; claimed: boolean }[];
+  roles: { role: string; claimed: boolean; enthusiast: boolean }[];
 }
 
 const DispenserDrawing: React.FC<DispenserDrawingProps> = ({ roles }) => {
@@ -43,9 +43,23 @@ const DispenserDrawing: React.FC<DispenserDrawingProps> = ({ roles }) => {
           Swap
         </button>
         <button
-          disabled={false}
+          disabled={
+            roles.filter((r) => r.enthusiast === false).filter((r) => r.claimed === false)
+              .length === 0 &&
+            roles.filter((r) => r.enthusiast === true).filter((r) => r.claimed === false).length ===
+              0
+          }
           onClick={async () => {
-            if (roles.filter((r) => r.claimed === false).length > 0) await claimFilledBottle();
+            if (
+              roles.filter((r) => r.enthusiast === false).filter((r) => r.claimed === false)
+                .length > 0
+            )
+              await claimFilledBottle();
+            else if (
+              roles.filter((r) => r.enthusiast === true).filter((r) => r.claimed === false).length >
+              0
+            )
+              await claimRandomBottle();
           }}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-slate-400">
           Claim
