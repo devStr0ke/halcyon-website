@@ -4,9 +4,8 @@ import { Navbar } from '../components/NavBar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider, Session } from '@supabase/auth-helpers-react';
-import { useState } from 'react';
-import dynamic from 'next/dynamic';
-import LoadingPage from '../components/Loading/LoadingPage';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 export default function App({
   Component,
@@ -16,11 +15,32 @@ export default function App({
 }>) {
   // Create a new supabase browser client on every first render.
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      if (url === '/') {
+        document.body.className = 'bg-black'; // main page background
+      } else if (url === '/dispenser') {
+        document.body.className = 'bg-gray-300'; // dispenser page background
+      } else {
+        document.body.className = 'bg-black'; // default background for other pages
+      }
+    };
+
+    handleRouteChange(router.pathname);
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router]);
 
   return (
     <SessionContextProvider
       supabaseClient={supabaseClient}
-      initialSession={pageProps.initialSession}>
+      initialSession={pageProps.initialSession}
+    >
       <Navbar />
       <Component {...pageProps} />
       <Footer />

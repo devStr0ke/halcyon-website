@@ -85,7 +85,7 @@ export const ProductsCardMobile = ({
           <div className={backGroundImageClass}></div>
           <div className={hoverClassBlueDiv()}></div>
           <div className={hoverClassTitle()}>
-            <div className="font-bold text-xl textBoxShadow text-white">{title}</div>
+            <div className="font-bold text-xl text-white">{title}</div>
           </div>
           <div className={hoverClassArrow()}>
             <Image src="/static/svg/chevron-down.svg" alt="logoDownlg" width="20" height="20" />

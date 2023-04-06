@@ -105,7 +105,7 @@ export const ProductsCard = ({
           <div className={backGroundImageClass}></div>
           <div className={hoverClassBlueDiv()}></div>
           <div className={hoverClassTitle()}>
-            <div className="font-bold text-xl textBoxShadow text-white">{title}</div>
+            <div className="font-bold text-xl text-white">{title}</div>
           </div>
           <div className={hoverClassArrow()}>
             <Image

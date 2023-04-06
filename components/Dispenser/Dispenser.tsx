@@ -68,7 +68,7 @@ const Dispenser = () => {
   }, [session]);
 
   return (
-    <div className="w-screen h-screen py-40 bg-gray-100 flex flex-col items-center justify-start">
+    <div className="w-screen h-[150vh] py-40 bg-gray-300 flex flex-col items-center justify-start">
       <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-12">
         Beware, the obtained NFTs live on Sui devnet, which is frequently reset. This will make you
         lose your entire wallet! So remember to register your wetlist ASAP.
