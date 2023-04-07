@@ -4,7 +4,7 @@ import { DispenserObject, DispenserStore } from '../types/suiDispenser'
 import { UserObject, UserStore } from '../types/suiUser';
 
 export const useDispenserStore = create<DispenserStore>((set) => ({
-    id: "",
+    loading: false,
     active: false,
     startTimestamp: 0,
     endTimestamp: 0,
@@ -27,6 +27,9 @@ export const useDispenserStore = create<DispenserStore>((set) => ({
         generics: "",
     },
     mintCap: "",
+    setLoading: (loading: boolean) => set({
+        loading,
+    }),
     setDispenser: (dispenser: DispenserObject) => set({
         active: dispenser.active,
         startTimestamp: Number(dispenser.startTimestamp),
@@ -45,12 +48,16 @@ export const useDispenserStore = create<DispenserStore>((set) => ({
 }))
 
 export const useUserStore = create<UserStore>((set) => ({
+    loading: false,
     address: "",
     magicNumber: 0,
     testCoinIds: [],
     filledBottleIds: [],
     emptyBottleIds: [],
     ticketIds: [],
+    setLoading: (loading: boolean) => set({
+        loading,
+    }),
     setUser: (user: UserObject) => set({
         address: user.address,
         magicNumber: user.magicNumber,

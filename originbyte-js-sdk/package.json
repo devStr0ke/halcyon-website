@@ -1,0 +1,63 @@
+{
+  "name": "@originbyte/js-sdk",
+  "version": "0.29.24",
+  "keywords": [
+    "originbyte",
+    "sdk",
+    "javascript",
+    "sui",
+    "move"
+  ],
+  "scripts": {
+    "build": "./bin/build.sh",
+    "fmt": "npm run format",
+    "format": "prettier --write 'src/**/*.{ts, tsx}' 'examples/**/*.{ts, tsx}' '__tests__/**/*.{ts, tsx}'",
+    "lint": "eslint 'src/**/*.{ts, tsx}'",
+    "stress-build": "tsc --project ./__tests__/tsconfig.stress.json",
+    "stress-local": "./bin/setup-test-env.sh ts-node __tests__/stresstest.ts",
+    "test": "./bin/setup-test-env.sh yarn jest --detectOpenHandles --runInBand",
+    "tsc": "tsc",
+    "typecheck": "yarn tsc --project ./tsconfig-typecheck.json"
+  },
+  "homepage": "https://originbyte.io/",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "license": "Apache",
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Origin-Byte/originbyte-js-sdk"
+  },
+  "devDependencies": {
+    "@types/bn.js": "^5.1.1",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.6",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
+    "dotenv": "^16.0.3",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-typescript": "^3.0.0",
+    "eslint-formatter-pretty": "^4.1.0",
+    "eslint-import-resolver-typescript": "^3.5.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-typescript": "^0.14.0",
+    "jest": "^27.3.1",
+    "prettier": "^2.4.1",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.4.4",
+    "typescript-eslint-parser": "^22.0.0"
+  },
+  "dependencies": {
+    "@mysten/sui.js": "0.30.0",
+    "superstruct": "^1.0.3"
+  }
+}

@@ -19,7 +19,7 @@ export const useSendTx = () => {
     try {
       const tx = new TransactionBlock();
       tx.moveCall({
-        target: `${PACKAGE_ID}::bottle::buy_random_bottle`,
+        target: `${PACKAGE_ID}::bottles::buy_random_bottle`,
         typeArguments: [],
         arguments: [
           tx.object(DISPENSER),
@@ -50,7 +50,7 @@ export const useSendTx = () => {
 
       tx.mergeCoins(tx.object(testCoinIds[0]), toMerge);
       tx.moveCall({
-        target: `${PACKAGE_ID}::bottle::buy_random_bottle_with_coins`,
+        target: `${PACKAGE_ID}::bottles::buy_random_bottle_with_coins`,
         typeArguments: [`0x${testCoin.generics}`],
         arguments: [
           tx.object(DISPENSER),
@@ -74,7 +74,7 @@ export const useSendTx = () => {
     try {
       const tx = new TransactionBlock();
       tx.moveCall({
-        target: `${PACKAGE_ID}::bottle::swap_nft`,
+        target: `${PACKAGE_ID}::bottles::swap_nft`,
         typeArguments: [`0x${testNft.generics}`],
         arguments: [tx.object(DISPENSER), tx.object(ticketIds[0])]
       });
@@ -94,7 +94,7 @@ export const useSendTx = () => {
     try {
       const tx = new TransactionBlock();
       tx.moveCall({
-        target: `${PACKAGE_ID}::bottle::recycle`,
+        target: `${PACKAGE_ID}::bottles::recycle`,
         typeArguments: [],
         arguments: [
           tx.object(DISPENSER),
@@ -121,7 +121,7 @@ export const useSendTx = () => {
     try {
       const tx = new TransactionBlock();
       tx.moveCall({
-        target: `${PACKAGE_ID}::bottle::register_wetlist`,
+        target: `${PACKAGE_ID}::bottles::register_wetlist`,
         typeArguments: [],
         arguments: [tx.object(filledBottleIds[0])]
       });
@@ -141,7 +141,7 @@ export const useSendTx = () => {
     try {
       const tx = new TransactionBlock();
       tx.moveCall({
-        target: `${PACKAGE_ID}::bottle::claim_random_bottle`,
+        target: `${PACKAGE_ID}::bottles::claim_random_bottle`,
         typeArguments: [],
         arguments: [tx.object(DISPENSER), tx.pure(magicNumber)]
       });
@@ -161,7 +161,7 @@ export const useSendTx = () => {
     try {
       const tx = new TransactionBlock();
       tx.moveCall({
-        target: `${PACKAGE_ID}::bottle::claim_filled_bottle`,
+        target: `${PACKAGE_ID}::bottles::claim_filled_bottle`,
         typeArguments: [],
         arguments: [tx.object(DISPENSER), tx.pure(magicNumber)]
       });

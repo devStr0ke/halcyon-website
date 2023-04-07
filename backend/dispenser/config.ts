@@ -1,17 +1,20 @@
 import { JsonRpcProvider, devnetConnection } from '@mysten/sui.js';
 
+// export const devnetConnection = new Connection({
+//     fullnode: "https://sui-devnet.artifact.systems:443/",
+//     faucet: "",
+// });
+
 export const provider = new JsonRpcProvider(devnetConnection);
 
 // ---------- Objects IDs ----------
 
-export const PACKAGE_ID = "0xed54aeff9921b073f4036e9015b8913cc0f6235fca9ab20be92217901ac511c4";
+export const PACKAGE_ID = "0x963aa152ca6e179565849b3e2267a407cedcae4afab100329a54ab440aecaac9";
 
-export const ADMIN_CAP = "0xbaf0b55855fe60e3aebc823a02f5cbc5a93ba0ea6bb6b7d2ad3f4d6c7f885828";
+export const ADMIN_CAP = "0xae0592db8aaa72cfac4e7687b3f9f11ec214d8d3cdf37516568d3fe57daacec6";
 
-export const DISPENSER = "0x882b9ffe1a1315a112621596d35dc7de8b54f8ecc63bf25cdf65c6d4d4bd3fd4";
+export const DISPENSER = "0x94db597bb6a9850acfc01f709d4e09783f91c0661a4ca3eb3d978e5e7afedc60";
 
-export const COLLECTION = "0xfbdc3d8c86f57d8d29dc594fc1835076e93f0d1b6829455c6bd4aab119c33f13"
+export const COLLECTION = "0x27150120370befb9851d54813576bcce0ff7b637efc4e603ba9f10ff1d434f50";
 
 export const TEST_COIN_TYPE = "0x194baba05589e135f9e35e65e360655deb2502695158e0c31bb5eecd2d53f0e7::test_coin::TEST_COIN"
-
-export const TEST_NFT_COLLECTION = "0xfbdc3d8c86f57d8d29dc594fc1835076e93f0d1b6829455c6bd4aab119c33f13"

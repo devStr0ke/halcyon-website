@@ -21,5 +21,7 @@ export interface DispenserObject {
 }
 
 export interface DispenserStore extends DispenserObject {
+    loading: boolean,
+    setLoading: (_loading: boolean) => void
     setDispenser: (_dispenser: DispenserObject) => void
 }

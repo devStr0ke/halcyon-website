@@ -22,5 +22,7 @@ export interface UserObject {
 }
 
 export interface UserStore extends UserObject {
+    loading: boolean,
+    setLoading: (_loading: boolean) => void
     setUser: (_user: UserObject) => void
 }
