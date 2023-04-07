@@ -8,7 +8,7 @@ export const Fifth = () => {
     <>
       <div className="relative h-[100vh] w-full px-2 bg-transparent">
         <Faq
-          title='What Is Halcyon?'
+          title='What is Halcyon?'
           text='Halcyon is a cross-chain Web3 Development Studio creating innovative products like gamified collectibles, dapps and protocols. We focus on building highly reliable and efficient tools for builders and their community. We are first starting on the Move Ecosystem because it is a young and very promising space.'
         />
         <div className='h-[10px] w-full'></div>
