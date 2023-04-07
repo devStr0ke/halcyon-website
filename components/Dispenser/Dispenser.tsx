@@ -13,6 +13,7 @@ import {
   getIsWetlisted,
   getRoleUpdatesForUser
 } from '../../utils/supabase';
+import DispenserStatus from './BatchStatus';
 
 const Dispenser = () => {
   const { currentAccount } = useWalletKit();
@@ -77,18 +78,13 @@ const Dispenser = () => {
         Beware, the obtained NFTs live on Sui devnet, which is frequently reset. This will make you
         lose your entire wallet! So remember to register your wetlist ASAP.
       </div>
-
       <div className="w-full h-full flex justify-around">
         <div className="w-2/5">
           <DispenserDrawing roles={roles} />
         </div>
 
         <div className="w-2/5">
-          <div className="flex flex-col justify-between px-10">
-            <p>Current/Upcoming Batch: </p>
-            <p className="text-center">{`${supply} Bottles Available`}</p>
-            <p className="text-center">{`${supply - left} Bottles Minted`}</p>
-          </div>
+          <DispenserStatus />
           <div className="text-center py-12 bg-cyan-100 border border-cyan-400 rounded-xl my-4">
             How does it works?
           </div>

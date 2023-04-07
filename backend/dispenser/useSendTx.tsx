@@ -28,10 +28,14 @@ export const useSendTx = () => {
         ]
       });
 
-      await signAndExecuteTransactionBlock({
+      return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForEffectsCert',
-        chain: 'sui:sui'
+        chain: 'sui:sui',
+        options: {
+          showEffects: true,
+          showEvents: true,
+        }
       });
     } catch (error) {
       console.error(error);
@@ -60,10 +64,14 @@ export const useSendTx = () => {
       });
 
       tx.setGasBudget(10000);
-      await signAndExecuteTransactionBlock({
+      return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForEffectsCert',
-        chain: 'sui:sui'
+        chain: 'sui:sui',
+        options: {
+          showEffects: true,
+          showEvents: true,
+        }
       });
     } catch (error) {
       console.error(error);
@@ -80,10 +88,14 @@ export const useSendTx = () => {
       });
 
       tx.setGasBudget(10000);
-      await signAndExecuteTransactionBlock({
+      return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForEffectsCert',
-        chain: 'sui:sui'
+        chain: 'sui:sui',
+        options: {
+          showEffects: true,
+          showEvents: true,
+        }
       });
     } catch (error) {
       console.error(error);
@@ -107,10 +119,14 @@ export const useSendTx = () => {
       });
 
       tx.setGasBudget(10000);
-      await signAndExecuteTransactionBlock({
+      return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForEffectsCert',
-        chain: 'sui:sui'
+        chain: 'sui:sui',
+        options: {
+          showEffects: true,
+          showEvents: true,
+        }
       });
     } catch (error) {
       console.error(error);
@@ -127,10 +143,14 @@ export const useSendTx = () => {
       });
 
       tx.setGasBudget(10000);
-      await signAndExecuteTransactionBlock({
+      return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForEffectsCert',
-        chain: 'sui:sui'
+        chain: 'sui:sui',
+        options: {
+          showEffects: true,
+          showEvents: true,
+        }
       });
     } catch (error) {
       console.error(error);
@@ -147,10 +167,14 @@ export const useSendTx = () => {
       });
 
       tx.setGasBudget(10000);
-      await signAndExecuteTransactionBlock({
+      return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForEffectsCert',
-        chain: 'sui:sui'
+        chain: 'sui:sui',
+        options: {
+          showEffects: true,
+          showEvents: true,
+        }
       });
     } catch (error) {
       console.error(error);
@@ -167,10 +191,14 @@ export const useSendTx = () => {
       });
 
       tx.setGasBudget(10000);
-      await signAndExecuteTransactionBlock({
+      return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForEffectsCert',
-        chain: 'sui:sui'
+        chain: 'sui:sui',
+        options: {
+          showEffects: true,
+          showEvents: true,
+        }
       });
     } catch (error) {
       console.error(error);
