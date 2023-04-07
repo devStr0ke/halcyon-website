@@ -27,15 +27,15 @@ export const Fourth = () => {
         <div
           {...events}
           ref={ref}
-          className="flex w-full space-x-3 overflow-x-scroll no-scrollbar bg-transparent"
+          className="flex w-full space-x-0 overflow-x-scroll no-scrollbar bg-transparent"
         >
-          <div className="flex-none bg-no-repeat h-96 bg-center bg-contain bg-[url('/static/images/Team/thounyTeam.png')] rounded-lg w-[400px]"></div>
-          <div className="flex-none bg-no-repeat h-96 bg-center bg-contain bg-[url('/static/images/Team/aurelineTeam.png')] rounded-lg w-[400px]"></div>
-          <div className="flex-none bg-no-repeat h-96 bg-center bg-contain bg-[url('/static/images/Team/devStr0keTeam.png')] rounded-lg w-[400px]"></div>
-          <div className="flex-none bg-no-repeat h-96 bg-center bg-contain bg-[url('/static/images/Team/shanTeam.png')] rounded-lg w-[400px]"></div>
-          <div className="flex-none bg-no-repeat h-96 bg-center bg-contain bg-[url('/static/images/Team/matTeam.png')] rounded-lg w-[400px]"></div>
-          <div className="flex-none bg-no-repeat h-96 bg-center bg-contain bg-[url('/static/images/Team/sajuloTeam.png')] rounded-lg w-[400px]"></div>
-          <div className="flex-none bg-no-repeat h-96 bg-center bg-contain bg-[url('/static/images/Team/virgule.png')] rounded-lg w-[400px]"></div>
+          <div className="flex-none bg-no-repeat h-96 bg-center bg-contain bg-[url('/static/images/Team/thounyTeam.png')] rounded-lg w-[300px] lg:w-[400px]"></div>
+          <div className="flex-none bg-no-repeat h-96 bg-center bg-contain bg-[url('/static/images/Team/aurelineTeam.png')] rounded-lg w-[300px] lg:w-[400px]"></div>
+          <div className="flex-none bg-no-repeat h-96 bg-center bg-contain bg-[url('/static/images/Team/devStr0keTeam.png')] rounded-lg w-[300px] lg:w-[400px]"></div>
+          <div className="flex-none bg-no-repeat h-96 bg-center bg-contain bg-[url('/static/images/Team/shanTeam.png')] rounded-lg w-[300px] lg:w-[400px]"></div>
+          <div className="flex-none bg-no-repeat h-96 bg-center bg-contain bg-[url('/static/images/Team/matthiasTeam.png')] rounded-lg w-[300px] lg:w-[400px]"></div>
+          <div className="flex-none bg-no-repeat h-96 bg-center bg-contain bg-[url('/static/images/Team/sajuloTeam.png')] rounded-lg w-[300px] lg:w-[400px]"></div>
+          <div className="flex-none bg-no-repeat h-96 bg-center bg-contain bg-[url('/static/images/Team/gabinouxTeam.png')] rounded-lg w-[300px] lg:w-[400px]"></div>
         </div>
       </div>
     </>
