@@ -25,3 +25,11 @@ export interface DispenserStore extends DispenserObject {
     setLoading: (_loading: boolean) => void
     setDispenser: (_dispenser: DispenserObject) => void
 }
+
+export enum BatchOrNot {
+    SuiTime,
+    SuiSupply,
+    CoinTime,
+    CoinSupply,
+    Closed,
+}
