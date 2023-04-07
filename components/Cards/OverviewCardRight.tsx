@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, ReactNode } from 'react';
+import useOnScroll from '../../hooks/useOnScroll';
 interface Props {
   sloganRight?: ReactNode;
   sloganLeft?: ReactNode;
@@ -15,56 +16,18 @@ export const OverviewCardRight = ({
   text,
   ...props
 }: Props) => {
-  const element = useRef(null);
-  const [isAnimated, setIsAnimated] = useState(false);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsAnimated(true);
-        } else {
-          setIsAnimated(false);
-        }
-      });
-    });
+  const ref = useRef(null);
+  const scale = useOnScroll(ref);
 
-    if (element.current) {
-      observer.observe(element.current);
-    }
-
-    return () => {
-      if (element.current) {
-        observer.unobserve(element.current);
-      }
-    };
-  }, []);
-
-  if (!isAnimated) {
-    return (
-      <>
-        <div ref={element} className="h-[100vh]">
-          <div className="z-20 absolute h-[100vh] bg-transparent w-full flex justify-end lg:pl-[35vw] lg:pr-16 sm:pr-14 sm:pl-[20vw] transform scale-[0.5]">
-            <div className="bg-no-repeat bg-left bg-cover bg-[url('/static/images/HeroLab.png')] lg:rounded-lg w-full"></div>
-          </div>
-          <div className="z-20 relative h-[15vh] w-full flex justify-start lg:pl-16 lg:pr-[15vw]">
-            <div className="w-full textBoxShadow text-white text-8xl font-semibold py-3 saira flex justify-end uppercase transform scale-[0] translate-x-0">
-              Building the future of Web3
-            </div>
-          </div>
-          <div className="z-20 relative h-[15vh] w-full flex justify-start lg:pl-16 lg:pr-[15vw]">
-            <div className="w-full textBoxShadow text-white text-8xl font-semibold py-3 saira flex justify-start uppercase transform scale-[0]">
-              The Vision
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
-
+  
   return (
     <>
-      <div ref={element} className="h-[100vh]">
+      <div 
+        ref={ref}
+        style={{ transform: `scale(${scale})`, transition: 'transform 0s' }} 
+        className='h-[100vh]'
+      >
         <div className="z-20 absolute h-[100vh] bg-transparent w-full flex justify-end lg:pr-36 lg:pl-[35vw] sm:pr-14 sm:pl-[20vw] animate-imageTransition">
           <div className="bg-no-repeat bg-center bg-cover bg-[url('/static/images/HeroHologram.png')] lg:rounded-lg w-full">
             <div className='h-[100vh] w-full flex justify-end text-right'>

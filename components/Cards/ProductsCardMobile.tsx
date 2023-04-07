@@ -1,13 +1,18 @@
 import React, { useEffect, useState, useRef, ReactNode } from 'react';
 import Image from 'next/image';
+import { Conditional } from '../Conditional/Conditional';
+import useOnScroll from '../../hooks/useOnScroll';
+import Link from 'next/link';
 interface Props {
   // any props that come into the component
   title?: ReactNode;
   text?: ReactNode;
   imageClass?: ReactNode;
   buttonText?: ReactNode;
-  buttonHref?: ReactNode;
+  buttonHref?: string | undefined;
   backGroundImageClass?: ReactNode;
+  external: boolean;
+  insider: boolean;
 }
 export const ProductsCardMobile = ({
   title,
@@ -16,41 +21,23 @@ export const ProductsCardMobile = ({
   buttonText,
   buttonHref,
   backGroundImageClass,
+  external,
+  insider,
   ...props
 }: Props) => {
   const [isClick, setisClick] = useState(false);
   const [isAnimated, setIsAnimated] = useState(false);
-  const element = useRef(null);
+  const ref = useRef(null);
+  const scale = useOnScroll(ref);
   const toggleClass = () => {
     setisClick(!isClick);
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsAnimated(true);
-        } else {
-          setIsAnimated(false);
-        }
-      });
-    });
-
-    if (element.current) {
-      observer.observe(element.current);
-    }
-
-    return () => {
-      if (element.current) {
-        observer.unobserve(element.current);
-      }
-    };
-  }, []);
-
   const hoverClassMainDiv = () => {
     if (isClick) {
       return 'h-[60vh] bg-transparent relative w-[80vw] rounded-lg transition-productCard duration-500 saira';
-    } else return 'h-[60vh] bg-transparent relative w-[65vw] rounded-lg transition-productCard duration-500 saira';
+    } else
+      return 'h-[60vh] bg-transparent relative w-[65vw] rounded-lg transition-productCard duration-500 saira';
   };
 
   const hoverClassBlueDiv = () => {
@@ -86,47 +73,19 @@ export const ProductsCardMobile = ({
     } else return 'hidden';
   };
 
-  if (!isAnimated) {
-    return (
-      <>
-        <div ref={element} className="scale-[0.5] opacity-0">
-          <div className={hoverClassMainDiv()} onClick={toggleClass}>
-            {/* @ts-ignore */}
-            <div className={backGroundImageClass}></div>
-            <div className={hoverClassBlueDiv()}></div>
-            <div className={hoverClassTitle()}>
-              <div className="font-bold text-xl textBoxShadow text-white">{title}</div>
-            </div>
-            <div className={hoverClassArrow()}>
-              <Image src="/static/svg/chevron-down.svg" alt="logoDownlg" width="20" height="20" />
-            </div>
-            <div className={hoverClassText()}>
-              <div className="font-semibold text-md text-center px-4 text-white">{text}</div>
-            </div>
-            <div className={hoverClassButton()}>
-              <div className="w-[45vw] h-[5vh] bg-white rounded-lg flex justify-center items-center cursor-pointer hover:border-2 hover:border-cyan-500">
-                {/* @ts-ignore */}
-                <a target="_blank" href={buttonHref} rel="noreferrer" className="absolute w-[10vw] h-[5vh]"></a>
-                <div className="font-semibold text-cyan-500 text-lg text-center px-4">
-                  {buttonText}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
-
+  
   return (
     <>
-      <div ref={element} className="animate-imageTransition">
+      <div 
+        ref={ref}
+        style={{ transform: `scale(${scale})`, transition: 'transform 0s' }}
+      >
         <div className={hoverClassMainDiv()} onClick={toggleClass}>
           {/* @ts-ignore */}
           <div className={backGroundImageClass}></div>
           <div className={hoverClassBlueDiv()}></div>
           <div className={hoverClassTitle()}>
-            <div className="font-bold text-xl textBoxShadow text-white">{title}</div>
+            <div className="font-bold text-xl text-white">{title}</div>
           </div>
           <div className={hoverClassArrow()}>
             <Image src="/static/svg/chevron-down.svg" alt="logoDownlg" width="20" height="20" />
@@ -136,11 +95,24 @@ export const ProductsCardMobile = ({
           </div>
           <div className={hoverClassButton()}>
             <div className="w-[45vw] h-[5vh] bg-white rounded-lg flex justify-center items-center cursor-pointer hover:border-2 hover:border-cyan-500">
-              {/* @ts-ignore */}
-              <a target="_blank" href={buttonHref} rel="noreferrer" className="absolute w-[10vw] h-[5vh]"></a>
-              <div className="font-semibold text-cyan-500 text-lg text-center px-4">
-                {buttonText}
-              </div>
+              <Conditional showWhen={external}>
+                <a
+                  target="_blank"
+                  href={buttonHref}
+                  rel="noreferrer"
+                  className="absolute w-[10vw] h-[5vh]"
+                ></a>
+                <div className="font-semibold text-cyan-500 text-lg text-center px-4">
+                  {buttonText}
+                </div>
+              </Conditional>
+              <Conditional showWhen={insider}>
+                <Link href={{ pathname: buttonHref }} scroll={true}>
+                  <div className="font-semibold text-cyan-500 text-lg text-center px-4">
+                    {buttonText}
+                  </div>
+                </Link>
+              </Conditional>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import useDeviceSize from '../../hooks/windowHook';
 export const Footer = () => {
   const [windowWidth, windowHeight] = useDeviceSize();
@@ -9,33 +10,6 @@ export const Footer = () => {
     });
   };
 
-  const scrollToOverview = () => {
-    window.scrollTo({
-      top: windowHeight * 2,
-      behavior: 'smooth'
-    });
-  };
-
-  const scrollToProducts = () => {
-    window.scrollTo({
-      top: windowHeight * 6,
-      behavior: 'smooth'
-    });
-  };
-
-  const scrollToRoadmap = () => {
-    window.scrollTo({
-      top: windowHeight * 7 + 70,
-      behavior: 'smooth'
-    });
-  };
-
-  const scrollToTeam = () => {
-    window.scrollTo({
-      top: windowHeight * 8 + 90,
-      behavior: 'smooth'
-    });
-  };
   return (
     <footer
       aria-label="Site Footer"
@@ -43,26 +17,30 @@ export const Footer = () => {
       <div className="grid grid-cols-3">
         <div className="py-8 px-4 lg:px-8">
           <div className="text-black text-sm md:text-lg font-bold uppercase">Explore</div>
-          <div
-            onClick={scrollToOverview}
-            className="text-black text-xs md:text-sm uppercase mt-3 cursor-pointer hover:text-cyan-500">
-            Overview
-          </div>
-          <div
-            onClick={scrollToProducts}
-            className="text-black text-xs md:text-sm uppercase mt-1 cursor-pointer hover:text-cyan-500">
-            Products
-          </div>
-          <div
-            onClick={scrollToRoadmap}
-            className="text-black text-xs md:text-sm uppercase mt-1 cursor-pointer hover:text-cyan-500">
-            Roadmap
-          </div>
-          <div
-            onClick={scrollToTeam}
-            className="text-black text-xs md:text-sm uppercase mt-1 cursor-pointer hover:text-cyan-500">
-            Team
-          </div>
+          <Link href='/#overview' scroll={false}>
+            <div
+              className="text-black text-xs md:text-sm uppercase mt-3 cursor-pointer hover:text-cyan-500">
+              Overview
+            </div>
+          </Link>
+          <Link href='/#products' scroll={false}>
+            <div
+              className="text-black text-xs md:text-sm uppercase mt-1 cursor-pointer hover:text-cyan-500">
+              Products
+            </div>
+          </Link>
+          <Link href='/#roadmap' scroll={false}>
+            <div
+              className="text-black text-xs md:text-sm uppercase mt-1 cursor-pointer hover:text-cyan-500">
+              Roadmap
+            </div>
+          </Link>
+          <Link href='/#team' scroll={false}>
+            <div
+              className="text-black text-xs md:text-sm uppercase mt-1 cursor-pointer hover:text-cyan-500">
+              Team
+            </div>
+          </Link>
         </div>
         <div className="py-16 place-self-center cursor-pointer">
           <Image

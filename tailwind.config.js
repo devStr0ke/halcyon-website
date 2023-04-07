@@ -55,7 +55,7 @@ module.exports = {
         hideBlueBorder: 'hideBlueBorder 0.6s',
         textTransition: 'textTransition 2.2s',
         textTransition2: 'textTransition2 0.8s',
-        imageTransition: 'imageTransition 2.6s',
+        imageTransition: 'imageTransition 1s',
         starBackground: 'starBackground 10s alternate infinite'
       },
       backgroundImage: {
