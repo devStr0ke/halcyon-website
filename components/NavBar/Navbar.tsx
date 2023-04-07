@@ -67,7 +67,7 @@ export const Navbar = () => {
 
   const navBarController = () => {
     if (Math.floor(scrollPosition) > 44) {
-      return 'h-[65px] flex items-center overflow-hidden justify-center z-[800] bg-white relative w-full lg:bg-black lg:mx-44 lg:animate-slidein lg:transition-navBar lg:duration-[900ms] lg:mx-0';
+      return 'h-[65px] flex items-center overflow-hidden justify-center z-[800] bg-white relative w-full lg:bg-black lg:animate-slidein lg:transition-navBar lg:duration-[900ms] lg:mx-0';
     } else {
       return 'h-[65px] flex items-center justify-center overflow-hidden z-[800] bg-white relative w-full lg:mx-24 xl:mx-36 lg:rounded-md lg:animate-slidein lg:transition-navBar lg:duration-[1200ms]';
     }
