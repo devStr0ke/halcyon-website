@@ -1,8 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 html {
-scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 body {
   background: black;
@@ -12,7 +13,8 @@ body {
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-a:active, a:focus {
+a:active,
+a:focus {
   outline: 0;
 }
 
@@ -52,7 +54,7 @@ a:active, a:focus {
 }
 
 .silver {
-  color: #C0C0C0;
+  color: #c0c0c0;
 }
 
 .headerGradient {
@@ -73,18 +75,13 @@ a:active, a:focus {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .textBoxShadow {
-  text-shadow:
-   -1px -1px 0 #06b6d4,  
-    1px -1px 0 #06b6d4,
-    -1px 1px 0 #06b6d4,
-     1px 1px 0 #06b6d4;
+  text-shadow: -1px -1px 0 #06b6d4, 1px -1px 0 #06b6d4, -1px 1px 0 #06b6d4, 1px 1px 0 #06b6d4;
 }
-
 
 a {
   color: inherit;
@@ -94,5 +91,3 @@ a {
 * {
   box-sizing: border-box;
 }
-
-

@@ -51,8 +51,7 @@ export default function App({
   return (
     <SessionContextProvider
       supabaseClient={supabaseClient}
-      initialSession={pageProps.initialSession}
-    >
+      initialSession={pageProps.initialSession}>
       <Navbar />
       <WalletKitProvider>
         <Component {...pageProps} />

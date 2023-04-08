@@ -14,6 +14,7 @@ import {
   getRoleUpdatesForUser
 } from '../../utils/supabase';
 import DispenserStatus from './BatchStatus';
+import { useHandleResult } from '../../backend/dispenser/useHandleResult';
 
 const Dispenser = () => {
   const { currentAccount } = useWalletKit();
@@ -72,10 +73,14 @@ const Dispenser = () => {
     }
   }, [session]);
 
+  const { handleResult, Modal } = useHandleResult();
+
   return (
-    <div className="w-screen h-[150vh] py-40 bg-gray-300 flex flex-col items-center justify-start">
-      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-12">
-        The Dispenser is live on Sui Devnet and Testnet. Double-check both networks before contacting us about any issue. Remember to register your wetlist on Devnet ASAP since it gets reset, but no rush on permanent Testnet!
+    <div className="w-[98vw] h-[150vh] pt-36 bg-gray-300 flex flex-col items-center justify-start">
+      <Modal />
+      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-3">
+        Beware, the obtained NFTs live on Sui devnet, which is frequently reset. This will make you
+        lose your entire wallet! So remember to register your wetlist ASAP.
       </div>
       <div className="w-full h-full flex justify-around">
         <div className="w-2/5">
