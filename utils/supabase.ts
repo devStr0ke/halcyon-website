@@ -1,7 +1,6 @@
-import { createServerComponentSupabaseClient } from '@supabase/auth-helpers-nextjs';
-import { headers, cookies } from 'next/headers';
 import { createClient } from '@supabase/supabase-js';
 import { HalcyonProfile } from '../types/supabaseTypes';
+import { Role } from '../types/suiUser';
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -43,7 +42,7 @@ export async function createHalcyonProfile(
 
 export async function updateIsWetlisted(userId: string, isWetlisted: boolean) {
   try {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('halcyon_profile')
       .update({ is_wetlisted: isWetlisted })
       .eq('id', userId);
@@ -104,14 +103,34 @@ export async function doesRowExist(userId: string): Promise<boolean> {
   }
 }
 
-export async function getRoleUpdatesForUser(userId: string) {
+export async function getRoleUpdatesForUser(userId: string): Promise<Role[]> {
   const { data, error } = await supabase.from('role_updates').select('*').eq('user_id', userId);
-  console.log(data);
 
   if (error) {
     console.error('Error fetching role updates:', error);
-    return null;
+    throw error;
   }
 
-  return data;
+  if (data === null) {
+    throw new Error('No data returned');
+  }
+
+  console.log('roles', data);
+  return data as Role[];
+}
+
+export async function updateRoleClaimed(userId: string, role: string) {
+  try {
+    const { error } = await supabase
+      .from('role_updates')
+      .update({ claimed: true })
+      .eq('user_id', userId)
+      .eq('role', role);
+
+    if (error) {
+      throw error;
+    }
+  } catch (error) {
+    console.error('Error set claimed to role:', error);
+  }
 }

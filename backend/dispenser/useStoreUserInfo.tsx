@@ -2,8 +2,11 @@ import { useConfigStore, useUserStore } from '../../store/store';
 import { NftClient } from '@originbyte/js-sdk';
 import { BCS, getSuiMoveConfig, BcsWriter } from '@mysten/bcs';
 import { useEffect } from 'react';
-import { parseDynamicDomains, NftClient as NClient, ArtNft } from '../../originbyte-js-sdk/src';
+import { NftClient as NClient, ArtNft } from '../../originbyte-js-sdk/src';
 import { DispenserStore } from '../../types/suiDispenser';
+import { getIsWetlisted, getRoleUpdatesForUser } from '../../utils/supabase';
+import useAuth from '../../hooks/useAuth';
+import { Role } from '../../types/suiUser';
 
 // hook permettant de fetch et store avec Zustand
 // toutes les infos liées à l'utilisateur
@@ -14,8 +17,10 @@ import { DispenserStore } from '../../types/suiDispenser';
 const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore) => {
   const bcs = new BCS(getSuiMoveConfig());
   const client = new NftClient();
-  const {setUser, setLoading} = useUserStore((state) => state);
+  const { setUser, setLoading } = useUserStore((state) => state);
   const config = useConfigStore();
+
+  const { session } = useAuth();
 
   const computeMagicNumber = (addr: string): number => {
     let bcsWriter: BcsWriter = bcs.ser(BCS.ADDRESS, addr);
@@ -24,9 +29,9 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
   };
 
   const getNftsForAddress = async (addr: string) => {
-    const nclient = new NClient(); 
+    const nclient = new NClient();
     const nfts = await nclient.getNftsForAddress(addr);
-    
+
     return nfts;
   };
 
@@ -52,11 +57,14 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
 
   const filterTicketIds = async (nfts: ArtNft[], dispenser: DispenserStore): Promise<string[]> => {
     const filtered = nfts.filter((nft) => {
-      if (nft.collectionPackageObjectId == `0x${dispenser.testNft.generics.substring(0, 64)}` && nft.name == dispenser.testNftName) {
+      if (
+        nft.collectionPackageObjectId == `0x${dispenser.testNft.generics.substring(0, 64)}` &&
+        nft.name == dispenser.testNftName
+      ) {
         return nft;
       }
     });
-    
+
     const mapped = filtered.map((nft) => nft.id);
     return mapped;
   };
@@ -64,7 +72,7 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
   const getTestCoinIds = async (addr: string, dispenser: DispenserStore) => {
     const testCoins = await config.provider.getCoins({
       owner: addr,
-      coinType: `0x${dispenser.testCoin.generics}`,
+      coinType: `0x${dispenser.testCoin.generics}`
     });
     const testCoinIds = testCoins.data.map((coin) => coin.coinObjectId);
     return testCoinIds;
@@ -75,14 +83,24 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
       try {
         setLoading(true);
         if (dispenser.testCoin.generics) {
-          
           const magicNumber = computeMagicNumber(addr);
           const nfts = await getNftsForAddress(addr);
           const filledBottleIds = await filterFilledIds(nfts);
           const emptyBottleIds = await filterEmptyIds(nfts);
           const ticketIds = await filterTicketIds(nfts, dispenser);
           const testCoinIds = await getTestCoinIds(addr, dispenser);
-          
+
+          let roles: Role[] = [];
+          let isWetlisted = null;
+
+          if (session) {
+            if (session.user.identities)
+              roles = await getRoleUpdatesForUser(session.user.identities[0].id);
+            isWetlisted = await getIsWetlisted(session.user.id);
+          } else {
+            console.log('session not');
+          }
+
           setUser({
             address: addr,
             magicNumber,
@@ -90,10 +108,12 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
             filledBottleIds,
             emptyBottleIds,
             ticketIds,
+            roles,
+            isWetlisted
           });
         }
       } catch (error) {
-        console.error(error)
+        console.error(error);
       } finally {
         setLoading(false);
       }

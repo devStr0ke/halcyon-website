@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BatchOrNot, DispenserStore } from '../../types/suiDispenser';
 import { UserStore } from '../../types/suiUser';
-import { Config } from '../../types/config';
 
 export const useGetTime = (timestamp: number) => {
   const { days, hours, minutes, seconds } = msToDayHourMinSec(timestamp);

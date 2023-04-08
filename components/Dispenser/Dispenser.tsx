@@ -1,36 +1,21 @@
 import { useWalletKit } from '@mysten/wallet-kit';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispenserStore, useUserStore } from '../../store/store';
 import Connect from '../Connect/Connect';
 import DispenserDrawing from './DispenserDrawing';
 
 import LoginDiscord from '../LoginDiscord/LoginDiscord';
 import useAuth, { signOut } from '../../hooks/useAuth';
-import {
-  createHalcyonProfile,
-  updateIsWetlisted,
-  doesRowExist,
-  getIsWetlisted,
-  getRoleUpdatesForUser
-} from '../../utils/supabase';
+import { createHalcyonProfile, doesRowExist } from '../../utils/supabase';
 import DispenserStatus from './BatchStatus';
 import { useHandleResult } from '../../backend/dispenser/useHandleResult';
 
 const Dispenser = () => {
   const { currentAccount } = useWalletKit();
   const { session } = useAuth();
+  const { Modal } = useHandleResult();
 
-  const [isWetlisted, setIsWetlisted] = useState(false);
-  const [roles, setRoles] = useState<{ role: string; claimed: boolean; enthusiast: boolean }[]>([]);
-
-  //useStoreContractInfo();
-  //const { isUserInfoFetching } = useStoreUserInfo(currentAccount);
-
-  /*useEffect(() => {
-    console.log('isUserInfoFetching', isUserInfoFetching);
-  }, [isUserInfoFetching]);*/
-
-  const { testCoinIds, filledBottleIds, emptyBottleIds, ticketIds, loading } = useUserStore(
+  const { roles, filledBottleIds, emptyBottleIds, ticketIds, loading, isWetlisted } = useUserStore(
     (state) => state
   );
   const dispenser = useDispenserStore((state) => state);
@@ -49,31 +34,10 @@ const Dispenser = () => {
   }, [currentAccount, session]);
 
   useEffect(() => {
-    async function isWetlisted(userId: string) {
-      const ret = await getIsWetlisted(userId);
-      if (ret === true) setIsWetlisted(true);
-      else setIsWetlisted(false);
-    }
-    if (session) {
-      isWetlisted(session.user.id);
-    }
-  }, [session]);
-
-  useEffect(() => {
-    async function fetchRoles(useId: string) {
-      const roles = await getRoleUpdatesForUser(useId);
+    if (roles) {
       console.log(roles);
-      if (roles)
-        setRoles(
-          roles.map((e: any) => ({ role: e.role, claimed: e.claimed, enthusiast: e.enthusiast }))
-        );
     }
-    if (session) {
-      fetchRoles(session.user.user_metadata.provider_id);
-    }
-  }, [session]);
-
-  const { handleResult, Modal } = useHandleResult();
+  }, [roles]);
 
   return (
     <div className="w-[98vw] h-[150vh] pt-36 bg-gray-300 flex flex-col items-center justify-start">
@@ -84,7 +48,7 @@ const Dispenser = () => {
       </div>
       <div className="w-full h-full flex justify-around">
         <div className="w-2/5">
-          <DispenserDrawing roles={roles} />
+          <DispenserDrawing />
         </div>
 
         <div className="w-2/5">
@@ -159,26 +123,12 @@ const Dispenser = () => {
                   {`You have ${emptyBottleIds.length} empty bottles to recycle`}
                 </div>
               </div>
-
-              <div className="w-full flex justify-center">
-                {isWetlisted ? (
-                  <div className="bg-green-300 border border-green-400 rounded-xl mx-4 p-1 px-3">
-                    wetlisted
-                  </div>
-                ) : (
-                  <button
-                    onClick={async () => {
-                      console.log('click');
-                      // TODO: burn
-                      await updateIsWetlisted(session.user.id, true);
-                      setIsWetlisted(true);
-                    }}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Burn filled bottle & register wetlist
-                  </button>
-                )}
-              </div>
             </>
+          )}
+          {isWetlisted && (
+            <div className="bg-green-300 mx-auto w-fit border border-green-400 rounded-xl mx-4 p-1 px-3">
+              You are wetlisted!
+            </div>
           )}
         </div>
       </div>
