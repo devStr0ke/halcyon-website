@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic';
 import { supabase } from '../utils/supabase';
 import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
 import { useDispenserStore, useUserStore } from '../store/store';
+import useStoreConfig from '../backend/dispenser/useStoreConfig';
 
 // pour forcer dynamiquement le refresh des roles par exemple
 //export const dynamic = 'force-dynamic';
@@ -47,6 +48,7 @@ export async function getServerSideProps() {
 }
 
 export default function Dispenser({ data }: { data: any }) {
+  useStoreConfig("devnet");
   const { currentAccount } = useWalletKit();
   useStoreContractInfo();
   const dispenser = useDispenserStore();

@@ -1,6 +1,5 @@
 import { useWalletKit } from '@mysten/wallet-kit';
-import { DISPENSER, PACKAGE_ID } from './config';
-import { useUserStore, useDispenserStore } from '../../store/store';
+import { useUserStore, useDispenserStore, useConfigStore } from '../../store/store';
 import { TransactionBlock } from '@mysten/sui.js';
 
 // hook donnant accès à 6 fonctions permettant d'envoyer les 6 tx au sc
@@ -9,6 +8,7 @@ import { TransactionBlock } from '@mysten/sui.js';
 
 export const useSendTx = () => {
   const { signAndExecuteTransactionBlock } = useWalletKit();
+  const config = useConfigStore();
 
   const { testCoinIds, ticketIds, emptyBottleIds, filledBottleIds, magicNumber } = useUserStore(
     (state) => state
@@ -19,10 +19,10 @@ export const useSendTx = () => {
     try {
       const tx = new TransactionBlock();
       tx.moveCall({
-        target: `${PACKAGE_ID}::bottles::buy_random_bottle`,
+        target: `${config.package_id}::bottles::buy_random_bottle`,
         typeArguments: [],
         arguments: [
-          tx.object(DISPENSER),
+          tx.object(config.dispenser),
           tx.gas,
           tx.object('0x0000000000000000000000000000000000000000000000000000000000000006')
         ]
@@ -54,10 +54,10 @@ export const useSendTx = () => {
 
       tx.mergeCoins(tx.object(testCoinIds[0]), toMerge);
       tx.moveCall({
-        target: `${PACKAGE_ID}::bottles::buy_random_bottle_with_coins`,
+        target: `${config.package_id}::bottles::buy_random_bottle_with_coins`,
         typeArguments: [`0x${testCoin.generics}`],
         arguments: [
-          tx.object(DISPENSER),
+          tx.object(config.dispenser),
           tx.object(testCoinIds[0]),
           tx.object('0x0000000000000000000000000000000000000000000000000000000000000006')
         ]
@@ -82,9 +82,9 @@ export const useSendTx = () => {
     try {
       const tx = new TransactionBlock();
       tx.moveCall({
-        target: `${PACKAGE_ID}::bottles::swap_nft`,
+        target: `${config.package_id}::bottles::swap_nft`,
         typeArguments: [`0x${testNft.generics}`],
-        arguments: [tx.object(DISPENSER), tx.object(ticketIds[0])]
+        arguments: [tx.object(config.dispenser), tx.object(ticketIds[0])]
       });
 
       tx.setGasBudget(10000);
@@ -106,10 +106,10 @@ export const useSendTx = () => {
     try {
       const tx = new TransactionBlock();
       tx.moveCall({
-        target: `${PACKAGE_ID}::bottles::recycle`,
+        target: `${config.package_id}::bottles::recycle`,
         typeArguments: [],
         arguments: [
-          tx.object(DISPENSER),
+          tx.object(config.dispenser),
           tx.pure(emptyBottleIds[0]),
           tx.pure(emptyBottleIds[1]),
           tx.pure(emptyBottleIds[2]),
@@ -137,7 +137,7 @@ export const useSendTx = () => {
     try {
       const tx = new TransactionBlock();
       tx.moveCall({
-        target: `${PACKAGE_ID}::bottles::register_wetlist`,
+        target: `${config.package_id}::bottles::register_wetlist`,
         typeArguments: [],
         arguments: [tx.object(filledBottleIds[0])]
       });
@@ -161,9 +161,9 @@ export const useSendTx = () => {
     try {
       const tx = new TransactionBlock();
       tx.moveCall({
-        target: `${PACKAGE_ID}::bottles::claim_random_bottle`,
+        target: `${config.package_id}::bottles::claim_random_bottle`,
         typeArguments: [],
-        arguments: [tx.object(DISPENSER), tx.pure(magicNumber)]
+        arguments: [tx.object(config.dispenser), tx.pure(magicNumber)]
       });
 
       tx.setGasBudget(10000);
@@ -185,9 +185,9 @@ export const useSendTx = () => {
     try {
       const tx = new TransactionBlock();
       tx.moveCall({
-        target: `${PACKAGE_ID}::bottles::claim_filled_bottle`,
+        target: `${config.package_id}::bottles::claim_filled_bottle`,
         typeArguments: [],
-        arguments: [tx.object(DISPENSER), tx.pure(magicNumber)]
+        arguments: [tx.object(config.dispenser), tx.pure(magicNumber)]
       });
 
       tx.setGasBudget(10000);

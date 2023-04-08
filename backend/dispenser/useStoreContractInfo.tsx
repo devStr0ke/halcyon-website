@@ -1,5 +1,4 @@
-import { provider, DISPENSER } from './config';
-import { useDispenserStore } from '../../store/store';
+import { useConfigStore, useDispenserStore } from '../../store/store';
 import { useEffect } from 'react';
 
 // fetch 2 objets Sui contenant des infos sur le smart contract
@@ -11,13 +10,14 @@ import { useEffect } from 'react';
 
 const useStoreContractInfo = async () => {
   const {setDispenser, setLoading} = useDispenserStore((state) => state);
+  const config = useConfigStore();
 
   useEffect(() => {
     const fetchStoreContractInfo = async () => {
       try {
         setLoading(true)
-        const object = await provider.getObject({
-          id: DISPENSER,
+        const object = await config.provider.getObject({
+          id: config.dispenser,
           options: { showContent: true }
         });
         const dispenser = (object as any).data?.content.fields
@@ -54,7 +54,7 @@ const useStoreContractInfo = async () => {
     };
 
     fetchStoreContractInfo();
-  }, [setDispenser, setLoading]);
+  }, [setDispenser, setLoading, config]);
 };
 
 export default useStoreContractInfo;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BatchOrNot, DispenserStore } from "../../types/suiDispenser"
 import { UserStore } from "../../types/suiUser";
-import { PACKAGE_ID } from "./config";
+import { Config } from "../../types/config";
 
 export const useGetTime = (timestamp: number) => {
     const {days, hours, minutes, seconds} = msToDayHourMinSec(timestamp)
@@ -51,31 +51,32 @@ export const msToDayHourMinSec = (timestamp: number) => {
     return {days, hours, minutes, seconds};
 }
 
-export const handleResult = (result: any) => {
-    if (result.effects.status.status !== "success") {
-        // Show error
-
-        console.log(`https://explorer.sui.io/txblock/${result.digest}?network=devnet`);
-        
-        // TODO changer devnet a testnet si on est sur le testnet (ne pas suppr le com)
-    }
-
-    const registeredEvent = result.events.find(
-        (evt: any) => evt.type === `${PACKAGE_ID}::bottles::AddressRegistered`
-    );
-
-    const receivedEvent = result.events.find(
-        (evt: any) => evt.type === `${PACKAGE_ID}::bottles::RandomReceived`
-    )
-    if (registeredEvent) {
-        console.log("Wetlist Registered");
-        // register wl in supabase
-    } else if (receivedEvent.parsedJson.is_filled) {
-        console.log("Filled Bottle Received!");
-        // show modal or else of Filled Bottle
+export const handleResult = (result: any, config: Config) => {
+    if (!result) {
+        console.log("Tx canceled");
     } else {
-        console.log("Empty Bottle Received!");
-        // show modal or else of Empty Bottle
+        if (result.effects.status.status !== "success") {
+            // Show error
+            console.log(`https://explorer.sui.io/txblock/${result.digest}?network=${config.net}`);
+        } else {
+            const registeredEvent = result.events.find(
+                (evt: any) => evt.type === `${config.package_id}::bottles::AddressRegistered`
+            );
+        
+            const receivedEvent = result.events.find(
+                (evt: any) => evt.type === `${config.package_id}::bottles::RandomReceived`
+            )
+            if (registeredEvent) {
+                console.log("Wetlist Registered");
+                // register wl in supabase
+            } else if (receivedEvent.parsedJson.is_filled) {
+                console.log("Filled Bottle Received!");
+                // show modal or else of Filled Bottle
+            } else {
+                console.log("Empty Bottle Received!");
+                // show modal or else of Empty Bottle
+            }
+        }
     }
 }
 

@@ -1,4 +1,4 @@
-import { useUserStore, useDispenserStore } from '../../store/store';
+import { useUserStore, useDispenserStore, useConfigStore } from '../../store/store';
 import { useSendTx } from '../../backend/dispenser/useSendTx';
 import { BatchOrNot, DispenserStore } from '../../types/suiDispenser';
 import { getBatchOrNot, handleResult } from '../../backend/dispenser/dispenserStatus';
@@ -9,6 +9,7 @@ interface DispenserDrawingProps {
 
 const DispenserDrawing: React.FC<DispenserDrawingProps> = ({ roles }) => {
   // imports
+  const config = useConfigStore((state) => state);
   const user = useUserStore((state) => state);
   const { testCoinIds, filledBottleIds, emptyBottleIds, ticketIds } = user;
   const dispenser = useDispenserStore((state) => state);
@@ -27,21 +28,21 @@ const DispenserDrawing: React.FC<DispenserDrawingProps> = ({ roles }) => {
     const batchOrNot = getBatchOrNot(dispenser, user);
     if (batchOrNot === BatchOrNot.SuiSupply || batchOrNot === BatchOrNot.SuiTime) {
       const result = await buyRandomBottle();
-      handleResult(result);
+      handleResult(result, config);
     } else {
       const result = await buyRandomBottleWithCoins();
-      handleResult(result);
+      handleResult(result, config);
     }
   }
 
   const handleRecycle = async () => {
     const result = await recycle();
-    handleResult(result);
+    handleResult(result, config);
   }
 
   const handleSwap = async () => {
     const result = await swapNft();
-    handleResult(result);
+    handleResult(result, config);
   }
 
   const handleClaim = async () => {
@@ -50,20 +51,20 @@ const DispenserDrawing: React.FC<DispenserDrawingProps> = ({ roles }) => {
         .length > 0
     ) {
       const result = await claimFilledBottle();
-      handleResult(result);
+      handleResult(result, config);
     }
     else if (
       roles.filter((r) => r.enthusiast === true).filter((r) => r.claimed === false)
         .length > 0
     ) {
       const result = await claimRandomBottle();
-      handleResult(result);
+      handleResult(result, config);
     }
   }
 
   const handleRegister = async () => {
     const result = await register();
-    handleResult(result);
+    handleResult(result, config);
   }
 
   return (

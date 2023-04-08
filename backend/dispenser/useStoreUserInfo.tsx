@@ -1,5 +1,4 @@
-import { PACKAGE_ID, provider } from './config';
-import { useUserStore } from '../../store/store';
+import { useConfigStore, useUserStore } from '../../store/store';
 import { NftClient } from '@originbyte/js-sdk';
 import { BCS, getSuiMoveConfig, BcsWriter } from '@mysten/bcs';
 import { useEffect } from 'react';
@@ -12,65 +11,64 @@ import { DispenserStore } from '../../types/suiDispenser';
 //
 // import { useUserStore } from "./store/store"
 // const coinObjectId = useUserStore((state) => state.coinObjectId);
-
-const bcs = new BCS(getSuiMoveConfig());
-const client = new NftClient();
-
-const computeMagicNumber = (addr: string): number => {
-  let bcsWriter: BcsWriter = bcs.ser(BCS.ADDRESS, addr);
-  let bytes: Uint8Array = bcsWriter.toBytes();
-  return bytes[30] * bytes[31];
-};
-
-const getNftsForAddress = async (addr: string) => {
-  const nclient = new NClient(); 
-  const nfts = await nclient.getNftsForAddress(addr);
-  
-  return nfts;
-};
-
-const filterFilledIds = async (nfts: ArtNft[]): Promise<string[]> => {
-  const filtered = nfts.filter((nft) => {
-    if (nft.collectionPackageObjectId == PACKAGE_ID && nft.name == 'Filled Bottle') {
-      return nft;
-    }
-  });
-  const mapped = filtered.map((nft) => nft.id);
-  return mapped;
-};
-
-const filterEmptyIds = async (nfts: ArtNft[]): Promise<string[]> => {
-  const filtered = nfts.filter((nft) => {
-    if (nft.collectionPackageObjectId == PACKAGE_ID && nft.name == 'Empty Bottle') {
-      return nft;
-    }
-  });
-  const mapped = filtered.map((nft) => nft.id);
-  return mapped;
-};
-
-const filterTicketIds = async (nfts: ArtNft[], dispenser: DispenserStore): Promise<string[]> => {
-  const filtered = nfts.filter((nft) => {
-    if (nft.collectionPackageObjectId == `0x${dispenser.testNft.generics.substring(0, 64)}` && nft.name == dispenser.testNftName) {
-      return nft;
-    }
-  });
-  
-  const mapped = filtered.map((nft) => nft.id);
-  return mapped;
-};
-
-const getTestCoinIds = async (addr: string, dispenser: DispenserStore) => {
-  const testCoins = await provider.getCoins({
-    owner: addr,
-    coinType: `0x${dispenser.testCoin.generics}`,
-  });
-  const testCoinIds = testCoins.data.map((coin) => coin.coinObjectId);
-  return testCoinIds;
-};
-
 const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore) => {
+  const bcs = new BCS(getSuiMoveConfig());
+  const client = new NftClient();
   const {setUser, setLoading} = useUserStore((state) => state);
+  const config = useConfigStore();
+
+  const computeMagicNumber = (addr: string): number => {
+    let bcsWriter: BcsWriter = bcs.ser(BCS.ADDRESS, addr);
+    let bytes: Uint8Array = bcsWriter.toBytes();
+    return bytes[30] * bytes[31];
+  };
+
+  const getNftsForAddress = async (addr: string) => {
+    const nclient = new NClient(); 
+    const nfts = await nclient.getNftsForAddress(addr);
+    
+    return nfts;
+  };
+
+  const filterFilledIds = async (nfts: ArtNft[]): Promise<string[]> => {
+    const filtered = nfts.filter((nft) => {
+      if (nft.collectionPackageObjectId == config.package_id && nft.name == 'Filled Bottle') {
+        return nft;
+      }
+    });
+    const mapped = filtered.map((nft) => nft.id);
+    return mapped;
+  };
+
+  const filterEmptyIds = async (nfts: ArtNft[]): Promise<string[]> => {
+    const filtered = nfts.filter((nft) => {
+      if (nft.collectionPackageObjectId == config.package_id && nft.name == 'Empty Bottle') {
+        return nft;
+      }
+    });
+    const mapped = filtered.map((nft) => nft.id);
+    return mapped;
+  };
+
+  const filterTicketIds = async (nfts: ArtNft[], dispenser: DispenserStore): Promise<string[]> => {
+    const filtered = nfts.filter((nft) => {
+      if (nft.collectionPackageObjectId == `0x${dispenser.testNft.generics.substring(0, 64)}` && nft.name == dispenser.testNftName) {
+        return nft;
+      }
+    });
+    
+    const mapped = filtered.map((nft) => nft.id);
+    return mapped;
+  };
+
+  const getTestCoinIds = async (addr: string, dispenser: DispenserStore) => {
+    const testCoins = await config.provider.getCoins({
+      owner: addr,
+      coinType: `0x${dispenser.testCoin.generics}`,
+    });
+    const testCoinIds = testCoins.data.map((coin) => coin.coinObjectId);
+    return testCoinIds;
+  };
 
   useEffect(() => {
     const fetchStoreUserInfo = async (addr: string, dispenser: DispenserStore) => {
