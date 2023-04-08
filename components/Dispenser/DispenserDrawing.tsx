@@ -1,8 +1,7 @@
 import { useUserStore, useDispenserStore } from '../../store/store';
 import { useSendTx } from '../../backend/dispenser/useSendTx';
 import { BatchOrNot, DispenserStore } from '../../types/suiDispenser';
-import { getBatchOrNot } from '../../backend/dispenser/dispenserStatus';
-import { handleResult } from '../../backend/dispenser/dispenserStatus';
+import { getBatchOrNot, handleResult } from '../../backend/dispenser/dispenserStatus';
 
 interface DispenserDrawingProps {
   roles: { role: string; claimed: boolean; enthusiast: boolean }[];

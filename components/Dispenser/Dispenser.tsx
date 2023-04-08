@@ -29,10 +29,10 @@ const Dispenser = () => {
     console.log('isUserInfoFetching', isUserInfoFetching);
   }, [isUserInfoFetching]);*/
 
-  const { testCoinIds, filledBottleIds, emptyBottleIds, ticketIds } = useUserStore(
+  const { testCoinIds, filledBottleIds, emptyBottleIds, ticketIds, loading } = useUserStore(
     (state) => state
   );
-  const { active, price, supply, balance, left } = useDispenserStore((state) => state);
+  const dispenser = useDispenserStore((state) => state);
 
   useEffect(() => {
     async function createProfile() {
@@ -64,7 +64,7 @@ const Dispenser = () => {
       console.log(roles);
       if (roles)
         setRoles(
-          roles.map((e) => ({ role: e.role, claimed: e.claimed, enthusiast: e.enthusiast }))
+          roles.map((e: any) => ({ role: e.role, claimed: e.claimed, enthusiast: e.enthusiast }))
         );
     }
     if (session) {
@@ -84,7 +84,7 @@ const Dispenser = () => {
         </div>
 
         <div className="w-2/5">
-          <DispenserStatus />
+          {!loading && !dispenser.loading && <DispenserStatus />}
           <div className="text-center py-12 bg-cyan-100 border border-cyan-400 rounded-xl my-4">
             How does it works?
           </div>

@@ -25,6 +25,7 @@ const computeMagicNumber = (addr: string): number => {
 const getNftsForAddress = async (addr: string) => {
   const nclient = new NClient(); 
   const nfts = await nclient.getNftsForAddress(addr);
+  
   return nfts;
 };
 
@@ -50,10 +51,11 @@ const filterEmptyIds = async (nfts: ArtNft[]): Promise<string[]> => {
 
 const filterTicketIds = async (nfts: ArtNft[], dispenser: DispenserStore): Promise<string[]> => {
   const filtered = nfts.filter((nft) => {
-    if (nft.collectionPackageObjectId == dispenser.testNft.packageId && nft.name == dispenser.testNftName) {
+    if (nft.collectionPackageObjectId == `0x${dispenser.testNft.generics.substring(0, 64)}` && nft.name == dispenser.testNftName) {
       return nft;
     }
   });
+  
   const mapped = filtered.map((nft) => nft.id);
   return mapped;
 };
@@ -67,7 +69,7 @@ const getTestCoinIds = async (addr: string, dispenser: DispenserStore) => {
   return testCoinIds;
 };
 
-const useStoreUserInfo = (address: string | null, dispenser: DispenserStore) => {
+const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore) => {
   const {setUser, setLoading} = useUserStore((state) => state);
 
   useEffect(() => {

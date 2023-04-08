@@ -59,11 +59,18 @@ export const handleResult = (result: any) => {
         
         // TODO changer devnet a testnet si on est sur le testnet (ne pas suppr le com)
     }
+
+    const registeredEvent = result.events.find(
+        (evt: any) => evt.type === `${PACKAGE_ID}::bottles::AddressRegistered`
+    );
+
     const receivedEvent = result.events.find(
         (evt: any) => evt.type === `${PACKAGE_ID}::bottles::RandomReceived`
     )
-    
-    if (receivedEvent.parsedJson.is_filled) {
+    if (registeredEvent) {
+        console.log("Wetlist Registered");
+        // register wl in supabase
+    } else if (receivedEvent.parsedJson.is_filled) {
         console.log("Filled Bottle Received!");
         // show modal or else of Filled Bottle
     } else {

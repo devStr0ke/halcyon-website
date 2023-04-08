@@ -57,7 +57,7 @@ const ART_NFT_REGEX =
 
 export const ArtNftParser: SuiObjectParser<ArtNftRaw> = {
   parser: (_) => {
-    const { owner, content, display } = _.data;
+    const { owner, content } = _.data;
 
     if (content && "fields" in content) {
       const matches = _.data.type.match(ART_NFT_REGEX);
@@ -82,8 +82,8 @@ export const ArtNftParser: SuiObjectParser<ArtNftRaw> = {
         rawResponse: _,
         logicalOwner: content.fields.logical_owner,
         bagId: content.fields.bag?.fields.id.id,
-        url: display?.url,
-        name: display?.name,
+        url: content.fields.url,
+        name: content.fields.name,
       };
 
       if (!result.name || !result.url) {

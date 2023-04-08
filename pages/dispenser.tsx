@@ -5,7 +5,7 @@ import { formatAddress } from '@mysten/sui.js';
 
 // import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
 import useStoreUserInfo from '../backend/dispenser/useStoreUserInfo';
-import { default as DispenserComp } from '../components/Dispenser/Dispenser';
+import DispenserComp from '../components/Dispenser/Dispenser';
 import LoadingPage from '../components/Loading/LoadingPage';
 import dynamic from 'next/dynamic';
 import { supabase } from '../utils/supabase';
@@ -47,9 +47,10 @@ export async function getServerSideProps() {
 }
 
 export default function Dispenser({ data }: { data: any }) {
+  const { currentAccount } = useWalletKit();
   useStoreContractInfo();
   const dispenser = useDispenserStore();
-  useStoreUserInfo("0x4a3af36df1b20c8d79b31e50c07686c70d63310e4f9fff8d9f8b7f4eb703a2fd", dispenser);
+  useStoreUserInfo(currentAccount?.address, dispenser);
   const user = useUserStore();
   console.log("USER STORE: ", user);
   console.log("DISPENSER STORE: ", dispenser);
@@ -57,9 +58,7 @@ export default function Dispenser({ data }: { data: any }) {
   console.log("USER LOADING??: ", user.loading);
 
   return (
-    <WalletKitProvider>
       <DispenserComp />
-    </WalletKitProvider>
   );
 }
 

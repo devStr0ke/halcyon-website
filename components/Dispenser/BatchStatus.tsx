@@ -14,7 +14,7 @@ const DispenserStatus = () => {
     
     let ms;
     if (batchOrNot === BatchOrNot.SuiTime || batchOrNot === BatchOrNot.CoinTime) {
-        ms = endTimestamp - timestamp
+        ms = endTimestamp - timestamp        
     } else {
         ms = timestamp - startTimestamp
     }
@@ -25,7 +25,6 @@ const DispenserStatus = () => {
     if (batchOrNot === BatchOrNot.SuiSupply) {
         headline = `Mint a Random Bottle for ${price/1000000000} $SUI, hurry up there are only ${left} left!`
     } else if (batchOrNot === BatchOrNot.SuiTime) {
-        
         headline = `Mint a Random Bottle for ${price/1000000000} $SUI, hurry up there is only ${days} day(s), ${hours} hour(s), ${minutes} minute(s), ${seconds} second(s) left!`
     } else if (batchOrNot === BatchOrNot.CoinSupply) {
         headline = `Mint a Random Bottle for ${priceInCoins/1000000000} $${coin}, hurry up there are only ${left} left!`
@@ -41,7 +40,7 @@ const DispenserStatus = () => {
         <div>
             {headline}
             <div className="text-blue-500 text-xl">
-                {batchOrNot === BatchOrNot.SuiSupply || batchOrNot === BatchOrNot.CoinSupply && `${left} / ${supply} left`}
+                {(batchOrNot === BatchOrNot.SuiSupply || batchOrNot === BatchOrNot.CoinSupply) && `${left} / ${supply} left`}
             </div>
         </div>
     )

@@ -1,11 +1,23 @@
-import '../styles/globals.css';
+import { useState, useEffect } from 'react';
 import type { AppProps } from 'next/app';
-import { Navbar } from '../components/NavBar/Navbar';
-import { Footer } from '../components/Footer/Footer';
+import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
+
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider, Session } from '@supabase/auth-helpers-react';
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+
+import { Navbar } from '../components/NavBar/Navbar';
+import { Footer } from '../components/Footer/Footer';
+import LoadingPage from '../components/Loading/LoadingPage';
+import '../styles/globals.css';
+
+const WalletKitProvider = dynamic(
+  () => import('@mysten/wallet-kit').then((mod) => mod.WalletKitProvider),
+  {
+    ssr: false,
+    loading: LoadingPage
+  }
+);
 
 export default function App({
   Component,
@@ -42,7 +54,9 @@ export default function App({
       initialSession={pageProps.initialSession}
     >
       <Navbar />
-      <Component {...pageProps} />
+      <WalletKitProvider>
+        <Component {...pageProps} />
+      </WalletKitProvider>
       <Footer />
     </SessionContextProvider>
   );
