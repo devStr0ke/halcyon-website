@@ -8,12 +8,12 @@ import LoginDiscord from '../LoginDiscord/LoginDiscord';
 import useAuth, { signOut } from '../../hooks/useAuth';
 import { createHalcyonProfile, doesRowExist } from '../../utils/supabase';
 import DispenserStatus from './BatchStatus';
-import { useHandleResult } from '../../backend/dispenser/useHandleResult';
+import { useHandleResult } from '../../hooks/useHandleResult';
 
 const Dispenser = () => {
   const { currentAccount } = useWalletKit();
   const { session } = useAuth();
-  const { Modal } = useHandleResult();
+  const { Modal, setShowModal } = useHandleResult();
 
   const { roles, filledBottleIds, emptyBottleIds, ticketIds, loading, isWetlisted } = useUserStore(
     (state) => state
@@ -42,6 +42,7 @@ const Dispenser = () => {
   return (
     <div className="w-[98vw] h-[150vh] pt-36 bg-gray-300 flex flex-col items-center justify-start">
       <Modal />
+      <button onClick={() => setShowModal(true)}>AAAA</button>
       <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-3">
         Beware, the obtained NFTs live on Sui devnet, which is frequently reset. This will make you
         lose your entire wallet! So remember to register your wetlist ASAP.

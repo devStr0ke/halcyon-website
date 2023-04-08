@@ -1,8 +1,8 @@
-import { useState, Fragment } from 'react';
-import { Config } from '../../types/config';
-import { updateIsWetlisted, updateRoleClaimed } from '../../utils/supabase';
-import useAuth from '../../hooks/useAuth';
-import { useUserStore } from '../../store/store';
+import { useState, Fragment, useEffect } from 'react';
+import { Config } from '../types/config';
+import { updateIsWetlisted, updateRoleClaimed } from '../utils/supabase';
+import useAuth from './useAuth';
+import { useUserStore } from '../store/store';
 
 export const useHandleResult = () => {
   const { session } = useAuth();
@@ -51,6 +51,10 @@ export const useHandleResult = () => {
     }
   };
 
+  useEffect(() => {
+    console.log('showmodal', showModal);
+  }, [showModal]);
+
   const handleResultClaimFromDiscord = async (result: any, config: Config, role: string) => {
     if (!result) {
       console.log('Tx canceled');
@@ -90,22 +94,21 @@ export const useHandleResult = () => {
 
   const Modal = () => (
     <>
-      <div
-        className={`absolute inset-0 flex items-center justify-center z-[998] ${
-          showModal ? 'block' : 'hidden'
-        }`}>
-        <div className="bg-white p-6 rounded shadow-xl w-56 z-[999]">
-          <p className="text-sm">{modalContent}</p>
-          <button
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4"
-            onClick={() => closeModal()}>
-            Close Modal
-          </button>
+      {showModal && (
+        <div className={`absolute inset-0 flex items-center justify-center z-[998]`}>
+          <div className="bg-white p-6 rounded shadow-xl w-56 z-[999]">
+            <p className="text-sm">{modalContent}</p>
+            <button
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4"
+              onClick={() => closeModal()}>
+              Close Modal
+            </button>
+          </div>
+          <div className="absolute inset-0 bg-black opacity-50 z-[998]" />
         </div>
-        <div className="absolute inset-0 bg-black opacity-50 z-[998]" />
-      </div>
+      )}
     </>
   );
 
-  return { handleResult, handleResultClaimFromDiscord, Modal };
+  return { handleResult, handleResultClaimFromDiscord, Modal, setShowModal };
 };

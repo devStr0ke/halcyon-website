@@ -2,7 +2,7 @@ import { useUserStore, useDispenserStore, useConfigStore } from '../../store/sto
 import { useSendTx } from '../../backend/dispenser/useSendTx';
 import { BatchOrNot, DispenserStore } from '../../types/suiDispenser';
 import { getBatchOrNot } from '../../backend/dispenser/dispenserStatus';
-import { useHandleResult } from '../../backend/dispenser/useHandleResult';
+import { useHandleResult } from '../../hooks/useHandleResult';
 import { useMemo } from 'react';
 
 const DispenserDrawing = () => {
