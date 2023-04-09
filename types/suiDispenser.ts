@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+import { Status } from './fetching';
+
 export interface StructTag {
   packageId: string;
   moduleName: string;
@@ -21,8 +24,8 @@ export interface DispenserObject {
 }
 
 export interface DispenserStore extends DispenserObject {
-  loading: boolean;
-  setLoading: (_loading: boolean) => void;
+  status: Status;
+  setStatus: (_status: Status) => void;
   setDispenser: (_dispenser: DispenserObject) => void;
 }
 

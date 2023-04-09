@@ -1,9 +1,9 @@
 import { useUserStore } from '../../store/store';
 
 const UserStatus = () => {
-  const { filledBottleIds, emptyBottleIds, ticketIds, loading } = useUserStore((state) => state);
+  const { filledBottleIds, emptyBottleIds, ticketIds, status } = useUserStore((state) => state);
 
-  return loading ? (
+  return status === 'idle' || status === 'loading' ? (
     <div className="animate-pulse flex space-x-4">
       <div className="flex-1 w-full space-y-3 py-1 mb-5">
         <div className="mx-auto h-3 bg-slate-400 rounded w-3/5"></div>

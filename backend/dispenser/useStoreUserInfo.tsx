@@ -1,5 +1,5 @@
 import { useConfigStore, useUserStore } from '../../store/store';
-import { NftClient } from '@originbyte/js-sdk';
+// import { NftClient } from '@originbyte/js-sdk';
 import { BCS, getSuiMoveConfig, BcsWriter } from '@mysten/bcs';
 import { useEffect } from 'react';
 import { NftClient as NClient, ArtNft } from '../../originbyte-js-sdk/src';
@@ -16,8 +16,8 @@ import { Role } from '../../types/suiUser';
 // const coinObjectId = useUserStore((state) => state.coinObjectId);
 const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore) => {
   const bcs = new BCS(getSuiMoveConfig());
-  const client = new NftClient();
-  const { setUser, setLoading } = useUserStore((state) => state);
+  //const client = new NftClient();
+  const { setUser, status, setStatus } = useUserStore((state) => state);
   const config = useConfigStore();
 
   const { session } = useAuth();
@@ -81,7 +81,8 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
   useEffect(() => {
     const fetchStoreUserInfo = async (addr: string, dispenser: DispenserStore) => {
       try {
-        setLoading(true);
+        console.log('start fetching');
+        setStatus('loading');
         if (dispenser.testCoin.generics) {
           const magicNumber = computeMagicNumber(addr);
           const nfts = await getNftsForAddress(addr);
@@ -114,15 +115,19 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
         }
       } catch (error) {
         console.error(error);
+        setStatus('failed');
       } finally {
-        setLoading(false);
+        setStatus('succeeded');
+        console.log('end fetching');
       }
     };
 
-    if (address) {
+    if (address && status === 'succeeded') {
+      console.log(address);
+      console.log(dispenser);
       fetchStoreUserInfo(address, dispenser);
     }
-  }, [address, setUser, dispenser, setLoading]);
+  }, [address, setUser, dispenser]);
 };
 
 export default useStoreUserInfo;

@@ -9,14 +9,13 @@ import { useEffect } from 'react';
 // const active = useDispenserStore((state) => state.active);
 
 const useStoreContractInfo = async () => {
-  const { setDispenser, setLoading } = useDispenserStore((state) => state);
+  const { setDispenser, setStatus } = useDispenserStore((state) => state);
   const config = useConfigStore();
 
   useEffect(() => {
     const fetchStoreContractInfo = async () => {
       try {
-        setLoading(true);
-        console.log('befoooooore');
+        setStatus('loading');
         const object = await config.provider.getObject({
           id: config.dispenser,
           options: { showContent: true }
@@ -47,16 +46,16 @@ const useStoreContractInfo = async () => {
           },
           mintCap: dispenser.mint_cap.fields.id.id
         });
-        console.log('afteeeeer');
       } catch (error) {
         console.error(error);
+        setStatus('failed');
       } finally {
-        setLoading(false);
+        setStatus('succeeded');
       }
     };
 
     fetchStoreContractInfo();
-  }, [setDispenser, setLoading, config]);
+  }, [setDispenser, config, setStatus]);
 };
 
 export default useStoreContractInfo;

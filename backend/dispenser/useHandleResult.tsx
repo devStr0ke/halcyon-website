@@ -36,12 +36,12 @@ export const useHandleResult = () => {
           setShowModal(true);
         } else {
           if (receivedEvent.parsedJson.is_filled) {
-            console.log('Filled Bottle Received!');
-            setModalContent('Filled Bottle Received!');
+            console.log('Filled Bottle Received');
+            setModalContent('Filled Bottle Received');
             setIsBottleFilled(true);
           } else {
-            console.log('Empty Bottle Received!');
-            setModalContent('Empty Bottle Received!');
+            console.log('Empty Bottle Received');
+            setModalContent('Empty Bottle Received');
             setIsBottleFilled(false);
           }
           // Update local state

@@ -1,3 +1,5 @@
+import { Status } from './fetching';
+
 export interface NftObject {
   attributes: any;
   collectionPackageObjectId: string;
@@ -30,8 +32,8 @@ export interface UserObject {
 }
 
 export interface UserStore extends UserObject {
-  loading: boolean;
-  setLoading: (_loading: boolean) => void;
+  status: Status;
+  setStatus: (_status: Status) => void;
   setUser: (_user: UserObject) => void;
   updateRoleClaimStatus: (_role: string) => void;
   setIsWetlisted: () => void;
