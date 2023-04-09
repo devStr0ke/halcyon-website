@@ -53,7 +53,7 @@ const Dispenser = () => {
 
       <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-3">
         Beware, the obtained NFTs live on Sui devnet, which is frequently reset. This will make you
-        lose your entire wallet! So remember to register your wetlist ASAP.a
+        lose your entire wallet! So remember to register your wetlist ASAP.
       </div>
 
       <div className="w-full h-full flex justify-around">
