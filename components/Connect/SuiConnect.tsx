@@ -1,20 +1,30 @@
 import { ConnectButton, useWalletKit } from '@mysten/wallet-kit';
+import Image from 'next/image';
 import React, { useState } from 'react';
+import { FiLogOut } from 'react-icons/fi';
 
-const Connect = () => {
+const SuiConnect = () => {
   const { currentAccount, disconnect } = useWalletKit();
 
   return (
-    <div className="">
+    <div id="sui-connect">
       {currentAccount ? (
         <div className="flex items-center">
-          <div className="mr-10">
+          <Image
+            width={40}
+            height={40}
+            className="rounded-full"
+            alt="avatar"
+            src="/static/images/suiLogo.png"
+          />
+          <div>
             {currentAccount.address.slice(0, 5)}...{currentAccount.address.slice(-5)}
           </div>
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            id="sui-disconnect"
+            className="text-gray-400 hover:text-blue-600 font-bold py-2 px-3 rounded-full"
             onClick={() => disconnect()}>
-            Disconnect
+            <FiLogOut />
           </button>
         </div>
       ) : (
@@ -24,4 +34,4 @@ const Connect = () => {
   );
 };
 
-export default Connect;
+export default SuiConnect;
