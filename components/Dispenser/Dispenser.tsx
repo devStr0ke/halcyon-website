@@ -1,6 +1,6 @@
 import { useWalletKit } from '@mysten/wallet-kit';
 import { useEffect } from 'react';
-import { useDispenserStore, useUserStore } from '../../store/store';
+import { useDispenserStore, useModalStore, useUserStore } from '../../store/store';
 import Connect from '../Connect/Connect';
 import DispenserDrawing from './DispenserDrawing';
 
@@ -8,12 +8,14 @@ import LoginDiscord from '../LoginDiscord/LoginDiscord';
 import useAuth, { signOut } from '../../hooks/useAuth';
 import { createHalcyonProfile, doesRowExist } from '../../utils/supabase';
 import DispenserStatus from './BatchStatus';
-import { useHandleResult } from '../../hooks/useHandleResult';
 
 const Dispenser = () => {
   const { currentAccount } = useWalletKit();
   const { session } = useAuth();
-  const { Modal, setShowModal } = useHandleResult();
+
+  const { isModalOpened, modelContent, isBottleFilled, setShowModal } = useModalStore(
+    (state) => state
+  );
 
   const { roles, filledBottleIds, emptyBottleIds, ticketIds, loading, isWetlisted } = useUserStore(
     (state) => state
@@ -39,10 +41,41 @@ const Dispenser = () => {
     }
   }, [roles]);
 
+  // Disable scrolling while modal is opened
+  useEffect(() => {
+    if (isModalOpened) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isModalOpened]);
+
   return (
     <div className="w-[98vw] h-[150vh] pt-36 bg-gray-300 flex flex-col items-center justify-start">
-      <Modal />
-      <button onClick={() => setShowModal(true)}>AAAA</button>
+      {isModalOpened && (
+        <div className={`absolute inset-0 flex items-center justify-center z-[998]`}>
+          <div className="bg-white p-6 rounded shadow-xl w-fit z-[999]">
+            <p className="text-sm">{modelContent}</p>
+            {isBottleFilled !== null && isBottleFilled ? (
+              <div className="z-0 h-56 w-56 bg-no-repeat bg-cover bg-[url('/static/images/filledBottle.png')]"></div>
+            ) : (
+              <div className="z-0 h-56 w-56 bg-no-repeat bg-cover bg-[url('/static/images/emptyBottle.png')]"></div>
+            )}
+
+            <button
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4"
+              onClick={() => setShowModal(false)}>
+              Close Modal
+            </button>
+          </div>
+          <div className="absolute inset-0 bg-black opacity-50 z-[998]" />
+        </div>
+      )}
+
       <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-3">
         Beware, the obtained NFTs live on Sui devnet, which is frequently reset. This will make you
         lose your entire wallet! So remember to register your wetlist ASAP.

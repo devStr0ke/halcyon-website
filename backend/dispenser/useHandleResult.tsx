@@ -1,15 +1,13 @@
-import { useState, Fragment, useEffect } from 'react';
-import { Config } from '../types/config';
-import { updateIsWetlisted, updateRoleClaimed } from '../utils/supabase';
-import useAuth from './useAuth';
-import { useUserStore } from '../store/store';
+import { Config } from '../../types/config';
+import { updateIsWetlisted, updateRoleClaimed } from '../../utils/supabase';
+import useAuth from '../../hooks/useAuth';
+import { useModalStore, useUserStore } from '../../store/store';
 
 export const useHandleResult = () => {
   const { session } = useAuth();
   const { updateRoleClaimStatus, setIsWetlisted, addBottle } = useUserStore((state) => state);
 
-  const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState('');
+  const { setModalContent, setShowModal, setIsBottleFilled } = useModalStore((state) => state);
 
   const handleResult = async (result: any, config: Config) => {
     if (!result) {
@@ -34,14 +32,17 @@ export const useHandleResult = () => {
           setIsWetlisted();
 
           setModalContent('Wetlist Registered');
+          setIsBottleFilled(null);
           setShowModal(true);
         } else {
           if (receivedEvent.parsedJson.is_filled) {
             console.log('Filled Bottle Received!');
             setModalContent('Filled Bottle Received!');
+            setIsBottleFilled(true);
           } else {
             console.log('Empty Bottle Received!');
             setModalContent('Empty Bottle Received!');
+            setIsBottleFilled(false);
           }
           // Update local state
           addBottle(receivedEvent.parsedJson);
@@ -50,10 +51,6 @@ export const useHandleResult = () => {
       }
     }
   };
-
-  useEffect(() => {
-    console.log('showmodal', showModal);
-  }, [showModal]);
 
   const handleResultClaimFromDiscord = async (result: any, config: Config, role: string) => {
     if (!result) {
@@ -70,10 +67,11 @@ export const useHandleResult = () => {
           if (receivedEvent.parsedJson.is_filled) {
             console.log('Filled Bottle Received!');
             setModalContent('Filled Bottle Received!');
+            setIsBottleFilled(true);
           } else {
             console.log('Empty Bottle Received!');
             setModalContent('Empty Bottle Received!');
-            console.log('receivedEvent.parsedJson', receivedEvent.parsedJson);
+            setIsBottleFilled(false);
           }
           // Update local state
           addBottle(receivedEvent.parsedJson);
@@ -88,27 +86,5 @@ export const useHandleResult = () => {
     }
   };
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
-  const Modal = () => (
-    <>
-      {showModal && (
-        <div className={`absolute inset-0 flex items-center justify-center z-[998]`}>
-          <div className="bg-white p-6 rounded shadow-xl w-56 z-[999]">
-            <p className="text-sm">{modalContent}</p>
-            <button
-              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4"
-              onClick={() => closeModal()}>
-              Close Modal
-            </button>
-          </div>
-          <div className="absolute inset-0 bg-black opacity-50 z-[998]" />
-        </div>
-      )}
-    </>
-  );
-
-  return { handleResult, handleResultClaimFromDiscord, Modal, setShowModal };
+  return { handleResult, handleResultClaimFromDiscord };
 };

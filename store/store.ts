@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
-import { DispenserObject, DispenserStore } from '../types/suiDispenser';
+import { DispenserObject, DispenserStore, ModalStore } from '../types/suiDispenser';
 import { Role, UserObject, UserStore } from '../types/suiUser';
 import { JsonRpcProvider } from '@mysten/sui.js';
 import { Config, ConfigStore } from '../types/config';
@@ -16,6 +16,24 @@ export const useConfigStore = create<ConfigStore>((set) => ({
       provider: config.provider,
       package_id: config.package_id,
       dispenser: config.dispenser
+    })
+}));
+
+export const useModalStore = create<ModalStore>((set) => ({
+  modelContent: '',
+  isModalOpened: false,
+  isBottleFilled: null,
+  setShowModal: (isModalOpened: boolean) =>
+    set({
+      isModalOpened
+    }),
+  setModalContent: (modelContent: string) =>
+    set({
+      modelContent
+    }),
+  setIsBottleFilled: (isBottleFilled: boolean | null) =>
+    set({
+      isBottleFilled
     })
 }));
 
