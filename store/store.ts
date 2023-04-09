@@ -2,15 +2,15 @@ import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import { DispenserObject, DispenserStore, ModalStore } from '../types/suiDispenser';
 import { UserObject, UserStore } from '../types/suiUser';
-import { JsonRpcProvider } from '@mysten/sui.js';
 import { Config, ConfigStore } from '../types/config';
 import { Status } from '../types/fetching';
+import { devnetConfig } from '../backend/dispenser/config.devnet';
 
 export const useConfigStore = create<ConfigStore>((set) => ({
-  net: 'devnet',
-  provider: new JsonRpcProvider(),
-  package_id: '',
-  dispenser: '',
+  net: devnetConfig.net,
+  provider: devnetConfig.provider,
+  package_id: devnetConfig.package_id,
+  dispenser: devnetConfig.dispenser,
   setConfig: (config: Config) =>
     set({
       net: config.net,
