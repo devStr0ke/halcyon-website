@@ -45,14 +45,17 @@ export const useSendTx = () => {
   const buyRandomBottleWithCoins = async () => {
     try {
       const tx = new TransactionBlock();
-      let toMerge = [];
-      let i = 1;
-      while (i < testCoinIds.length) {
-        toMerge.push(tx.object(testCoinIds[i]));
-        i++;
+
+      if (testCoinIds.length > 1) {  
+        let toMerge = [];
+        let i = 1;
+        while (i < testCoinIds.length) {
+          toMerge.push(tx.object(testCoinIds[i]));
+          i++;
+        }
+        tx.mergeCoins(tx.object(testCoinIds[0]), toMerge);
       }
 
-      tx.mergeCoins(tx.object(testCoinIds[0]), toMerge);
       tx.moveCall({
         target: `${config.package_id}::bottles::buy_random_bottle_with_coins`,
         typeArguments: [`0x${testCoin.generics}`],

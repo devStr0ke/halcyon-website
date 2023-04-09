@@ -88,8 +88,24 @@ const Dispenser = () => {
         <div className="w-2/5">
           {!loading && !dispenser.loading && <DispenserStatus />}
           <div className="text-center py-12 bg-cyan-100 border border-cyan-400 rounded-xl my-4">
-            How does it works?
+            <p>
+              The Dispenser is a gamified on-chain whitelisting tool allowing Sui community members to get tokenized Wetlists in the form of Bottles NFTs for our Thirsty Monkeys collection.
+            </p>
+            <p>How does it work?</p>
+            <p>
+              Get a Filled Bottle and burn it to register your Wetlist and Many mechanisms have been implemented to allow everyone to get Bottles!
+            </p>
+            <li>Wait for a batch to open and buy random bottles with $SUI</li>
+            <li>Recycle five empty bottles to get a free entry</li>
+            <li>Win a Voucher during a Mint Event and swap it for a filled bottle</li>
+            <li>Participate in an IDO Event to get coins and buy random bottles</li>
+            <li>Earn a Thirsty or Wetlist role on Discord to claim a filled bottle</li>
+            <li>Win Enthusiast roles on Discord to claim random bottles</li>
+            <p>
+              Read more <a className="text-cyan-400" href="https://medium.com/@HalcyonBuilders/one-small-step-for-halcyon-one-giant-leap-for-web3-330064894efb">in this article</a> and join us <a className="text-cyan-400" href="https://discord.gg/ZbQ3TPbzPT">on Discord</a>
+            </p>
           </div>
+            
 
           <div className="flex w-full justify-center mb-4">
             <Connect />
@@ -147,11 +163,10 @@ const Dispenser = () => {
             <>
               <div className="mb-4">
                 <div className="text-center">
-                  {`You have ${filledBottleIds.length} filled bottles to burn or give to your
-                    friends`}
+                  {`You have ${filledBottleIds.length} filled bottles to burn or give to your friends`}
                 </div>
                 <div className="text-center">
-                  {`You have ${ticketIds.length} Monkeys to swap for a filled bottle`}
+                  {`You have ${ticketIds.length} voucher(s) to swap for a filled bottle`}
                 </div>
                 <div className="text-center">
                   {`You have ${emptyBottleIds.length} empty bottles to recycle`}
