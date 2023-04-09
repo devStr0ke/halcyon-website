@@ -9,18 +9,19 @@ import { useEffect } from 'react';
 // const active = useDispenserStore((state) => state.active);
 
 const useStoreContractInfo = async () => {
-  const {setDispenser, setLoading} = useDispenserStore((state) => state);
+  const { setDispenser, setLoading } = useDispenserStore((state) => state);
   const config = useConfigStore();
 
   useEffect(() => {
     const fetchStoreContractInfo = async () => {
       try {
-        setLoading(true)
+        setLoading(true);
+        console.log('befoooooore');
         const object = await config.provider.getObject({
           id: config.dispenser,
           options: { showContent: true }
         });
-        const dispenser = (object as any).data?.content.fields
+        const dispenser = (object as any).data?.content.fields;
 
         setDispenser({
           active: dispenser.active,
@@ -35,17 +36,18 @@ const useStoreContractInfo = async () => {
             packageId: dispenser.test_nft.fields.package_id,
             moduleName: dispenser.test_nft.fields.module_name,
             structName: dispenser.test_nft.fields.struct_name,
-            generics: dispenser.test_nft.fields.generics[0],
+            generics: dispenser.test_nft.fields.generics[0]
           },
           testNftName: dispenser.test_nft_name,
           testCoin: {
             packageId: dispenser.test_coin.fields.package_id,
             moduleName: dispenser.test_coin.fields.module_name,
             structName: dispenser.test_coin.fields.struct_name,
-            generics: dispenser.test_coin.fields.generics[0],
+            generics: dispenser.test_coin.fields.generics[0]
           },
-          mintCap: dispenser.mint_cap.fields.id.id,
+          mintCap: dispenser.mint_cap.fields.id.id
         });
+        console.log('afteeeeer');
       } catch (error) {
         console.error(error);
       } finally {

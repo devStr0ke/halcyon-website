@@ -4,8 +4,10 @@ import { BatchOrNot, DispenserStore } from '../../types/suiDispenser';
 import { getBatchOrNot } from '../../backend/dispenser/dispenserStatus';
 import { useHandleResult } from '../../backend/dispenser/useHandleResult';
 import { useMemo } from 'react';
+import useAuth from '../../hooks/useAuth';
 
 const DispenserDrawing = () => {
+  const { session } = useAuth();
   const config = useConfigStore((state) => state);
   const user = useUserStore((state) => state);
   const { filledBottleIds, emptyBottleIds, ticketIds, roles, isWetlisted } = user;
@@ -75,28 +77,31 @@ const DispenserDrawing = () => {
           <div className='flex justify-center py-2 text-2xl font-extrabold'>Dispenser Actions</div>
           <div className="flex justify-center py-2">
             <button
-              disabled={getBatchOrNot(dispenser, user) === BatchOrNot.Closed}
+              disabled={session === null || getBatchOrNot(dispenser, user) === BatchOrNot.Closed}
               onClick={() => handleBuy(dispenser)}
               className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold py-0 px-4 mx-2 rounded disabled:bg-slate-400"
             >
               Buy
             </button>
             <button
-              disabled={emptyBottleIds.length < 5}
+              disabled={session === null || emptyBottleIds.length < 5}
               onClick={() => handleRecycle()}
               className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold py-0 px-4 mx-2 rounded disabled:bg-slate-400"
             >
               Recycle
             </button>
             <button
-              disabled={ticketIds.length === 0}
+              disabled={session === null || ticketIds.length === 0}
               onClick={() => handleSwap()}
               className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold py-1 px-4 mx-2 rounded disabled:bg-slate-400"
             >
               Swap
             </button>
             <button
-              disabled={filledBottleRoles.length === 0 && emptyBottleRoles.length === 0}
+              disabled={
+                session === null ||
+                (filledBottleRoles.length === 0 && emptyBottleRoles.length === 0)
+              }
               onClick={() => handleClaim()}
               className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold py-1 px-4 mx-2 rounded disabled:bg-slate-400"
             >

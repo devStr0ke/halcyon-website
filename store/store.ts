@@ -38,7 +38,7 @@ export const useModalStore = create<ModalStore>((set) => ({
 }));
 
 export const useDispenserStore = create<DispenserStore>((set) => ({
-  loading: false,
+  loading: true,
   active: false,
   startTimestamp: 0,
   endTimestamp: 0,
@@ -84,7 +84,7 @@ export const useDispenserStore = create<DispenserStore>((set) => ({
 }));
 
 export const useUserStore = create<UserStore>((set) => ({
-  loading: false,
+  loading: true,
   address: '',
   magicNumber: 0,
   testCoinIds: [],
