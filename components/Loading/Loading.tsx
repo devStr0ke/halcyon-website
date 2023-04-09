@@ -1,8 +1,5 @@
-import { FC } from 'react';
-import ReactLoading from 'react-loading';
-
-const Loading: FC = () => {
-  return <ReactLoading type="spin" color="#6fbcf0" />;
+const Loading = () => {
+  return <></>;
 };
 
 export default Loading;
