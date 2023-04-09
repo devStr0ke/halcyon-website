@@ -6,7 +6,7 @@ module.exports = {
     './backend/**/*.{js,ts,jsx,tsx}',
     './hooks/**/*.{js,ts,jsx,tsx}'
   ],
-  safelist: ['bg-purple-300', 'bg-purple-100'],
+  safelist: ['bg-purple-300', 'bg-purple-100', 'bg-cyan-100', 'bg-cyan-300'],
   theme: {
     extend: {
       transitionProperty: {

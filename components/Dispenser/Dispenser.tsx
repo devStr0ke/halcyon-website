@@ -10,6 +10,7 @@ import DispenserStatus from './BatchStatus';
 
 import Connection from '../Connection/Connection';
 import UserStatus from '../UserStatus/UserStatus';
+import DiscordRoles from '../DiscordRoles/DiscordRoles';
 
 const Dispenser = () => {
   const { currentAccount } = useWalletKit();
@@ -19,7 +20,7 @@ const Dispenser = () => {
     (state) => state
   );
 
-  const { roles, isWetlisted } = useUserStore((state) => state);
+  const { roles } = useUserStore((state) => state);
 
   useEffect(() => {
     async function createProfile() {
@@ -122,43 +123,7 @@ const Dispenser = () => {
 
           {session && currentAccount !== null && <UserStatus />}
 
-          {session && (
-            <div className="mb-6 w-full">
-              <h2 className="text-center mb-3">Discord Roles</h2>
-              <div className="flex justify-between items-center mb-2">
-                <p>Claim a filled bottle</p>
-                <div className="flex justify-between">
-                  {roles
-                    .filter((r) => r.enthusiast === false)
-                    .map((r) => (
-                      <div
-                        key={r.role}
-                        className={`bg-purple-${
-                          r.claimed ? '300' : '100'
-                        } border border-purple-400 rounded-xl mx-4 p-1 px-3`}>
-                        {r.role}
-                      </div>
-                    ))}
-                </div>
-              </div>
-              <div className="flex items-center mb-2 justify-between">
-                <p>Claim a random bottle</p>
-                <div className="flex">
-                  {roles
-                    .filter((r) => r.enthusiast === true)
-                    .map((r) => (
-                      <div
-                        key={r.role}
-                        className={`bg-purple-${
-                          r.claimed ? '300' : '100'
-                        } border border-purple-400 rounded-xl mx-4 p-1 px-3`}>
-                        {r.role}
-                      </div>
-                    ))}
-                </div>
-              </div>
-            </div>
-          )}
+          {session && <DiscordRoles />}
         </div>
       </div>
     </div>
