@@ -21,7 +21,7 @@ export const useConfigStore = create<ConfigStore>((set) => ({
 
 export const useModalStore = create<ModalStore>((set) => ({
   modelContent: '',
-  isModalOpened: false,
+  isModalOpened: true,
   isBottleFilled: null,
   setShowModal: (isModalOpened: boolean) =>
     set({

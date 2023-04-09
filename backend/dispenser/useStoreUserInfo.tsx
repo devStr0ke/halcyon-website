@@ -1,5 +1,5 @@
 import { useConfigStore, useUserStore } from '../../store/store';
-import { NftClient } from '@originbyte/js-sdk';
+// import { NftClient } from '@originbyte/js-sdk';
 import { BCS, getSuiMoveConfig, BcsWriter } from '@mysten/bcs';
 import { useEffect } from 'react';
 import { NftClient as NClient, ArtNft } from '../../originbyte-js-sdk/src';
@@ -16,7 +16,7 @@ import { Role } from '../../types/suiUser';
 // const coinObjectId = useUserStore((state) => state.coinObjectId);
 const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore) => {
   const bcs = new BCS(getSuiMoveConfig());
-  const client = new NftClient();
+  //const client = new NftClient();
   const { setUser, setLoading } = useUserStore((state) => state);
   const config = useConfigStore();
 

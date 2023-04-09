@@ -5,7 +5,6 @@ import { BatchOrNot } from '../../types/suiDispenser';
 const DispenserStatus = () => {
   const dispenser = useDispenserStore((state) => state);
   const user = useUserStore((state) => state);
-  const { loading: userLoading } = user;
 
   const {
     startTimestamp,

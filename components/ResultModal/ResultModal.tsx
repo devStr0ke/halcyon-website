@@ -1,24 +1,40 @@
-import { useState } from 'react';
-import { Dialog } from '@headlessui/react';
+import { useModalStore } from '../../store/store';
+import { AiOutlineClose } from 'react-icons/ai';
 
 function ResultModal() {
-  let [isOpen, setIsOpen] = useState(true);
+  const { modelContent, isBottleFilled, setShowModal } = useModalStore((state) => state);
+
+  const displayImage = () => {
+    if (isBottleFilled === null)
+      return (
+        <div className="rounded-t-2xl z-0 h-64 w-72 bg-no-repeat bg-cover bg-[url('/static/images/modal/wetlisted.jpg')]"></div>
+      );
+    else {
+      if (isBottleFilled)
+        return (
+          <div className="rounded-t-2xl z-0 h-64 w-72 bg-no-repeat bg-cover bg-[url('/static/images/modal/filledBottle.png')]"></div>
+        );
+      return (
+        <div className="rounded-t-2xl z-0 h-64 w-72 bg-no-repeat bg-cover bg-[url('/static/images/modal/emptyBottle.png')]"></div>
+      );
+    }
+  };
 
   return (
-    <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-      <Dialog.Panel>
-        <Dialog.Title>Deactivate account</Dialog.Title>
-        <Dialog.Description>This will permanently deactivate your account</Dialog.Description>
-
-        <p>
-          Are you sure you want to deactivate your account? All of your data will be permanently
-          removed. This action cannot be undone.
-        </p>
-
-        <button onClick={() => setIsOpen(false)}>Deactivate</button>
-        <button onClick={() => setIsOpen(false)}>Cancel</button>
-      </Dialog.Panel>
-    </Dialog>
+    <div className={`absolute inset-0 flex items-center justify-center z-[998]`}>
+      <div className="relative h-80 w-56 bg-white rounded-2xl drop-shadow-lg w-fit z-[999]">
+        {displayImage()}
+        <div className="absolute inset-x-0 bottom-5 flex items-center justify-center text-black font-bold text-xl">
+          {modelContent}
+        </div>
+        <button
+          className="absolute top-0 right-4 bg-slate-600 hover:bg-slate-700 text-white font-bold p-1 rounded-full mt-4"
+          onClick={() => setShowModal(false)}>
+          <AiOutlineClose />
+        </button>
+      </div>
+      <div className="absolute inset-0 bg-black opacity-50 z-[998]" />
+    </div>
   );
 }
 
