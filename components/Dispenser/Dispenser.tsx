@@ -18,8 +18,7 @@ const Dispenser = () => {
   const { session } = useAuth();
 
   const { isModalOpened } = useModalStore((state) => state);
-
-  const { roles } = useUserStore((state) => state);
+  const { status } = useUserStore((state) => state);
 
   useEffect(() => {
     async function createProfile() {
@@ -96,8 +95,7 @@ const Dispenser = () => {
           </div>
 
           {session && currentAccount !== null && <UserStatus />}
-
-          {session && <DiscordRoles />}
+          {session && currentAccount !== null && status === 'succeeded' && <DiscordRoles />}
         </div>
       </div>
     </div>
