@@ -34,12 +34,6 @@ const Dispenser = () => {
     createProfile();
   }, [currentAccount, session]);
 
-  useEffect(() => {
-    if (roles) {
-      console.log(roles);
-    }
-  }, [roles]);
-
   // Disable scrolling while modal is opened
   useEffect(() => {
     if (isModalOpened) {
@@ -52,7 +46,6 @@ const Dispenser = () => {
       document.body.style.overflow = 'auto';
     };
   }, [isModalOpened]);
-  console.log(session);
 
   return (
     <div className="w-[98vw] h-[150vh] pt-36 bg-gray-300 flex flex-col items-center justify-start">

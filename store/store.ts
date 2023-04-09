@@ -1,9 +1,10 @@
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import { DispenserObject, DispenserStore, ModalStore } from '../types/suiDispenser';
-import { Role, UserObject, UserStore } from '../types/suiUser';
+import { UserObject, UserStore } from '../types/suiUser';
 import { JsonRpcProvider } from '@mysten/sui.js';
 import { Config, ConfigStore } from '../types/config';
+import { Status } from '../types/fetching';
 
 export const useConfigStore = create<ConfigStore>((set) => ({
   net: 'devnet',
@@ -38,7 +39,7 @@ export const useModalStore = create<ModalStore>((set) => ({
 }));
 
 export const useDispenserStore = create<DispenserStore>((set) => ({
-  loading: true,
+  status: 'idle',
   active: false,
   startTimestamp: 0,
   endTimestamp: 0,
@@ -61,12 +62,13 @@ export const useDispenserStore = create<DispenserStore>((set) => ({
     generics: ''
   },
   mintCap: '',
-  setLoading: (loading: boolean) =>
+  setStatus: (status: Status) =>
     set({
-      loading
+      status
     }),
   setDispenser: (dispenser: DispenserObject) =>
     set({
+      status: 'succeeded',
       active: dispenser.active,
       startTimestamp: Number(dispenser.startTimestamp),
       endTimestamp: Number(dispenser.endTimestamp),
@@ -84,7 +86,7 @@ export const useDispenserStore = create<DispenserStore>((set) => ({
 }));
 
 export const useUserStore = create<UserStore>((set) => ({
-  loading: true,
+  status: 'idle',
   address: '',
   magicNumber: 0,
   testCoinIds: [],
@@ -93,12 +95,13 @@ export const useUserStore = create<UserStore>((set) => ({
   ticketIds: [],
   roles: [],
   isWetlisted: null,
-  setLoading: (loading: boolean) =>
+  setStatus: (status: Status) =>
     set({
-      loading
+      status
     }),
   setUser: (user: UserObject) =>
     set({
+      status: 'succeeded',
       address: user.address,
       magicNumber: user.magicNumber,
       testCoinIds: user.testCoinIds,

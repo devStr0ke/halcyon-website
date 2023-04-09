@@ -6,16 +6,8 @@ const DispenserStatus = () => {
   const dispenser = useDispenserStore((state) => state);
   const user = useUserStore((state) => state);
 
-  const {
-    startTimestamp,
-    endTimestamp,
-    price,
-    priceInCoins,
-    supply,
-    left,
-    testCoin,
-    loading: dispenserLoading
-  } = dispenser;
+  const { startTimestamp, endTimestamp, price, priceInCoins, supply, left, testCoin, status } =
+    dispenser;
 
   const coin = testCoin.generics.split('::').pop();
 
@@ -55,7 +47,7 @@ const DispenserStatus = () => {
       'There is no batch open or planned at the moment, join our community to get more options!';
   }
 
-  return dispenserLoading ? (
+  return status === 'idle' || status === 'loading' ? (
     <div className="animate-pulse flex space-x-4">
       <div className="flex-1 space-y-2 py-1">
         <div className="h-3 bg-slate-400 rounded"></div>

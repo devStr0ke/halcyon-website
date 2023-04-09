@@ -26,10 +26,6 @@ const WalletKitProvider = dynamic(
 
 export async function getServerSideProps() {
   let { data: role_updates, error } = await supabase.from('role_updates').select('*');
-  //console.log(role_updates);
-
-  console.log('data', role_updates);
-  console.log('error', error);
 
   if (error) {
     console.error('Error fetching data:', error.message);
@@ -48,20 +44,18 @@ export async function getServerSideProps() {
 }
 
 export default function Dispenser({ data }: { data: any }) {
-  useStoreConfig("devnet");
+  useStoreConfig('devnet');
   const { currentAccount } = useWalletKit();
   useStoreContractInfo();
   const dispenser = useDispenserStore();
   useStoreUserInfo(currentAccount?.address, dispenser);
-  const user = useUserStore();
-  console.log("USER STORE: ", user);
-  console.log("DISPENSER STORE: ", dispenser);
-  console.log("DISPENSER LOADING??: ", dispenser.loading);
-  console.log("USER LOADING??: ", user.loading);
+  //const user = useUserStore();
+  //console.log("USER STORE: ", user);
+  //console.log("DISPENSER STORE: ", dispenser);
+  //console.log("DISPENSER LOADING??: ", dispenser.loading);
+  //console.log("USER LOADING??: ", user.loading);
 
-  return (
-      <DispenserComp />
-  );
+  return <DispenserComp />;
 }
 
 // /client-side => useEffect
