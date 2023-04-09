@@ -68,47 +68,50 @@ const DispenserDrawing = () => {
   };
 
   return (
-    <div className="relative w-full">
-      <div className="bg-no-repeat bg-center bg-cover bg-[url('/static/images/products/distributeur.png')] w-full h-[70vh]">
-        <div className="absolute w-full h-56 bottom-0">
-          <div className="absolute inset-0 -skew-y-[2deg]">
+    <div className="saira relative w-full">
+      <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[70vh]" />
+      <div className="relative w-full h-full">
+        <div className="border-2 border-cyan-500 rounded-lg">
+          <div className='flex justify-center py-2 text-2xl font-extrabold'>Dispenser Actions</div>
+          <div className="flex justify-center py-2">
             <button
               disabled={getBatchOrNot(dispenser, user) === BatchOrNot.Closed}
               onClick={() => handleBuy(dispenser)}
-              className="absolute text-2xl hover:text-cyan-700 text-cyan-500 font-bold py-2 px-4 rounded disabled:text-slate-400"
-              style={{ top: '10%', left: '45%', transform: 'translate(-50%, -50%)' }}>
+              className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold py-0 px-4 mx-2 rounded disabled:bg-slate-400"
+            >
               Buy
             </button>
             <button
               disabled={emptyBottleIds.length < 5}
               onClick={() => handleRecycle()}
-              className="absolute text-2xl hover:text-cyan-700 text-cyan-500 font-bold py-2 px-4 rounded disabled:text-slate-400"
-              style={{ top: '12%', left: '71%', transform: 'translate(-50%, -50%)' }}>
+              className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold py-0 px-4 mx-2 rounded disabled:bg-slate-400"
+            >
               Recycle
             </button>
             <button
               disabled={ticketIds.length === 0}
               onClick={() => handleSwap()}
-              className="absolute text-2xl hover:text-cyan-700 text-cyan-500 font-bold py-2 px-4 rounded disabled:text-slate-400"
-              style={{ top: '40%', left: '45%', transform: 'translate(-50%, -50%)' }}>
+              className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold py-1 px-4 mx-2 rounded disabled:bg-slate-400"
+            >
               Swap
             </button>
             <button
               disabled={filledBottleRoles.length === 0 && emptyBottleRoles.length === 0}
               onClick={() => handleClaim()}
-              className="absolute text-2xl hover:text-cyan-700 text-cyan-500 font-bold py-2 px-4 rounded disabled:text-slate-400"
-              style={{ top: '40%', left: '71%', transform: 'translate(-50%, -50%)' }}>
+              className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold py-1 px-4 mx-2 rounded disabled:bg-slate-400"
+            >
               Claim
             </button>
           </div>
+          <button
+            disabled={filledBottleIds.length === 0 || isWetlisted === true}
+            onClick={() => handleRegister()}
+            className="relative w-full hover:bg-cyan-700 bg-cyan-500 font-bold text-white py-2 px-4 rounded-b disabled:bg-slate-400"
+          >
+            Register
+          </button>
         </div>
       </div>
-      <button
-        disabled={filledBottleIds.length === 0 || isWetlisted === true}
-        onClick={() => handleRegister()}
-        className="relative w-full hover:bg-cyan-700 bg-cyan-500 font-bold text-white py-2 px-4 rounded disabled:bg-slate-400">
-        Register
-      </button>
     </div>
   );
 };
