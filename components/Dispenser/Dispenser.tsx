@@ -159,7 +159,6 @@ const Dispenser = () => {
           </div>
           <div className='mx-16 mt-8'><Connection /></div>
           <div className='mx-16 mt-8'><DispenserDrawing /></div>
-          {session && currentAccount !== null && <UserStatus />}
           {/*{session && currentAccount !== null && status === 'succeeded' && <DiscordRoles />}*/}
         </div>
         <div className='w-full h-[100vh] flex justify-center items-center text-red-400 font-bold lg:hidden'>The dispenser is made to be used on desktop only!</div>

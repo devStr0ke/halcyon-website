@@ -3,11 +3,15 @@ import { useSendTx } from '../../backend/dispenser/useSendTx';
 import { BatchOrNot, DispenserStore } from '../../types/suiDispenser';
 import { getBatchOrNot } from '../../backend/dispenser/dispenserStatus';
 import { useHandleResult } from '../../backend/dispenser/useHandleResult';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
+import UserStatus from '../UserStatus/UserStatus';
 import useAuth from '../../hooks/useAuth';
+import { useWalletKit } from '@mysten/wallet-kit';
+import { createHalcyonProfile, doesRowExist } from '../../utils/supabase';
 
 const DispenserDrawing = () => {
   const { session } = useAuth();
+  const { currentAccount } = useWalletKit();
   const config = useConfigStore((state) => state);
   const user = useUserStore((state) => state);
   const { filledBottleIds, emptyBottleIds, ticketIds, roles, isWetlisted } = user;
@@ -19,6 +23,19 @@ const DispenserDrawing = () => {
   const emptyBottleRoles = useMemo(() => {
     return roles.filter((r) => r.enthusiast && !r.claimed);
   }, [roles]);
+
+  useEffect(() => {
+    async function createProfile() {
+      // If user is discord auth and wallet connected
+      // add him to the db
+      if (currentAccount && session) {
+        const userId = session.user.id;
+        const doesExist = await doesRowExist(userId);
+        if (!doesExist) await createHalcyonProfile(userId, currentAccount.address);
+      }
+    }
+    createProfile();
+  }, [currentAccount, session]);
 
   const dispenser = useDispenserStore((state) => state);
   const {
@@ -117,6 +134,9 @@ const DispenserDrawing = () => {
           >
             Register
           </button>
+        </div>
+        <div className="mt-8">
+          {session && currentAccount !== null && <UserStatus />}
         </div>
       </div>
     </div>
