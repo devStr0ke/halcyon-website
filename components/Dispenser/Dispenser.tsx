@@ -112,7 +112,7 @@ const Dispenser = () => {
                     implemented to allow everyone to get Bottles!
                   </p>
                   <strong className="text-lg sm:text-2xl font-bold mt-1 block text-black">
-                    <p>Here's what to do with the dispenser :</p>
+                    <p>Here is what to do with the dispenser :</p>
                   </strong>
                   <p className="saira sm:text-md sm:leading-relaxed text-black">
                     Wait for a batch to open and buy random bottles with $SUI<br />
