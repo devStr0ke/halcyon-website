@@ -54,11 +54,11 @@ export const Header = () => {
                 <h1 className="saira text-cyan-500 text-lg font-bold sm:text-3xl">
                   Pushing The Boundaries Of Innovation
                   <strong className="text-4xl sm:text-5xl font-extrabold mt-4 block text-cyan-500">
-                    <p><span className='text-white'>The Web3 Experiment Studios</span></p>
+                    <p><span className='text-gray-200'>The Web3 Experiment Studios</span></p>
                   </strong>
                 </h1>
 
-                <p className="saira mt-4 sm:text-lg sm:leading-relaxed text-white">
+                <p className="saira mt-4 sm:text-lg sm:leading-relaxed text-gray-200">
                   Web3 Reinvented, Experience Amplified
                 </p>
               </div>
@@ -81,7 +81,7 @@ export const Header = () => {
         <div className="heroHeader sticky top-0 z-20 w-full h-[100vh] flex justify-center items-center">
           <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
             <div className="mx-auto max-w-3xl text-center">
-              <h1 className="saira text-white text-lg font-bold sm:text-2xl">
+              <h1 className="saira text-gray-200 text-lg font-bold sm:text-2xl">
                   Halcyon is a multi-chain creation studio that specializes in building innovative
                   Web3-based products.
               </h1>

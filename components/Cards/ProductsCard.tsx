@@ -105,7 +105,7 @@ export const ProductsCard = ({
           <div className={backGroundImageClass}></div>
           <div className={hoverClassBlueDiv()}></div>
           <div className={hoverClassTitle()}>
-            <div className="font-bold text-xl text-white">{title}</div>
+            <div className="font-bold text-xl text-gray-200">{title}</div>
           </div>
           <div className={hoverClassArrow()}>
             <Image
@@ -116,7 +116,7 @@ export const ProductsCard = ({
             />
           </div>
           <div className={hoverClassText()}>
-            <div className="font-semibold text-md text-center px-4 text-white">{text}</div>
+            <div className="font-semibold text-md text-center px-4 text-gray-200">{text}</div>
           </div>
           <div className={hoverClassButton()}>
             <div className="xl:w-[10vw] lg:w-[20vw] h-[5vh] bg-white rounded-lg flex justify-center items-center cursor-pointer hover:border-2 hover:border-cyan-500">
