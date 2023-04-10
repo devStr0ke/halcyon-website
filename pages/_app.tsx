@@ -34,7 +34,7 @@ export default function App({
       if (url === '/') {
         document.body.className = 'bg-black'; // main page background
       } else if (url === '/dispenser') {
-        document.body.className = 'bg-whiteCyan'; // dispenser page background
+        document.body.className = 'bg-gray-300'; // dispenser page background
       } else {
         document.body.className = 'bg-black'; // default background for other pages
       }

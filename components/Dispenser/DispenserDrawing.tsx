@@ -78,14 +78,14 @@ const DispenserDrawing = () => {
           <button
             disabled={session === null || getBatchOrNot(dispenser, user) === BatchOrNot.Closed}
             onClick={() => handleBuy(dispenser)}
-            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full mr-20 mt-5 ml-20 rounded-xl h-10 disabled:bg-white disabled:text-mvxCyan"
+            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full rounded-md mr-1 disabled:bg-white disabled:text-mvxCyan"
           >
             Buy
           </button>
           <button
             disabled={session === null || emptyBottleIds.length < 5}
             onClick={() => handleRecycle()}
-            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full mt-5 mr-20 rounded-xl h-10 disabled:bg-white disabled:text-mvxCyan"
+            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full rounded-md ml-1 disabled:bg-white disabled:text-mvxCyan"
           >
             Recycle
           </button>
@@ -94,7 +94,7 @@ const DispenserDrawing = () => {
           <button
             disabled={session === null || ticketIds.length === 0}
             onClick={() => handleSwap()}
-            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full mr-20 mt-5 rounded-xl h-10 disabled:bg-white disabled:text-mvxCyan"
+            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full rounded-md mr-1 disabled:bg-white disabled:text-mvxCyan"
           >
             Swap
           </button>
@@ -103,7 +103,7 @@ const DispenserDrawing = () => {
               session === null || (filledBottleRoles.length === 0 && emptyBottleRoles.length === 0)
             }
             onClick={() => handleClaim()}
-            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full mt-5 ml-20 rounded-xl h-10 disabled:bg-white disabled:text-mvxCyan"
+            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full rounded-md ml-1 disabled:bg-white disabled:text-mvxCyan"
           >
             Claim
           </button>
@@ -112,7 +112,7 @@ const DispenserDrawing = () => {
           <button
             disabled={filledBottleIds.length === 0 || isWetlisted === true}
             onClick={() => handleRegister()}
-            className="text-2xl relative w-full hover:bg-cyan-500 bg-mvxCyan fowhite text-mvxCyan mt-5 mr-40 ml-40 rounded-xl h-10 disabled:bg-white disabled:font-bold"
+            className="text-2xl relative w-full hover:bg-cyan-500 bg-mvxCyan fowhite text-mvxCyan rounded-md disabled:bg-white disabled:font-bold"
           >
             Register
           </button>
