@@ -3,18 +3,19 @@ import Image from 'next/image';
 import { FiLogOut } from 'react-icons/fi';
 import useAuth, { signOut } from '../../hooks/useAuth';
 import LoginDiscord from '../LoginDiscord/LoginDiscord';
-import DispenserStatus from '../Dispenser/BatchStatus';
+import DispenserStatus from '../Dispenser/DispenserStatus';
 import SuiConnect from '../Connect/SuiConnect';
-import { useUserStore } from '../../store/store';
+import { useDispenserStore, useUserStore } from '../../store/store';
 
 const Connection = () => {
+  const dispenser = useDispenserStore();
   const { session } = useAuth();
   const { isWetlisted } = useUserStore((state) => state);
 
   return (
     <>
       <div className="flex w-full justify-between mb-4">
-        <div className='mr-1 py-2 px-3 mx-0'><DispenserStatus /></div>
+        <div className='mr-1 py-2 px-3 mx-0'>{<DispenserStatus />}</div>
         {session ? (
           <div className="flex items-center">
             <Image

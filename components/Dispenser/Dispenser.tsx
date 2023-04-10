@@ -2,6 +2,7 @@ import { useWalletKit } from '@mysten/wallet-kit';
 import { useEffect, useRef } from 'react';
 import { useModalStore, useUserStore } from '../../store/store';
 import Image from 'next/image';
+import {ReactComponent as Arrow} from "/static/svg/double-arrow.svg" 
 
 import DispenserDrawing from './DispenserDrawing';
 
@@ -81,7 +82,7 @@ const Dispenser = () => {
     <>
       <div onClick={scrollToHeroSectionText}>
         <div className="absolute top-0 h-screen w-full z-30 flex justify-center">
-          <div ref={opacityArrow} className="flex items-end py-4">
+          <div ref={opacityArrow} className="flex items-end py-4 text-red-500">
             <Image
               src="/static/svg/double-arrow.svg"
               className="animate-bounce hover:w-[45px]"
@@ -108,7 +109,7 @@ const Dispenser = () => {
                     <p>How does it works ?</p>
                   </strong>
                   <p className="saira sm:text-md sm:leading-relaxed text-white">
-                    Get a Filled Bottle and burn it to register your Wetlist and Many mechanisms have been
+                    Get a Filled Bottle and burn it to register your Wetlist. Many mechanisms have been
                     implemented to allow everyone to get Bottles!
                   </p>
                   <strong className="text-lg sm:text-2xl font-bold mt-1 block text-white">

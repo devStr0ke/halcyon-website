@@ -75,6 +75,10 @@ module.exports = {
         'roadmap-tunnel': 'url(/static/images/roadmap/roadmap-tunnel.png)',
         'roadmap-man-silouette': 'url(/static/images/roadmap/roadmap-silouhette.png)',
         'roadmap-hexagone-nft': 'url(/static/images/roadmap/roadmap-nft.png)'
+      },
+      colors: {
+        whiteCyan: '#eafdff',
+        mvxCyan: '#3ef9f6'
       }
     }
   },

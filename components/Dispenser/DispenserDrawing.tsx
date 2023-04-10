@@ -71,21 +71,21 @@ const DispenserDrawing = () => {
 
   return (
     <div className="saira relative w-full flex justify-between">
-      <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[65vh]" />
+      <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[65vh] mr-30" />
       <div className="w-full h-[65vh] rounded-md">
-        <div className="text-2xl font-bold mt-2 flex justify-center">Dispenser Actions</div>
-        <div className="mt-4 px-2 flex justify-center">
+        <div className="text-2xl font-bold mt-2 flex justify-center">Quench your Thirst, get a Bottle!</div>
+        <div className="mt-4 px-2 flex justify-center ">
           <button
             disabled={session === null || getBatchOrNot(dispenser, user) === BatchOrNot.Closed}
             onClick={() => handleBuy(dispenser)}
-            className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full mr-2 rounded disabled:bg-slate-400"
+            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full mr-20 mt-5 ml-20 rounded-xl h-10 disabled:bg-white disabled:text-mvxCyan"
           >
             Buy
           </button>
           <button
             disabled={session === null || emptyBottleIds.length < 5}
             onClick={() => handleRecycle()}
-            className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded disabled:bg-slate-400"
+            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full mt-5 mr-20 rounded-xl h-10 disabled:bg-white disabled:text-mvxCyan"
           >
             Recycle
           </button>
@@ -94,7 +94,7 @@ const DispenserDrawing = () => {
           <button
             disabled={session === null || ticketIds.length === 0}
             onClick={() => handleSwap()}
-            className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full mr-2 rounded disabled:bg-slate-400"
+            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full mr-20 mt-5 rounded-xl h-10 disabled:bg-white disabled:text-mvxCyan"
           >
             Swap
           </button>
@@ -103,7 +103,7 @@ const DispenserDrawing = () => {
               session === null || (filledBottleRoles.length === 0 && emptyBottleRoles.length === 0)
             }
             onClick={() => handleClaim()}
-            className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded disabled:bg-slate-400"
+            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full mt-5 ml-20 rounded-xl h-10 disabled:bg-white disabled:text-mvxCyan"
           >
             Claim
           </button>
@@ -112,7 +112,7 @@ const DispenserDrawing = () => {
           <button
             disabled={filledBottleIds.length === 0 || isWetlisted === true}
             onClick={() => handleRegister()}
-            className="text-2xl relative w-full hover:bg-cyan-700 bg-cyan-500 font-bold text-white rounded disabled:bg-slate-400"
+            className="text-2xl relative w-full hover:bg-cyan-500 bg-mvxCyan fowhite text-mvxCyan mt-5 mr-40 ml-40 rounded-xl h-10 disabled:bg-white disabled:font-bold"
           >
             Register
           </button>

@@ -2,40 +2,6 @@ import { useEffect, useState } from 'react';
 import { BatchOrNot, DispenserStore } from '../../types/suiDispenser';
 import { UserStore } from '../../types/suiUser';
 
-export const useGetTime = (timestamp: number) => {
-  const { days, hours, minutes, seconds } = msToDayHourMinSec(timestamp);
-
-  const [date, setDate] = useState({
-    total: timestamp,
-    days,
-    hours,
-    minutes,
-    seconds
-  });
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setDate((prevDate) => {
-        const { days, hours, minutes, seconds } = msToDayHourMinSec(prevDate.total - 1);
-
-        return {
-          total: prevDate.total - 1000,
-          days,
-          hours,
-          minutes,
-          seconds
-        };
-      });
-    }, 1000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
-
-  return date;
-};
-
 export const msToDayHourMinSec = (timestamp: number) => {
   // Calculate days, hours, minutes, and seconds
   const cSeconds = Math.floor(timestamp / 1000);
@@ -43,12 +9,13 @@ export const msToDayHourMinSec = (timestamp: number) => {
   const cHours = Math.floor(cMinutes / 60);
   const days = Math.floor(cHours / 24);
   // Calculate remaining hours, minutes, and seconds
-  const hours = cHours % 24;
-  const minutes = cMinutes % 60;
-  const seconds = cSeconds % 60;
+  const hours = cHours % 24 < 10 ? '0' + (cHours % 24) : cHours % 24;
+  const minutes = cMinutes % 60 < 10 ? '0' + (cMinutes % 60) : cMinutes % 60;
+  const seconds = cSeconds % 60 < 10 ? '0' + (cSeconds % 60) : cSeconds % 60;
 
   return { days, hours, minutes, seconds };
 };
+
 
 const current_timestamp = new Date().getTime();
 
