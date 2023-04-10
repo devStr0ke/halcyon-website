@@ -59,10 +59,10 @@ const DispenserStatus = () => {
   }
 
   return status === 'idle' || status === 'loading' ? (
-    <div className="animate-pulse flex space-x-4">
-      <div className="flex-1 space-y-2 py-1">
-        <div className="h-3 bg-slate-400 rounded"></div>
-        <div className="h-3 bg-slate-400 rounded w-1/5"></div>
+    <div className="flex space-x-4">
+      <div className="h-6 rounded flex items-center gap-4">
+        <p>Loading the smart contract, please be patient.</p>
+        <div className="w-6 h-6 border-t-4 border-b-4 border-cyan-500 rounded-full animate-spin"></div>
       </div>
     </div>
   ) : (
