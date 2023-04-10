@@ -1,19 +1,50 @@
 import { useWalletKit } from '@mysten/wallet-kit';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useModalStore, useUserStore } from '../../store/store';
+import Image from 'next/image';
 
 import DispenserDrawing from './DispenserDrawing';
 
 import useAuth from '../../hooks/useAuth';
 import { createHalcyonProfile, doesRowExist } from '../../utils/supabase';
-import DispenserStatus from './BatchStatus';
 
 import Connection from '../Connection/Connection';
 import UserStatus from '../UserStatus/UserStatus';
 import DiscordRoles from '../DiscordRoles/DiscordRoles';
 import ResultModal from '../ResultModal/ResultModal';
+import useDeviceSize from '../../hooks/windowHook';
 
 const Dispenser = () => {
+  const [windowWidth, windowHeight] = useDeviceSize();
+  const opacityBlurRef = useRef(null);
+  const opacityTitle = useRef(null);
+  const opacityArrow = useRef(null);
+  const blurBackground = useRef(null);
+
+  const scrollToHeroSectionText = () => {
+    window.scrollTo({
+      top: windowHeight,
+      behavior: 'smooth'
+    });
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      // @ts-ignore
+      opacityBlurRef.current.style.opacity = +scrollTop / 1000;
+      // @ts-ignore
+      opacityTitle.current.style.opacity = 1 - scrollTop / 300;
+      // @ts-ignore
+      opacityArrow.current.style.opacity = 1 - scrollTop / 300;
+      // @ts-ignore
+      blurBackground.current.style.filter = `blur(${scrollTop / 70}px)`;
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   const { currentAccount } = useWalletKit();
   const { session } = useAuth();
 
@@ -47,58 +78,93 @@ const Dispenser = () => {
   }, [isModalOpened]);
 
   return (
-    <div className="w-[98vw] h-[150vh] pt-36 bg-gray-300 flex flex-col items-center justify-start">
-      {isModalOpened && <ResultModal />}
-
-      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-3">
-        Beware, the obtained NFTs live on Sui devnet, which is frequently reset. This will make you
-        lose your entire wallet! So remember to register your wetlist ASAP.
-      </div>
-
-      <div className="w-full h-full flex justify-around">
-        <div className="w-2/5">
-          <DispenserDrawing />
+    <>
+      <div onClick={scrollToHeroSectionText}>
+        <div className="absolute top-0 h-screen w-full z-30 flex justify-center">
+          <div ref={opacityArrow} className="flex items-end py-4">
+            <Image
+              src="/static/svg/double-arrow.svg"
+              className="animate-bounce hover:w-[45px]"
+              alt="doubleArrow"
+              width="40"
+              height="100"
+            />
+          </div>
         </div>
-
-        <div className="w-3/5">
-          <Connection />
-          <DispenserStatus />
-          <div className="text-center py-6 bg-cyan-100 border border-cyan-400 rounded-xl my-4">
-            <p>
-              The Dispenser is a gamified on-chain whitelisting tool allowing Sui community members
-              to get tokenized Wetlists in the form of Bottles NFTs for our Thirsty Monkeys
-              collection.
-            </p>
-            <p>How does it work?</p>
-            <p>
-              Get a Filled Bottle and burn it to register your Wetlist and Many mechanisms have been
-              implemented to allow everyone to get Bottles!
-            </p>
-            <li>Wait for a batch to open and buy random bottles with $SUI</li>
-            <li>Recycle five empty bottles to get a free entry</li>
-            <li>Win a Voucher during a Mint Event and swap it for a filled bottle</li>
-            <li>Participate in an IDO Event to get coins and buy random bottles</li>
-            <li>Earn a Thirsty or Wetlist role on Discord to claim a filled bottle</li>
-            <li>Win Enthusiast roles on Discord to claim random bottles</li>
-            <p>
-              Read more{' '}
-              <a
-                className="text-cyan-400"
-                href="https://medium.com/@HalcyonBuilders/one-small-step-for-halcyon-one-giant-leap-for-web3-330064894efb">
-                in this article
-              </a>{' '}
-              and join us{' '}
-              <a className="text-cyan-400" href="https://discord.gg/ZbQ3TPbzPT">
-                on Discord
-              </a>
+        <div className="absolute top-0 h-screen w-full z-30 flex justify-center">
+          <div ref={opacityTitle} className="flex items-center py-5">
+            <div className="mx-auto px-4 py-20 lg:flex lg:h-screen lg:items-end">
+              <div className="mx-auto text-center">
+                <h1 className="saira text-cyan-500 text-lg font-extrabold sm:text-3xl">
+                  Welcome To The Dispenser!
+                </h1>
+                <div className='lg:mx-8 p-4 mt-4 bg-cyan-600 border-2 border-cyan-500 rounded-md'>
+                  <p className="saira sm:text-md sm:leading-relaxed text-white">
+                    The Dispenser is a gamified on-chain whitelisting tool allowing Sui community members
+                    to get tokenized Wetlists in the form of Bottles NFTs for our Thirsty Monkeys
+                    collection.
+                  </p>
+                  <strong className="text-lg sm:text-2xl font-bold mt-1 block text-white">
+                    <p>How does it works ?</p>
+                  </strong>
+                  <p className="saira sm:text-md sm:leading-relaxed text-white">
+                    Get a Filled Bottle and burn it to register your Wetlist and Many mechanisms have been
+                    implemented to allow everyone to get Bottles!
+                  </p>
+                  <strong className="text-lg sm:text-2xl font-bold mt-1 block text-white">
+                    <p>Here's what to do with the dispenser :</p>
+                  </strong>
+                  <p className="saira sm:text-md sm:leading-relaxed text-white">
+                    Wait for a batch to open and buy random bottles with $SUI<br />
+                    Recycle five empty bottles to get a free entry<br />
+                    Win a Voucher during a Mint Event and swap it for a filled bottle<br />
+                    Participate in an IDO Event to get coins and buy random bottles<br />
+                    Earn a Thirsty or Wetlist role on Discord to claim a filled bottle<br />
+                    Win Enthusiast roles on Discord to claim random bottles <br />
+                  </p>
+                  <p className="saira sm:text-md sm:leading-relaxed text-white">
+                    Read more{' '}
+                    <a
+                      className="text-cyan-400"
+                      href="https://medium.com/@HalcyonBuilders/one-small-step-for-halcyon-one-giant-leap-for-web3-330064894efb">
+                      in this article
+                    </a>{' '}
+                    and join us{' '}
+                    <a className="text-cyan-400" href="https://discord.gg/ZbQ3TPbzPT">
+                      on Discord
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="relative h-[250vh] w-full">
+        <div
+          ref={opacityBlurRef}
+          className="z-10 absolute top-0 w-full h-[200vh] opacity-0"
+        ></div>
+        <div
+          ref={blurBackground}
+          className="z-0 h-[100vh] w-full sticky top-0 bg-no-repeat"
+        ></div>
+        <div className="hidden lg:block heroHeader sticky top-0 z-20 w-full h-[100vh]">
+          {isModalOpened && <ResultModal />}
+          <div className='border-2 border-red-400 bg-red-100 mt-20 mx-16 p-2 rounded-md'>
+            <p className='text-red-700 text-center'>
+              Beware, the obtained NFTs live on Sui devnet, which is frequently reset. This will make you
+              lose your entire wallet! So remember to register your wetlist ASAP.
             </p>
           </div>
-
+          <div className='mx-16 mt-8'><Connection /></div>
+          <div className='mx-16 mt-8'><DispenserDrawing /></div>
           {session && currentAccount !== null && <UserStatus />}
           {session && currentAccount !== null && status === 'succeeded' && <DiscordRoles />}
         </div>
+        <div className='w-full h-[100vh] flex justify-center items-center text-red-400 font-bold lg:hidden'>The dispenser is made to be used on desktop only!</div>
       </div>
-    </div>
+    </>
   );
 };
 

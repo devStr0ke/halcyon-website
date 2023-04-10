@@ -70,48 +70,49 @@ const DispenserDrawing = () => {
   };
 
   return (
-    <div className="saira relative w-full">
-      <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[70vh]" />
-      <div className="relative w-full h-full">
-        <div className="border-2 border-cyan-500 rounded-lg">
-          <div className='flex justify-center py-2 text-2xl font-extrabold'>Dispenser Actions</div>
-          <div className="flex justify-center py-2">
-            <button
-              disabled={session === null || getBatchOrNot(dispenser, user) === BatchOrNot.Closed}
-              onClick={() => handleBuy(dispenser)}
-              className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold py-0 px-4 mx-2 rounded disabled:bg-slate-400"
-            >
-              Buy
-            </button>
-            <button
-              disabled={session === null || emptyBottleIds.length < 5}
-              onClick={() => handleRecycle()}
-              className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold py-0 px-4 mx-2 rounded disabled:bg-slate-400"
-            >
-              Recycle
-            </button>
-            <button
-              disabled={session === null || ticketIds.length === 0}
-              onClick={() => handleSwap()}
-              className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold py-1 px-4 mx-2 rounded disabled:bg-slate-400"
-            >
-              Swap
-            </button>
-            <button
-              disabled={
-                session === null ||
-                (filledBottleRoles.length === 0 && emptyBottleRoles.length === 0)
-              }
-              onClick={() => handleClaim()}
-              className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold py-1 px-4 mx-2 rounded disabled:bg-slate-400"
-            >
-              Claim
-            </button>
-          </div>
+    <div className="saira relative w-full flex justify-between">
+      <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[65vh]" />
+      <div className="w-full h-[65vh] rounded-md">
+        <div className="text-2xl font-bold mt-2 flex justify-center">Dispenser Actions</div>
+        <div className="mt-4 px-2 flex justify-center">
+          <button
+            disabled={session === null || getBatchOrNot(dispenser, user) === BatchOrNot.Closed}
+            onClick={() => handleBuy(dispenser)}
+            className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full mr-2 rounded disabled:bg-slate-400"
+          >
+            Buy
+          </button>
+          <button
+            disabled={session === null || emptyBottleIds.length < 5}
+            onClick={() => handleRecycle()}
+            className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded disabled:bg-slate-400"
+          >
+            Recycle
+          </button>
+        </div>
+        <div className="mt-4 px-2 flex justify-center">
+          <button
+            disabled={session === null || ticketIds.length === 0}
+            onClick={() => handleSwap()}
+            className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full mr-2 rounded disabled:bg-slate-400"
+          >
+            Swap
+          </button>
+          <button
+            disabled={
+              session === null || (filledBottleRoles.length === 0 && emptyBottleRoles.length === 0)
+            }
+            onClick={() => handleClaim()}
+            className="text-2xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded disabled:bg-slate-400"
+          >
+            Claim
+          </button>
+        </div>
+        <div className="mt-4 px-2 flex justify-center">
           <button
             disabled={filledBottleIds.length === 0 || isWetlisted === true}
             onClick={() => handleRegister()}
-            className="relative w-full hover:bg-cyan-700 bg-cyan-500 font-bold text-white py-2 px-4 rounded-b disabled:bg-slate-400"
+            className="text-2xl relative w-full hover:bg-cyan-700 bg-cyan-500 font-bold text-white rounded disabled:bg-slate-400"
           >
             Register
           </button>

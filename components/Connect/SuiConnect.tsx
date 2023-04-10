@@ -28,7 +28,7 @@ const SuiConnect = () => {
           </button>
         </div>
       ) : (
-        <ConnectButton connectText={'Connect Wallet'} />
+        <ConnectButton style={{width: 'full'}} connectText={'Connect Wallet'} />
       )}
     </div>
   );
