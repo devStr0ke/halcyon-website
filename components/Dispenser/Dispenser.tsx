@@ -1,16 +1,10 @@
-import { useWalletKit } from '@mysten/wallet-kit';
 import { useEffect, useRef } from 'react';
-import { useModalStore, useUserStore } from '../../store/store';
+import { useModalStore } from '../../store/store';
 import Image from 'next/image';
 
 import DispenserDrawing from './DispenserDrawing';
 
-import useAuth from '../../hooks/useAuth';
-import { createHalcyonProfile, doesRowExist } from '../../utils/supabase';
-
 import Connection from '../Connection/Connection';
-import UserStatus from '../UserStatus/UserStatus';
-import DiscordRoles from '../DiscordRoles/DiscordRoles';
 import ResultModal from '../ResultModal/ResultModal';
 import useDeviceSize from '../../hooks/windowHook';
 
@@ -45,24 +39,8 @@ const Dispenser = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  const { currentAccount } = useWalletKit();
-  const { session } = useAuth();
 
   const { isModalOpened } = useModalStore((state) => state);
-  const { status } = useUserStore((state) => state);
-
-  useEffect(() => {
-    async function createProfile() {
-      // If user is discord auth and wallet connected
-      // add him to the db
-      if (currentAccount && session) {
-        const userId = session.user.id;
-        const doesExist = await doesRowExist(userId);
-        if (!doesExist) await createHalcyonProfile(userId, currentAccount.address);
-      }
-    }
-    createProfile();
-  }, [currentAccount, session]);
 
   // Disable scrolling while modal is opened
   useEffect(() => {
@@ -98,28 +76,33 @@ const Dispenser = () => {
                 <h1 className="saira text-black text-lg font-extrabold sm:text-3xl">
                   Welcome To The Dispenser!
                 </h1>
-                <div className='lg:mx-8 p-4 mt-4 bg-gray-200 rounded-md'>
+                <div className="lg:mx-8 p-4 mt-4 bg-gray-200 rounded-md">
                   <p className="saira sm:text-md sm:leading-relaxed text-black">
-                    The Dispenser is a gamified on-chain whitelisting tool allowing Sui community members
-                    to get tokenized Wetlists in the form of Bottles NFTs for our Thirsty Monkeys
-                    collection.
+                    The Dispenser is a gamified on-chain whitelisting tool allowing Sui community
+                    members to get tokenized Wetlists in the form of Bottles NFTs for our Thirsty
+                    Monkeys collection.
                   </p>
                   <strong className="text-lg sm:text-2xl font-bold mt-1 block text-black">
                     <p>How does it works ?</p>
                   </strong>
                   <p className="saira sm:text-md sm:leading-relaxed text-black">
-                    Get a Filled Bottle and burn it to register your Wetlist. Many mechanisms have been
-                    implemented to allow everyone to get Bottles!
+                    Get a Filled Bottle and burn it to register your Wetlist. Many mechanisms have
+                    been implemented to allow everyone to get Bottles!
                   </p>
                   <strong className="text-lg sm:text-2xl font-bold mt-1 block text-black">
                     <p>Here is what to do with the dispenser :</p>
                   </strong>
                   <p className="saira sm:text-md sm:leading-relaxed text-black">
-                    Wait for a batch to open and buy random bottles with $SUI<br />
-                    Recycle five empty bottles to get a free entry<br />
-                    Win a Voucher during a Mint Event and swap it for a filled bottle<br />
-                    Participate in an IDO Event to get coins and buy random bottles<br />
-                    Earn a Thirsty or Wetlist role on Discord to claim a filled bottle<br />
+                    Wait for a batch to open and buy random bottles with $SUI
+                    <br />
+                    Recycle five empty bottles to get a free entry
+                    <br />
+                    Win a Voucher during a Mint Event and swap it for a filled bottle
+                    <br />
+                    Participate in an IDO Event to get coins and buy random bottles
+                    <br />
+                    Earn a Thirsty or Wetlist role on Discord to claim a filled bottle
+                    <br />
                     Win Enthusiast roles on Discord to claim random bottles <br />
                   </p>
                   <p className="saira sm:text-md sm:leading-relaxed text-black">
@@ -141,27 +124,27 @@ const Dispenser = () => {
         </div>
       </div>
       <div className="relative h-[250vh] w-full">
-        <div
-          ref={opacityBlurRef}
-          className="z-10 absolute top-0 w-full h-[200vh] opacity-0"
-        ></div>
-        <div
-          ref={blurBackground}
-          className="z-0 h-[100vh] w-full sticky top-0 bg-no-repeat"
-        ></div>
+        <div ref={opacityBlurRef} className="z-10 absolute top-0 w-full h-[200vh] opacity-0"></div>
+        <div ref={blurBackground} className="z-0 h-[100vh] w-full sticky top-0 bg-no-repeat"></div>
         <div className="hidden lg:block heroHeader sticky top-0 z-20 w-full h-[100vh]">
           {isModalOpened && <ResultModal />}
-          <div className='border-2 border-red-400 bg-red-100 mt-20 mx-16 p-2 rounded-md'>
-            <p className='text-red-700 text-center'>
-              Beware, the obtained NFTs live on Sui devnet, which is frequently reset. This will make you
-              lose your entire wallet! So remember to register your wetlist ASAP.
+          <div className="border-2 border-red-400 bg-red-100 mt-20 mx-16 p-2 rounded-md">
+            <p className="text-red-700 text-center">
+              Beware, the obtained NFTs live on Sui devnet, which is frequently reset. This will
+              make you lose your entire wallet! So remember to register your wetlist ASAP.
             </p>
           </div>
-          <div className='mx-16 mt-8'><Connection /></div>
-          <div className='mx-16 mt-8'><DispenserDrawing /></div>
+          <div className="mx-16 mt-8">
+            <Connection />
+          </div>
+          <div className="mx-16 mt-8">
+            <DispenserDrawing />
+          </div>
           {/*{session && currentAccount !== null && status === 'succeeded' && <DiscordRoles />}*/}
         </div>
-        <div className='w-full h-[100vh] flex justify-center items-center text-red-400 font-bold lg:hidden'>The dispenser is made to be used on desktop only!</div>
+        <div className="w-full h-[100vh] flex justify-center items-center text-red-400 font-bold lg:hidden">
+          The dispenser is made to be used on desktop only!
+        </div>
       </div>
     </>
   );

@@ -31,7 +31,8 @@ const DispenserDrawing = () => {
       if (currentAccount && session) {
         const userId = session.user.id;
         const doesExist = await doesRowExist(userId);
-        if (!doesExist) await createHalcyonProfile(userId, currentAccount.address);
+        if (!doesExist)
+          await createHalcyonProfile(session.user.identities[0].id, currentAccount.address);
       }
     }
     createProfile();
@@ -90,20 +91,20 @@ const DispenserDrawing = () => {
     <div className="saira relative w-full flex justify-between">
       <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[65vh] mr-30" />
       <div className="w-full h-[30vh] rounded-md">
-        <div className="text-2xl font-bold mt-2 flex justify-center">Quench your Thirst, get a Bottle!</div>
+        <div className="text-2xl font-bold mt-2 flex justify-center">
+          Quench your Thirst, get a Bottle!
+        </div>
         <div className="mt-4 px-2 flex justify-center ">
           <button
             disabled={session === null || getBatchOrNot(dispenser, user) === BatchOrNot.Closed}
             onClick={() => handleBuy(dispenser)}
-            className="text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-md mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300"
-          >
+            className="text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-md mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
             Buy
           </button>
           <button
             disabled={session === null || emptyBottleIds.length < 5}
             onClick={() => handleRecycle()}
-            className="text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-md ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300"
-          >
+            className="text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-md ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
             Recycle
           </button>
         </div>
@@ -111,8 +112,7 @@ const DispenserDrawing = () => {
           <button
             disabled={session === null || ticketIds.length === 0}
             onClick={() => handleSwap()}
-            className="text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-md mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300"
-          >
+            className="text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-md mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
             Swap
           </button>
           <button
@@ -121,8 +121,7 @@ const DispenserDrawing = () => {
               true
             }
             onClick={() => handleClaim()}
-            className="text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-md ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300"
-          >
+            className="text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-md ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
             Claim
           </button>
         </div>
@@ -130,14 +129,11 @@ const DispenserDrawing = () => {
           <button
             disabled={filledBottleIds.length === 0 || isWetlisted === true}
             onClick={() => handleRegister()}
-            className="text-xl relative w-full hover:bg-cyan-600 bg-cyan-500 font-bold text-mvxCyan rounded-md px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300"
-          >
+            className="text-xl relative w-full hover:bg-cyan-600 bg-cyan-500 font-bold text-mvxCyan rounded-md px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
             Register
           </button>
         </div>
-        <div className="mt-8">
-          {session && currentAccount !== null && <UserStatus />}
-        </div>
+        <div className="mt-8">{session && currentAccount !== null && <UserStatus />}</div>
       </div>
     </div>
   );
