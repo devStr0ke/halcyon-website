@@ -12,7 +12,7 @@ const UserStatus = () => {
       </div>
     </div>
   ) : (
-    <div className="mb-4">
+    <div className="mb-4 bg-red">
       <div className="text-center">
         {`You have ${filledBottleIds.length} filled bottles to burn or give to your friends`}
       </div>
