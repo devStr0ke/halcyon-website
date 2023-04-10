@@ -2,7 +2,6 @@ import { useWalletKit } from '@mysten/wallet-kit';
 import { useEffect, useRef } from 'react';
 import { useModalStore, useUserStore } from '../../store/store';
 import Image from 'next/image';
-import {ReactComponent as Arrow} from "/static/svg/double-arrow.svg" 
 
 import DispenserDrawing from './DispenserDrawing';
 
@@ -84,7 +83,7 @@ const Dispenser = () => {
         <div className="absolute top-0 h-screen w-full z-30 flex justify-center">
           <div ref={opacityArrow} className="flex items-end py-4 text-red-500">
             <Image
-              src="/static/svg/double-arrow.svg"
+              src="/static/svg/double-arrow-black.svg"
               className="animate-bounce hover:w-[45px]"
               alt="doubleArrow"
               width="40"
@@ -96,26 +95,26 @@ const Dispenser = () => {
           <div ref={opacityTitle} className="flex items-center py-5">
             <div className="mx-auto px-4 py-20 lg:flex lg:h-screen lg:items-end">
               <div className="mx-auto text-center">
-                <h1 className="saira text-cyan-500 text-lg font-extrabold sm:text-3xl">
+                <h1 className="saira text-black text-lg font-extrabold sm:text-3xl">
                   Welcome To The Dispenser!
                 </h1>
-                <div className='lg:mx-8 p-4 mt-4 bg-cyan-600 border-2 border-cyan-500 rounded-md'>
-                  <p className="saira sm:text-md sm:leading-relaxed text-white">
+                <div className='lg:mx-8 p-4 mt-4 bg-gray-200 rounded-md'>
+                  <p className="saira sm:text-md sm:leading-relaxed text-black">
                     The Dispenser is a gamified on-chain whitelisting tool allowing Sui community members
                     to get tokenized Wetlists in the form of Bottles NFTs for our Thirsty Monkeys
                     collection.
                   </p>
-                  <strong className="text-lg sm:text-2xl font-bold mt-1 block text-white">
+                  <strong className="text-lg sm:text-2xl font-bold mt-1 block text-black">
                     <p>How does it works ?</p>
                   </strong>
-                  <p className="saira sm:text-md sm:leading-relaxed text-white">
+                  <p className="saira sm:text-md sm:leading-relaxed text-black">
                     Get a Filled Bottle and burn it to register your Wetlist. Many mechanisms have been
                     implemented to allow everyone to get Bottles!
                   </p>
-                  <strong className="text-lg sm:text-2xl font-bold mt-1 block text-white">
-                    <p>Here's what to do with the dispenser :</p>
+                  <strong className="text-lg sm:text-2xl font-bold mt-1 block text-black">
+                    <p>Here is what to do with the dispenser :</p>
                   </strong>
-                  <p className="saira sm:text-md sm:leading-relaxed text-white">
+                  <p className="saira sm:text-md sm:leading-relaxed text-black">
                     Wait for a batch to open and buy random bottles with $SUI<br />
                     Recycle five empty bottles to get a free entry<br />
                     Win a Voucher during a Mint Event and swap it for a filled bottle<br />
@@ -123,15 +122,15 @@ const Dispenser = () => {
                     Earn a Thirsty or Wetlist role on Discord to claim a filled bottle<br />
                     Win Enthusiast roles on Discord to claim random bottles <br />
                   </p>
-                  <p className="saira sm:text-md sm:leading-relaxed text-white">
+                  <p className="saira sm:text-md sm:leading-relaxed text-black">
                     Read more{' '}
                     <a
-                      className="text-cyan-400"
+                      className="text-cyan-600"
                       href="https://medium.com/@HalcyonBuilders/one-small-step-for-halcyon-one-giant-leap-for-web3-330064894efb">
                       in this article
                     </a>{' '}
                     and join us{' '}
-                    <a className="text-cyan-400" href="https://discord.gg/ZbQ3TPbzPT">
+                    <a className="text-cyan-600" href="https://discord.gg/ZbQ3TPbzPT">
                       on Discord
                     </a>
                   </p>
@@ -160,8 +159,7 @@ const Dispenser = () => {
           </div>
           <div className='mx-16 mt-8'><Connection /></div>
           <div className='mx-16 mt-8'><DispenserDrawing /></div>
-          {session && currentAccount !== null && <UserStatus />}
-          {session && currentAccount !== null && status === 'succeeded' && <DiscordRoles />}
+          {/*{session && currentAccount !== null && status === 'succeeded' && <DiscordRoles />}*/}
         </div>
         <div className='w-full h-[100vh] flex justify-center items-center text-red-400 font-bold lg:hidden'>The dispenser is made to be used on desktop only!</div>
       </div>

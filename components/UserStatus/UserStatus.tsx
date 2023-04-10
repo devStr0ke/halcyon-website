@@ -6,13 +6,13 @@ const UserStatus = () => {
   return status === 'idle' || status === 'loading' ? (
     <div className="animate-pulse flex space-x-4">
       <div className="flex-1 w-full space-y-3 py-1 mb-5">
-        <div className="mx-auto h-3 bg-slate-400 rounded w-3/5"></div>
-        <div className="mx-auto h-3 bg-slate-400 rounded w-2/5"></div>
-        <div className="mx-auto h-3 bg-slate-400 rounded w-1/5"></div>
+        <div className="mx-auto h-3 bg-gray-200 rounded w-3/5"></div>
+        <div className="mx-auto h-3 bg-gray-200 rounded w-2/5"></div>
+        <div className="mx-auto h-3 bg-gray-200 rounded w-1/5"></div>
       </div>
     </div>
   ) : (
-    <div className="mb-4">
+    <div className="mb-4 bg-red">
       <div className="text-center">
         {`You have ${filledBottleIds.length} filled bottles to burn or give to your friends`}
       </div>

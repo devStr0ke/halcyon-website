@@ -23,7 +23,7 @@ export const Separator = ({ subtitle, title, ...props }: Props) => {
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="saira text-md font-light text-gray-200 sm:text-lg">
                 {subtitle}
-                <strong className="text-5xl sm:text-6xl font-extrabold block text-white">
+                <strong className="text-5xl sm:text-6xl font-extrabold block text-gray-200">
                   {title}
                 </strong>
               </h1>

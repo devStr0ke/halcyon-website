@@ -35,10 +35,10 @@ export const OverviewCardRight = ({
                 <div className="text-4xl font-medium flex justify-items-end text-gray-400">The</div>
               </div>
               <div className="h-[100vh] absolute flex justify-start items-center pr-6 sm:pr-24 top-12">
-                <div className="textBoxShadow text-5xl font-bold text-white">Halcyon Edge</div>
+                <div className="textBoxShadow text-5xl font-bold text-gray-200">Halcyon Edge</div>
               </div>
               <div className="h-[100vh] w-[300px] sm:w-96 absolute flex justify-start items-center pr-6 sm:pr-24 top-44">
-                <div className="text-md font-regular text-white">
+                <div className="text-md font-regular text-gray-200">
                   Web3 is a young but fast growing field, and the ecosystems related to different
                   L1s and L2s are still in their infancy. The expansion of the Web3 sphere will
                   require safeguards for investors and effective tools for builders.
@@ -48,12 +48,12 @@ export const OverviewCardRight = ({
           </div>
         </div>
         <div className="z-20 relative sm:h-[15vh] w-full flex justify-center xl:pl-[30vw] lg:pl-[25vw] sm:pl-[10vw]">
-          <div className="w-full text-white textBoxShadow px-6 sm:px-0 lg:text-8xl sm:text-7xl text-6xl font-bold sm:py-3 saira flex justify-start sm:justify-start uppercase animate-imageTransition">
+          <div className="w-full text-gray-200 textBoxShadow px-6 sm:px-0 lg:text-8xl sm:text-7xl text-6xl font-bold sm:py-3 saira flex justify-start sm:justify-start uppercase animate-imageTransition">
             One block
           </div>
         </div>
         <div className="z-20 relative sm:h-[15vh] w-full flex justify-end xl:pr-[5vw] lg:pr-[5vw] sm:pl-[15vw]">
-          <div className="w-full text-white textBoxShadow px-6 lg:text-8xl sm:text-7xl text-6xl font-bold sm:py-3 saira flex justify-start sm:justify-end uppercase animate-imageTransition translate-x-0">
+          <div className="w-full text-gray-200 textBoxShadow px-6 lg:text-8xl sm:text-7xl text-6xl font-bold sm:py-3 saira flex justify-start sm:justify-end uppercase animate-imageTransition translate-x-0">
             at a time
           </div>
         </div>

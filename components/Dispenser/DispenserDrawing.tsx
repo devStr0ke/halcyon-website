@@ -3,11 +3,15 @@ import { useSendTx } from '../../backend/dispenser/useSendTx';
 import { BatchOrNot, DispenserStore } from '../../types/suiDispenser';
 import { getBatchOrNot } from '../../backend/dispenser/dispenserStatus';
 import { useHandleResult } from '../../backend/dispenser/useHandleResult';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
+import UserStatus from '../UserStatus/UserStatus';
 import useAuth from '../../hooks/useAuth';
+import { useWalletKit } from '@mysten/wallet-kit';
+import { createHalcyonProfile, doesRowExist } from '../../utils/supabase';
 
 const DispenserDrawing = () => {
   const { session } = useAuth();
+  const { currentAccount } = useWalletKit();
   const config = useConfigStore((state) => state);
   const user = useUserStore((state) => state);
   const { filledBottleIds, emptyBottleIds, ticketIds, roles, isWetlisted } = user;
@@ -19,6 +23,19 @@ const DispenserDrawing = () => {
   const emptyBottleRoles = useMemo(() => {
     return roles.filter((r) => r.enthusiast && !r.claimed);
   }, [roles]);
+
+  useEffect(() => {
+    async function createProfile() {
+      // If user is discord auth and wallet connected
+      // add him to the db
+      if (currentAccount && session) {
+        const userId = session.user.id;
+        const doesExist = await doesRowExist(userId);
+        if (!doesExist) await createHalcyonProfile(userId, currentAccount.address);
+      }
+    }
+    createProfile();
+  }, [currentAccount, session]);
 
   const dispenser = useDispenserStore((state) => state);
   const {
@@ -72,20 +89,20 @@ const DispenserDrawing = () => {
   return (
     <div className="saira relative w-full flex justify-between">
       <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[65vh] mr-30" />
-      <div className="w-full h-[65vh] rounded-md">
+      <div className="w-full h-[30vh] rounded-md">
         <div className="text-2xl font-bold mt-2 flex justify-center">Quench your Thirst, get a Bottle!</div>
         <div className="mt-4 px-2 flex justify-center ">
           <button
             disabled={session === null || getBatchOrNot(dispenser, user) === BatchOrNot.Closed}
             onClick={() => handleBuy(dispenser)}
-            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full mr-20 mt-5 ml-20 rounded-xl h-10 disabled:bg-white disabled:text-mvxCyan"
+            className="text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-md mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300"
           >
             Buy
           </button>
           <button
             disabled={session === null || emptyBottleIds.length < 5}
             onClick={() => handleRecycle()}
-            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full mt-5 mr-20 rounded-xl h-10 disabled:bg-white disabled:text-mvxCyan"
+            className="text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-md ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300"
           >
             Recycle
           </button>
@@ -94,16 +111,17 @@ const DispenserDrawing = () => {
           <button
             disabled={session === null || ticketIds.length === 0}
             onClick={() => handleSwap()}
-            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full mr-20 mt-5 rounded-xl h-10 disabled:bg-white disabled:text-mvxCyan"
+            className="text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-md mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300"
           >
             Swap
           </button>
           <button
             disabled={
-              session === null || (filledBottleRoles.length === 0 && emptyBottleRoles.length === 0)
+              //session === null || (filledBottleRoles.length === 0 && emptyBottleRoles.length === 0)
+              true
             }
             onClick={() => handleClaim()}
-            className="text-2xl hover:bg-cyan-500 bg-mvxCyan text-white font-bold w-full mt-5 ml-20 rounded-xl h-10 disabled:bg-white disabled:text-mvxCyan"
+            className="text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-md ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300"
           >
             Claim
           </button>
@@ -112,10 +130,13 @@ const DispenserDrawing = () => {
           <button
             disabled={filledBottleIds.length === 0 || isWetlisted === true}
             onClick={() => handleRegister()}
-            className="text-2xl relative w-full hover:bg-cyan-500 bg-mvxCyan fowhite text-mvxCyan mt-5 mr-40 ml-40 rounded-xl h-10 disabled:bg-white disabled:font-bold"
+            className="text-xl relative w-full hover:bg-cyan-600 bg-cyan-500 font-bold text-mvxCyan rounded-md px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300"
           >
             Register
           </button>
+        </div>
+        <div className="mt-8">
+          {session && currentAccount !== null && <UserStatus />}
         </div>
       </div>
     </div>

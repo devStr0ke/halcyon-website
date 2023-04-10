@@ -67,15 +67,15 @@ export const Navbar = () => {
 
   const navBarController = () => {
     if (Math.floor(scrollPosition) > 44) {
-      return 'h-[65px] flex items-center overflow-hidden justify-center z-[800] bg-white relative w-full lg:bg-black lg:animate-slidein lg:transition-navBar lg:duration-[900ms] lg:mx-0';
+      return 'h-[65px] flex items-center overflow-hidden justify-center z-[800] bg-gray-200 relative w-full lg:bg-black lg:animate-slidein lg:transition-navBar lg:duration-[900ms] lg:mx-0';
     } else {
-      return 'h-[65px] flex items-center justify-center overflow-hidden z-[800] bg-white relative w-full lg:mx-24 xl:mx-36 lg:rounded-md lg:animate-slidein lg:transition-navBar lg:duration-[1200ms]';
+      return 'h-[65px] flex items-center justify-center overflow-hidden z-[800] bg-gray-200 relative w-full lg:mx-24 xl:mx-36 lg:rounded-md lg:animate-slidein lg:transition-navBar lg:duration-[1200ms]';
     }
   };
 
   const leftNavBarItemsController = () => {
     if (Math.floor(scrollPosition) > 44) {
-      return 'hidden font-bold text-white absolute top-6 lg:left-2 xl:left-24 h-[45px] lg:flex gap-8 lg:ml-10 xl:ml-0';
+      return 'hidden font-bold text-gray-200 absolute top-6 lg:left-2 xl:left-24 h-[45px] lg:flex gap-8 lg:ml-10 xl:ml-0';
     } else {
       return 'hidden font-bold text-black absolute top-6 lg:left-2 xl:left-24 h-[45px] lg:animate-hideNavBarContent lg:flex gap-8 lg:ml-10 xl:ml-0';
     }
@@ -83,7 +83,7 @@ export const Navbar = () => {
 
   const rightNavBarItemsController = () => {
     if (Math.floor(scrollPosition) > 44) {
-      return 'hidden font-bold text-white absolute top-6 lg:right-2 xl:right-24 h-[45px] lg:flex gap-8 lg:mr-10 xl:mr-0';
+      return 'hidden font-bold text-gray-200 absolute top-6 lg:right-2 xl:right-24 h-[45px] lg:flex gap-8 lg:mr-10 xl:mr-0';
     } else {
       return 'hidden font-bold text-black absolute top-6 lg:right-2 xl:right-24 h-[45px] lg:animate-hideNavBarContent lg:flex gap-8 lg:mr-10 xl:mr-0';
     }
@@ -251,8 +251,8 @@ export const Navbar = () => {
       <div
         className={
           hamburgerController
-            ? 'lg:hidden top-[65px] h-full bg-white w-full border-t-[0.01px] border-gray-300 border-opacity-40 fixed z-[799] transform transition-transform duration-500 translate-y-0'
-            : 'lg:hidden top-[65px] h-full bg-white w-full fixed z-[799] transform transition-transform duration-500 -translate-y-full'
+            ? 'lg:hidden top-[65px] h-full bg-gray-200 w-full border-t-[0.01px] border-gray-300 border-opacity-40 fixed z-[799] transform transition-transform duration-500 translate-y-0'
+            : 'lg:hidden top-[65px] h-full bg-gray-200 w-full fixed z-[799] transform transition-transform duration-500 -translate-y-full'
         }>
         <Link href='/#overview'>
           <div onClick={toggleHambFalse} className="text-lg font-bold uppercase text-black flex justify-center mt-12 hover:text-cyan-400">

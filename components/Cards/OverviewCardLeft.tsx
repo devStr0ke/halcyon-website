@@ -37,22 +37,22 @@ export const OverviewCardLeft = ({
               <div className="text-4xl font-medium text-gray-400">{thinTitle}</div>
             </div>
             <div className="h-[100vh] absolute flex justify-start items-center pl-6 sm:pl-24 top-12">
-              <div className="textBoxShadow text-5xl text-white font-bold">{boldTitle}</div>
+              <div className="textBoxShadow text-5xl text-gray-200 font-bold">{boldTitle}</div>
             </div>
             <div className="h-[100vh] w-[300px] sm:w-96 absolute flex justify-start items-center pl-6 sm:pl-24 top-44">
-              <div className="text-md font-regular text-white">
+              <div className="text-md font-regular text-gray-200">
                 {text}
               </div>
             </div>
           </div>
         </div>
         <div className="z-20 relative sm:h-[15vh] w-full flex justify-start xl:pr-[30vw] lg:pr-[20vw] sm:pr-[15vw]">
-          <div className="w-full textBoxShadow px-6 lg:text-8xl text-white sm:text-7xl text-6xl font-bold sm:py-3 saira flex justify-start sm:justify-end uppercase animate-imageTransition translate-x-0">
+          <div className="w-full textBoxShadow px-6 lg:text-8xl text-gray-200 sm:text-7xl text-6xl font-bold sm:py-3 saira flex justify-start sm:justify-end uppercase animate-imageTransition translate-x-0">
             {sloganRight}
           </div>
         </div>
         <div className="z-20 relative sm:h-[15vh] w-full flex justify-start xl:pl-16 lg:pl-14 sm:pl-4">
-          <div className="w-full textBoxShadow px-6 sm:px-0 lg:text-8xl text-white sm:text-7xl text-6xl font-bold sm:py-3 saira flex justify-start sm:justify-start uppercase animate-imageTransition">
+          <div className="w-full textBoxShadow px-6 sm:px-0 lg:text-8xl text-gray-200 sm:text-7xl text-6xl font-bold sm:py-3 saira flex justify-start sm:justify-start uppercase animate-imageTransition">
             {sloganLeft}
           </div>
         </div>

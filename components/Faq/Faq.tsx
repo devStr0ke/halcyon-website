@@ -49,8 +49,8 @@ export const Faq = ({ title, text, ...props }: Props) => {
 
   const heightClassController = () => {
     if (hamburgerController) {
-      return 'h-auto sm:h-auto z-10 bg-white relative w-full rounded-lg transition-all duration-500';
-    } else return 'h-auto z-10 bg-white relative w-full rounded-lg transition-all duration-500';
+      return 'h-auto sm:h-auto z-10 bg-gray-200 relative w-full rounded-lg transition-all duration-500';
+    } else return 'h-auto z-10 bg-gray-200 relative w-full rounded-lg transition-all duration-500';
   };
 
   const textVisibilityController = () => {
@@ -67,7 +67,7 @@ export const Faq = ({ title, text, ...props }: Props) => {
           onClick={toggleClass}
           className="top-0 bg-transparent w-full relative z-10 saira md:px-4 lg:px-24 xl:px-36 animate-textTransition cursor-pointer">
           <div className={heightClassController()}>
-            <div className="w-full h-[65px] bg-white rounded-lg flex justify-start items-center">
+            <div className="w-full h-[65px] bg-gray-200 rounded-lg flex justify-start items-center">
               <div className="pl-8 text-black font-black text-md sm:text-xl lg:text-2xl">
                 {title}
               </div>

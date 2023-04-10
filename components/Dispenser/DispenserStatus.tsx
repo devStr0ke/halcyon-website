@@ -36,33 +36,33 @@ const DispenserStatus = () => {
 
   let headline;
   if (batchOrNot === BatchOrNot.SuiSupply) {
-    headline = <div className='flex'><div>Mint a Random Bottle for ${
+    headline = <div><p>Mint a Random Bottle for ${
       price / 1000000000
-    } $SUI, hurry up there are only</div><div className='text-4xl ml-5'>{left} left!</div></div>;
+    } $SUI, hurry up there are only <span className='text-xl font-bold'>{left} left!</span></p></div>;
   } else if (batchOrNot === BatchOrNot.SuiTime) {
-    headline = <div className='flex'><div>Mint a Random Bottle for ${
+    headline = <div className='flex'><p>Mint a Random Bottle for ${
       price / 1000000000
-    } $SUI, hurry up there is only {days} day(s), </div><div className='text-4xl ml-5'>{hours}:{minutes}:{seconds} left!</div></div>;
+    } $SUI, hurry up there is only {days} day(s),<span className='text-xl font-bold'>{hours}:{minutes}:{seconds} left!</span></p></div>;
   } else if (batchOrNot === BatchOrNot.CoinSupply) {
-    headline = <div className='flex'><div>Mint a Random Bottle for ${
+    headline = <div className='flex'><p>Mint a Random Bottle for ${
       priceInCoins / 1000000000
-    } $${coin}, hurry up there are only</div><div className='text-4xl ml-5'>{left} left!</div></div>;
+    } $${coin}, hurry up there are only<span className='text-xl font-bold'>{left} left!</span></p></div>;
   } else if (batchOrNot === BatchOrNot.CoinTime) {
-    headline = <div className='flex'><div>Mint a Random Bottle for ${
+    headline = <div className='flex'><p>Mint a Random Bottle for ${
       priceInCoins / 1000000000
-    } $${coin}, hurry up there is only {days} day(s), </div><div className='text-4xl ml-5'>{hours}:{minutes}:{seconds} left!</div></div>;
+    } $${coin}, hurry up there is only {days} day(s), <span className='text-xl font-bold'>{hours}:{minutes}:{seconds} left!</span></p></div>;
   } else if (startTimestamp !== 0) {
-    headline = <div className='flex'><div>Next batch opens in {days} day(s), </div><div className='text-4xl ml-5'>{hours}:{minutes}:{seconds}</div></div>;
+    headline = <div className='flex'><p>Next batch opens in {days} day(s), <span className='text-xl font-bold'>{hours}:{minutes}:{seconds}</span></p></div>;
   } else {
     headline =
       <div>There is no batch open or planned at the moment, join our community to get more options!</div>;
   }
 
   return status === 'idle' || status === 'loading' ? (
-    <div className="animate-pulse flex space-x-4">
-      <div className="flex-1 space-y-2 py-1">
-        <div className="h-3 bg-slate-400 rounded"></div>
-        <div className="h-3 bg-slate-400 rounded w-1/5"></div>
+    <div className="flex space-x-4">
+      <div className="h-6 rounded flex items-center gap-4">
+        <p>Loading the smart contract, please be patient.</p>
+        <div className="w-6 h-6 border-t-4 border-b-4 border-cyan-500 rounded-full animate-spin"></div>
       </div>
     </div>
   ) : (
