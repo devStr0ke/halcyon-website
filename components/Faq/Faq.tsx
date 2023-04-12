@@ -73,7 +73,7 @@ export const Faq = ({ title, text, ...props }: Props) => {
               </div>
             </div>
             <div className={textVisibilityController()}>
-              <div className="pl-8 pr-8 pb-2 sm:pr-16 text-black font-regular xl:text-[18px] lg:text-[15px] md:text-sm sm:text-xs text-xs">
+              <div className="pl-8 pr-8 pb-10 sm:pr-16 text-black font-regular xl:text-[18px] lg:text-[15px] md:text-sm sm:text-xs text-xs">
                 {text}
               </div>
             </div>

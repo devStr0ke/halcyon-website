@@ -14,7 +14,7 @@ export const Second = () => {
             translateType='negTranslateX'
             backGroundImageClass="bg-no-repeat bg-center bg-cover bg-[url('/static/images/products/logoThirsty.png')] rounded-lg w-full h-[60vh]"
             title="THIRSTY MONKEYS"
-            text="Discover the most vibing monkeys from our exclusive NFT Collection."
+            text="Discover the most vibing monkeys from our membership NFT Collection."
             buttonHref="https://mobile.twitter.com/suimonkeys"
             buttonText="IM THIRSTY"
             external
@@ -24,7 +24,7 @@ export const Second = () => {
             translateType='translateY'
             backGroundImageClass="bg-no-repeat bg-center bg-cover bg-[url('/static/images/products/whitelistTool.png')] rounded-lg w-full h-[60vh]"
             title="BOTTLE DISPENSER"
-            text="Get your Wetlist via our gamified whitelisting tool on Sui devnet."
+            text="Get your Wetlist via our gamified on-chain whitelisting tool on Sui."
             buttonHref='/dispenser'
             buttonText="DISPENSER"
             external={false}
@@ -33,8 +33,8 @@ export const Second = () => {
           <ProductsCard
             translateType='translateX'
             backGroundImageClass="bg-no-repeat bg-center bg-cover bg-[url('/static/images/products/cantina.png')] rounded-lg w-full h-[60vh]"
-            title="DAO CANTINA"
-            text="Access your project staking and governance or create your own DAO space."
+            title="CANTINA"
+            text="A community engagement data aggregator and D-ID system with turnkey tools for Web3 projects, designed to bridge Web2 platforms and foster growth and collaboration across the ecosystem."
             buttonText="SOON"
             external={false}
             insider

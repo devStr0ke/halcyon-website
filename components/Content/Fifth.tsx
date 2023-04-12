@@ -11,32 +11,35 @@ export const Fifth = () => {
       >
         <Faq
           title='What is Halcyon?'
-          text='Halcyon is a cross-chain Web3 Development Studio creating innovative products like gamified collectibles, dapps and protocols. We focus on building highly reliable and efficient tools for builders and their community. We are first starting on the Move Ecosystem because it is a young and very promising space.'
+          text='Halcyon is a Web3 development studio that builds innovative decentralized products on Sui. We focus on providing highly reliable tools and infrastructure to accelerate project development and growth. By creating user-friendly decentralized applications, we aim to connect builders and communities in the most Web3 way possible.'
         />
         <div className='h-[10px] w-full'></div>
         <Faq
           title='What is Thirsty Monkeys ?' 
           text="Thirsty Monkeys will be one of the first products powered by Halcyon. It is purely a profile picture NFT collection, but unlike the others, these monkeys will offer holders exclusive and significant advantages on products built by Halcyon.
 
-          We chose to launch this collection on Sui because that's the blockchain we chose to build our first products on. In addition, we have designed an innovative gamified whitelisting process that should allow anyone to get their NFT!"
+          To onboard enthusiasts, we have designed an innovative gamified whitelisting process that should allow anyone to get their NFT!"
         />
         <div className='h-[10px] w-full'></div>
         <Faq
           title='How will the sales work ?'
-          text='The pre-sale will be followed by the public sale, both of which will take place on Sui. Numerous bottle editions will be distributed to grant pre-sale access to their holders. These can be earned in a variety of ways on our custom dApp. We call it the Bottle Dispenser.
+          text='The pre-sale will be followed by the public sale, both of which will take place on our partner’s launchpad. Numerous bottle editions will be distributed to grant pre-sale access to their holders. These can be earned in a variety of ways on our custom dApp. We call it the Bottle Dispenser.
 
-          Then at Sui mainnet launch, all filled bottle holders will be able to participate in Thirsty Monkeys presale. The rest of the supply will be made available at the main sale right after.'
+          Then at Sui mainnet launch, all filled bottle holders will be able to participate in Thirsty Monkeys presale. The rest of the supply will be made available at the public sale right after.'
         />
         <div className='h-[10px] w-full'></div>
         <Faq
           title='What is the Bottle Dispenser?'
-          text='The Bottle Dispenser is a system that allows users to obtain whitelists for a sale on a first-come, first-served basis through a Dapp. Users can mint and receive two types of bottles, filled ones which are eligible for a whitelist and unfilled ones which can be recycled for a new entry. Partner projects may give away filled bottles and there may be opportunities to obtain them through test mints on partner marketplaces where winning NFTs can be redeemed for a whitelist.'
+          text='The Bottle Dispenser is a product developed by Halcyon to distribute Wetlists for Thirsty Monkeys’ sale. Regularly, on a FCFS basis, you are able to mint and receives two types of bottles on our Dapp. Filled ones are eligible to a whitelist and the others not, but they can be recycled for a new entry anytime!
+
+          If you are not fast enough to mint a bottle, watch our Twitter & Discord. We will also organize Mint & IDO Events on partner launchpads where NFTs and Coins can be redeemed for Bottles on our Dapp.'
         />
         <div className='h-[10px] w-full'></div>
         <Faq
           title='What are we building?'
-          text='Our first product "The Cantina" will be a hub for DAO, open to builders and their communities. Projects will be able to create their own space including a staking and governance module. This will allow builders to avoid wasting time developing already popular dapps and focus on producing new concepts and utilities within their projects.
-          The Cantina will be improved with many other features before moving forward to our next product: “The Fair”.'
+          text='Our first product “The Bottle Dispenser” is an on-chain gamified whitelisting tool issuing tokenized whitelists in the form of Bottle NFTs. It has been designed to maximize interactions from the community and collaborations with major Sui actors.
+
+          "The Cantina" is a platform aggregating Community Engagement Data and managing decentralized IDs. It is also be a hub for Web3 projects and their communities. Builders will be able to create their own space with turnkey tools such as staking and governance modules.'
         />
       </div>
     </>

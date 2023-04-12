@@ -70,14 +70,16 @@ export const Footer = () => {
             Whitepaper
           </div>
           <div className="text-black text-xs md:text-sm uppercase mt-1 text-end cursor-pointer hover:text-cyan-500">
-            Contact
+            <a target="_blank" rel="noreferrer" href="https://t.me/ThounyBreasty">
+              Contact
+            </a>
           </div>
         </div>
       </div>
       <div className="border-t-2 border-gray-300 mx-8"></div>
       <div className="flex justify-between">
         <div className="py-2 px-4 lg:px-8">
-          <div className="text-black text-sm md:text-md font-bold uppercase">Halcyon Project</div>
+          <div className="text-black text-sm md:text-md font-bold uppercase">Halcyon Studio</div>
           <div className="text-gray-500 text-xs md:text-sm font-extralight uppercase mt-1">
             Halcyon 2023 ©
           </div>
