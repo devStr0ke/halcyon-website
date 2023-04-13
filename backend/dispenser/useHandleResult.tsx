@@ -5,7 +5,7 @@ import { useModalStore, useUserStore } from '../../store/store';
 
 export const useHandleResult = () => {
   const { session } = useAuth();
-  const { updateRoleClaimStatus, setIsWetlisted, addBottle } = useUserStore((state) => state);
+  const { updateRoleClaimStatus, setIsWetlisted, addEmptyBottleId, addFilledBottleId } = useUserStore((state) => state);
 
   const { setModalContent, setShowModal, setIsBottleFilled } = useModalStore((state) => state);
 
@@ -45,7 +45,7 @@ export const useHandleResult = () => {
             setIsBottleFilled(false);
           }
           // Update local state
-          addBottle(receivedEvent.parsedJson);
+          receivedEvent.parsedJson.isFilled ? addFilledBottleId(receivedEvent.parsedJson.id) : addEmptyBottleId(receivedEvent.parsedJson.id);
           setShowModal(true);
         }
       }
@@ -74,7 +74,7 @@ export const useHandleResult = () => {
             setIsBottleFilled(false);
           }
           // Update local state
-          addBottle(receivedEvent.parsedJson);
+          receivedEvent.parsedJson.isFilled ? addFilledBottleId(receivedEvent.parsedJson.id) : addEmptyBottleId(receivedEvent.parsedJson.id);
           setShowModal(true);
 
           // Change roles in db

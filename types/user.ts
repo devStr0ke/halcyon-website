@@ -25,7 +25,9 @@ export interface UserStore extends UserObject {
   setUser: (_user: UserObject) => void;
   updateRoleClaimStatus: (_role: string) => void;
   setIsWetlisted: () => void;
-  addBottle: (_bottle: { id: string; is_filled: boolean }) => void;
+  addEmptyBottleId: (_id: string) => void;
+  addFilledBottleId: (_id: string) => void;
+  removeBottles: () => void;
 }
 
 export interface ModalStore {

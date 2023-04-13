@@ -60,10 +60,12 @@ export const useDispenserStore = create<DispenserStore>((set) => ({
     structName: '',
     generics: ''
   },
-  setStatus: (status: Status) =>
-    set({
-      status
-    }),
+  reduceSupply: () => set((state) => ({
+    left: state.left - 1,
+  })),
+  setStatus: (status: Status) => set({
+    status
+  }),
   setDispenser: (dispenser: DispenserObject) =>
     set({
       status: 'succeeded',
@@ -132,15 +134,17 @@ export const useUserStore = create<UserStore>((set) => ({
       isWetlisted: true
     });
   },
-  addBottle: (bottle: { id: string; is_filled: boolean }) => {
-    set((state) => {
-      if (bottle.is_filled) {
-        return { filledBottleIds: [...state.filledBottleIds, bottle.id] };
-      } else {
-        state.emptyBottleIds.push(bottle.id);
-        return { emptyBottleIds: [...state.emptyBottleIds, bottle.id] };
-      }
-    });
-  },
+  addEmptyBottleId: (id: string) => set((state) => ({
+    ...state,
+    emptyBottleIds: [...state.emptyBottleIds, id],
+  })),
+  addFilledBottleId: (id: string) => set((state) => ({
+    ...state,
+    filledBottleIds: [...state.filledBottleIds, id],
+  })),
+  removeBottles: () => set((state) => ({
+    ...state,
+    emptyBottleIds: state.emptyBottleIds.slice(5),
+  })),
   shallow
 }));

@@ -66,7 +66,6 @@ export const useSendTx = () => {
         ]
       });
 
-      tx.setGasBudget(10000);
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForEffectsCert',
@@ -90,7 +89,6 @@ export const useSendTx = () => {
         arguments: [tx.object(config.dispenser), tx.object(ticketIds[0])]
       });
 
-      tx.setGasBudget(10000);
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForEffectsCert',
@@ -112,7 +110,6 @@ export const useSendTx = () => {
         target: `${config.package_id}::bottles::recycle`,
         typeArguments: [],
         arguments: [
-          tx.object(config.dispenser),
           tx.pure(emptyBottleIds[0]),
           tx.pure(emptyBottleIds[1]),
           tx.pure(emptyBottleIds[2]),
@@ -121,7 +118,6 @@ export const useSendTx = () => {
         ]
       });
 
-      tx.setGasBudget(10000);
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForEffectsCert',
@@ -145,7 +141,6 @@ export const useSendTx = () => {
         arguments: [tx.object(filledBottleIds[0])]
       });
 
-      tx.setGasBudget(10000);
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForEffectsCert',
@@ -166,10 +161,9 @@ export const useSendTx = () => {
       tx.moveCall({
         target: `${config.package_id}::bottles::claim_random_bottle`,
         typeArguments: [],
-        arguments: [tx.object(config.dispenser), tx.pure(magicNumber)]
+        arguments: [tx.pure(magicNumber)]
       });
 
-      tx.setGasBudget(10000);
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForEffectsCert',
@@ -190,10 +184,9 @@ export const useSendTx = () => {
       tx.moveCall({
         target: `${config.package_id}::bottles::claim_filled_bottle`,
         typeArguments: [],
-        arguments: [tx.object(config.dispenser), tx.pure(magicNumber)]
+        arguments: [tx.pure(magicNumber)]
       });
 
-      tx.setGasBudget(10000);
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForEffectsCert',

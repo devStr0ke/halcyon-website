@@ -127,8 +127,7 @@ const Dispenser = () => {
           {isModalOpened && <ResultModal />}
           <div className="border-2 border-red-400 bg-red-100 mt-20 mx-16 p-2 rounded-md">
             <p className="text-red-700 text-center">
-              Beware, the obtained NFTs live on Sui devnet, which is frequently reset. This will
-              make you lose your entire wallet! So remember to register your wetlist ASAP.
+              Heads up! Our Dapp is in its early development phase and running on Sui Testnet which is still experimental. As we fine-tune the experience, you might encounter some hiccups. Kindly share any issues on our Discord. Thanks for being part of our vibrant community!
             </p>
           </div>
           <div className="mx-16 mt-8">

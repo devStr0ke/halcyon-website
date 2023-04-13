@@ -32,6 +32,7 @@ export interface DispenserObject {
 
 export interface DispenserStore extends DispenserObject {
   status: Status;
+  reduceSupply: () => void;
   setStatus: (_status: Status) => void;
   setDispenser: (_dispenser: DispenserObject) => void;
 }
