@@ -1,4 +1,3 @@
-// import { useDispenserStore, useMonkeyStore } from "../store/store";
 import { useWalletKit } from '@mysten/wallet-kit';
 
 // import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
@@ -6,7 +5,7 @@ import useStoreUserInfo from '../backend/dispenser/useStoreUserInfo';
 import DispenserComp from '../components/Dispenser/Dispenser';
 import { supabase } from '../utils/supabase';
 import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
-import { useDispenserStore } from '../store/store';
+import { useUserStore, useDispenserStore } from '../store/store';
 import useStoreConfig from '../backend/dispenser/useStoreConfig';
 
 // pour forcer dynamiquement le refresh des roles par exemple
@@ -32,14 +31,14 @@ export async function getServerSideProps() {
 }
 
 export default function Dispenser() {
-  useStoreConfig('devnet');
+  useStoreConfig('testnet');
   const { currentAccount } = useWalletKit();
   useStoreContractInfo();
-  const dispenser = useDispenserStore();
+  const dispenser = useDispenserStore();  
   useStoreUserInfo(currentAccount?.address, dispenser);
-  //const user = useUserStore();
-  //console.log("USER STORE: ", user);
-  //console.log("DISPENSER STORE: ", dispenser);
+  const user = useUserStore();
+  console.log("USER STORE: ", user);
+  console.log("DISPENSER STORE: ", dispenser);
   //console.log("DISPENSER LOADING??: ", dispenser.loading);
   //console.log("USER LOADING??: ", user.loading);
 

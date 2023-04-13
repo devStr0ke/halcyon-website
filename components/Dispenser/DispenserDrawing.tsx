@@ -1,6 +1,6 @@
 import { useUserStore, useDispenserStore, useConfigStore } from '../../store/store';
 import { useSendTx } from '../../backend/dispenser/useSendTx';
-import { BatchOrNot, DispenserStore } from '../../types/suiDispenser';
+import { BatchOrNot, DispenserStore } from '../../types/sui';
 import { getBatchOrNot } from '../../backend/dispenser/dispenserStatus';
 import { useHandleResult } from '../../backend/dispenser/useHandleResult';
 import { useEffect, useMemo } from 'react';

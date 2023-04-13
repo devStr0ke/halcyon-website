@@ -37,14 +37,12 @@ const useStoreContractInfo = async () => {
             structName: dispenser.test_nft.fields.struct_name,
             generics: dispenser.test_nft.fields.generics[0]
           },
-          testNftName: dispenser.test_nft_name,
           testCoin: {
             packageId: dispenser.test_coin.fields.package_id,
             moduleName: dispenser.test_coin.fields.module_name,
             structName: dispenser.test_coin.fields.struct_name,
             generics: dispenser.test_coin.fields.generics[0]
           },
-          mintCap: dispenser.mint_cap.fields.id.id
         });
       } catch (error) {
         console.error(error);

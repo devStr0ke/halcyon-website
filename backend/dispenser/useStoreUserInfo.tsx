@@ -1,12 +1,11 @@
 import { useConfigStore, useUserStore } from '../../store/store';
-import { NftClient } from '@originbyte/js-sdk';
 import { BCS, getSuiMoveConfig, BcsWriter } from '@mysten/bcs';
 import { useEffect } from 'react';
-import { NftClient as NClient, ArtNft } from '../../originbyte-js-sdk/src';
-import { DispenserStore } from '../../types/suiDispenser';
+import { DispenserStore, Nft } from '../../types/sui';
 import { getIsWetlisted, getRoleUpdatesForUser } from '../../utils/supabase';
 import useAuth from '../../hooks/useAuth';
-import { Role } from '../../types/suiUser';
+import { Role } from '../../types/user';
+import { PaginatedObjectsResponse } from '@mysten/sui.js';
 
 // hook permettant de fetch et store avec Zustand
 // toutes les infos liées à l'utilisateur
@@ -14,9 +13,12 @@ import { Role } from '../../types/suiUser';
 //
 // import { useUserStore } from "./store/store"
 // const coinObjectId = useUserStore((state) => state.coinObjectId);
+
+const NFT_REGEX =
+  /^(0x[a-f0-9]{63,64})::([a-zA-Z]{1,})::([a-zA-Z]{1,})$/;
+
 const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore) => {
   const bcs = new BCS(getSuiMoveConfig());
-  const client = new NftClient();
   const { setUser, status, setStatus } = useUserStore((state) => state);
   const config = useConfigStore();
   console.log(status);
@@ -30,45 +32,44 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
     return bytes[30] * bytes[31];
   };
 
-  const getNftsForAddress = async (addr: string) => {
-    const nclient = new NClient();
-    const nfts = await nclient.getNftsForAddress(addr);
+  const getNftsForAddress = async (addr: string): Promise<any> => {
+    const objects = await config.provider.getOwnedObjects({ owner: addr, options: {showType: true} });
+    const nfts = objects.data
+      .filter((_) => _.data?.type?.match(NFT_REGEX));
+    
     console.log(nfts);
     
     return nfts;
   };
 
-  const filterFilledIds = async (nfts: ArtNft[]): Promise<string[]> => {
+  const filterFilledIds = async (nfts: Nft[]): Promise<string[]> => {
     const filtered = nfts.filter((nft) => {
-      if (nft.collectionPackageObjectId == config.package_id && nft.name == 'Filled Bottle') {
+      if (nft.data.type == `${config.package_id}::bottles::FilledBottle`) {
         return nft;
       }
     });
-    const mapped = filtered.map((nft) => nft.id);
+    const mapped = filtered.map((nft) => nft.data.objectId);
     return mapped;
   };
 
-  const filterEmptyIds = async (nfts: ArtNft[]): Promise<string[]> => {
+  const filterEmptyIds = async (nfts: Nft[]): Promise<string[]> => {
     const filtered = nfts.filter((nft) => {
-      if (nft.collectionPackageObjectId == config.package_id && nft.name == 'Empty Bottle') {
+      if (nft.data.type == `${config.package_id}::bottles::EmptyBottle`) {
         return nft;
       }
     });
-    const mapped = filtered.map((nft) => nft.id);
+    const mapped = filtered.map((nft) => nft.data.objectId);
     return mapped;
   };
 
-  const filterTicketIds = async (nfts: ArtNft[], dispenser: DispenserStore): Promise<string[]> => {
+  const filterTicketIds = async (nfts: Nft[], dispenser: DispenserStore): Promise<string[]> => {
     const filtered = nfts.filter((nft) => {
-      if (
-        nft.collectionPackageObjectId == `0x${dispenser.testNft.generics.substring(0, 64)}` &&
-        nft.name == dispenser.testNftName
-      ) {
+      if (nft.data.type == `${dispenser.testNft.packageId}::${dispenser.testNft.moduleName}::${dispenser.testNft.structName}`) {
         return nft;
       }
     });
 
-    const mapped = filtered.map((nft) => nft.id);
+    const mapped = filtered.map((nft) => nft.data.objectId);
     return mapped;
   };
 

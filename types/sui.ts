@@ -1,6 +1,15 @@
 /* eslint-disable no-unused-vars */
 import { Status } from './fetching';
 
+export interface Nft {
+  data: {
+    digest: string;
+    objectId: string;
+    type: string;
+    version: string;
+  }
+}
+
 export interface StructTag {
   packageId: string;
   moduleName: string;
@@ -18,9 +27,7 @@ export interface DispenserObject {
   supply: number;
   left: number;
   testNft: StructTag;
-  testNftName: string;
   testCoin: StructTag;
-  mintCap: string;
 }
 
 export interface DispenserStore extends DispenserObject {
@@ -37,11 +44,3 @@ export enum BatchOrNot {
   Closed
 }
 
-export interface ModalStore {
-  modelContent: string;
-  isModalOpened: boolean;
-  isBottleFilled: null | boolean;
-  setShowModal: (_isModalOpened: boolean) => void;
-  setModalContent: (_content: string) => void;
-  setIsBottleFilled: (_isBottleFilled: null | boolean) => void;
-}

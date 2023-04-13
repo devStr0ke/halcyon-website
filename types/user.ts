@@ -1,19 +1,5 @@
 import { Status } from './fetching';
 
-export interface NftObject {
-  attributes: any;
-  collectionPackageObjectId: string;
-  id: string;
-  logicalOwner: string;
-  name: string;
-  ownerAddress: string;
-  packageModule: string;
-  packageModuleClassName: string;
-  packageObjectId: string;
-  rawResponse: any;
-  url: string;
-}
-
 export interface Role {
   role: string;
   claimed: boolean;
@@ -38,4 +24,13 @@ export interface UserStore extends UserObject {
   updateRoleClaimStatus: (_role: string) => void;
   setIsWetlisted: () => void;
   addBottle: (_bottle: { id: string; is_filled: boolean }) => void;
+}
+
+export interface ModalStore {
+  modelContent: string;
+  isModalOpened: boolean;
+  isBottleFilled: null | boolean;
+  setShowModal: (_isModalOpened: boolean) => void;
+  setModalContent: (_content: string) => void;
+  setIsBottleFilled: (_isBottleFilled: null | boolean) => void;
 }

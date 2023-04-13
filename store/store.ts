@@ -1,16 +1,16 @@
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
-import { DispenserObject, DispenserStore, ModalStore } from '../types/suiDispenser';
-import { UserObject, UserStore } from '../types/suiUser';
+import { DispenserObject, DispenserStore } from '../types/sui';
+import { UserObject, UserStore, ModalStore } from '../types/user';
 import { Config, ConfigStore } from '../types/config';
 import { Status } from '../types/fetching';
-import { devnetConfig } from '../backend/dispenser/config.devnet';
+import { testnetConfig } from '../backend/dispenser/config.testnet';
 
 export const useConfigStore = create<ConfigStore>((set) => ({
-  net: devnetConfig.net,
-  provider: devnetConfig.provider,
-  package_id: devnetConfig.package_id,
-  dispenser: devnetConfig.dispenser,
+  net: testnetConfig.net,
+  provider: testnetConfig.provider,
+  package_id: testnetConfig.package_id,
+  dispenser: testnetConfig.dispenser,
   setConfig: (config: Config) =>
     set({
       net: config.net,
@@ -54,14 +54,12 @@ export const useDispenserStore = create<DispenserStore>((set) => ({
     structName: '',
     generics: ''
   },
-  testNftName: '',
   testCoin: {
     packageId: '',
     moduleName: '',
     structName: '',
     generics: ''
   },
-  mintCap: '',
   setStatus: (status: Status) =>
     set({
       status
@@ -78,9 +76,7 @@ export const useDispenserStore = create<DispenserStore>((set) => ({
       supply: Number(dispenser.supply),
       left: Number(dispenser.left),
       testNft: dispenser.testNft,
-      testNftName: dispenser.testNftName,
       testCoin: dispenser.testCoin,
-      mintCap: dispenser.mintCap
     }),
   shallow
 }));

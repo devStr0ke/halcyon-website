@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getBatchOrNot, msToDayHourMinSec } from '../../backend/dispenser/dispenserStatus';
 import { useDispenserStore, useUserStore } from '../../store/store';
-import { BatchOrNot } from '../../types/suiDispenser';
+import { BatchOrNot } from '../../types/sui';
 
 const DispenserStatus = () => {
   const dispenser = useDispenserStore((state) => state);

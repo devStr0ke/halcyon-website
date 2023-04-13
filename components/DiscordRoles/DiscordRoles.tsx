@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useUserStore } from '../../store/store';
-import { Role } from '../../types/suiUser';
+import { Role } from '../../types/user';
 
 const DiscordRoles = () => {
   const { roles } = useUserStore((state) => state);

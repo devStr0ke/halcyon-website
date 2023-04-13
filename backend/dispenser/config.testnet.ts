@@ -2,7 +2,7 @@ import { JsonRpcProvider, Connection } from '@mysten/sui.js';
 import { Config } from '../../types/config';
 
 export const testnetConnection = new Connection({
-    fullnode: "https://sui-testnet.artifact.systems:443/",
+    fullnode: "https://sui-testnet.nodeinfra.com/",
     faucet: "",
 });
 
@@ -12,8 +12,8 @@ const provider = new JsonRpcProvider(testnetConnection);
 
 // ---------- Objects IDs ----------
 
-const package_id = "0x963aa152ca6e179565849b3e2267a407cedcae4afab100329a54ab440aecaac9";
+const package_id = "0x733ec22595c116fc9cdb4d1a9073ac10c10fd7d366dc7359906c3c1527abdda7";
 
-const dispenser = "0x94db597bb6a9850acfc01f709d4e09783f91c0661a4ca3eb3d978e5e7afedc60";
+const dispenser = "0xde11121d99da40e18398c4f20d2ad3b7da2c82316663e361be5ca296c861b0cf";
 
 export const testnetConfig: Config = { net, provider, package_id, dispenser }
