@@ -73,13 +73,27 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
     return mapped;
   };
 
-  const getTestCoinIds = async (addr: string, dispenser: DispenserStore) => {
+  const getTestCoins = async (addr: string, dispenser: DispenserStore) => {
     const testCoins = await config.provider.getCoins({
       owner: addr,
       coinType: `0x${dispenser.testCoin.generics}`
     });
+
+    let testCoinBalance = 0;
+    testCoins.data.forEach((coin) => {
+      testCoinBalance += Number(coin.balance)
+    })
     const testCoinIds = testCoins.data.map((coin) => coin.coinObjectId);
-    return testCoinIds;
+    
+    return {testCoinIds, testCoinBalance};
+  };
+
+  const getSuiBalance = async (addr: string) => {
+    const suiBalance = await config.provider.getBalance({
+      owner: addr,
+    });
+
+    return Number(suiBalance.totalBalance);
   };
 
   useEffect(() => {
@@ -93,7 +107,8 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
           const filledBottleIds = await filterFilledIds(nfts);
           const emptyBottleIds = await filterEmptyIds(nfts);
           const ticketIds = await filterTicketIds(nfts, dispenser);
-          const testCoinIds = await getTestCoinIds(addr, dispenser);
+          const { testCoinIds, testCoinBalance } = await getTestCoins(addr, dispenser);
+          const suiBalance = await getSuiBalance(addr);
 
           let roles: Role[] = [];
           let isWetlisted = null;
@@ -110,6 +125,8 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
             address: addr,
             magicNumber,
             testCoinIds,
+            testCoinBalance,
+            suiBalance,
             filledBottleIds,
             emptyBottleIds,
             ticketIds,

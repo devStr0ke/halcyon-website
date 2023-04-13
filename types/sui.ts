@@ -36,11 +36,9 @@ export interface DispenserStore extends DispenserObject {
   setDispenser: (_dispenser: DispenserObject) => void;
 }
 
-export enum BatchOrNot {
-  SuiTime,
-  SuiSupply,
-  CoinTime,
-  CoinSupply,
+export enum Batch {
+  Sui,
+  Coin,
   Closed
 }
 

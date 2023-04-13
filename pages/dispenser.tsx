@@ -39,6 +39,7 @@ export default function Dispenser() {
   const user = useUserStore();
   console.log("USER STORE: ", user);
   console.log("DISPENSER STORE: ", dispenser);
+  
   //console.log("DISPENSER LOADING??: ", dispenser.loading);
   //console.log("USER LOADING??: ", user.loading);
 

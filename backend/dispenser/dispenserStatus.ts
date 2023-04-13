@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BatchOrNot, DispenserStore } from '../../types/sui';
+import { Batch, DispenserStore } from '../../types/sui';
 import { UserStore } from '../../types/user';
 
 export const msToDayHourMinSec = (timestamp: number) => {
@@ -19,54 +19,25 @@ export const msToDayHourMinSec = (timestamp: number) => {
 
 const current_timestamp = new Date().getTime();
 
-export const getBatchOrNot = (dispenser: DispenserStore, user: UserStore): BatchOrNot => {
+export const getBatchOrNot = (dispenser: DispenserStore, user: UserStore): Batch => {
   if (
     dispenser.active &&
-    dispenser.supply > 0 &&
     dispenser.left > 0 &&
     dispenser.startTimestamp < current_timestamp &&
-    dispenser.endTimestamp < 100000000000000 &&
-    dispenser.supply === 100000000000000 &&
-    dispenser.priceInCoins === 100000000000000 &&
-    dispenser.price < 100000000000000
+    dispenser.endTimestamp > current_timestamp &&
+    dispenser.priceInCoins === 100000000000000
   ) {
-    return BatchOrNot.SuiTime;
+    return Batch.Sui;
   } else if (
     dispenser.active &&
-    dispenser.supply > 0 &&
     dispenser.left > 0 &&
     dispenser.startTimestamp < current_timestamp &&
-    dispenser.endTimestamp === 100000000000000 &&
-    dispenser.supply < 100000000000000 &&
-    dispenser.priceInCoins === 100000000000000 &&
-    dispenser.price < 100000000000000
-  ) {
-    return BatchOrNot.SuiSupply;
-  } else if (
-    dispenser.active &&
-    dispenser.supply > 0 &&
-    dispenser.left > 0 &&
-    dispenser.startTimestamp < current_timestamp &&
-    dispenser.endTimestamp < 100000000000000 &&
-    dispenser.supply === 100000000000000 &&
-    dispenser.priceInCoins < 100000000000000 &&
+    dispenser.endTimestamp > current_timestamp &&
     dispenser.price === 100000000000000 &&
     user.testCoinIds.length > 0
   ) {
-    return BatchOrNot.CoinTime;
-  } else if (
-    dispenser.active &&
-    dispenser.supply > 0 &&
-    dispenser.left > 0 &&
-    dispenser.startTimestamp < current_timestamp &&
-    dispenser.endTimestamp === 100000000000000 &&
-    dispenser.supply < 100000000000000 &&
-    dispenser.priceInCoins < 100000000000000 &&
-    dispenser.price === 100000000000000 &&
-    user.testCoinIds.length > 0
-  ) {
-    return BatchOrNot.CoinSupply;
+    return Batch.Coin;
   } else {
-    return BatchOrNot.Closed;
+    return Batch.Closed;
   }
 };

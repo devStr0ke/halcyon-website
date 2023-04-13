@@ -1,7 +1,8 @@
-import { useUserStore } from '../../store/store';
+import { useUserStore, useDispenserStore } from '../../store/store';
 
 const UserStatus = () => {
-  const { filledBottleIds, emptyBottleIds, ticketIds, status } = useUserStore((state) => state);
+  const { filledBottleIds, emptyBottleIds, ticketIds, status, suiBalance, testCoinBalance } = useUserStore((state) => state);
+  const { testCoin } = useDispenserStore((state) => state);
 
   return status === 'idle' || status === 'loading' ? (
     <div className="animate-pulse flex space-x-4">
@@ -12,15 +13,29 @@ const UserStatus = () => {
       </div>
     </div>
   ) : (
-    <div className="mb-4 bg-red">
-      <div className="text-center">
-        {`You have ${filledBottleIds.length} filled bottles to burn or give to your friends`}
-      </div>
-      <div className="text-center">
-        {`You have ${ticketIds.length} voucher(s) to swap for a filled bottle`}
-      </div>
-      <div className="text-center">
-        {`You have ${emptyBottleIds.length} empty bottles to recycle`}
+    <div className='flex justify-center'>
+      <div className="mb-4 mt-10 bg-red flex flex-col justify-center bg-cyan-50 border-cyan-500 rounded-2xl p-7">
+        <p className='text-2xl text-center font-medium'>INVENTORY</p>
+        <div className='flex justify-center mt-5 mb-2'>
+          <div className="text-center flex">
+            <p className='text-cyan-500 mr-1'>{suiBalance/1000000000}</p><p> SUI</p><p className='mr-3 ml-3'>-</p>
+          </div>
+          <div className="text-center flex">
+              <p className='text-cyan-500 mr-1'>{testCoinBalance / 1000000000}</p><p> {testCoin.generics.split('::').pop()}</p>
+          </div>
+        </div>
+        <div className='flex justify-center'>
+          <div className="text-center flex">
+            <p className='text-cyan-500 mr-1'>{filledBottleIds.length}</p><p className='uppercase'> Filled Bottle(s)</p><p className='mr-3 ml-3'>-</p>
+          </div>
+          <div className="text-center flex">
+            <p className='text-cyan-500 mr-1'>{emptyBottleIds.length}</p><p className='uppercase'> Empty Bottle(s)</p><p className='mr-3 ml-3'>-</p>
+          </div>
+          <div className="text-center flex">
+            <p className='text-cyan-500 mr-1'>{ticketIds.length}</p><p className='uppercase'> Voucher(s)</p>
+          </div>
+        </div>
+        <button onClick={() => window.scrollTo(0,0)} className='text-cyan-500 hover:text-cyan-600 mt-5'>What to do with all this loot now?</button>
       </div>
     </div>
   );

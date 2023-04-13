@@ -1,6 +1,6 @@
 import { useUserStore, useDispenserStore, useConfigStore } from '../../store/store';
 import { useSendTx } from '../../backend/dispenser/useSendTx';
-import { BatchOrNot, DispenserStore } from '../../types/sui';
+import { Batch, DispenserStore } from '../../types/sui';
 import { getBatchOrNot } from '../../backend/dispenser/dispenserStatus';
 import { useHandleResult } from '../../backend/dispenser/useHandleResult';
 import { useEffect, useMemo } from 'react';
@@ -32,7 +32,7 @@ const DispenserDrawing = () => {
         const userId = session.user.id;
         const doesExist = await doesRowExist(userId);
         if (!doesExist)
-          await createHalcyonProfile(session.user.identities[0].id, currentAccount.address);
+          await createHalcyonProfile(session.user.identities![0].id, currentAccount.address);
       }
     }
     createProfile();
@@ -53,7 +53,7 @@ const DispenserDrawing = () => {
 
   const handleBuy = async (dispenser: DispenserStore) => {
     const batchOrNot = getBatchOrNot(dispenser, user);
-    if (batchOrNot === BatchOrNot.SuiSupply || batchOrNot === BatchOrNot.SuiTime) {
+    if (batchOrNot === Batch.Sui) {
       const result = await buyRandomBottle();
       await handleResult(result, config);
     } else {
@@ -91,12 +91,12 @@ const DispenserDrawing = () => {
     <div className="saira relative w-full flex justify-between">
       <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[65vh] mr-30" />
       <div className="w-full h-[30vh] rounded-md">
-        <div className="text-2xl font-bold mt-2 flex justify-center">
-          Quench your Thirst, get a Bottle!
+        <div className="uppercase text-md font-bold mt-2 flex justify-center mb-7">
+          quench your thirst, get a bottle!
         </div>
         <div className="mt-4 px-2 flex justify-center ">
           <button
-            disabled={session === null || getBatchOrNot(dispenser, user) === BatchOrNot.Closed}
+            disabled={session === null || getBatchOrNot(dispenser, user) === Batch.Closed}
             onClick={() => handleBuy(dispenser)}
             className="text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-md mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
             Buy
@@ -133,7 +133,16 @@ const DispenserDrawing = () => {
             Register
           </button>
         </div>
-        <div className="mt-8">{session && currentAccount !== null && <UserStatus />}</div>
+        {/* <div className="mt-8">
+            <UserStatus /> 
+            <div className="text-center uppercase font-light mt-36">Connect with both Discord and a Sui Wallet</div>
+        </div> */}
+        <div className="mt-8">{
+          session && currentAccount !== null ?
+            <UserStatus /> :
+            <div className="text-center uppercase font-light mt-36">Connect with both Discord and a Sui Wallet</div>
+          }
+        </div>
       </div>
     </div>
   );

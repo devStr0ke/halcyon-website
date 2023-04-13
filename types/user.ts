@@ -10,6 +10,8 @@ export interface UserObject {
   address: string;
   magicNumber: number;
   testCoinIds: string[];
+  testCoinBalance: number;
+  suiBalance: number;
   filledBottleIds: string[];
   emptyBottleIds: string[];
   ticketIds: string[];

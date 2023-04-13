@@ -74,23 +74,20 @@ const Dispenser = () => {
             <div className="mx-auto px-4 py-20 lg:flex lg:h-screen lg:items-end">
               <div className="mx-auto text-center">
                 <h1 className="saira text-black text-lg font-extrabold sm:text-3xl">
-                  Welcome To The Dispenser!
+                  Welcome To The Bottle Dispenser!
                 </h1>
-                <div className="lg:mx-8 p-4 mt-4 bg-gray-200 rounded-md">
+                <div className="lg:mx-8 p-6 mt-4 bg-gray-200 rounded-lg">
                   <p className="saira sm:text-md sm:leading-relaxed text-black">
                     The Dispenser is a gamified on-chain whitelisting tool allowing Sui community
                     members to get tokenized Wetlists in the form of Bottles NFTs for our Thirsty
                     Monkeys collection.
                   </p>
-                  <strong className="text-lg sm:text-2xl font-bold mt-1 block text-black">
-                    <p>How does it works ?</p>
-                  </strong>
                   <p className="saira sm:text-md sm:leading-relaxed text-black">
                     Get a Filled Bottle and burn it to register your Wetlist. Many mechanisms have
                     been implemented to allow everyone to get Bottles!
                   </p>
                   <strong className="text-lg sm:text-2xl font-bold mt-1 block text-black">
-                    <p>Here is what to do with the dispenser :</p>
+                    <p>How does it works ?</p>
                   </strong>
                   <p className="saira sm:text-md sm:leading-relaxed text-black">
                     Wait for a batch to open and buy random bottles with $SUI
@@ -140,7 +137,7 @@ const Dispenser = () => {
           <div className="mx-16 mt-8">
             <DispenserDrawing />
           </div>
-          {/*{session && currentAccount !== null && status === 'succeeded' && <DiscordRoles />}*/}
+          {/* {session && currentAccount !== null && status === 'succeeded' && <DiscordRoles />} */}
         </div>
         <div className="w-full h-[100vh] flex justify-center items-center text-red-400 font-bold lg:hidden">
           The dispenser is made to be used on desktop only!
