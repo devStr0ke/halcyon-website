@@ -27,7 +27,9 @@ export interface UserStore extends UserObject {
   setIsWetlisted: () => void;
   addEmptyBottleId: (_id: string) => void;
   addFilledBottleId: (_id: string) => void;
-  removeBottles: () => void;
+  removeEmptyBottles: () => void;
+  removeFilledBottle: () => void;
+  removeVoucher: () => void;
 }
 
 export interface ModalStore {

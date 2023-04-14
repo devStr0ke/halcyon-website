@@ -147,7 +147,7 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
       console.log(dispenser);
       fetchStoreUserInfo(address, dispenser);
     }
-  }, [dispenser.status]);
+  }, [dispenser.status, address]);
 };
 
 export default useStoreUserInfo;

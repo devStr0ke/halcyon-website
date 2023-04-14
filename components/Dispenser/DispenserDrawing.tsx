@@ -14,7 +14,7 @@ const DispenserDrawing = () => {
   const { currentAccount } = useWalletKit();
   const config = useConfigStore((state) => state);
   const user = useUserStore((state) => state);
-  const { filledBottleIds, emptyBottleIds, ticketIds, roles, isWetlisted, removeBottles, status, suiBalance, testCoinBalance } = user;
+  const { filledBottleIds, emptyBottleIds, ticketIds, roles, isWetlisted, removeEmptyBottles, removeFilledBottle, removeVoucher, status, suiBalance, testCoinBalance } = user;
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [disabled, setDisabled] = useState({
     buttons: false,
@@ -66,12 +66,10 @@ const DispenserDrawing = () => {
       const batchOrNot = getBatchOrNot(dispenser);
       if (batchOrNot === Batch.Sui) {
         const result = await buyRandomBottle();
-        console.log(result);
         
         await handleResult(result, config);
       } else {
         const result = await buyRandomBottleWithCoins();
-        console.log(result);
         
         await handleResult(result, config);
       }
@@ -88,7 +86,7 @@ const DispenserDrawing = () => {
         const result = await recycle();
         await handleResult(result, config);
         if (result?.effects?.status.status === 'success') {
-          removeBottles();
+          removeEmptyBottles();
         }
       } finally {
         setDisabled(prevDisabled => ({ ...prevDisabled, recycle: false, buttons: false }));
@@ -103,7 +101,10 @@ const DispenserDrawing = () => {
     try {
       setDisabled(prevDisabled => ({ ...prevDisabled, swap: true, buttons: true }));
     const result = await swapNft();
-    await handleResult(result, config);
+      await handleResult(result, config);
+      if (result?.effects?.status.status === 'success') {
+        removeVoucher();
+      }
     } finally {
       setDisabled(prevDisabled => ({ ...prevDisabled, swap: false, buttons: false }));
     }
@@ -128,7 +129,10 @@ const DispenserDrawing = () => {
     try {
       setDisabled(prevDisabled => ({ ...prevDisabled, register: true, buttons: true }));
     const result = await register();
-    await handleResult(result, config);
+      await handleResult(result, config);
+      if (result?.effects?.status.status === 'success') {
+        removeFilledBottle();
+      }
     } finally {
       setDisabled(prevDisabled => ({ ...prevDisabled, register: false, buttons: false }));
     }
@@ -154,13 +158,13 @@ const DispenserDrawing = () => {
             disabled={disabled.buttons || session === null || getBatchOrNot(dispenser) === Batch.Closed || (suiBalance === 0 && testCoinBalance === 0)}
             onClick={() => handleBuy(dispenser)}
             className="flex justify-center items-center h-10 text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
-            {(disabled.buy || status === "idle" || status === "loading") ? loader : "Buy"}
+            {(disabled.buy || status === "loading") ? loader : "Buy"}
           </button>
           <button
             disabled={disabled.buttons || session === null || emptyBottleIds.length < 5}
             onClick={() => handleRecycle()}
             className="flex justify-center items-center text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
-            {(disabled.recycle || status === "idle" || status === "loading") ? loader : isConfirmed ? 'Burn 5 Empty Bottles?' : 'Recycle'}
+            {(disabled.recycle || status === "loading") ? loader : isConfirmed ? 'Burn 5 Empty Bottles?' : 'Recycle'}
           </button>
         </div>
         <div className="mt-4 px-2 flex justify-center">
@@ -168,7 +172,7 @@ const DispenserDrawing = () => {
             disabled={disabled.buttons || session === null || ticketIds.length === 0}
             onClick={() => handleSwap()}
             className="flex justify-center items-center h-10 text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
-            {(disabled.swap || status === "idle" || status === "loading") ? loader : "Swap"}
+            {(disabled.swap || status === "loading") ? loader : "Swap"}
           </button>
           <button
             disabled={
@@ -177,7 +181,7 @@ const DispenserDrawing = () => {
             }
             onClick={() => handleClaim()}
             className="flex justify-center items-center h-10 text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
-            {(disabled.claim || status === "idle" || status === "loading") ? loader : "Claim"}
+            {(disabled.claim || status === "loading") ? loader : "Claim"}
           </button>
         </div>
         <div className="mt-4 px-2 flex justify-center">
@@ -185,7 +189,7 @@ const DispenserDrawing = () => {
             disabled={disabled.buttons || filledBottleIds.length === 0 || isWetlisted === true}
             onClick={() => handleRegister()}
             className="flex justify-center items-center h-10 text-xl relative w-full hover:bg-cyan-600 bg-cyan-500 font-bold text-white rounded-xl px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
-            {(disabled.register || status === "idle" || status === "loading") ? loader : "Register"}
+            {(disabled.register || status === "loading") ? loader : "Register"}
           </button>
         </div>
         {disabled.buttons && <p className='text-red-400 text-center mt-3'>Don&apos;t refresh, it&apos;s useless!</p>}

@@ -12,8 +12,8 @@ const provider = new JsonRpcProvider(testnetConnection);
 
 // ---------- Objects IDs ----------
 
-const package_id = "0x159912b608b23e4286e3f787b5bd7ba150764fa7aa1128140b1c4e5b407b1a3c";
+const package_id = "0x64238cbcc0508e6a74ed679a766912bbff9f56114bedd789230b63ba0ead3cb0";
 
-const dispenser = "0xf5392fb4dad7cba85f8dcafb6d0a8705b7d66e677f60f51c10a5721d4b791241";
+const dispenser = "0xbae715f1d6dc6c1c1307162a3057c885dab9e29e7cc08a6e9e8095fd737a6c75";
 
 export const testnetConfig: Config = { net, provider, package_id, dispenser }

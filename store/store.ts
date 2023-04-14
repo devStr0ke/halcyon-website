@@ -143,9 +143,17 @@ export const useUserStore = create<UserStore>((set) => ({
     ...state,
     filledBottleIds: [...state.filledBottleIds, id],
   })),
-  removeBottles: () => set((state) => ({
+  removeEmptyBottles: () => set((state) => ({
     ...state,
     emptyBottleIds: state.emptyBottleIds.slice(5),
+  })),
+  removeFilledBottle: () => set((state) => ({
+    ...state,
+    filledBottleIds: state.filledBottleIds.slice(1),
+  })),
+  removeVoucher: () => set((state) => ({
+    ...state,
+    ticketIds: state.ticketIds.slice(1),
   })),
   shallow
 }));

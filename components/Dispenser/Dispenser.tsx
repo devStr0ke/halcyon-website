@@ -87,7 +87,7 @@ const Dispenser = () => {
                     been implemented to allow everyone to get Bottles!
                   </p>
                   <strong className="text-lg sm:text-2xl font-bold mt-1 block text-black">
-                    <p>How does it works ?</p>
+                    <p>How does it works?</p>
                   </strong>
                   <p className="saira sm:text-md sm:leading-relaxed text-black">
                     Wait for a batch to open and buy random bottles with $SUI
@@ -113,6 +113,19 @@ const Dispenser = () => {
                     <a className="text-cyan-600" href="https://discord.gg/ZbQ3TPbzPT">
                       on Discord
                     </a>
+                  </p>
+                  <strong className="text-lg sm:text-2xl font-bold mt-1 block text-black">
+                    <p>What to do with the Loot?</p>
+                  </strong>
+                  <p className="saira sm:text-md sm:leading-relaxed text-black">
+                    $SUI and Coins issued by our partners may be used during a batch to buy random bottles. There is no limit per wallet.  
+                    <br />
+                    If you have a Filled Bottle, well done! Burn it to register your Wetlist.
+                    <br />
+                    Recycle (burn) 5 empty bottles to get a new random bottle at any time. Get as many bottles as possible during the batches and recycle the empty ones afterwards, without hurrying!
+                    <br />
+                    You have won a Voucher during a Mint Event and it is now in your wallet? Swap it for a Filled Bottle and register your Wetlist!
+                    <br />
                   </p>
                 </div>
               </div>
