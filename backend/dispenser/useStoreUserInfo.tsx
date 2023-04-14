@@ -4,8 +4,7 @@ import { useEffect } from 'react';
 import { DispenserStore, Nft } from '../../types/sui';
 import { getIsWetlisted, getRoleUpdatesForUser } from '../../utils/supabase';
 import useAuth from '../../hooks/useAuth';
-import { Role } from '../../types/user';
-import { PaginatedObjectsResponse } from '@mysten/sui.js';
+import { Role } from '../../types/user'
 
 // hook permettant de fetch et store avec Zustand
 // toutes les infos liées à l'utilisateur
@@ -148,7 +147,7 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
       console.log(dispenser);
       fetchStoreUserInfo(address, dispenser);
     }
-  }, [address, setUser, dispenser]);
+  }, [dispenser.status]);
 };
 
 export default useStoreUserInfo;

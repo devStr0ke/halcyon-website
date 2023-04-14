@@ -16,7 +16,7 @@ const Connection = () => {
     <>
       <div className='flex justify-between'>
         <div className='flex w-full justify-start'>
-          <div className='mr-1 py-2 px-3 mx-0'>{<DispenserStatus />}</div>
+          <div className='mr-1 py-2 px-3 mx-0'><DispenserStatus /></div>
         </div>
         <div className="flex justify-end w-full h-full">
           {session ? (

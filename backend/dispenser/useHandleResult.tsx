@@ -20,10 +20,10 @@ export const useHandleResult = () => {
         const registeredEvent = result.events.find(
           (evt: any) => evt.type === `${config.package_id}::bottles::AddressRegistered`
         );
-
         const receivedEvent = result.events.find(
           (evt: any) => evt.type === `${config.package_id}::bottles::RandomReceived`
         );
+        
         if (registeredEvent && session) {
           console.log('Wetlist Registered');
           // Register wl in supabase
@@ -36,16 +36,21 @@ export const useHandleResult = () => {
           setShowModal(true);
         } else {
           if (receivedEvent.parsedJson.is_filled) {
+            console.log(receivedEvent);
+            
             console.log('Filled Bottle Received');
             setModalContent('Filled Bottle Received');
             setIsBottleFilled(true);
+            addFilledBottleId(receivedEvent.parsedJson.id);
           } else {
+            console.log(receivedEvent);
+            
             console.log('Empty Bottle Received');
             setModalContent('Empty Bottle Received');
             setIsBottleFilled(false);
+            addEmptyBottleId(receivedEvent.parsedJson.id);
           }
           // Update local state
-          receivedEvent.parsedJson.isFilled ? addFilledBottleId(receivedEvent.parsedJson.id) : addEmptyBottleId(receivedEvent.parsedJson.id);
           setShowModal(true);
         }
       }

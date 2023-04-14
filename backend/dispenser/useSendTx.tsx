@@ -55,6 +55,9 @@ export const useSendTx = () => {
         }
         tx.mergeCoins(tx.object(testCoinIds[0]), toMerge);
       }
+      console.log(`${config.package_id}::bottles::buy_random_bottle_with_coins`);
+      console.log(`0x${testCoin.generics}`);
+      
 
       tx.moveCall({
         target: `${config.package_id}::bottles::buy_random_bottle_with_coins`,
@@ -85,7 +88,7 @@ export const useSendTx = () => {
       const tx = new TransactionBlock();
       tx.moveCall({
         target: `${config.package_id}::bottles::swap_nft`,
-        typeArguments: [`0x${testNft.generics}`],
+        typeArguments: [`${testNft.packageId}::${testNft.moduleName}::${testNft.structName}`],
         arguments: [tx.object(config.dispenser), tx.object(ticketIds[0])]
       });
 

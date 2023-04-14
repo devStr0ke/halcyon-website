@@ -19,7 +19,7 @@ export const msToDayHourMinSec = (timestamp: number) => {
 
 const current_timestamp = new Date().getTime();
 
-export const getBatchOrNot = (dispenser: DispenserStore, user: UserStore): Batch => {
+export const getBatchOrNot = (dispenser: DispenserStore): Batch => {
   if (
     dispenser.active &&
     dispenser.left > 0 &&
@@ -33,8 +33,7 @@ export const getBatchOrNot = (dispenser: DispenserStore, user: UserStore): Batch
     dispenser.left > 0 &&
     dispenser.startTimestamp < current_timestamp &&
     dispenser.endTimestamp > current_timestamp &&
-    dispenser.price === 100000000000000 &&
-    user.testCoinIds.length > 0
+    dispenser.price === 100000000000000
   ) {
     return Batch.Coin;
   } else {

@@ -14,7 +14,7 @@ const DispenserStatus = () => {
 
   const [timeMs, setTimeMs] = useState(0);
   const timestamp = new Date().getTime();
-  const batchOrNot = getBatchOrNot(dispenser, user);
+  const batchOrNot = getBatchOrNot(dispenser);  
 
   useEffect(() => {
     const intervalId = setInterval(() => {

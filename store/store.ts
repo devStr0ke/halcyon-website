@@ -134,10 +134,11 @@ export const useUserStore = create<UserStore>((set) => ({
       isWetlisted: true
     });
   },
-  addEmptyBottleId: (id: string) => set((state) => ({
+  addEmptyBottleId: (id: string) => {
+    set((state) => ({
     ...state,
     emptyBottleIds: [...state.emptyBottleIds, id],
-  })),
+  }))},
   addFilledBottleId: (id: string) => set((state) => ({
     ...state,
     filledBottleIds: [...state.filledBottleIds, id],
