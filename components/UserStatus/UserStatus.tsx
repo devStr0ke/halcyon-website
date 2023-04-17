@@ -21,7 +21,7 @@ const UserStatus = () => {
             <p className='text-cyan-500 mr-1'>{(suiBalance/1000000000).toFixed(2)}</p><p> SUI</p><p className='mr-3 ml-3'>-</p>
           </div>
           <div className="text-center flex">
-              <p className='text-cyan-500 mr-1'>{(testCoinBalance/1000000000).toFixed(2)}</p><p> {testCoin.generics.split('::').pop()}</p>
+              <p className='text-cyan-500 mr-1'>{(testCoinBalance/10000000).toFixed(2)}</p><p> {testCoin.generics.split('::').pop()}</p>
           </div>
         </div>
         <div className='flex justify-center'>
