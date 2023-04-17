@@ -35,7 +35,7 @@ const DispenserStatus = () => {
   const { days, hours, minutes, seconds } = msToDayHourMinSec(timeMs);
 
   let headline;
-  if (startTimestamp > timeMs) {
+  if (startTimestamp > timestamp) {
     headline = <div className='flex flex-col'>
       <p>Prepare your {batchOrNot === Batch.Coin ? coin : "SUI"} coins! Next batch opens in {days} day(s), <span className='text-xl font-bold'>{hours}:{minutes}:{seconds}</span></p>
       <div className='flex flex-row mt-3'><p className='text-2xl font-bold'>{left}</p><p className='ml-2 mt-2 text-sm'>/{supply} left</p></div>
