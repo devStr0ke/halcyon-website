@@ -42,7 +42,7 @@ const DispenserStatus = () => {
     </div>;
   } else if (batchOrNot === Batch.Coin) {
     headline = <div className='flex flex-col'>
-      <p>Mint a Random Bottle for {priceInCoins / 1000000000} {coin} coins, hurry up there is only {days} day(s), <span className='text-xl font-bold'>{hours}:{minutes}:{seconds} left!</span></p>
+      <p>Mint a Random Bottle for {priceInCoins / 10000000} {coin} coins, hurry up there is only {days} day(s), <span className='text-xl font-bold'>{hours}:{minutes}:{seconds} left!</span></p>
       <div className='flex flex-row mt-3'><p className='text-2xl font-bold'>{left}</p><p className='ml-2 mt-2 text-sm'>/{supply} left</p></div>
     </div>;
   } else if (batchOrNot === Batch.Sui) {
