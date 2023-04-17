@@ -28,6 +28,7 @@ export const useSendTx = () => {
         ]
       });
 
+      tx.setGasBudget(10000000)
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForLocalExecution',
@@ -55,10 +56,8 @@ export const useSendTx = () => {
         }
         tx.mergeCoins(tx.object(testCoinIds[0]), toMerge);
       }
-      console.log(`${config.package_id}::bottles::buy_random_bottle_with_coins`);
-      console.log(`0x${testCoin.generics}`);
-      
 
+      tx.setGasBudget(10000000)
       tx.moveCall({
         target: `${config.package_id}::bottles::buy_random_bottle_with_coins`,
         typeArguments: [`0x${testCoin.generics}`],
@@ -92,6 +91,7 @@ export const useSendTx = () => {
         arguments: [tx.object(config.dispenser), tx.object(ticketIds[0])]
       });
 
+      tx.setGasBudget(10000000)
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForLocalExecution',
@@ -121,6 +121,7 @@ export const useSendTx = () => {
         ]
       });
 
+      tx.setGasBudget(10000000)
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForLocalExecution',
@@ -144,6 +145,7 @@ export const useSendTx = () => {
         arguments: [tx.object(filledBottleIds[0])]
       });
 
+      tx.setGasBudget(10000000)
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForLocalExecution',
@@ -167,6 +169,7 @@ export const useSendTx = () => {
         arguments: [tx.pure(magicNumber)]
       });
 
+      tx.setGasBudget(10000000)
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForLocalExecution',
@@ -190,6 +193,7 @@ export const useSendTx = () => {
         arguments: [tx.pure(magicNumber)]
       });
 
+      tx.setGasBudget(10000000)
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForLocalExecution',
