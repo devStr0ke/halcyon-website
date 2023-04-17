@@ -35,19 +35,19 @@ const DispenserStatus = () => {
   const { days, hours, minutes, seconds } = msToDayHourMinSec(timeMs);
 
   let headline;
-  if (batchOrNot === Batch.Sui) {
+  if (startTimestamp > timeMs) {
     headline = <div className='flex flex-col'>
-      <p>Mint a Random Bottle for {price / 1000000000} SUI, hurry up there is only {days} day(s), <span className='text-xl font-bold'>{hours}:{minutes}:{seconds} left!</span></p>
+      <p>Prepare your {batchOrNot === Batch.Coin ? coin : "SUI"} coins! Next batch opens in {days} day(s), <span className='text-xl font-bold'>{hours}:{minutes}:{seconds}</span></p>
       <div className='flex flex-row mt-3'><p className='text-2xl font-bold'>{left}</p><p className='ml-2 mt-2 text-sm'>/{supply} left</p></div>
     </div>;
   } else if (batchOrNot === Batch.Coin) {
     headline = <div className='flex flex-col'>
-      <p>Mint a Random Bottle for {priceInCoins / 1000000000} {coin}, hurry up there is only {days} day(s), <span className='text-xl font-bold'>{hours}:{minutes}:{seconds} left!</span></p>
+      <p>Mint a Random Bottle for {priceInCoins / 1000000000} {coin} coins, hurry up there is only {days} day(s), <span className='text-xl font-bold'>{hours}:{minutes}:{seconds} left!</span></p>
       <div className='flex flex-row mt-3'><p className='text-2xl font-bold'>{left}</p><p className='ml-2 mt-2 text-sm'>/{supply} left</p></div>
     </div>;
-  } else if (endTimestamp < timeMs) {
+  } else if (batchOrNot === Batch.Sui) {
     headline = <div className='flex flex-col'>
-      <p>Next batch opens in {days} day(s), <span className='text-xl font-bold'>{hours}:{minutes}:{seconds}</span></p>
+      <p>Mint a Random Bottle for {price / 1000000000} SUI coins, hurry up there is only {days} day(s), <span className='text-xl font-bold'>{hours}:{minutes}:{seconds} left!</span></p>
       <div className='flex flex-row mt-3'><p className='text-2xl font-bold'>{left}</p><p className='ml-2 mt-2 text-sm'>/{supply} left</p></div>
     </div>;
   } else {

@@ -30,7 +30,7 @@ export const useSendTx = () => {
 
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
-        requestType: 'WaitForEffectsCert',
+        requestType: 'WaitForLocalExecution',
         chain: 'sui:sui',
         options: {
           showEffects: true,
@@ -71,7 +71,7 @@ export const useSendTx = () => {
 
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
-        requestType: 'WaitForEffectsCert',
+        requestType: 'WaitForLocalExecution',
         chain: 'sui:sui',
         options: {
           showEffects: true,
@@ -94,7 +94,7 @@ export const useSendTx = () => {
 
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
-        requestType: 'WaitForEffectsCert',
+        requestType: 'WaitForLocalExecution',
         chain: 'sui:sui',
         options: {
           showEffects: true,
@@ -123,7 +123,7 @@ export const useSendTx = () => {
 
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
-        requestType: 'WaitForEffectsCert',
+        requestType: 'WaitForLocalExecution',
         chain: 'sui:sui',
         options: {
           showEffects: true,
@@ -146,7 +146,7 @@ export const useSendTx = () => {
 
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
-        requestType: 'WaitForEffectsCert',
+        requestType: 'WaitForLocalExecution',
         chain: 'sui:sui',
         options: {
           showEffects: true,
@@ -169,7 +169,7 @@ export const useSendTx = () => {
 
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
-        requestType: 'WaitForEffectsCert',
+        requestType: 'WaitForLocalExecution',
         chain: 'sui:sui',
         options: {
           showEffects: true,
@@ -192,7 +192,7 @@ export const useSendTx = () => {
 
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
-        requestType: 'WaitForEffectsCert',
+        requestType: 'WaitForLocalExecution',
         chain: 'sui:sui',
         options: {
           showEffects: true,
