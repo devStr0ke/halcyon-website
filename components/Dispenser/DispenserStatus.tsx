@@ -20,10 +20,10 @@ const DispenserStatus = () => {
     const intervalId = setInterval(() => {
     if (dispenser) {
       let ms;
-      if (batchOrNot === Batch.Sui || batchOrNot === Batch.Coin) {
-        ms = endTimestamp - timestamp;
-      } else {
+      if (startTimestamp > timestamp) {
         ms = startTimestamp - timestamp;
+      } else {
+        ms = endTimestamp - timestamp;
       }
         setTimeMs(ms);
       }

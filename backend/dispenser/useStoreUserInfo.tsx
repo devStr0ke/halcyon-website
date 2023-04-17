@@ -20,8 +20,6 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
   const bcs = new BCS(getSuiMoveConfig());
   const { setUser, status, setStatus } = useUserStore((state) => state);
   const config = useConfigStore();
-  console.log(status);
-  
 
   const { session } = useAuth();
 
@@ -36,27 +34,17 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
     const nfts = objects.data
       .filter((_) => _.data?.type?.match(NFT_REGEX));
     
-    console.log(nfts);
-    
     return nfts;
   };
 
   const filterFilledIds = async (nfts: Nft[]): Promise<string[]> => {
-    const filtered = nfts.filter((nft) => {
-      if (nft.data.type == `${config.package_id}::bottles::FilledBottle`) {
-        return nft;
-      }
-    });
+    const filtered = nfts.filter((nft) => nft.data.type.match(`${config.package_id}::bottles::FilledBottle`));
     const mapped = filtered.map((nft) => nft.data.objectId);
     return mapped;
   };
 
   const filterEmptyIds = async (nfts: Nft[]): Promise<string[]> => {
-    const filtered = nfts.filter((nft) => {
-      if (nft.data.type == `${config.package_id}::bottles::EmptyBottle`) {
-        return nft;
-      }
-    });
+    const filtered = nfts.filter((nft) => nft.data.type.match(`${config.package_id}::bottles::EmptyBottle`));
     const mapped = filtered.map((nft) => nft.data.objectId);
     return mapped;
   };
@@ -98,7 +86,6 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
   useEffect(() => {
     const fetchStoreUserInfo = async (addr: string, dispenser: DispenserStore) => {
       try {
-        console.log('start fetching');
         setStatus('loading');
         if (dispenser.testCoin.generics) {
           const magicNumber = computeMagicNumber(addr);
@@ -138,13 +125,10 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
         setStatus('failed');
       } finally {
         setStatus('succeeded');
-        console.log('end fetching');
       }
     };
 
     if (address && dispenser.status === 'succeeded') {
-      console.log(address);
-      console.log(dispenser);
       fetchStoreUserInfo(address, dispenser);
     }
   }, [dispenser.status, address]);

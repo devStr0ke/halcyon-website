@@ -115,7 +115,6 @@ export async function getRoleUpdatesForUser(userId: string): Promise<Role[]> {
     throw new Error('No data returned');
   }
 
-  console.log('roles', data);
   return data as Role[];
 }
 
