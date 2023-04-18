@@ -118,13 +118,17 @@ const Dispenser = () => {
                     <p>What to do with the Loot?</p>
                   </strong>
                   <p className="saira sm:text-md sm:leading-relaxed text-black">
-                    $SUI and Coins issued by our partners may be used during a batch to buy random bottles. There is no limit per wallet.  
+                    $SUI and Coins issued by our partners may be used during a batch to buy random
+                    bottles. There is no limit per wallet.
                     <br />
                     If you have a Filled Bottle, well done! Burn it to register your Wetlist.
                     <br />
-                    Recycle (burn) 5 empty bottles to get a new random bottle at any time. Get as many bottles as possible during the batches and recycle the empty ones afterwards, without hurrying!
+                    Recycle (burn) 5 empty bottles to get a new random bottle at any time. Get as
+                    many bottles as possible during the batches and recycle the empty ones
+                    afterwards, without hurrying!
                     <br />
-                    You have won a Voucher during a Mint Event and it is now in your wallet? Swap it for a Filled Bottle and register your Wetlist!
+                    You have won a Voucher during a Mint Event and it is now in your wallet? Swap it
+                    for a Filled Bottle and register your Wetlist!
                     <br />
                   </p>
                 </div>
@@ -140,7 +144,9 @@ const Dispenser = () => {
           {isModalOpened && <ResultModal />}
           <div className="border-2 border-red-400 bg-red-100 mt-20 mx-16 p-2 rounded-md">
             <p className="text-red-700 text-center">
-              Our Dapp is in its early development phase and running on Sui Testnet which is still experimental. As we fine-tune the experience, you might encounter some hiccups. Kindly share any issues on our Discord. Let&apos;s build together!
+              Our Dapp is in its early development phase and running on Sui Testnet which is still
+              experimental. As we fine-tune the experience, you might encounter some hiccups. Kindly
+              share any issues on our Discord. Let&apos;s build together!
             </p>
           </div>
           <div className="mx-16 mt-8">
@@ -149,7 +155,6 @@ const Dispenser = () => {
           <div className="mx-16 mt-8">
             <DispenserDrawing />
           </div>
-          {/* {session && currentAccount !== null && status === 'succeeded' && <DiscordRoles />} */}
         </div>
         <div className="w-full h-[100vh] flex justify-center items-center text-red-400 font-bold lg:hidden">
           The dispenser is made to be used on desktop only!

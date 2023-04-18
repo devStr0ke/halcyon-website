@@ -4,15 +4,15 @@ import { supabase } from '../../utils/supabase';
 
 export default function LoginDiscord() {
   async function signInWithDiscord() {
-    // const redirectUrl = 'http://localhost:3000/dispenser/';
+    const redirectUrl = 'http://localhost:3000/dispenser/';
     // const redirectUrl = 'https://delightful-tartufo-d58047.netlify.app/dispenser/';
-    const redirectUrl = 'https://halcyon.builders/dispenser/';
+    //const redirectUrl = 'https://halcyon.builders/dispenser/';
 
     try {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'discord',
         options: { redirectTo: redirectUrl }
-      }); 
+      });
     } catch (error) {
       console.log(error);
     }
