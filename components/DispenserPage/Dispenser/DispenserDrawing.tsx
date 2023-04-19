@@ -163,12 +163,12 @@ const DispenserDrawing = () => {
 
   return (
     <div className="saira relative w-full flex justify-between">
-      <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[65vh] mr-30" />
+      <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[60vh] mr-30" />
       <div className="w-full h-[30vh] rounded-md">
-        <div className="uppercase text-md font-bold flex justify-center mb-7">
+        <div className="uppercase text-md font-bold flex justify-center mb-2">
           quench your thirst, get a bottle!
         </div>
-        <div className="mt-4 px-2 flex justify-center ">
+        <div className="mt-2 flex justify-center ">
           <button
             disabled={
               disabled.buttons ||
@@ -191,7 +191,7 @@ const DispenserDrawing = () => {
               : 'Recycle'}
           </button>
         </div>
-        <div className="mt-4 px-2 flex justify-center">
+        <div className="mt-2 flex justify-center">
           <button
             disabled={disabled.buttons || session === null || ticketIds.length === 0}
             onClick={() => handleSwap()}
@@ -209,7 +209,7 @@ const DispenserDrawing = () => {
             {disabled.claim || status === 'loading' ? loader : 'Claim'}
           </button>
         </div>
-        <div className="mt-4 px-2 flex justify-center">
+        <div className="mt-2 flex justify-center">
           <button
             disabled={disabled.buttons || filledBottleIds.length === 0 || isWetlisted === true}
             onClick={() => handleRegister()}
@@ -224,7 +224,7 @@ const DispenserDrawing = () => {
             <UserStatus /> 
             <div className="text-center uppercase font-light mt-36">Connect with both Discord and a Sui Wallet</div>
         </div> */}
-        <div className="mt-8">
+        <div className="mt-2">
           {session && currentAccount !== null ? (
             <UserStatus />
           ) : (

@@ -19,8 +19,8 @@ const DiscordRoles = () => {
   return (
     <div className="mb-6 w-full">
       <h2 className="text-center mb-3">Discord Roles</h2>
-      <div className="w-full flex justify-between">
-        <div className="flex justify-between">
+      <div className="flex justify-center">
+        <div className="flex justify-center">
           {nonEnthusiastRoles.map((r: Role) => (
             <div
               key={r.role}
@@ -40,12 +40,11 @@ const DiscordRoles = () => {
             </div>
           ))}
         </div>
-
-        <div className="flex">
+      </div>
+      <div className="flex justify-center mt-2">
           {`You can claim ${nonEnthClaimableNumber} filled bottle${
             nonEnthClaimableNumber > 1 ? 's' : ''
           } and ${enthClaimableNumber} empty bottle${enthClaimableNumber > 1 ? 's' : ''}`}
-        </div>
       </div>
     </div>
   );

@@ -138,21 +138,22 @@ const Dispenser = () => {
         </div>
       </div>
       <div className="relative h-[250vh] w-full">
-        <div ref={opacityBlurRef} className="z-10 absolute top-0 w-full h-[200vh] opacity-0"></div>
+        <div ref={opacityBlurRef} className="z-10 absolute top-0 w-full h-[100vh] opacity-0"></div>
         <div ref={blurBackground} className="z-0 h-[100vh] w-full sticky top-0 bg-no-repeat"></div>
         <div className="hidden lg:block heroHeader sticky top-0 z-20 w-full h-[100vh]">
           {isModalOpened && <ResultModal />}
-          <div className="border-2 border-red-400 bg-red-100 mt-20 mx-16 p-2 rounded-md">
+          <div className="h-[65px]"/>
+          <div className="border-2 border-red-400 bg-red-100 mt-2 mx-16 p-2 rounded-md h-[65px]">
             <p className="text-red-700 text-center">
               Our Dapp is in its early development phase and running on Sui Testnet which is still
               experimental. As we fine-tune the experience, you might encounter some hiccups. Kindly
               share any issues on our Discord. Let&apos;s build together!
             </p>
           </div>
-          <div className="mx-16 mt-8">
+          <div className="mx-16 mt-2">
             <Connection />
           </div>
-          <div className="mx-16 mt-8">
+          <div className="mx-16 mt-2">
             <DispenserDrawing />
           </div>
         </div>

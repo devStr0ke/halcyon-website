@@ -22,7 +22,7 @@ function ResultModal() {
 
   return (
     <div className={`absolute inset-0 flex items-center justify-center z-[998]`}>
-      <div className="relative h-80 w-56 bg-white rounded-2xl drop-shadow-lg w-fit z-[999]">
+      <div className="relative h-80 w-fit bg-white rounded-2xl drop-shadow-lg z-[999]">
         {displayImage()}
         <div className="absolute inset-x-0 bottom-5 flex items-center justify-center text-black font-bold text-xl">
           {modelContent}

@@ -14,9 +14,9 @@ const UserStatus = () => {
     </div>
   ) : (
     <div className='flex justify-center'>
-      <div className="mb-4 mt-10 bg-red flex flex-col justify-center bg-cyan-50 border-cyan-500 rounded-2xl p-7">
+      <div className="mb-4 mt-4 bg-red flex flex-col justify-center bg-cyan-50 border-cyan-500 rounded-2xl p-4 w-full">
         <p className='text-2xl text-center font-medium'>INVENTORY</p>
-        <div className='flex justify-center mt-5 mb-2'>
+        <div className='flex justify-center mt-2 mb-2'>
           <div className="text-center flex">
             <p className='text-cyan-500 mr-1'>{(suiBalance/1000000000).toFixed(2)}</p><p> SUI</p><p className='mr-3 ml-3'>-</p>
           </div>
@@ -35,7 +35,7 @@ const UserStatus = () => {
             <p className='text-cyan-500 mr-1'>{ticketIds.length}</p><p className='uppercase'> Voucher(s)</p>
           </div>
         </div>
-        <button onClick={() => window.scrollTo(0,0)} className='text-cyan-500 hover:text-cyan-600 mt-5'>What to do with all this loot now?</button>
+        <button onClick={() => window.scrollTo(0,0)} className='text-cyan-500 hover:text-cyan-600 mt-2'>What to do with all this loot now?</button>
       </div>
     </div>
   );
