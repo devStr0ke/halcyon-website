@@ -1,11 +1,10 @@
-import { Header } from '../components/Header/Header';
-import { Separator } from '../components/Separator/Separator';
-import { First } from '../components/Content/First';
-import { Second } from '../components/Content/Second';
-import { Third } from '../components/Content/Thirds';
-import { Fourth } from '../components/Content/Fourth';
-import { Fifth } from '../components/Content/Fifth';
-import { Footer } from '../components/Footer/Footer';
+import { Header } from '../components/MainPage/Header/Header';
+import { Separator } from '../components/MainPage/Separator/Separator';
+import { First } from '../components/MainPage/Content/First';
+import { Second } from '../components/MainPage/Content/Second';
+import { Third } from '../components/MainPage/Content/Thirds';
+import { Fourth } from '../components/MainPage/Content/Fourth';
+import { Fifth } from '../components/MainPage/Content/Fifth';
 
 export default function Home() {
   return (

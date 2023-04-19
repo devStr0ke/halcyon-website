@@ -2,7 +2,7 @@ import { useWalletKit } from '@mysten/wallet-kit';
 
 // import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
 import useStoreUserInfo from '../backend/dispenser/useStoreUserInfo';
-import DispenserComp from '../components/Dispenser/Dispenser';
+import DispenserComp from '../components/DispenserPage/Dispenser/Dispenser';
 import { supabase } from '../utils/supabase';
 import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
 import { useUserStore, useDispenserStore } from '../store/store';
