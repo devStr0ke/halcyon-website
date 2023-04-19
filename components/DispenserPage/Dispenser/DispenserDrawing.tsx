@@ -163,7 +163,7 @@ const DispenserDrawing = () => {
 
   return (
     <div className="saira relative w-full flex justify-between">
-      <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[60vh] mr-30" />
+      <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[65vh] mr-30" />
       <div className="w-full h-[30vh] rounded-md">
         <div className="uppercase text-md font-bold flex justify-center mb-2">
           quench your thirst, get a bottle!
@@ -218,14 +218,14 @@ const DispenserDrawing = () => {
           </button>
         </div>
         {disabled.buttons && (
-          <p className="text-red-400 text-center mt-3">Don&apos;t refresh, it&apos;s useless!</p>
+          <p className="text-red-400 text-center mt-2">Don&apos;t refresh, it&apos;s useless!</p>
         )}
         {/* <div className="mt-8">
             <UserStatus /> 
             <div className="text-center uppercase font-light mt-36">Connect with both Discord and a Sui Wallet</div>
         </div> */}
-        <div className="mt-2">
-          {session && currentAccount !== null ? (
+        <div className={disabled.buttons ? 'mt-0' : 'mt-2' }>
+          {session && currentAccount !== null && status === 'succeeded' ? (
             <UserStatus />
           ) : (
             <div className="flex justify-center items-center h-10 text-center uppercase font-light mt-36">
@@ -233,7 +233,6 @@ const DispenserDrawing = () => {
             </div>
           )}
         </div>
-        {session && currentAccount !== null && status === 'succeeded' && <DiscordRoles />}
       </div>
     </div>
   );

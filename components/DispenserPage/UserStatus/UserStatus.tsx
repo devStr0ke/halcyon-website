@@ -1,4 +1,5 @@
 import { useUserStore, useDispenserStore } from '../../../store/store';
+import DiscordRoles from '../DiscordRoles/DiscordRoles';
 
 const UserStatus = () => {
   const { filledBottleIds, emptyBottleIds, ticketIds, status, suiBalance, testCoinBalance } = useUserStore((state) => state);
@@ -35,7 +36,8 @@ const UserStatus = () => {
             <p className='text-cyan-500 mr-1'>{ticketIds.length}</p><p className='uppercase'> Voucher(s)</p>
           </div>
         </div>
-        <button onClick={() => window.scrollTo(0,0)} className='text-cyan-500 hover:text-cyan-600 mt-2'>What to do with all this loot now?</button>
+        <button onClick={() => window.scrollTo(0,0)} className='text-cyan-500 hover:text-cyan-600 mt-0'>What to do with all this loot now?</button>
+        <DiscordRoles />
       </div>
     </div>
   );

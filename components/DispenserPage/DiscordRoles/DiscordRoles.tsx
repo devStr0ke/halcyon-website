@@ -18,7 +18,7 @@ const DiscordRoles = () => {
 
   return (
     <div className="mb-6 w-full">
-      <h2 className="text-center mb-3">Discord Roles</h2>
+      <h2 className="text-2xl text-center font-medium mb-2 uppercase mt-2">Discord Roles</h2>
       <div className="flex justify-center">
         <div className="flex justify-center">
           {nonEnthusiastRoles.map((r: Role) => (

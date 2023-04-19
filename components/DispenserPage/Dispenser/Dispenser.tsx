@@ -137,10 +137,10 @@ const Dispenser = () => {
           </div>
         </div>
       </div>
-      <div className="relative h-[250vh] w-full">
+      <div className="relative h-[300vh] w-full">
         <div ref={opacityBlurRef} className="z-10 absolute top-0 w-full h-[100vh] opacity-0"></div>
         <div ref={blurBackground} className="z-0 h-[100vh] w-full sticky top-0 bg-no-repeat"></div>
-        <div className="hidden lg:block heroHeader sticky top-0 z-20 w-full h-[100vh]">
+        <div className="hidden lg:block heroHeader sticky top-0 z-20 w-full h-[120vh]">
           {isModalOpened && <ResultModal />}
           <div className="h-[65px]"/>
           <div className="border-2 border-red-400 bg-red-100 mt-2 mx-16 p-2 rounded-md h-[65px]">
