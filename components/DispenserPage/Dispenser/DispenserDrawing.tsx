@@ -1,4 +1,4 @@
-import { useUserStore, useDispenserStore, useConfigStore } from '../../../store/store';
+import { useUserStore, useDispenserStore, useConfigStore, usePasswordModalStore } from '../../../store/store';
 import { useSendTx } from '../../../backend/dispenser/useSendTx';
 import { Batch, DispenserStore } from '../../../types/sui';
 import { getBatchOrNot } from '../../../backend/dispenser/dispenserStatus';
@@ -8,13 +8,13 @@ import UserStatus from '../UserStatus/UserStatus';
 import useAuth from '../../../hooks/useAuth';
 import { useWalletKit } from '@mysten/wallet-kit';
 import { createHalcyonProfile, doesRowExist } from '../../../utils/supabase';
-import DiscordRoles from '../DiscordRoles/DiscordRoles';
 
 const DispenserDrawing = () => {
   const { session } = useAuth();
   const { currentAccount } = useWalletKit();
   const config = useConfigStore((state) => state);
   const user = useUserStore((state) => state);
+  const { setShowPasswordModal, setPasswordInput, passwordInput, password, hasAlreadyBeenTyped } = usePasswordModalStore((state) => state);
   const {
     filledBottleIds,
     emptyBottleIds,
@@ -151,6 +151,12 @@ const DispenserDrawing = () => {
     }
   };
 
+  const handlePasswordModal = () => {
+    if(hasAlreadyBeenTyped){
+      alert('No need to retype password');
+    } else setShowPasswordModal(true)
+  }
+
   const loader = (
     <svg className="animate-spin h-5 w-5 mr-3 text-cyan-500" viewBox="0 0 24 24">
       <path
@@ -171,12 +177,13 @@ const DispenserDrawing = () => {
         <div className="mt-2 flex justify-center ">
           <button
             disabled={
-              disabled.buttons ||
+              /*disabled.buttons ||
               session === null ||
               getBatchOrNot(dispenser) === Batch.Closed ||
-              (suiBalance === 0 && testCoinBalance === 0)
+              (suiBalance === 0 && testCoinBalance === 0)*/
+              false
             }
-            onClick={() => handleBuy(dispenser)}
+            onClick={() => handlePasswordModal()}
             className="flex justify-center items-center h-10 text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
             {disabled.buy || status === 'loading' ? loader : 'Buy'}
           </button>

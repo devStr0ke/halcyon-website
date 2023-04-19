@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
-import { useModalStore } from '../../../store/store';
+import { useModalStore, usePasswordModalStore } from '../../../store/store';
 import Image from 'next/image';
 
 import DispenserDrawing from './DispenserDrawing';
 
 import Connection from '../Connection/Connection';
-import ResultModal from '../ResultModal/ResultModal';
+import ResultModal from '../Modals/ResultModal';
+import PasswordModal from '../Modals/PasswordModal';
 import useDeviceSize from '../../../hooks/windowHook';
 
 const Dispenser = () => {
@@ -41,6 +42,7 @@ const Dispenser = () => {
   }, []);
 
   const { isModalOpened } = useModalStore((state) => state);
+  const { isPasswordModalOpened} = usePasswordModalStore((state) => state);
 
   // Disable scrolling while modal is opened
   useEffect(() => {
@@ -54,6 +56,18 @@ const Dispenser = () => {
       document.body.style.overflow = 'auto';
     };
   }, [isModalOpened]);
+
+  useEffect(() => {
+    if (isPasswordModalOpened) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isPasswordModalOpened]);
 
   return (
     <>
@@ -141,6 +155,7 @@ const Dispenser = () => {
         <div ref={opacityBlurRef} className="z-10 absolute top-0 w-full h-[100vh] opacity-0"></div>
         <div ref={blurBackground} className="z-0 h-[100vh] w-full sticky top-0 bg-no-repeat"></div>
         <div className="hidden lg:block heroHeader sticky top-0 z-20 w-full h-[120vh]">
+          {isPasswordModalOpened && <PasswordModal />}
           {isModalOpened && <ResultModal />}
           <div className="h-[65px]"/>
           <div className="border-2 border-red-400 bg-red-100 mt-2 mx-16 p-2 rounded-md h-[65px]">

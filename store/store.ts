@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import { DispenserObject, DispenserStore } from '../types/sui';
-import { UserObject, UserStore, ModalStore } from '../types/user';
+import { UserObject, UserStore, ModalStore, PasswordModalStore } from '../types/user';
 import { Config, ConfigStore } from '../types/config';
 import { Status } from '../types/fetching';
 import { testnetConfig } from '../backend/dispenser/config.testnet';
@@ -35,6 +35,25 @@ export const useModalStore = create<ModalStore>((set) => ({
   setIsBottleFilled: (isBottleFilled: boolean | null) =>
     set({
       isBottleFilled
+    })
+}));
+
+export const usePasswordModalStore = create<PasswordModalStore>((set) => ({
+  isPasswordModalOpened: false,
+  passwordInput: '',
+  password: 'test',
+  hasAlreadyBeenTyped: false,
+  setShowPasswordModal: (isPasswordModalOpened: boolean) =>
+    set({
+      isPasswordModalOpened
+    }),
+  setPasswordInput: (passwordInput: string) =>
+    set({
+      passwordInput
+    }),
+  setHasAlreadyBeenTyped: (hasAlreadyBeenTyped: boolean) =>
+    set({
+      hasAlreadyBeenTyped
     })
 }));
 
