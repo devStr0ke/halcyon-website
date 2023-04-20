@@ -1,4 +1,4 @@
-import { usePasswordModalStore } from '../../../store/store';
+import { usePasswordModalStore } from '../../../store/userStore';
 import { AiOutlineClose } from 'react-icons/ai';
 
 function PasswordModal() {

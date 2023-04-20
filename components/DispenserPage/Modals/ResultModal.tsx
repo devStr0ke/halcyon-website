@@ -1,4 +1,4 @@
-import { useModalStore } from '../../../store/store';
+import { useModalStore } from '../../../store/userStore';
 import { AiOutlineClose } from 'react-icons/ai';
 
 function ResultModal() {

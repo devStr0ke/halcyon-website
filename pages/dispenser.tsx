@@ -1,12 +1,17 @@
 import { useWalletKit } from '@mysten/wallet-kit';
+import { useRef, useEffect } from 'react';
 
 // import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
-import useStoreUserInfo from '../backend/dispenser/useStoreUserInfo';
-import DispenserComp from '../components/DispenserPage/Dispenser/Dispenser';
-import { supabase } from '../utils/supabase';
-import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
-import { useUserStore, useDispenserStore } from '../store/store';
 import useStoreConfig from '../backend/dispenser/useStoreConfig';
+import useStoreUserInfo from '../backend/dispenser/useStoreUserInfo';
+import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
+import { supabase } from '../backend/supabase/supabase';
+
+import { useDispenserStore } from '../store/dispenserStore';
+import { useUserStore } from '../store/userStore';
+
+import Dispenser from '../components/DispenserPage/Dispenser';
+import Welcome from '../components/DispenserPage/Welcome';
 
 // pour forcer dynamiquement le refresh des roles par exemple
 //export const dynamic = 'force-dynamic';
@@ -30,7 +35,7 @@ export async function getServerSideProps() {
   };
 }
 
-export default function Dispenser() {
+export default function DispenserDapp() {
   useStoreConfig('testnet');
   const { currentAccount } = useWalletKit();
   useStoreContractInfo();
@@ -40,7 +45,35 @@ export default function Dispenser() {
   console.log("USER STORE: ", user);
   console.log("DISPENSER STORE: ", dispenser);
 
-  return <DispenserComp />;
+  const opacityBlur = useRef(null);
+  const opacityTitle = useRef(null);
+  const opacityArrow = useRef(null);
+  const blurBackground = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      // @ts-ignore
+      opacityBlur.current.style.opacity = +scrollTop / 1000;
+      // @ts-ignore
+      opacityTitle.current.style.opacity = 1 - scrollTop / 300;
+      // @ts-ignore
+      opacityArrow.current.style.opacity = 1 - scrollTop / 300;
+      // @ts-ignore
+      blurBackground.current.style.filter = `blur(${scrollTop / 70}px)`;
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  return (
+    <>
+      <Welcome opacityTitle={opacityTitle} opacityArrow={opacityArrow} />
+      <Dispenser opacityBlur={opacityBlur} blurBackground={blurBackground} />
+    </>
+  );
 }
 
 // /client-side => useEffect

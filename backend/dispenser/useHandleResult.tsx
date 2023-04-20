@@ -1,7 +1,7 @@
 import { Config } from '../../types/config';
-import { updateIsWetlisted, updateRoleClaimed } from '../../utils/supabase';
-import useAuth from '../../hooks/useAuth';
-import { useModalStore, useUserStore } from '../../store/store';
+import { updateIsWetlisted, updateRoleClaimed } from '../supabase/supabase';
+import useAuth from '../supabase/useAuth';
+import { useModalStore, useUserStore } from '../../store/userStore';
 
 export const useHandleResult = () => {
   const { session } = useAuth();

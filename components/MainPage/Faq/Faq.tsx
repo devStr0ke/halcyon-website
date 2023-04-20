@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import eventEmitter from '../../../utils/eventEmitter';
+import eventEmitter from '../../../backend/supabase/eventEmitter';
 import useOnScroll from '../../../hooks/useOnScroll';
 interface Props {
   title?: string | undefined;

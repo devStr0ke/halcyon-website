@@ -1,4 +1,4 @@
-import { useConfigStore, useDispenserStore } from '../../store/store';
+import { useConfigStore, useDispenserStore } from '../../store/dispenserStore';
 import { useEffect } from 'react';
 
 // fetch 2 objets Sui contenant des infos sur le smart contract
