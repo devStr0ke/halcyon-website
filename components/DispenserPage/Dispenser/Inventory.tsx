@@ -56,7 +56,7 @@ const Inventory = () => {
           </div>
         </div>
         <button onClick={() => window.scrollTo(0,0)} className='text-cyan-500 hover:text-cyan-600 mt-2'>What to do with all this loot now?</button>
-        <div className="w-full">
+        <div className="w-full hidden"> {/*Remove hidden to show discord roles*/}
           <h2 className="lg:text-lg xl:text-2xl text-center font-medium mb-2 uppercase mt-2">Discord Roles</h2>
           <div className="flex justify-center">
             <div className="flex justify-center">
