@@ -1,10 +1,7 @@
-import Image from 'next/image';
-import React, { useEffect, useState, useRef } from 'react';
 import { OverviewCardLeft } from '../Cards/OverviewCardLeft';
 import { OverviewCardRight } from '../Cards/OverviewCardRight';
 export const First = () => {
-  const element = useRef(null);
-
+ 
   return (
     <>
       <div className="relative h-[360vh] w-full bg-transparent">

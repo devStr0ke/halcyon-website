@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, ReactNode } from 'react';
+import React, { useState, useRef, ReactNode } from 'react';
 import Image from 'next/image';
 import { Conditional } from '../../GlobalComponents/Conditional/Conditional';
 import useOnScrollTranslate from '../../../hooks/useOnScrollTranslate';
@@ -18,14 +18,12 @@ interface Props {
 export const ProductsCard = ({
   title,
   text,
-  imageClass,
   buttonText,
   buttonHref,
   backGroundImageClass,
   external,
   insider,
   translateType,
-  ...props
 }: Props) => {
   const ref = useRef(null);
   const [translateValue, translateAxis] = useOnScrollTranslate(ref, translateType);

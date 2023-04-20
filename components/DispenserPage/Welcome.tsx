@@ -1,16 +1,6 @@
 import Image from 'next/image';
-import useDeviceSize from '../../hooks/windowHook';
 
 const Welcome = (props: any) => {
-  const [windowHeight] = useDeviceSize();
-
-  const scrollToHeroSectionText = () => {
-    window.scrollTo({
-      top: windowHeight,
-      behavior: 'smooth'
-    });
-  };
-
   return (
     <div>
       <div className="absolute top-0 h-[100vh] w-full z-30 flex justify-center">

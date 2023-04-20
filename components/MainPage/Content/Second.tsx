@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import React, { useEffect, useState, useRef } from 'react';
 import { ProductsCard } from '../Cards/ProductsCard';
 import { ProductsCardMobile } from '../Cards/ProductsCardMobile';
 export const Second = () => {

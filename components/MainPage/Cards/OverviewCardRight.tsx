@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, ReactNode } from 'react';
+import React, { useRef, ReactNode } from 'react';
 import useOnScroll from '../../../hooks/useOnScroll';
 interface Props {
   sloganRight?: ReactNode;
@@ -8,14 +8,7 @@ interface Props {
   text?: ReactNode;
   // any props that come into the component
 }
-export const OverviewCardRight = ({
-  sloganRight,
-  sloganLeft,
-  thinTitle,
-  boldTitle,
-  text,
-  ...props
-}: Props) => {
+export const OverviewCardRight = ({}: Props) => {
 
   const ref = useRef(null);
   const scale = useOnScroll(ref);

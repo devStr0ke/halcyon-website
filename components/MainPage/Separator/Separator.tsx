@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useRef, ReactNode } from 'react';
+import React, { useRef, ReactNode } from 'react';
 import useOnScroll from '../../../hooks/useOnScroll';
 interface Props {
   subtitle?: ReactNode;
   title?: ReactNode;
   // any props that come into the component
 }
-export const Separator = ({ subtitle, title, ...props }: Props) => {
+export const Separator = ({ subtitle, title }: Props) => {
 
   const ref = useRef(null);
   const scale = useOnScroll(ref);

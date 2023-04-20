@@ -1,5 +1,4 @@
-import Image from 'next/image';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useDraggable } from 'react-use-draggable-scroll';
 import useOnScrollTranslate from '../../../hooks/useOnScrollTranslate';
 export const Fourth = () => {

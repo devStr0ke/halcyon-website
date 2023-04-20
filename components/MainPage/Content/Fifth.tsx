@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import React, { useEffect, useState, useRef } from 'react';
 import { Faq } from '../Faq/Faq';
 
 export const Fifth = () => {

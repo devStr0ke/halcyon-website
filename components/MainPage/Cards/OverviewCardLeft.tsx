@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, ReactNode } from 'react';
+import React, { useRef, ReactNode } from 'react';
 import useOnScroll from '../../../hooks/useOnScroll';
 interface Props {
   sloganRight?: ReactNode;
@@ -16,7 +16,6 @@ export const OverviewCardLeft = ({
   boldTitle,
   text,
   backImageClass,
-  ...props
 }: Props) => {
 
   const ref = useRef(null);

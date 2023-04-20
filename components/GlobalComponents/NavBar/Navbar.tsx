@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import useDeviceSize from '../../../hooks/windowHook';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 export const Navbar = () => {
-  const [windowWidth, windowHeight] = useDeviceSize();
   const [scrollPosition, setScrollPosition] = useState(0);
   const [navBarItemLeft, setNavBarItemLeft] = useState(5);
   const [navBarItemRight, setNavBarItemRight] = useState(5);
@@ -12,7 +9,6 @@ export const Navbar = () => {
     const position = window.pageYOffset;
     setScrollPosition(position);
   };
-  const router = useRouter()
 
   const scrollToTop = () => {
     toggleClass()
