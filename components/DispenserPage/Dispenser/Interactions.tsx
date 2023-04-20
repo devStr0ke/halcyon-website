@@ -77,13 +77,13 @@ const Interactions = () => {
             (suiBalance === 0 && testCoinBalance === 0)
           }
           onClick={() => handlePasswordModal()}
-          className="flex justify-center items-center h-10 text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
+          className="flex justify-center items-center xl:h-10 lg:text-lg xl:text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
           {disabled || status === 'loading' ? loader : 'Buy'}
         </button>
         <button
           disabled={disabled || session === null || emptyBottleIds.length < 5}
           onClick={() => handleRecycle()}
-          className="flex justify-center items-center h-10 text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
+          className="flex justify-center items-center h-10 lg:text-lg xl:text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
           {disabled || status === 'loading'
             ? loader
             : confirmed
@@ -95,7 +95,7 @@ const Interactions = () => {
         <button
           disabled={disabled || session === null || ticketIds.length === 0}
           onClick={() => handleSwap()}
-          className="flex justify-center items-center h-10 text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
+          className="flex justify-center items-center h-10 lg:text-lg xl:text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
           {disabled || status === 'loading' ? loader : 'Swap'}
         </button>
         <button
@@ -105,7 +105,7 @@ const Interactions = () => {
             (filledBottleRoles.length === 0 && emptyBottleRoles.length === 0)
           }
           onClick={() => handleClaim()}
-          className="flex justify-center items-center h-10 text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
+          className="flex justify-center items-center h-10 lg:text-lg xl:text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
           {disabled || status === 'loading' ? loader : 'Claim'}
         </button>
       </div>
@@ -113,7 +113,7 @@ const Interactions = () => {
         <button
           disabled={disabled || filledBottleIds.length === 0 || isWetlisted === true}
           onClick={() => handleRegister()}
-          className="flex justify-center items-center h-10 text-xl relative w-full hover:bg-cyan-600 bg-cyan-500 font-bold text-white rounded-xl px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
+          className="flex justify-center items-center h-10 lg:text-lg xl:text-xl relative w-full hover:bg-cyan-600 bg-cyan-500 font-bold text-white rounded-xl px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
           {disabled || status === 'loading' ? loader : 'Register'}
         </button>
       </div>

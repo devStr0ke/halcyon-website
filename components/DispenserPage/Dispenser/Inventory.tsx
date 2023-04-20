@@ -33,10 +33,10 @@ const Inventory = () => {
       </div>
     </div>
   ) : session && currentAccount !== null && status === 'succeeded' ? (
-    <div className='flex justify-center uppercase mt-4'>
+    <div className='flex justify-center lg:mt-8 xl:mt-6'>
       <div className="mb-4 mt-4 bg-red flex flex-col justify-center bg-cyan-50 border-cyan-500 rounded-2xl p-4 w-full">
-        <p className='text-2xl text-center font-medium'>INVENTORY</p>
-        <div className='flex justify-center mt-1 mb-1'>
+        <p className='lg:text-lg xl:text-2xl text-center font-medium'>INVENTORY</p>
+        <div className='flex justify-center mt-1 mb-1 lg:text-sm xl:text-lg'>
           <div className="text-center flex">
             <p className='text-cyan-500 mr-1'>{(suiBalance/1000000000).toFixed(2)}</p><p> SUI</p><p className='mr-3 ml-3'>-</p>
           </div>
@@ -44,7 +44,7 @@ const Inventory = () => {
               <p className='text-cyan-500 mr-1'>{(testCoinBalance/1000000000).toFixed(2)}</p><p> {testCoin.generics.split('::').pop()}</p>
           </div>
         </div>
-        <div className='flex justify-center'>
+        <div className='flex justify-center lg:text-sm xl:text-lg'>
           <div className="text-center flex">
             <p className='text-cyan-500 mr-1'>{filledBottleIds.length}</p><p> Filled Bottle{filledBottleIds.length > 1 ? 's' : ''}</p><p className='mr-3 ml-3'>-</p>
           </div>
@@ -57,7 +57,7 @@ const Inventory = () => {
         </div>
         <button onClick={() => window.scrollTo(0,0)} className='text-cyan-500 hover:text-cyan-600 mt-2'>What to do with all this loot now?</button>
         <div className="w-full">
-          <h2 className="text-2xl text-center font-medium mb-2 uppercase mt-2">Discord Roles</h2>
+          <h2 className="lg:text-lg xl:text-2xl text-center font-medium mb-2 uppercase mt-2">Discord Roles</h2>
           <div className="flex justify-center">
             <div className="flex justify-center">
               {nonEnthusiastRoles.map((r: Role) => (
@@ -65,7 +65,7 @@ const Inventory = () => {
                   key={r.role}
                   className={`${r.claimed ? 'bg-neutral-300' : 'bg-yellow-300'} border ${
                     r.claimed ? 'border-neutral-400' : 'border-yellow-500'
-                  } rounded-xl mx-2 p-1 text-center`}>
+                  } rounded-xl flex justify-center items-center text-sm w-full text-center mx-1`}>
                   {r.role}
                 </div>
               ))}
@@ -74,13 +74,13 @@ const Inventory = () => {
                   key={r.role}
                   className={`${r.claimed ? 'bg-neutral-300' : 'bg-purple-300'} border ${
                     r.claimed ? 'border-neutral-400' : 'border-purple-400'
-                  } rounded-xl mx-2 p-1 text-center`}>
+                  } rounded-xl flex justify-center items-center text-sm w-full text-center mx-1`}>
                   {r.role}
                 </div>
               ))}
             </div>
           </div>
-          <div className="flex justify-center mt-2">
+          <div className="flex justify-center mt-2 lg:text-sm xl:text-lg">
             <div className="text-center flex">
               <p className='text-cyan-500 mr-1'>{nonEnthClaimableNumber}</p>
               <p>Filled Bottle{nonEnthClaimableNumber > 1 ? 's' : ''} to claim</p>

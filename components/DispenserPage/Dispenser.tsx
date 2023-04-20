@@ -59,7 +59,7 @@ const Dispenser = (props: any) => {
           <div className='w-[50vw]'>
             <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[65vh]" />
           </div>
-          <div className='mr-16 mt-12 w-[50vw]'>
+          <div className='mr-16 lg:mt-10 w-[50vw]'>
             <Interactions />
             <Inventory />
           </div>
