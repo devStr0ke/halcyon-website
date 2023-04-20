@@ -22,7 +22,7 @@ const Inventory = () => {
     [enthusiastRoles]
   );
 
-  return status === 'idle' || status === 'loading' ? (
+  return  status === 'loading' ? (
     <div className="animate-pulse flex space-x-4 mt-12">
       <div className="flex-col w-full space-y-6 py-1 mb-5">
         <div className="mx-auto h-3 bg-gray-200 rounded w-5/6"></div>
