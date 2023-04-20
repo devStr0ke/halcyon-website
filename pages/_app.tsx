@@ -7,9 +7,9 @@ import dynamic from 'next/dynamic';
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider, Session } from '@supabase/auth-helpers-react';
 
-import { Navbar } from '../components/NavBar/Navbar';
-import { Footer } from '../components/Footer/Footer';
-import LoadingPage from '../components/Loading/LoadingPage';
+import { Navbar } from '../components/GlobalComponents/NavBar/Navbar';
+import { Footer } from '../components/GlobalComponents/Footer/Footer';
+import LoadingPage from '../components/GlobalComponents/Loading/LoadingPage';
 import '../styles/globals.css';
 
 const WalletKitProvider = dynamic(
@@ -34,7 +34,7 @@ export default function App({
     const handleRouteChange = (url: string) => {
       if (url === '/') {
         document.body.className = 'bg-black'; // main page background
-      } else if (url === '/dispenser') {
+      } else if (url === '/dispenser' || url === '/dispenser#') {
         document.body.className = 'bg-white'; // dispenser page background
       } else {
         document.body.className = 'bg-black'; // default background for other pages

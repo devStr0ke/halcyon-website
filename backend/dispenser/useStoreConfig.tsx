@@ -1,6 +1,6 @@
 import { devnetConfig } from './config.devnet';
 import { testnetConfig } from './config.testnet';
-import { useConfigStore } from '../../store/store';
+import { useConfigStore } from '../../store/dispenserStore';
 import { useEffect } from 'react';
 
 // fetch 2 objets Sui contenant des infos sur le smart contract

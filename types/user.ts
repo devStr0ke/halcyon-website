@@ -31,12 +31,3 @@ export interface UserStore extends UserObject {
   removeFilledBottle: () => void;
   removeVoucher: () => void;
 }
-
-export interface ModalStore {
-  modelContent: string;
-  isModalOpened: boolean;
-  isBottleFilled: null | boolean;
-  setShowModal: (_isModalOpened: boolean) => void;
-  setModalContent: (_content: string) => void;
-  setIsBottleFilled: (_isBottleFilled: null | boolean) => void;
-}

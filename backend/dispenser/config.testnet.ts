@@ -2,7 +2,7 @@ import { JsonRpcProvider, Connection } from '@mysten/sui.js';
 import { Config } from '../../types/config';
 
 export const testnetConnection = new Connection({
-    fullnode: "https://sui-testnet.nodeinfra.com/",
+    fullnode: "https://fullnode.testnet.sui.io",
     faucet: "",
 });
 

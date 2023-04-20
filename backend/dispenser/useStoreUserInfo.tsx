@@ -1,9 +1,10 @@
-import { useConfigStore, useUserStore } from '../../store/store';
+import { useConfigStore } from '../../store/dispenserStore';
+import { useUserStore } from '../../store/userStore';
 import { BCS, getSuiMoveConfig, BcsWriter } from '@mysten/bcs';
 import { useEffect } from 'react';
 import { DispenserStore, Nft } from '../../types/sui';
-import { getIsWetlisted, getRoleUpdatesForUser } from '../../utils/supabase';
-import useAuth from '../../hooks/useAuth';
+import { getIsWetlisted, getRoleUpdatesForUser } from '../supabase/supabase';
+import useAuth from '../supabase/useAuth';
 import { Role } from '../../types/user'
 
 // hook permettant de fetch et store avec Zustand
