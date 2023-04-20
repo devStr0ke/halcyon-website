@@ -8,10 +8,13 @@ import { useTransactionStore } from '../../../store/transactionStore';
 import useHandleInteractions from '../../../backend/dispenser/useHandleInteractions';
 import { createHalcyonProfile, doesRowExist } from '../../../backend/supabase/supabase';
 import useAuth from '../../../backend/supabase/useAuth';
+import { getBatchOrNot } from '../../../backend/dispenser/dispenserStatus';
+import { Batch } from '../../../types/sui';
 
 const Interactions = () => {
   const { session } = useAuth();
   const { currentAccount } = useWalletKit();
+  const dispenser = useDispenserStore((state) => state);
   
   const { confirmed, disabled } = useTransactionStore();
   const user = useUserStore((state) => state);
@@ -22,6 +25,8 @@ const Interactions = () => {
     roles,
     isWetlisted,
     status,
+    suiBalance,
+    testCoinBalance,
   } = user;
 
   const filledBottleRoles = useMemo(() => {
