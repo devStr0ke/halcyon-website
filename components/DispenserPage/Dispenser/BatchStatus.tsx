@@ -59,7 +59,7 @@ const BatchStatus = () => {
       </div>
     </div>
   ) : (
-    <div className='saira w-[70vw] text-md ml-2'>
+    <div className='saira w-full text-md ml-0'>
       {headline}
     </div>
   );

@@ -46,13 +46,12 @@ const Dispenser = (props: any) => {
   }, [isPasswordModalOpened]);
 
   return (
-    <div className="relative h-[200vh] w-full p-5">
-      <div ref={props.opacityBlur} className="z-10 absolute top-0 w-full h-[100vh] opacity-0"></div>
+    <div className="relative h-[300vh] w-full p-0">
       <div ref={props.blurBackground} className="z-0 h-[100vh] w-full sticky top-0 bg-no-repeat"></div>
-      <div className="hidden lg:block heroHeader sticky top-0 z-20 w-full h-[120vh]">
+      <div className="hidden lg:block heroHeader sticky top-0 z-20 h-[100vh]">
         {isPasswordModalOpened && <PasswordModal />}
         {isModalOpened && <ResultModal />}
-        <div className="h-[65px]" />
+        <div className="h-[65px] w-full"/>
         <div className="border-2 border-red-400 bg-red-100 mt-2 mx-16 p-2 rounded-md h-[65px] flex justify-center items-center">
           <p className="text-red-700 text-center">
             Our Dapp is in its early development phase and running on Sui Testnet which is still
@@ -60,20 +59,20 @@ const Dispenser = (props: any) => {
             share any issues on our Discord. Let&apos;s build together!
           </p>
         </div>
-        <div className='flex justify-around mx-16 mt-7'>
+        <div className='flex justify-around mx-16 mt-2'>
           <BatchStatus />
           <Connection />
         </div>
-        <div className="saira relative w-full flex justify-between">
+        <div className="saira w-full flex justify-between">
           <div className='w-[50vw]'>
             <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[65vh]" />
           </div>
-          <div className='flex flex-col mr-72 mt-10 w-[30vw]'>
+          <div className='mr-16 mt-7'>
             <Interactions />
             {session && currentAccount !== null && status === 'succeeded' ? (
               <Inventory />
             ) : (
-              <div className="flex justify-center items-center h-10 text-center uppercase text-2xl font-light animate-pulse">
+              <div className="flex justify-center items-center h-10 text-center uppercase text-2xl font-light animate-pulse mt-36">
                 Connect with both Discord and a Sui Wallet
               </div>
             )}

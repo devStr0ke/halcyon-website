@@ -12,8 +12,8 @@ const Welcome = (props: any) => {
   };
 
   return (
-    <div onClick={scrollToHeroSectionText}>
-      <div className="absolute top-0 h-screen w-full z-30 flex justify-center">
+    <div>
+      <div className="absolute top-0 h-[100vh] w-full z-30 flex justify-center">
         <div ref={props.opacityArrow} className="flex items-end py-4 text-red-500">
           <Image
             src="/static/svg/double-arrow-black.svg"
@@ -24,7 +24,7 @@ const Welcome = (props: any) => {
           />
         </div>
       </div>
-      <div className="absolute top-0 h-screen w-full z-30 flex justify-center">
+      <div className="absolute top-0 h-[100vh] w-full z-30 flex justify-center">
         <div ref={props.opacityTitle} className="flex items-center py-5">
           <div className="mx-auto px-4 py-20 lg:flex lg:h-screen lg:items-end">
             <div className="mx-auto text-center">

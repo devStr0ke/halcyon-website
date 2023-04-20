@@ -44,8 +44,6 @@ export default function DispenserDapp() {
   const user = useUserStore();
   console.log("USER STORE: ", user);
   console.log("DISPENSER STORE: ", dispenser);
-
-  const opacityBlur = useRef(null);
   const opacityTitle = useRef(null);
   const opacityArrow = useRef(null);
   const blurBackground = useRef(null);
@@ -53,8 +51,6 @@ export default function DispenserDapp() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      // @ts-ignore
-      opacityBlur.current.style.opacity = +scrollTop / 1000;
       // @ts-ignore
       opacityTitle.current.style.opacity = 1 - scrollTop / 300;
       // @ts-ignore
@@ -71,7 +67,7 @@ export default function DispenserDapp() {
   return (
     <>
       <Welcome opacityTitle={opacityTitle} opacityArrow={opacityArrow} />
-      <Dispenser opacityBlur={opacityBlur} blurBackground={blurBackground} />
+      <Dispenser blurBackground={blurBackground} />
     </>
   );
 }

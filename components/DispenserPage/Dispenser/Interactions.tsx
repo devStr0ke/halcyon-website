@@ -65,7 +65,7 @@ const Interactions = () => {
 
   return (
     <div className="w-full h-[20vh] rounded-md">
-      <div className="uppercase text-md font-bold flex justify-center mb-5">
+      <div className="uppercase text-md font-bold flex justify-center mb-2">
         quench your thirst, get a bottle!
       </div>
       <div className="mt-2 flex justify-center ">
