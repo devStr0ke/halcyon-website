@@ -19,18 +19,20 @@ const Inventory = () => {
   );
 
   return status === 'idle' || status === 'loading' ? (
-    <div className="animate-pulse flex space-x-4">
-      <div className="flex-1 w-full space-y-3 py-1 mb-5">
-        <div className="mx-auto h-3 bg-gray-200 rounded w-3/5"></div>
-        <div className="mx-auto h-3 bg-gray-200 rounded w-2/5"></div>
-        <div className="mx-auto h-3 bg-gray-200 rounded w-1/5"></div>
+    <div className="animate-pulse flex space-x-4 mt-12">
+      <div className="flex-col w-full space-y-6 py-1 mb-5">
+        <div className="mx-auto h-3 bg-gray-200 rounded w-5/6"></div>
+        <div className="mx-auto h-3 bg-gray-200 rounded w-4/6"></div>
+        <div className="mx-auto h-3 bg-gray-200 rounded w-3/6"></div>
+        <div className="mx-auto h-3 bg-gray-200 rounded w-2/6"></div>
+        <div className="mx-auto h-3 bg-gray-200 rounded w-1/6"></div>
       </div>
     </div>
-  ) : (
-    <div className='flex justify-center uppercase'>
+  ) :  (
+    <div className='flex justify-center uppercase mt-4'>
       <div className="mb-4 mt-4 bg-red flex flex-col justify-center bg-cyan-50 border-cyan-500 rounded-2xl p-4 w-full">
-        <p className='text-2xl text-center font-medium mt-5'>INVENTORY</p>
-        <div className='flex justify-center mt-2 mb-2'>
+        <p className='text-2xl text-center font-medium'>INVENTORY</p>
+        <div className='flex justify-center mt-1 mb-1'>
           <div className="text-center flex">
             <p className='text-cyan-500 mr-1'>{(suiBalance/1000000000).toFixed(2)}</p><p> SUI</p><p className='mr-3 ml-3'>-</p>
           </div>
@@ -50,8 +52,8 @@ const Inventory = () => {
           </div>
         </div>
         <button onClick={() => window.scrollTo(0,0)} className='text-cyan-500 hover:text-cyan-600 mt-2'>What to do with all this loot now?</button>
-        <div className="mb-6 w-full">
-          <h2 className="text-2xl text-center font-medium mb-2 uppercase mt-7">Discord Roles</h2>
+        <div className="w-full">
+          <h2 className="text-2xl text-center font-medium mb-2 uppercase mt-2">Discord Roles</h2>
           <div className="flex justify-center">
             <div className="flex justify-center">
               {nonEnthusiastRoles.map((r: Role) => (
@@ -59,7 +61,7 @@ const Inventory = () => {
                   key={r.role}
                   className={`${r.claimed ? 'bg-neutral-300' : 'bg-yellow-300'} border ${
                     r.claimed ? 'border-neutral-400' : 'border-yellow-500'
-                  } rounded-xl mx-2 p-1 px-3`}>
+                  } rounded-xl mx-2 p-1 text-center`}>
                   {r.role}
                 </div>
               ))}
@@ -68,7 +70,7 @@ const Inventory = () => {
                   key={r.role}
                   className={`${r.claimed ? 'bg-neutral-300' : 'bg-purple-300'} border ${
                     r.claimed ? 'border-neutral-400' : 'border-purple-400'
-                  } rounded-xl mx-2 p-1 px-3`}>
+                  } rounded-xl mx-2 p-1 text-center`}>
                   {r.role}
                 </div>
               ))}
