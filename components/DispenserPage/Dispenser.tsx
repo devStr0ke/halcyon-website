@@ -1,8 +1,4 @@
 import { useEffect } from 'react';
-import { useWalletKit } from '@mysten/wallet-kit';
-
-import useAuth from '../../backend/supabase/useAuth';
-import { useUserStore } from '../../store/userStore';
 import { useModalStore, usePasswordModalStore } from '../../store/transactionStore';
 
 import Interactions from './Dispenser/Interactions';
@@ -13,10 +9,6 @@ import ResultModal from './Modals/ResultModal';
 import PasswordModal from './Modals/PasswordModal';
 
 const Dispenser = (props: any) => {
-  const { currentAccount } = useWalletKit();
-  const { session } = useAuth();
-  const { status } = useUserStore((state) => state);
-
   const { isModalOpened } = useModalStore((state) => state);
   const { isPasswordModalOpened } = usePasswordModalStore((state) => state);
 
@@ -69,7 +61,7 @@ const Dispenser = (props: any) => {
           </div>
           <div className='mr-16 mt-12 w-[50vw]'>
             <Interactions />
-            {session && currentAccount !== null && <Inventory />}
+            <Inventory />
           </div>
         </div>
       </div>

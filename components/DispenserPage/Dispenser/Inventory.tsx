@@ -1,10 +1,14 @@
 import { useMemo } from 'react';
 import { useDispenserStore } from '../../../store/dispenserStore';
 import { useUserStore } from '../../../store/userStore';
+import { useWalletKit } from '@mysten/wallet-kit';
+import useAuth from '../../../backend/supabase/useAuth';
 import { Role } from '../../../types/user';
 
 const Inventory = () => {
   const { filledBottleIds, emptyBottleIds, ticketIds, status, suiBalance, testCoinBalance, roles } = useUserStore((state) => state);
+  const { currentAccount } = useWalletKit();
+  const { session } = useAuth();
   const { testCoin } = useDispenserStore((state) => state);
 
   const nonEnthusiastRoles = useMemo(() => roles.filter((r) => r.enthusiast === false), [roles]);
@@ -28,7 +32,7 @@ const Inventory = () => {
         <div className="mx-auto h-3 bg-gray-200 rounded w-1/6"></div>
       </div>
     </div>
-  ) :  (
+  ) : session && currentAccount !== null && status === 'succeeded' ? (
     <div className='flex justify-center uppercase mt-4'>
       <div className="mb-4 mt-4 bg-red flex flex-col justify-center bg-cyan-50 border-cyan-500 rounded-2xl p-4 w-full">
         <p className='text-2xl text-center font-medium'>INVENTORY</p>
@@ -89,6 +93,10 @@ const Inventory = () => {
           </div>
         </div>
       </div>
+    </div>
+  ) : (
+    <div className="flex justify-center items-center h-10 text-center uppercase text-2xl font-light animate-pulse mt-32">
+      Connect with both Discord and a Sui Wallet
     </div>
   );
 };
