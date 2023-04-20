@@ -83,7 +83,7 @@ const Interactions = () => {
         <button
           disabled={disabled || session === null || emptyBottleIds.length < 5}
           onClick={() => handleRecycle()}
-          className="flex justify-center items-center text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
+          className="flex justify-center items-center h-10 text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
           {disabled || status === 'loading'
             ? loader
             : confirmed

@@ -48,7 +48,7 @@ const Dispenser = (props: any) => {
   return (
     <div className="relative h-[300vh] w-full p-0">
       <div ref={props.blurBackground} className="z-0 h-[100vh] w-full sticky top-0 bg-no-repeat"></div>
-      <div className="hidden lg:block heroHeader sticky top-0 z-20 h-[100vh]">
+      <div className="hidden lg:block heroHeader sticky top-0 z-20 h-[110vh]">
         {isPasswordModalOpened && <PasswordModal />}
         {isModalOpened && <ResultModal />}
         <div className="h-[65px] w-full"/>
@@ -67,15 +67,9 @@ const Dispenser = (props: any) => {
           <div className='w-[50vw]'>
             <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[65vh]" />
           </div>
-          <div className='mr-16 mt-7'>
+          <div className='mr-16 mt-12 w-[50vw]'>
             <Interactions />
-            {session && currentAccount !== null && status === 'succeeded' ? (
-              <Inventory />
-            ) : (
-              <div className="flex justify-center items-center h-10 text-center uppercase text-2xl font-light animate-pulse mt-36">
-                Connect with both Discord and a Sui Wallet
-              </div>
-            )}
+            {session && currentAccount !== null && <Inventory />}
           </div>
         </div>
       </div>

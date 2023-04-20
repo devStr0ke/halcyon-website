@@ -34,7 +34,7 @@ export default function App({
     const handleRouteChange = (url: string) => {
       if (url === '/') {
         document.body.className = 'bg-black'; // main page background
-      } else if (url === '/dispenser') {
+      } else if (url === '/dispenser' || url === '/dispenser#') {
         document.body.className = 'bg-white'; // dispenser page background
       } else {
         document.body.className = 'bg-black'; // default background for other pages
