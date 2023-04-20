@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { useWalletKit } from '@mysten/wallet-kit';
 
 import useAuth from '../../backend/supabase/useAuth';
-import { useModalStore, usePasswordModalStore, useUserStore } from '../../store/userStore';
+import { useUserStore } from '../../store/userStore';
+import { useModalStore, usePasswordModalStore } from '../../store/transactionStore';
 
 import Interactions from './Dispenser/Interactions';
 import Connection from './Dispenser/Connection/Connection';

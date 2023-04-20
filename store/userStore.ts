@@ -1,44 +1,7 @@
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
-import { UserObject, UserStore, ModalStore, PasswordModalStore } from '../types/user';
+import { UserObject, UserStore } from '../types/user';
 import { Status } from '../types/fetching';
-
-export const useModalStore = create<ModalStore>((set) => ({
-  modelContent: '',
-  isModalOpened: false,
-  isBottleFilled: null,
-  setShowModal: (isModalOpened: boolean) =>
-    set({
-      isModalOpened
-    }),
-  setModalContent: (modelContent: string) =>
-    set({
-      modelContent
-    }),
-  setIsBottleFilled: (isBottleFilled: boolean | null) =>
-    set({
-      isBottleFilled
-    })
-}));
-
-export const usePasswordModalStore = create<PasswordModalStore>((set) => ({
-  isPasswordModalOpened: false,
-  passwordInput: '',
-  password: 'test',
-  hasAlreadyBeenTyped: false,
-  setShowPasswordModal: (isPasswordModalOpened: boolean) =>
-    set({
-      isPasswordModalOpened
-    }),
-  setPasswordInput: (passwordInput: string) =>
-    set({
-      passwordInput
-    }),
-  setHasAlreadyBeenTyped: (hasAlreadyBeenTyped: boolean) =>
-    set({
-      hasAlreadyBeenTyped
-    })
-}));
 
 export const useUserStore = create<UserStore>((set) => ({
   status: 'idle',

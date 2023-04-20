@@ -1,24 +1,15 @@
-import { usePasswordModalStore } from '../../../store/userStore';
-import { AiOutlineClose } from 'react-icons/ai';
+import { usePasswordModalStore } from '../../../store/transactionStore';
+import useHandleInteractions from '../../../backend/dispenser/useHandleInteractions';
 
 function PasswordModal() {
-  const { setShowPasswordModal, setPasswordInput, setHasAlreadyBeenTyped, passwordInput, password } = usePasswordModalStore((state) => state);
-
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    if (passwordInput === password) {
-        alert('Correct password');
-        setHasAlreadyBeenTyped(true);
-    } else {
-        alert('Incorrect password');
-    }
-  };
+  const { setShowPasswordModal, setPasswordInput, passwordInput } = usePasswordModalStore((state) => state);
+  const { handleSubmit } = useHandleInteractions()
 
   return (
     <div className='absolute inset-0 flex items-center justify-center z-[998]'>
       <div className="relative h-42 w-96 bg-white rounded-lg drop-shadow-lg z-[999] p-2">
         <div className="flex items-center justify-center text-center text-black font-bold text-xl">
-          Enter the password to access the closed mint :
+          Enter password to access private batch :
         </div>
         <form className='p-2 flex-col' onSubmit={handleSubmit}>
           <input

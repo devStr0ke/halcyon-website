@@ -1,42 +1,33 @@
-import { useDispenserStore, useConfigStore } from '../../../store/dispenserStore';
-import { useUserStore, usePasswordModalStore } from '../../../store/userStore';
-import { useSendTx } from '../../../backend/dispenser/useSendTx';
-import { Batch, DispenserStore } from '../../../types/sui';
-import { getBatchOrNot } from '../../../backend/dispenser/dispenserStatus';
-import { useHandleResult } from '../../../backend/dispenser/useHandleResult';
-import { useEffect, useMemo, useState } from 'react';
-import useAuth from '../../../backend/supabase/useAuth';
+import { useEffect, useMemo } from 'react';
 import { useWalletKit } from '@mysten/wallet-kit';
+
+import { useDispenserStore } from '../../../store/dispenserStore';
+import { useUserStore } from '../../../store/userStore';
+import { useTransactionStore } from '../../../store/transactionStore';
+
+import useHandleInteractions from '../../../backend/dispenser/useHandleInteractions';
 import { createHalcyonProfile, doesRowExist } from '../../../backend/supabase/supabase';
+import useAuth from '../../../backend/supabase/useAuth';
+import { getBatchOrNot } from '../../../backend/dispenser/dispenserStatus';
+import { Batch } from '../../../types/sui';
 
 const Interactions = () => {
   const { session } = useAuth();
   const { currentAccount } = useWalletKit();
-  const config = useConfigStore((state) => state);
+  
+  const { confirmed, disabled } = useTransactionStore();
+  const dispenser = useDispenserStore((state) => state);
   const user = useUserStore((state) => state);
-  const { setShowPasswordModal, setPasswordInput, passwordInput, password, hasAlreadyBeenTyped } = usePasswordModalStore((state) => state);
   const {
     filledBottleIds,
     emptyBottleIds,
     ticketIds,
     roles,
     isWetlisted,
-    removeEmptyBottles,
-    removeFilledBottle,
-    removeVoucher,
     status,
     suiBalance,
     testCoinBalance,
   } = user;
-  const [isConfirmed, setIsConfirmed] = useState(false);
-  const [disabled, setDisabled] = useState({
-    buttons: false,
-    buy: false,
-    recycle: false,
-    swap: false,
-    claim: false,
-    register: false
-  });
 
   const filledBottleRoles = useMemo(() => {
     return roles.filter((r) => !r.enthusiast && !r.claimed);
@@ -60,102 +51,7 @@ const Interactions = () => {
     createProfile();
   }, [currentAccount, session]);
 
-  const dispenser = useDispenserStore((state) => state);
-  const {
-    buyRandomBottle,
-    buyRandomBottleWithCoins,
-    claimFilledBottle,
-    claimRandomBottle,
-    recycle,
-    register,
-    swapNft
-  } = useSendTx();
-
-  const { handleResult, handleResultClaimFromDiscord } = useHandleResult();
-
-  const handleBuy = async (dispenser: DispenserStore) => {
-    try {
-      setDisabled((prevDisabled) => ({ ...prevDisabled, buy: true, buttons: true }));
-      const batchOrNot = getBatchOrNot(dispenser);
-      if (batchOrNot === Batch.Sui) {
-        const result = await buyRandomBottle();
-
-        await handleResult(result, config);
-      } else {
-        const result = await buyRandomBottleWithCoins();
-
-        await handleResult(result, config);
-      }
-    } finally {
-      setDisabled((prevDisabled) => ({ ...prevDisabled, buy: false, buttons: false }));
-      dispenser.reduceSupply();
-    }
-  };
-
-  const handleRecycle = async () => {
-    if (isConfirmed) {
-      try {
-        setDisabled((prevDisabled) => ({ ...prevDisabled, recycle: true, buttons: true }));
-        const result = await recycle();
-        await handleResult(result, config);
-        if (result?.effects?.status.status === 'success') {
-          removeEmptyBottles();
-        }
-      } finally {
-        setDisabled((prevDisabled) => ({ ...prevDisabled, recycle: false, buttons: false }));
-        setIsConfirmed(false);
-      }
-    } else {
-      setIsConfirmed(true);
-    }
-  };
-
-  const handleSwap = async () => {
-    try {
-      setDisabled((prevDisabled) => ({ ...prevDisabled, swap: true, buttons: true }));
-      const result = await swapNft();
-      await handleResult(result, config);
-      if (result?.effects?.status.status === 'success') {
-        removeVoucher();
-      }
-    } finally {
-      setDisabled((prevDisabled) => ({ ...prevDisabled, swap: false, buttons: false }));
-    }
-  };
-
-  const handleClaim = async () => {
-    try {
-      setDisabled((prevDisabled) => ({ ...prevDisabled, claim: true, buttons: true }));
-      if (filledBottleRoles.length > 0) {
-        const result = await claimFilledBottle();
-        await handleResultClaimFromDiscord(result, config, filledBottleRoles[0].role);
-      } else if (emptyBottleRoles.length > 0) {
-        const result = await claimRandomBottle();
-        await handleResultClaimFromDiscord(result, config, emptyBottleRoles[0].role);
-      }
-    } finally {
-      setDisabled((prevDisabled) => ({ ...prevDisabled, claim: false, buttons: false }));
-    }
-  };
-
-  const handleRegister = async () => {
-    try {
-      setDisabled((prevDisabled) => ({ ...prevDisabled, register: true, buttons: true }));
-      const result = await register();
-      await handleResult(result, config);
-      if (result?.effects?.status.status === 'success') {
-        removeFilledBottle();
-      }
-    } finally {
-      setDisabled((prevDisabled) => ({ ...prevDisabled, register: false, buttons: false }));
-    }
-  };
-
-  const handlePasswordModal = () => {
-    if(hasAlreadyBeenTyped){
-      alert('No need to retype password');
-    } else setShowPasswordModal(true)
-  }
+  const { handleClaim, handleRecycle, handleRegister, handleSwap, handlePasswordModal } = useHandleInteractions()
 
   const loader = (
     <svg className="animate-spin h-5 w-5 mr-3 text-cyan-500" viewBox="0 0 24 24">
@@ -175,53 +71,53 @@ const Interactions = () => {
       <div className="mt-2 flex justify-center ">
         <button
           disabled={
-            disabled.buttons ||
+            disabled ||
             session === null ||
             getBatchOrNot(dispenser) === Batch.Closed ||
             (suiBalance === 0 && testCoinBalance === 0)
           }
           onClick={() => handlePasswordModal()}
           className="flex justify-center items-center h-10 text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
-          {disabled.buy || status === 'loading' ? loader : 'Buy'}
+          {disabled || status === 'loading' ? loader : 'Buy'}
         </button>
         <button
-          disabled={disabled.buttons || session === null || emptyBottleIds.length < 5}
+          disabled={disabled || session === null || emptyBottleIds.length < 5}
           onClick={() => handleRecycle()}
           className="flex justify-center items-center text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
-          {disabled.recycle || status === 'loading'
+          {disabled || status === 'loading'
             ? loader
-            : isConfirmed
+            : confirmed
             ? 'Burn 5 Empty Bottles?'
             : 'Recycle'}
         </button>
       </div>
       <div className="mt-2 flex justify-center">
         <button
-          disabled={disabled.buttons || session === null || ticketIds.length === 0}
+          disabled={disabled || session === null || ticketIds.length === 0}
           onClick={() => handleSwap()}
           className="flex justify-center items-center h-10 text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
-          {disabled.swap || status === 'loading' ? loader : 'Swap'}
+          {disabled || status === 'loading' ? loader : 'Swap'}
         </button>
         <button
           disabled={
-            disabled.buttons ||
+            disabled ||
             session === null ||
             (filledBottleRoles.length === 0 && emptyBottleRoles.length === 0)
           }
           onClick={() => handleClaim()}
           className="flex justify-center items-center h-10 text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
-          {disabled.claim || status === 'loading' ? loader : 'Claim'}
+          {disabled || status === 'loading' ? loader : 'Claim'}
         </button>
       </div>
       <div className="mt-2 flex justify-center">
         <button
-          disabled={disabled.buttons || filledBottleIds.length === 0 || isWetlisted === true}
+          disabled={disabled || filledBottleIds.length === 0 || isWetlisted === true}
           onClick={() => handleRegister()}
           className="flex justify-center items-center h-10 text-xl relative w-full hover:bg-cyan-600 bg-cyan-500 font-bold text-white rounded-xl px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
-          {disabled.register || status === 'loading' ? loader : 'Register'}
+          {disabled || status === 'loading' ? loader : 'Register'}
         </button>
       </div>
-      {disabled.buttons && (
+      {disabled && (
         <p className="text-red-400 text-center mt-2">Don&apos;t refresh, it&apos;s useless!</p>
       )}
     </div>
