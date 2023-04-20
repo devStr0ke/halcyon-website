@@ -24,7 +24,7 @@ export const useModalStore = create<ModalStore>((set) => ({
 export const usePasswordModalStore = create<PasswordModalStore>((set) => ({
   isPasswordModalOpened: false,
   passwordInput: '',
-  password: 'test',
+  password: 'backyard',
   hasAlreadyBeenTyped: false,
   setShowPasswordModal: (isPasswordModalOpened: boolean) =>
     set({
