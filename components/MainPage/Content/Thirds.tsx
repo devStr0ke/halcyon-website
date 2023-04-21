@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import useOnScroll from '../../../hooks/useOnScroll';
 import useOnScrollTranslate from '../../../hooks/useOnScrollTranslate';
 import { useDraggable } from 'react-use-draggable-scroll';

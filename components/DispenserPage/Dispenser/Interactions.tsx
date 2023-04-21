@@ -8,15 +8,12 @@ import { useTransactionStore } from '../../../store/transactionStore';
 import useHandleInteractions from '../../../backend/dispenser/useHandleInteractions';
 import { createHalcyonProfile, doesRowExist } from '../../../backend/supabase/supabase';
 import useAuth from '../../../backend/supabase/useAuth';
-import { getBatchOrNot } from '../../../backend/dispenser/dispenserStatus';
-import { Batch } from '../../../types/sui';
 
 const Interactions = () => {
   const { session } = useAuth();
   const { currentAccount } = useWalletKit();
   
   const { confirmed, disabled } = useTransactionStore();
-  const dispenser = useDispenserStore((state) => state);
   const user = useUserStore((state) => state);
   const {
     filledBottleIds,
@@ -25,8 +22,6 @@ const Interactions = () => {
     roles,
     isWetlisted,
     status,
-    suiBalance,
-    testCoinBalance,
   } = user;
 
   const filledBottleRoles = useMemo(() => {
@@ -71,10 +66,11 @@ const Interactions = () => {
       <div className="mt-2 flex justify-center ">
         <button
           disabled={
-            disabled ||
+            /*disabled ||
             session === null ||
             getBatchOrNot(dispenser) === Batch.Closed ||
-            (suiBalance === 0 && testCoinBalance === 0)
+            (suiBalance === 0 && testCoinBalance === 0)*/
+            true
           }
           onClick={() => handlePasswordModal()}
           className="flex justify-center items-center xl:h-10 lg:text-lg xl:text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">

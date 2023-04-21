@@ -1,8 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import useDeviceSize from '../../../hooks/windowHook';
+
 export const Footer = () => {
-  const [windowWidth, windowHeight] = useDeviceSize();
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,

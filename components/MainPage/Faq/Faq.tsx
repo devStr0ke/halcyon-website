@@ -6,7 +6,7 @@ interface Props {
   text?: string | undefined;
 }
 
-export const Faq = ({ title, text, ...props }: Props) => {
+export const Faq = ({ title, text }: Props) => {
   const [hamburgerController, setActive] = useState(false);
   const faqRef = useRef(null);
   const ref = useRef(null);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, ReactNode } from 'react';
+import React, { useState, useRef, ReactNode } from 'react';
 import Image from 'next/image';
 import { Conditional } from '../../GlobalComponents/Conditional/Conditional';
 import useOnScroll from '../../../hooks/useOnScroll';
@@ -17,16 +17,13 @@ interface Props {
 export const ProductsCardMobile = ({
   title,
   text,
-  imageClass,
   buttonText,
   buttonHref,
   backGroundImageClass,
   external,
   insider,
-  ...props
 }: Props) => {
   const [isClick, setisClick] = useState(false);
-  const [isAnimated, setIsAnimated] = useState(false);
   const ref = useRef(null);
   const scale = useOnScroll(ref);
   const toggleClass = () => {

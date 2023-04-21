@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import useDeviceSize from '../../../hooks/windowHook';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 export const Header = () => {
   const [windowWidth, windowHeight] = useDeviceSize();
   const opacityBlurRef = useRef(null);
