@@ -52,8 +52,6 @@ const useGetDispenserInfo = async () => {
   };
 
   useEffect(() => {
-    console.log("Running useGetDispenserInfo");
-    
     fetchAndStoreDispenser();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setDispenser, config, setStatus]);

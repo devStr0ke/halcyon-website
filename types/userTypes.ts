@@ -11,6 +11,7 @@ export interface UserObject {
   magicNumber: number;
   testCoinIds: string[];
   testCoinBalance: number;
+  testCoinDecimals: number;
   suiBalance: number;
   filledBottleIds: string[];
   emptyBottleIds: string[];

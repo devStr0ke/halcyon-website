@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { getBatchOrNot, msToDayHourMinSec } from '../../../backend/dispenser/dispenserStatus';
 import { useDispenserStore } from '../../../store/dispenserStore';
 import { Batch } from '../../../types/dispenserTypes';
+import { useUserStore } from '../../../store/userStore';
 
 const BatchStatus = () => {
   const dispenser = useDispenserStore((state) => state);
+  const { testCoinDecimals } = useUserStore((state) => state);
   const { startTimestamp, endTimestamp, price, priceInCoins, supply, left, testCoin, status } =
     dispenser;
   const coin = testCoin.generics.split('::').pop();
@@ -39,7 +41,7 @@ const BatchStatus = () => {
     </div>;
   } else if (batchOrNot === Batch.Coin) {
     headline = <div className='flex flex-col'>
-      <p>Mint a Random Bottle for {priceInCoins / 1000000000} {coin} coins, hurry up there is only {days} day(s), <span className='text-2xl font-bold'>{hours}:{minutes}:{seconds} left!</span></p>
+      <p>Mint a Random Bottle for {priceInCoins / Math.pow(10, testCoinDecimals)} {coin} coins, hurry up there is only {days} day(s), <span className='text-2xl font-bold'>{hours}:{minutes}:{seconds} left!</span></p>
       <div className='flex flex-row mt-3'><p className='text-3xl font-bold'>{left}</p><p className='ml-2 mt-2'>/{supply} left</p></div>
     </div>;
   } else if (batchOrNot === Batch.Sui) {

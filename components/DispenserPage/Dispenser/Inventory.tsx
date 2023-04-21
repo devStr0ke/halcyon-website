@@ -6,7 +6,7 @@ import useAuth from '../../../backend/supabase/useAuth';
 import { Role } from '../../../types/userTypes';
 
 const Inventory = () => {
-  const { filledBottleIds, emptyBottleIds, ticketIds, status, suiBalance, testCoinBalance, roles } = useUserStore((state) => state);
+  const { filledBottleIds, emptyBottleIds, ticketIds, status, suiBalance, testCoinBalance, testCoinDecimals, roles } = useUserStore((state) => state);
   const { currentAccount } = useWalletKit();
   const { session } = useAuth();
   const { testCoin } = useDispenserStore((state) => state);
@@ -38,10 +38,10 @@ const Inventory = () => {
         <p className='lg:text-lg xl:text-2xl text-center font-medium'>INVENTORY</p>
         <div className='flex justify-center mt-1 mb-1 lg:text-sm xl:text-lg'>
           <div className="text-center flex">
-            <p className='text-cyan-500 mr-1'>{(suiBalance/1000000000).toFixed(2)}</p><p> SUI</p><p className='mr-3 ml-3'>-</p>
+            <p className='text-cyan-500 mr-1'>{(suiBalance / 1000000000).toFixed(2)}</p><p> SUI</p><p className='mr-3 ml-3'>-</p>
           </div>
           <div className="text-center flex">
-              <p className='text-cyan-500 mr-1'>{(testCoinBalance/1000000000).toFixed(2)}</p><p> {testCoin.generics.split('::').pop()}</p>
+              <p className='text-cyan-500 mr-1'>{(testCoinBalance / Math.pow(10, testCoinDecimals)).toFixed(2)}</p><p> {testCoin.generics.split('::').pop()}</p>
           </div>
         </div>
         <div className='flex justify-center lg:text-sm xl:text-lg'>
