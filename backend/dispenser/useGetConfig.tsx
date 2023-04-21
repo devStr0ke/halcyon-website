@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 // import { useDispenserStore } from ".store/store.ts"
 // const active = useDispenserStore((state) => state.active);
 
-const useStoreConfig = (net: "devnet" | "testnet") => {
+const useGetConfig = (net: "devnet" | "testnet") => {
   const {setConfig} = useConfigStore((state) => state);
 
   useEffect(() => {
@@ -19,4 +19,4 @@ const useStoreConfig = (net: "devnet" | "testnet") => {
   }, [setConfig, net]);
 };
 
-export default useStoreConfig;
+export default useGetConfig;

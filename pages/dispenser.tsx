@@ -1,10 +1,10 @@
 import { useWalletKit } from '@mysten/wallet-kit';
 import { useRef, useEffect } from 'react';
 
-// import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
-import useStoreConfig from '../backend/dispenser/useStoreConfig';
-import useStoreUserInfo from '../backend/dispenser/useStoreUserInfo';
-import useStoreContractInfo from '../backend/dispenser/useStoreContractInfo';
+// import useGetDispenserInfo from '../backend/dispenser/useGetDispenserInfo';
+import useGetConfig from '../backend/dispenser/useGetConfig';
+import useGetUserInfo from '../backend/dispenser/useGetUserInfo';
+import useGetDispenserInfo from '../backend/dispenser/useGetDispenserInfo';
 import { supabase } from '../backend/supabase/supabase';
 
 import { useDispenserStore } from '../store/dispenserStore';
@@ -36,17 +36,19 @@ export async function getServerSideProps() {
 }
 
 export default function DispenserDapp() {
-  useStoreConfig('testnet');
   const { currentAccount } = useWalletKit();
-  useStoreContractInfo();
+  useGetConfig('testnet');
+  useGetDispenserInfo();
   const dispenser = useDispenserStore();  
-  useStoreUserInfo(currentAccount?.address, dispenser);
+  useGetUserInfo(currentAccount?.address, dispenser);
   const user = useUserStore();
   console.log("USER STORE: ", user);
   console.log("DISPENSER STORE: ", dispenser);
+
   const opacityTitle = useRef(null);
   const opacityArrow = useRef(null);
   const blurBackground = useRef(null);
+  const dispenserRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,10 +66,14 @@ export default function DispenserDapp() {
     };
   }, []);
 
+  const handleWelcomeClick = () => {
+    (dispenserRef.current as any).scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <>
-      <Welcome opacityTitle={opacityTitle} opacityArrow={opacityArrow} />
-      <Dispenser blurBackground={blurBackground} />
+      <Welcome onClick={handleWelcomeClick} opacityTitle={opacityTitle} opacityArrow={opacityArrow} />
+      <Dispenser dispenserRef={dispenserRef} blurBackground={blurBackground} />
     </>
   );
 }

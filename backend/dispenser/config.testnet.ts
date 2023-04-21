@@ -1,8 +1,9 @@
 import { JsonRpcProvider, Connection } from '@mysten/sui.js';
-import { Config } from '../../types/config';
+import { Config } from '../../types/dispenserTypes';
 
 export const testnetConnection = new Connection({
     fullnode: "https://fullnode.testnet.sui.io",
+    // fullnode: "https://sui-testnet-endpoint.blockvision.org",
     faucet: "",
 });
 

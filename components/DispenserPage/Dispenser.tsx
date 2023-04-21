@@ -43,7 +43,7 @@ const Dispenser = (props: any) => {
       <div className="hidden lg:block heroHeader sticky top-0 z-20 h-[110vh]">
         {isPasswordModalOpened && <PasswordModal />}
         {isModalOpened && <ResultModal />}
-        <div className="h-[65px] w-full"/>
+        <div ref={props.dispenserRef} className="h-[65px] w-full"/>
         <div className="border-2 border-red-400 bg-red-100 mt-2 mx-16 p-2 rounded-md h-[65px] flex justify-center items-center">
           <p className="text-red-700 text-center">
             Our Dapp is in its early development phase and running on Sui Testnet which is still
@@ -51,7 +51,7 @@ const Dispenser = (props: any) => {
             share any issues on our Discord. Let&apos;s build together!
           </p>
         </div>
-        <div className='flex justify-around mx-16 mt-2'>
+        <div className='flex justify-around mx-16 mt-5'>
           <BatchStatus />
           <Connection />
         </div>

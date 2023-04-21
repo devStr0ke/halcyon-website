@@ -1,5 +1,5 @@
 import React, { useRef, ReactNode } from 'react';
-import useOnScroll from '../../../hooks/useOnScroll';
+import useOnScroll from '../../../utils/useOnScroll';
 interface Props {
   subtitle?: ReactNode;
   title?: ReactNode;

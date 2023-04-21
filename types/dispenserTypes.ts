@@ -1,5 +1,18 @@
 /* eslint-disable no-unused-vars */
-import { Status } from './fetching';
+import { JsonRpcProvider } from "@mysten/sui.js";
+
+export type Status = 'idle' | 'loading' | 'succeeded' | 'failed';
+
+export interface Config {
+    net: "devnet" | "testnet",
+    provider: JsonRpcProvider,
+    package_id: string,
+    dispenser: string,
+}
+
+export interface ConfigStore extends Config {
+    setConfig: (_config: Config) => void
+}
 
 export interface Nft {
   data: {
@@ -32,7 +45,6 @@ export interface DispenserObject {
 
 export interface DispenserStore extends DispenserObject {
   status: Status;
-  reduceSupply: () => void;
   setStatus: (_status: Status) => void;
   setDispenser: (_dispenser: DispenserObject) => void;
 }

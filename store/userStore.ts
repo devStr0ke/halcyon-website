@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
-import { UserObject, UserStore } from '../types/user';
-import { Status } from '../types/fetching';
+import { UserObject, UserStore } from '../types/userTypes';
+import { Status } from '../types/dispenserTypes';
 
 export const useUserStore = create<UserStore>((set) => ({
   status: 'idle',
@@ -9,6 +9,7 @@ export const useUserStore = create<UserStore>((set) => ({
   magicNumber: 0,
   testCoinIds: [],
   testCoinBalance: 0,
+  testCoinDecimals: 0,
   suiBalance: 0,
   filledBottleIds: [],
   emptyBottleIds: [],
@@ -26,6 +27,7 @@ export const useUserStore = create<UserStore>((set) => ({
       magicNumber: user.magicNumber,
       testCoinIds: user.testCoinIds,
       testCoinBalance: user.testCoinBalance,
+      testCoinDecimals: user.testCoinDecimals,
       suiBalance: user.suiBalance,
       filledBottleIds: user.filledBottleIds,
       emptyBottleIds: user.emptyBottleIds,
@@ -54,26 +56,5 @@ export const useUserStore = create<UserStore>((set) => ({
       isWetlisted: true
     });
   },
-  addEmptyBottleId: (id: string) => {
-    set((state) => ({
-    ...state,
-    emptyBottleIds: [...state.emptyBottleIds, id],
-  }))},
-  addFilledBottleId: (id: string) => set((state) => ({
-    ...state,
-    filledBottleIds: [...state.filledBottleIds, id],
-  })),
-  removeEmptyBottles: () => set((state) => ({
-    ...state,
-    emptyBottleIds: state.emptyBottleIds.slice(5),
-  })),
-  removeFilledBottle: () => set((state) => ({
-    ...state,
-    filledBottleIds: state.filledBottleIds.slice(1),
-  })),
-  removeVoucher: () => set((state) => ({
-    ...state,
-    ticketIds: state.ticketIds.slice(1),
-  })),
   shallow
 }));

@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
-import { HalcyonProfile } from '../../types/supabase';
-import { Role } from '../../types/user';
+import { HalcyonProfile } from '../../types/userTypes';
+import { Role } from '../../types/userTypes';
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import useDeviceSize from '../../../hooks/windowHook';
+import useDeviceSize from '../../../utils/useDeviceSize';
 import React, { useEffect, useRef } from 'react';
 export const Header = () => {
   const [windowWidth, windowHeight] = useDeviceSize();

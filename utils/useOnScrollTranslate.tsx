@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useOnScroll(ref, translateType = 'translateY') {
+export default function useOnScroll(ref: any, translateType = 'translateY') {
   const [translateValue, setTranslateValue] = useState(0); // Initialize translateValue at 1
 
   useEffect(() => {

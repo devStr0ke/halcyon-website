@@ -1,4 +1,4 @@
-import { Batch, DispenserStore } from '../../types/sui';
+import { Batch, DispenserStore } from '../../types/dispenserTypes';
 
 export const msToDayHourMinSec = (timestamp: number) => {
   // Calculate days, hours, minutes, and seconds

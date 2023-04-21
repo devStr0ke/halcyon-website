@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
-import { ModalStore, PasswordModalStore, TransactionStore } from '../types/transaction';
+import { ModalStore, PasswordModalStore, TransactionStore } from '../types/transactionTypes';
 
 export const useModalStore = create<ModalStore>((set) => ({
   modalContent: '',
@@ -24,7 +24,7 @@ export const useModalStore = create<ModalStore>((set) => ({
 export const usePasswordModalStore = create<PasswordModalStore>((set) => ({
   isPasswordModalOpened: false,
   passwordInput: '',
-  password: 'backyard',
+  password: '',
   hasAlreadyBeenTyped: false,
   setShowPasswordModal: (isPasswordModalOpened: boolean) =>
     set({

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useDraggable } from 'react-use-draggable-scroll';
-import useOnScrollTranslate from '../../../hooks/useOnScrollTranslate';
+import useOnScrollTranslate from '../../../utils/useOnScrollTranslate';
 export const Fourth = () => {
   const ref = useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
   const { events } = useDraggable(ref);

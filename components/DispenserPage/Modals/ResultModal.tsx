@@ -1,7 +1,9 @@
+import useGetDispenserInfo from '../../../backend/dispenser/useGetDispenserInfo';
 import { useModalStore } from '../../../store/transactionStore';
 import { AiOutlineClose } from 'react-icons/ai';
 
 function ResultModal() {
+  useGetDispenserInfo();
   const { modalContent, isBottleFilled, setShowModal } = useModalStore((state) => state);
 
   const displayImage = () => {
