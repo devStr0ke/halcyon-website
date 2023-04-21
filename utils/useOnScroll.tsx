@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useOnScroll(ref) {
+export default function useOnScroll(ref: any) {
   const [scale, setScale] = useState(1); // Initialize scale at 1
 
   useEffect(() => {

@@ -11,37 +11,20 @@ import { useTransactionStore } from '../../store/transactionStore';
 import { useSendTx } from './useSendTx';
 import { getBatchOrNot } from './dispenserStatus';
 
-import { Batch, DispenserStore } from '../../types/sui';
-import { Config } from '../../types/config';
+import { Batch, DispenserStore, Config } from '../../types/dispenserTypes';
 
 const useHandleInteractions = () => {
-    const { setShowPasswordModal, setHasAlreadyBeenTyped, passwordInput, password, hasAlreadyBeenTyped } = usePasswordModalStore((state) => state);
-    const { confirmed, setConfirmed, setDisabled } = useTransactionStore();
+    const { session } = useAuth();
     const config = useConfigStore((state) => state);
+    const { setShowPasswordModal, setHasAlreadyBeenTyped, passwordInput, password, hasAlreadyBeenTyped } = usePasswordModalStore((state) => state);
+    const { setModalContent, setShowModal, setIsBottleFilled } = useModalStore((state) => state);
+    const { confirmed, setConfirmed, setDisabled } = useTransactionStore();
+
     const dispenser = useDispenserStore((state) => state);
     const user = useUserStore((state) => state);
-    const {
-        roles,
-        removeEmptyBottles,
-        removeFilledBottle,
-        removeVoucher,
-    } = user;
-    
-    const {
-        buyRandomBottle,
-        buyRandomBottleWithCoins,
-        claimFilledBottle,
-        claimRandomBottle,
-        recycle,
-        register,
-        swapNft
-    } = useSendTx();
+    const { roles, updateRoleClaimStatus, setIsWetlisted } = user;
 
-    const { session } = useAuth();
-    const { updateRoleClaimStatus, setIsWetlisted, addEmptyBottleId, addFilledBottleId } = useUserStore((state) => state);
-
-    const { setModalContent, setShowModal, setIsBottleFilled } = useModalStore((state) => state);
-
+    const { buyRandomBottle, buyRandomBottleWithCoins, claimFilledBottle, claimRandomBottle, recycle, register, swapNft } = useSendTx();
 
     const filledBottleRoles = useMemo(() => {
         return roles.filter((r) => !r.enthusiast && !r.claimed);
@@ -68,7 +51,6 @@ const useHandleInteractions = () => {
             }
             } finally {
             setDisabled(false);
-            dispenser.reduceSupply();
         }
     };
 
@@ -78,9 +60,6 @@ const useHandleInteractions = () => {
             setDisabled(true);
             const result = await recycle();
             await handleResult(result, config);
-            if (result?.effects?.status.status === 'success') {
-            removeEmptyBottles();
-            }
         } finally {
             setDisabled(false);
             setConfirmed(false);
@@ -95,9 +74,6 @@ const useHandleInteractions = () => {
         setDisabled(true);
         const result = await swapNft();
         await handleResult(result, config);
-        if (result?.effects?.status.status === 'success') {
-            removeVoucher();
-        }
         } finally {
         setDisabled(false);
         }
@@ -123,9 +99,6 @@ const useHandleInteractions = () => {
         setDisabled(false);
         const result = await register();
         await handleResult(result, config);
-        if (result?.effects?.status.status === 'success') {
-            removeFilledBottle();
-        }
         } finally {
         setDisabled(false);
         }
@@ -181,14 +154,12 @@ const useHandleInteractions = () => {
                 console.log('Filled Bottle Received');
                 setModalContent('Filled Bottle Received');
                 setIsBottleFilled(true);
-                addFilledBottleId(receivedEvent.parsedJson.id);
             } else {
                 console.log(receivedEvent);
                 
                 console.log('Empty Bottle Received');
                 setModalContent('Empty Bottle Received');
                 setIsBottleFilled(false);
-                addEmptyBottleId(receivedEvent.parsedJson.id);
             }
             // Update local state
             setShowModal(true);
@@ -219,7 +190,6 @@ const useHandleInteractions = () => {
                 setIsBottleFilled(false);
             }
             // Update local state
-            receivedEvent.parsedJson.isFilled ? addFilledBottleId(receivedEvent.parsedJson.id) : addEmptyBottleId(receivedEvent.parsedJson.id);
             setShowModal(true);
 
             // Change roles in db

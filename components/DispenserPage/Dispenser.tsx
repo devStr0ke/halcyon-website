@@ -51,7 +51,7 @@ const Dispenser = (props: any) => {
             share any issues on our Discord. Let&apos;s build together!
           </p>
         </div>
-        <div className='flex justify-around mx-16 mt-2'>
+        <div className='flex justify-around mx-16 mt-5'>
           <BatchStatus />
           <Connection />
         </div>

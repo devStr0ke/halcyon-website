@@ -2,10 +2,10 @@ import { useConfigStore } from '../../store/dispenserStore';
 import { useUserStore } from '../../store/userStore';
 import { BCS, getSuiMoveConfig, BcsWriter } from '@mysten/bcs';
 import { useEffect } from 'react';
-import { DispenserStore, Nft } from '../../types/sui';
+import { DispenserStore, Nft } from '../../types/dispenserTypes';
 import { getIsWetlisted, getRoleUpdatesForUser } from '../supabase/supabase';
 import useAuth from '../supabase/useAuth';
-import { Role } from '../../types/user'
+import { Role } from '../../types/userTypes'
 
 // hook permettant de fetch et store avec Zustand
 // toutes les infos liées à l'utilisateur
@@ -17,9 +17,9 @@ import { Role } from '../../types/user'
 const NFT_REGEX =
   /^(0x[a-f0-9]{63,64})::([a-zA-Z]{1,})::([a-zA-Z]{1,})$/;
 
-const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore) => {
+const useGetUserInfo = (address: string | undefined, dispenser: DispenserStore) => {
   const bcs = new BCS(getSuiMoveConfig());
-  const { setUser, status, setStatus } = useUserStore((state) => state);
+  const { setUser, setStatus } = useUserStore((state) => state);
   const config = useConfigStore();
 
   const { session } = useAuth();
@@ -132,7 +132,8 @@ const useStoreUserInfo = (address: string | undefined, dispenser: DispenserStore
     if (address && dispenser.status === 'succeeded') {
       fetchStoreUserInfo(address, dispenser);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispenser.status, address]);
 };
 
-export default useStoreUserInfo;
+export default useGetUserInfo;

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import useOnScroll from '../../../hooks/useOnScroll';
+import useOnScroll from '../../../utils/useOnScroll';
 
 export const OverviewCardRight = () => {
 

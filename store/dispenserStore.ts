@@ -1,8 +1,6 @@
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
-import { DispenserObject, DispenserStore } from '../types/sui';
-import { Config, ConfigStore } from '../types/config';
-import { Status } from '../types/fetching';
+import { DispenserObject, DispenserStore, Config, ConfigStore, Status } from '../types/dispenserTypes';
 import { testnetConfig } from '../backend/dispenser/config.testnet';
 
 export const useConfigStore = create<ConfigStore>((set) => ({
@@ -41,9 +39,6 @@ export const useDispenserStore = create<DispenserStore>((set) => ({
     structName: '',
     generics: ''
   },
-  reduceSupply: () => set((state) => ({
-    left: state.left - 1,
-  })),
   setStatus: (status: Status) => set({
     status
   }),

@@ -1,5 +1,5 @@
 import { JsonRpcProvider, devnetConnection } from '@mysten/sui.js';
-import { Config } from '../../types/config';
+import { Config } from '../../types/configTypes';
 
 const provider = new JsonRpcProvider(devnetConnection);
 

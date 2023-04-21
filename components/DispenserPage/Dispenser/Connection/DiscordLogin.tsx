@@ -8,9 +8,9 @@ export default function DiscordLogin() {
   const { session } = useAuth();
 
   async function signInWithDiscord() {
-    const redirectUrl = 'http://localhost:3000/dispenser/';
+    // const redirectUrl = 'http://localhost:3000/dispenser/';
     // const redirectUrl = 'https://delightful-tartufo-d58047.netlify.app/dispenser/';
-    //const redirectUrl = 'https://halcyon.builders/dispenser/';
+    const redirectUrl = 'https://halcyon.builders/dispenser/';
 
     try {
       await supabase.auth.signInWithOAuth({

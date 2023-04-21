@@ -1,7 +1,7 @@
 import React, { useState, useRef, ReactNode } from 'react';
 import Image from 'next/image';
 import { Conditional } from '../../GlobalComponents/Conditional/Conditional';
-import useOnScroll from '../../../hooks/useOnScroll';
+import useOnScroll from '../../../utils/useOnScroll';
 import Link from 'next/link';
 interface Props {
   // any props that come into the component

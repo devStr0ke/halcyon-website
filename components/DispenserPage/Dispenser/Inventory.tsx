@@ -3,7 +3,7 @@ import { useDispenserStore } from '../../../store/dispenserStore';
 import { useUserStore } from '../../../store/userStore';
 import { useWalletKit } from '@mysten/wallet-kit';
 import useAuth from '../../../backend/supabase/useAuth';
-import { Role } from '../../../types/user';
+import { Role } from '../../../types/userTypes';
 
 const Inventory = () => {
   const { filledBottleIds, emptyBottleIds, ticketIds, status, suiBalance, testCoinBalance, roles } = useUserStore((state) => state);

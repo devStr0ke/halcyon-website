@@ -1,4 +1,4 @@
-import { Status } from './fetching';
+import { Status } from './dispenserTypes';
 
 export interface Role {
   role: string;
@@ -25,9 +25,10 @@ export interface UserStore extends UserObject {
   setUser: (_user: UserObject) => void;
   updateRoleClaimStatus: (_role: string) => void;
   setIsWetlisted: () => void;
-  addEmptyBottleId: (_id: string) => void;
-  addFilledBottleId: (_id: string) => void;
-  removeEmptyBottles: () => void;
-  removeFilledBottle: () => void;
-  removeVoucher: () => void;
+}
+
+export interface HalcyonProfile {
+  id: string;
+  id_discord: string;
+  sui_adresse: string;
 }

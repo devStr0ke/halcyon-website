@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import useOnScroll from '../../../hooks/useOnScroll';
-import useOnScrollTranslate from '../../../hooks/useOnScrollTranslate';
+import useOnScroll from '../../../utils/useOnScroll';
+import useOnScrollTranslate from '../../../utils/useOnScrollTranslate';
 import { useDraggable } from 'react-use-draggable-scroll';
 
 export const Third = () => {
