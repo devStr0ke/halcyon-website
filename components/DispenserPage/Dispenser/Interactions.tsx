@@ -111,7 +111,7 @@ const Interactions = () => {
       </div>
       <div className="mt-2 flex justify-center">
         <button
-          disabled={disabled || filledBottleIds.length === 0 || isWetlisted === true}
+          disabled={disabled || session === null || filledBottleIds.length === 0 || isWetlisted === true}
           onClick={() => handleRegister()}
           className="flex justify-center items-center h-10 lg:text-lg xl:text-xl relative w-full hover:bg-cyan-600 bg-cyan-500 font-bold text-white rounded-xl px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
           {disabled || status === 'loading' ? loader : 'Register'}

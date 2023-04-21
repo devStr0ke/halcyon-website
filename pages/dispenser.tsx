@@ -44,9 +44,11 @@ export default function DispenserDapp() {
   const user = useUserStore();
   console.log("USER STORE: ", user);
   console.log("DISPENSER STORE: ", dispenser);
+
   const opacityTitle = useRef(null);
   const opacityArrow = useRef(null);
   const blurBackground = useRef(null);
+  const dispenserRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,10 +66,14 @@ export default function DispenserDapp() {
     };
   }, []);
 
+  const handleWelcomeClick = () => {
+    (dispenserRef.current as any).scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <>
-      <Welcome opacityTitle={opacityTitle} opacityArrow={opacityArrow} />
-      <Dispenser blurBackground={blurBackground} />
+      <Welcome onClick={handleWelcomeClick} opacityTitle={opacityTitle} opacityArrow={opacityArrow} />
+      <Dispenser dispenserRef={dispenserRef} blurBackground={blurBackground} />
     </>
   );
 }

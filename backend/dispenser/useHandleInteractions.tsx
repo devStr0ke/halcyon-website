@@ -132,7 +132,7 @@ const useHandleInteractions = () => {
     };
 
     const handlePasswordModal = () => {
-        if(hasAlreadyBeenTyped){
+        if(!password || hasAlreadyBeenTyped){
         handleBuy(dispenser)
         } else setShowPasswordModal(true)
     }

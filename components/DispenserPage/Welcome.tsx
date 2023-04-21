@@ -1,18 +1,9 @@
 import Image from 'next/image';
-import useDeviceSize from '../../hooks/windowHook';
 
 const Welcome = (props: any) => {
-  const [windowHeight] = useDeviceSize();
-
-  const scrollToHeroSectionText = () => {
-    window.scrollTo({
-      top: windowHeight,
-      behavior: 'smooth'
-    });
-  };
 
   return (
-    <div>
+    <div onClick={props.onClick}>
       <div className="absolute top-0 h-[100vh] w-full z-30 flex justify-center">
         <div ref={props.opacityArrow} className="flex items-end py-4 text-red-500">
           <Image
