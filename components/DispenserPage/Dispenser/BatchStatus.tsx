@@ -36,7 +36,7 @@ const BatchStatus = () => {
   let headline;
   if (startTimestamp > timestamp) {
     headline = <div className='flex flex-col'>
-      <p>Prepare your {batchOrNot === Batch.Coin ? coin : "SUI"} coins! Next batch opens in {days} day(s), <span className='text-2xl font-bold'>{hours}:{minutes}:{seconds}</span></p>
+      <p>Prepare your {price === 100000000000000 ? coin : "SUI"} coins! Next batch opens in {days} day(s), <span className='text-2xl font-bold'>{hours}:{minutes}:{seconds}</span></p>
       <div className='flex flex-row mt-3'><p className='text-3xl font-bold'>{left}</p><p className='ml-2 mt-2'>/{supply} left</p></div>
     </div>;
   } else if (batchOrNot === Batch.Coin) {
