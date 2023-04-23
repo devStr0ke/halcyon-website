@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useModalStore, usePasswordModalStore } from '../../store/transactionStore';
+import { useUserStore } from '../../store/userStore';
 
 import Interactions from './Dispenser/Interactions';
 import Connection from './Dispenser/Connection/Connection';
@@ -11,6 +12,7 @@ import PasswordModal from './Modals/PasswordModal';
 const Dispenser = (props: any) => {
   const { isModalOpened } = useModalStore((state) => state);
   const { isPasswordModalOpened } = usePasswordModalStore((state) => state);
+  const { isWetlisted } = useUserStore((state) => state);
 
   // Disable scrolling while modal is opened
   useEffect(() => {
@@ -54,6 +56,13 @@ const Dispenser = (props: any) => {
         <div className='flex justify-around mx-16 mt-5'>
           <BatchStatus />
           <Connection />
+        </div>
+        <div className='mt-2 flex justify-center mx-16'>
+          { isWetlisted && (
+            <div className="bg-green-200 border w-full border-green-400 rounded-md">
+              <p className='text-center text-green-700'>Congratulations, you are wetlisted!</p>
+            </div>
+          )}
         </div>
         <div className="saira w-full flex justify-between">
           <div className='w-[50vw]'>
