@@ -31,10 +31,26 @@ const useGetUserInfo = (address: string | undefined, dispenser: DispenserStore) 
   };
 
   const getNftsForAddress = async (addr: string): Promise<any> => {
-    const objects = await config.provider.getOwnedObjects({ owner: addr, options: {showType: true} });
-    const nfts = objects.data
-      .filter((_) => _.data?.type?.match(NFT_REGEX));
+    let hasNextPage = true;
+    let nextCursor = null;
+    let nfts: Nft[] = [];
     
+    while (hasNextPage) {
+      const objects: any = await config.provider.getOwnedObjects({
+        owner: addr,
+        cursor: nextCursor,
+        options: { showType: true },
+      });
+
+      objects.data?.forEach((obj: any) => {
+        if (obj.data?.type?.match(NFT_REGEX)) {
+          nfts.push(obj);
+        }
+      });
+      hasNextPage = objects.hasNextPage;
+      nextCursor = objects.nextCursor;
+    }
+
     return nfts;
   };
 
