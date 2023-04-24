@@ -74,7 +74,8 @@ const Interactions = () => {
             disabled ||
             session === null ||
             getBatchOrNot(dispenser) === Batch.Closed ||
-            (suiBalance === 0 && testCoinBalance === 0)
+            (getBatchOrNot(dispenser) === Batch.Sui && suiBalance === 0) ||
+            (getBatchOrNot(dispenser) === Batch.Coin && testCoinBalance === 0)
           }
           onClick={() => handlePasswordModal()}
           className="flex justify-center items-center xl:h-10 lg:text-lg xl:text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl mr-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">
