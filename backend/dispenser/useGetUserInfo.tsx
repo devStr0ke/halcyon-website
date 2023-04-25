@@ -78,20 +78,24 @@ const useGetUserInfo = (address: string | undefined, dispenser: DispenserStore) 
   };
 
   const getTestCoins = async (addr: string, dispenser: DispenserStore) => {
-    const testCoinsMetadata = await config.provider.getCoinMetadata({
-      coinType: `0x${dispenser.testCoin.generics}`
-    });
-    const testCoins = await config.provider.getCoins({
-      owner: addr,
-      coinType: `0x${dispenser.testCoin.generics}`
-    });    
+    // const testCoinsMetadata = await config.provider.getCoinMetadata({
+    //   coinType: `0x${dispenser.testCoin.generics}`
+    // });
+    // const testCoins = await config.provider.getCoins({
+    //   owner: addr,
+    //   coinType: `0x${dispenser.testCoin.generics}`
+    // });
 
-    let testCoinBalance = 0;
-    testCoins.data.forEach((coin) => {
-      testCoinBalance += Number(coin.balance)
-    })
-    const testCoinIds = testCoins.data.map((coin) => coin.coinObjectId);
-    const testCoinDecimals = testCoinsMetadata.decimals;
+    // let testCoinBalance = 0;
+    // testCoins.data.forEach((coin) => {
+    //   testCoinBalance += Number(coin.balance)
+    // })
+    // const testCoinIds = testCoins.data.map((coin) => coin.coinObjectId);
+    // const testCoinDecimals = testCoinsMetadata.decimals;
+
+    const testCoinBalance = 0
+    const testCoinIds = [""];
+    const testCoinDecimals = 7;
     
     return {testCoinIds, testCoinBalance, testCoinDecimals};
   };
