@@ -216,12 +216,12 @@ export const Navbar = () => {
                     Faq
                   </a>
                 </Link>
-                <Link href='/#contacts' legacyBehavior scroll={false}>
+                <Link href='/dispenser' legacyBehavior scroll={false}>
                   <a
                     className="uppercase font-semibold text-sm hover:transition hover:duration-[600ms] cursor-pointer hover:text-cyan-500"
                     onMouseEnter={() => handleNavBarItemEnterRight(3)}
                   >
-                    Contact Us
+                    Dispenser
                   </a>
                 </Link>
               </div>
