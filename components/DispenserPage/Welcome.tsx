@@ -23,19 +23,19 @@ const Welcome = (props: any) => {
                 Welcome To The Bottle Dispenser!
               </h1>
               <div className="lg:mx-8 p-6 mt-4 bg-gray-200 rounded-lg">
-                <p className="saira sm:text-md sm:leading-relaxed text-black">
+                <p className="saira text-xs sm:text-sm sm:leading-relaxed text-black">
                   The Dispenser is a gamified on-chain whitelisting tool allowing Sui community
                   members to get tokenized Wetlists in the form of Bottles NFTs for our Thirsty
                   Monkeys collection.
                 </p>
-                <p className="saira sm:text-md sm:leading-relaxed text-black">
+                <p className="saira text-xs sm:text-sm sm:leading-relaxed text-black">
                   Get a Filled Bottle and burn it to register your Wetlist. Many mechanisms have
                   been implemented to allow everyone to get Bottles!
                 </p>
                 <strong className="text-lg sm:text-2xl font-bold mt-1 block text-black">
                   <p>How does it works?</p>
                 </strong>
-                <p className="saira sm:text-md sm:leading-relaxed text-black">
+                <p className="saira text-xs sm:text-sm sm:leading-relaxed text-black">
                   Wait for a batch to open and buy random bottles with $SUI
                   <br />
                   Recycle five empty bottles to get a free entry
@@ -48,7 +48,7 @@ const Welcome = (props: any) => {
                   <br />
                   Win Enthusiast roles on Discord to claim random bottles <br />
                 </p>
-                <p className="saira sm:text-md sm:leading-relaxed text-black">
+                <p className="saira text-xs sm:text-sm sm:leading-relaxed text-black">
                   Read more{' '}
                   <a
                     className="text-cyan-600"
@@ -63,7 +63,7 @@ const Welcome = (props: any) => {
                 <strong className="text-lg sm:text-2xl font-bold mt-1 block text-black">
                   <p>What to do with the Loot?</p>
                 </strong>
-                <p className="saira sm:text-md sm:leading-relaxed text-black">
+                <p className="saira text-xs sm:text-sm sm:leading-relaxed text-black">
                   $SUI and Coins issued by our partners may be used during a batch to buy random
                   bottles. There is no limit per wallet.
                   <br />

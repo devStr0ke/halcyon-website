@@ -63,14 +63,14 @@ const Dispenser = (props: any) => {
           <BatchStatus />
           <Connection />
         </div>
-        <div className='mt-2 flex justify-center mx-16'>
+        <div className='mt-2 flex justify-center mx-2 lg:mx-16'>
           { isWetlisted && (
             <div className="bg-green-200 border w-full border-green-400 rounded-md">
-              <p className='text-center text-green-700'>Congratulations, you are wetlisted!</p>
+              <p className='text-center text-green-700 text-sm md:text-md lg:text-base'>Congratulations, you are wetlisted!</p>
             </div>
           )}
         </div>
-        <div className="saira w-full flex justify-between">
+        <div className="hidden saira w-full lg:flex justify-between">
           <div className='w-[50vw]'>
             <div className="bg-no-repeat bg-bottom bg-contain bg-[url('/static/images/products/distributeur.png')] w-full h-[65vh]" />
           </div>
@@ -78,6 +78,10 @@ const Dispenser = (props: any) => {
             <Interactions />
             <Inventory />
           </div>
+        </div>
+        <div className='lg:hidden mx-2 sm:mx-16 md:mx-32'>
+          <Interactions />
+          <Inventory />
         </div>
       </div>
     </div>
