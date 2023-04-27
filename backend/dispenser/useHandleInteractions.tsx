@@ -80,14 +80,14 @@ const useHandleInteractions = () => {
     };
 
     const handleClaim = async () => {
-        try {
-        setDisabled(true);
-        if (filledBottleRoles.length > 0) {
-            const result = await claimFilledBottle();
-            await handleResultClaimFromDiscord(result, config, filledBottleRoles[0].role);
-        } else if (emptyBottleRoles.length > 0) {
-            const result = await claimRandomBottle();
-            await handleResultClaimFromDiscord(result, config, emptyBottleRoles[0].role);
+        try {            
+            setDisabled(true);
+            if (filledBottleRoles.length > 0) {
+                const result = await claimFilledBottle();
+                await handleResultClaimFromDiscord(result, config, filledBottleRoles[0].role);
+            } else if (emptyBottleRoles.length > 0) {
+                const result = await claimRandomBottle();
+                await handleResultClaimFromDiscord(result, config, emptyBottleRoles[0].role);
         }
         } finally {
         setDisabled(false);

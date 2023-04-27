@@ -100,10 +100,9 @@ const Interactions = () => {
         </button>
         <button
           disabled={
-            /*disabled ||
+            disabled ||
             session === null ||
-            (filledBottleRoles.length === 0 && emptyBottleRoles.length === 0)*/
-            true
+            (filledBottleRoles.length === 0 && emptyBottleRoles.length === 0)
           }
           onClick={() => handleClaim()}
           className="flex justify-center items-center h-10 lg:text-lg xl:text-xl hover:bg-cyan-600 bg-cyan-500 text-white font-bold w-full rounded-xl ml-1 px-3 py-1 disabled:bg-gray-200 disabled:text-gray-300">

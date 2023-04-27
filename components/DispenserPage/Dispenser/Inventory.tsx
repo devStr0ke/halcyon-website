@@ -24,7 +24,7 @@ const Inventory = () => {
     () =>
       roles
         .filter((r) => r.enthusiast === false)
-        .filter((r) => r.role === 'Wetlist' || r.role === 'Thirsty'),
+        .filter((r) => r.role === 'Wet(list)' || r.role === 'Thirsty'),
     [roles]
   );
   const nonEnthClaimableNumber = useMemo(
@@ -85,7 +85,7 @@ const Inventory = () => {
           className="text-cyan-500 hover:text-cyan-600 mt-2">
           What to do with all this loot now?
         </button>
-        <div className="w-full hidden">
+        <div className="w-full">
           {' '}
           {/*Remove hidden to show discord roles*/}
           <h2 className="lg:text-lg xl:text-2xl text-center font-medium mb-2 uppercase mt-2">

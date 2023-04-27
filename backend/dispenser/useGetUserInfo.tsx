@@ -91,7 +91,7 @@ const useGetUserInfo = (address: string | undefined, dispenser: DispenserStore) 
       testCoinBalance += Number(coin.balance)
     })
     const testCoinIds = testCoins.data.map((coin) => coin.coinObjectId);
-    const testCoinDecimals = testCoinsMetadata.decimals;
+    const testCoinDecimals = testCoinsMetadata?.decimals ?? 9;
     
     return {testCoinIds, testCoinBalance, testCoinDecimals};
   };
