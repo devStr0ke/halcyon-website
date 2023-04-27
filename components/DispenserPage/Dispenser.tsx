@@ -60,7 +60,7 @@ const Dispenser = (props: any) => {
         <div className='mt-2 flex justify-center mx-16'>
           { isWetlisted && (
             <div className="bg-green-200 border w-full border-green-400 rounded-md">
-              <p className='text-center text-green-700'>Congratulations, you are wetlisted!</p>
+              <p className='text-center text-green-700'>Congratulations, you are wetlisted! You won&apos;t get a role on Discord we have your address now</p>
             </div>
           )}
         </div>
