@@ -102,7 +102,7 @@ a {
   padding-right: 16px;
   text-align: center;
   border-radius: 0.25rem;
-  height: 40px;
+  height: 35px;
 }
 
 #sui-connect button:not(#sui-disconnect):hover {
