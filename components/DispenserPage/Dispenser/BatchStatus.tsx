@@ -40,13 +40,13 @@ const BatchStatus = () => {
         <p>
           Prepare your {batchOrNot === Batch.Coin ? coin : 'SUI'} coins! Next batch opens in {days}{' '}
           day(s),{' '}
-          <span className="text-sm md:text-md lg:text-2xl font-bold">
+          <span className="text-sm sm:text-md md:text-lg lg:text-2xl font-bold">
             {hours}:{minutes}:{seconds}
           </span>
         </p>
-        <div className="mt-3 flex flex-row">
-          <p className="text-3xl font-bold">{left}</p>
-          <p className="ml-2 mt-2">/{supply} left</p>
+        <div className="mt-1 flex flex-row justify-center lg:justify-start">
+          <p className="text-xl lg:text-3xl font-bold">{left}</p>
+          <p className="mx-1 lg:ml-2 mt-1 lg:mt-2">/{supply} left</p>
         </div>
       </div>
     );
@@ -56,13 +56,13 @@ const BatchStatus = () => {
         <p>
           Mint a Random Bottle for {priceInCoins / Math.pow(10, testCoinDecimals)} {coin} coins,
           hurry up there is only {days} day(s),{' '}
-          <span className="text-sm md:text-md lg:text-2xl font-bold">
+          <span className="text-sm sm:text-md md:text-lg lg:text-2xl font-bold">
             {hours}:{minutes}:{seconds} left!
           </span>
         </p>
-        <div className="mt-3 flex flex-row">
-          <p className="text-3xl font-bold">{left}</p>
-          <p className="ml-2 mt-2">/{supply} left</p>
+        <div className="mt-1 flex flex-row justify-center lg:justify-start">
+          <p className="text-xl lg:text-3xl font-bold">{left}</p>
+          <p className="mx-1 lg:ml-2 mt-1 lg:mt-2">/{supply} left</p>
         </div>
       </div>
     );
