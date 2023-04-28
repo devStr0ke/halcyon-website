@@ -5,7 +5,7 @@ const Connection = () => {
 
   return (
     <>
-      <div className="flex justify-end w-full h-full">
+      <div className="flex justify-center lg:justify-end w-full h-full">
         <DiscordLogin />
         <SuiConnect />
       </div>
