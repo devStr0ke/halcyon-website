@@ -29,8 +29,6 @@ export const useSendTx = () => {
         ]
       });
 
-      tx.setGasBudget(10000000);
-
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForLocalExecution',
@@ -70,8 +68,6 @@ export const useSendTx = () => {
         ]
       });
 
-      tx.setGasBudget(10000000);
-
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForLocalExecution',
@@ -94,8 +90,6 @@ export const useSendTx = () => {
         typeArguments: [`${testNft.packageId}::${testNft.moduleName}::${testNft.structName}`],
         arguments: [tx.object(config.dispenser), tx.object(ticketIds[0])]
       });
-
-      tx.setGasBudget(10000000);
 
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
@@ -126,8 +120,6 @@ export const useSendTx = () => {
         ]
       });
 
-      tx.setGasBudget(10000000);
-
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForLocalExecution',
@@ -150,8 +142,6 @@ export const useSendTx = () => {
         typeArguments: [],
         arguments: [tx.object(filledBottleIds[0])]
       });
-
-      tx.setGasBudget(10000000);
 
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
@@ -176,8 +166,6 @@ export const useSendTx = () => {
         arguments: [tx.pure(magicNumber)]
       });
 
-      tx.setGasBudget(10000000);
-
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
         requestType: 'WaitForLocalExecution',
@@ -200,8 +188,6 @@ export const useSendTx = () => {
         typeArguments: [],
         arguments: [tx.pure(magicNumber)]
       });
-
-      tx.setGasBudget(10000000);
 
       return await signAndExecuteTransactionBlock({
         transactionBlock: tx,
